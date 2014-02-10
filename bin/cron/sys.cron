@@ -1,0 +1,7 @@
+# system cron. 
+#min   hour day month week  command. 
+0      1    *   *     *     D:\www\zendZentao\bin\dailyreminder.bat # daily reminder.           
+1      1    *   *     *     D:\www\zendZentao\bin\backup.bat        # backup database and file. 
+1      23   *   *     *     D:\www\zendZentao\bin\computeburn.bat   # compute burndown chart.   
+1-59/2 *    *   *     *     D:\www\zendZentao\bin\syncsvn.bat       # sync subversion.          
+1-59/2 *    *   *     *     D:\www\zendZentao\bin\syncgit.bat       # sync git.                 

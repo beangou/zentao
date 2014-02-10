@@ -1,0 +1,31 @@
+.w-20px{width:20px}
+.w-40px{width:40px}
+.w-180px{width:180px}
+.w-345px{width:345px}
+
+.select-2{width:60px}
+.select-6{width:100%}
+.select-7{width:70px}
+.w-type  {width:150px}
+.select-3{width:265px}
+.half-left {text-align:right}
+.half-right{text-align:left}
+.text-1{width:100%}
+.text-6{width:75%}
+.disabled{background-color:#ddd; border:1px solid #aaa;}
+.a-left,.a-leftS{
+	text-align: left;
+}
+.a-leftS{font-size: 18px;font-weight: bold;margin: 15px 0}
+.a-title{font-size: 14px;font-weight: bold;margin: 3px}
+.accumulativeT tr{height: 50px}
+.accumulativeT.tr.td.input{width: 60%;}
+.accumulativeT tr td select{width: 60%;}
+div #name{display: inline-block;margin-right: 20px}
+.a-hours tr td{padding: 5px;}
+.a-hours tr td input{width: 80%;}
+.a-rewards tr td{padding: 2px;}
+.a-rewards tr td input{width: 80%;}
+
+.tabbox{}
+.tabbox td{padding:0 5px}

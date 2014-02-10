@@ -1,0 +1,702 @@
+
+14:43:53 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.cm_weekplan' doesn't existThe sql is: SELECT *,"" as auditorName,"" as chargeName FROM `cm_weekplan` wHeRe week  = '4' AND charge  = 'beanGou' AND isSubmit  = '1' in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=plan&f=myplan
+
+14:46:07 ERROR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'isSubmit' in 'where clause'The sql is: SELECT *,"" as auditorName,"" as chargeName FROM `cm_weekplan` wHeRe week  = '4' AND charge  = 'beanGou' AND isSubmit  = '1' in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=plan&f=myplan
+
+15:18:22 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:18:22 Trying to get property of non-object in D:\www\zendZentao\module\my\model.php on line 48 when visiting /zendZentao/www/index.php?m=my&f=index
+
+15:18:22 Trying to get property of non-object in D:\www\zendZentao\module\my\model.php on line 50 when visiting /zendZentao/www/index.php?m=my&f=index
+
+15:18:23 ERROR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'deleted' in 'where clause'The sql is: SELECT * FROM `cm_product` wHeRe deleted  = '0' AND status  != 'closed' oRdEr bY code in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=my&f=index
+
+15:20:04 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:20:04 Trying to get property of non-object in D:\www\zendZentao\module\my\model.php on line 48 when visiting /zendZentao/www/index.php?m=my&f=index
+
+15:20:04 Trying to get property of non-object in D:\www\zendZentao\module\my\model.php on line 50 when visiting /zendZentao/www/index.php?m=my&f=index
+
+15:20:04 ERROR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'deleted' in 'where clause'The sql is: SELECT * FROM `cm_product` wHeRe deleted  = '0' AND status  != 'closed' oRdEr bY code in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=my&f=index
+
+15:20:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:20:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:20:16 Trying to get property of non-object in D:\www\zendZentao\module\my\model.php on line 48 when visiting /zendZentao/www/index.php?m=my&f=index
+
+15:20:16 Trying to get property of non-object in D:\www\zendZentao\module\my\model.php on line 50 when visiting /zendZentao/www/index.php?m=my&f=index
+
+15:20:16 ERROR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'deleted' in 'where clause'The sql is: SELECT * FROM `cm_product` wHeRe deleted  = '0' AND status  != 'closed' oRdEr bY code in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=my&f=index
+
+15:20:57 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:20:57 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:20:57 Trying to get property of non-object in D:\www\zendZentao\module\my\model.php on line 48 when visiting /zendZentao/www/index.php?m=my&f=index
+
+15:20:57 Trying to get property of non-object in D:\www\zendZentao\module\my\model.php on line 50 when visiting /zendZentao/www/index.php?m=my&f=index
+
+15:20:57 ERROR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'deleted' in 'where clause'The sql is: SELECT * FROM `cm_product` wHeRe deleted  = '0' AND status  != 'closed' oRdEr bY code in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=my&f=index
+
+15:32:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:32:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:32:50 fsockopen():  in D:\www\zendZentao\lib\snoopy\snoopy.class.php on line 1142 when visiting /zendZentao/www/install.php
+
+15:32:50 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php
+
+15:32:50 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php
+
+15:33:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:33:32 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php?m=install&f=step1
+
+15:33:32 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step1
+
+15:34:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:34:17 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+15:34:17 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\colorbox.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+15:34:17 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+15:34:59 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:35:02 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+15:35:02 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+15:35:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:36:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:36:55 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:36:55 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:36:58 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:36:58 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:37:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:37:15 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+15:37:15 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.zt_user' doesn't existThe sql is: SELECT distinct u.*,i.realname from ict_user u left join zt_user i on u.account=i.account  wHeRe u.account  LIKE '%%' in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+15:38:19 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:38:54 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:38:54 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.zt_task' doesn't existThe sql is: SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  wHeRe t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  
+15:38:56 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:39:07 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:39:07 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+15:39:07 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.zt_user' doesn't existThe sql is: SELECT distinct u.*,i.realname from ict_user u left join zt_user i on u.account=i.account  wHeRe u.account  LIKE '%%' in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+15:39:08 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:39:10 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:39:10 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.zt_task' doesn't existThe sql is: SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  wHeRe t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  
+15:39:12 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:39:13 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:39:14 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:39:14 Creating default object from empty value in D:\www\zendZentao\module\group\ext\lang\zh-cn\salary.php on line 4 when visiting /zendZentao/www/index.php?m=product&f=create
+
+15:39:21 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:39:21 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:39:22 Creating default object from empty value in D:\www\zendZentao\module\group\ext\lang\zh-cn\salary.php on line 4 when visiting /zendZentao/www/index.php?m=project&f=create
+
+15:39:34 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:39:34 Creating default object from empty value in D:\www\zendZentao\module\group\ext\lang\zh-cn\salary.php on line 4 when visiting /zendZentao/www/index.php?m=project&f=create
+
+15:39:39 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:39:39 Creating default object from empty value in D:\www\zendZentao\module\group\ext\lang\zh-cn\salary.php on line 4 when visiting /zendZentao/www/index.php?m=project&f=create
+
+15:39:42 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:39:45 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:39:45 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.zt_task' doesn't existThe sql is: SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  wHeRe t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  
+15:40:47 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:45:47 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:45:47 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:45:47 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/index.php?m=misc&f=ping&t=html
+
+15:48:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:48:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:48:30 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+15:48:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:48:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:48:51 fsockopen():  in D:\www\zendZentao\lib\snoopy\snoopy.class.php on line 1142 when visiting /zendZentao/www/install.php
+
+15:48:51 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php
+
+15:48:51 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php
+
+15:48:51 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php
+
+15:48:58 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:48:58 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:48:58 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php?m=install&f=step1
+
+15:48:58 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step1
+
+15:48:58 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step1
+
+15:48:59 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:48:59 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:48:59 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+15:48:59 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\colorbox.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+15:48:59 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+15:48:59 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+15:49:06 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:49:06 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:49:06 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+15:49:06 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+15:49:06 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+15:49:13 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:49:13 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:49:13 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+15:49:13 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\colorbox.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+15:49:13 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+15:49:13 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+15:49:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:49:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:49:18 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+15:49:18 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+15:49:18 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+15:49:19 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:49:19 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:49:19 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step4
+
+15:49:24 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:49:24 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:49:25 ERROR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'beanGou' for key 'account'The sql is: INSERT INTO `ict_user` SET `account` = 'beanGou',`realname` = 'beanGou',`password` = '63a9f0ea7bb98050796b649e85481845',`gender` = '' in D:\www\zendZentao\lib\dao\dao.class.php on line 531, last called by D:\www\zendZentao\module\install\model.php on line 404 through function exec.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/install.php?m=install&f=step4
+
+15:49:25 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step4
+
+15:49:59 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:49:59 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:49:59 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+15:49:59 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:49:59 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:50:22 fsockopen():  in D:\www\zendZentao\lib\snoopy\snoopy.class.php on line 1142 when visiting /zendZentao/www/install.php?m=install&f=index
+
+15:50:22 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=index
+
+15:50:24 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:50:24 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:50:24 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step1
+
+15:50:25 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:50:25 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:50:25 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+15:50:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:50:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:50:32 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+15:50:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:50:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:50:34 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step4
+
+15:50:39 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:50:39 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:50:39 ERROR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'beanGou' for key 'account'The sql is: INSERT INTO `ict_user` SET `account` = 'beanGou',`realname` = 'beanGou',`password` = '63a9f0ea7bb98050796b649e85481845',`gender` = '' in D:\www\zendZentao\lib\dao\dao.class.php on line 531, last called by D:\www\zendZentao\module\install\model.php on line 404 through function exec.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/install.php?m=install&f=step4
+
+15:50:39 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step4
+
+15:51:34 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:51:34 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:51:34 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=misc&f=ping&t=html
+
+15:52:11 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:52:11 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:52:11 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/index.php
+
+15:52:11 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:52:11 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:52:11 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.user' doesn't existThe sql is: SELECT * FROM `user` wHeRe account  = 'beanGou' in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 546 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=my&f=index
+
+15:52:11 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/index.php?m=my&f=index
+
+15:53:45 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:53:45 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:53:45 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+15:53:46 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:53:46 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:54:07 fsockopen():  in D:\www\zendZentao\lib\snoopy\snoopy.class.php on line 1142 when visiting /zendZentao/www/install.php
+
+15:54:07 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php
+
+15:54:07 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php
+
+15:54:07 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php
+
+15:54:13 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:54:13 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:54:13 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php?m=install&f=step1
+
+15:54:13 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step1
+
+15:54:13 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step1
+
+15:54:14 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:54:14 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:54:14 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+15:54:14 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\colorbox.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+15:54:14 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+15:54:14 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+15:54:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:54:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:54:19 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+15:54:19 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+15:54:19 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+15:54:20 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:54:20 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:54:20 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step4
+
+15:54:25 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:54:25 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:54:25 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.ict_company' doesn't existThe sql is: DESC `ict_company` in D:\www\zendZentao\lib\dao\dao.class.php on line 940, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 823 through function getFieldsType.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/install.php?m=install&f=step4
+
+15:54:25 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step4
+
+15:55:08 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:55:08 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:55:08 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.ict_config' doesn't existThe sql is: SELECT * FROM `ict_config` wHeRe owner IN ('system','beanGou') oRdEr bY id in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting 
+
+15:55:08 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+15:55:21 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:55:21 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:55:21 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=misc&f=ping&t=html
+
+15:59:44 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:59:44 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:59:44 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.ict_config' doesn't existThe sql is: SELECT * FROM `ict_config` wHeRe owner IN ('system','beanGou') oRdEr bY id in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting 
+
+15:59:44 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+16:00:21 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+16:00:21 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:00:21 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.ict_config' doesn't existThe sql is: SELECT * FROM `ict_config` wHeRe 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn') in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 548 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/install.php?m=misc&f=ping&t=html
+
+16:00:21 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=misc&f=ping&t=html
+
+16:01:01 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+16:01:01 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:01:01 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.ict_config' doesn't existThe sql is: SELECT * FROM `ict_config` wHeRe owner IN ('system','beanGou') oRdEr bY id in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting 
+
+16:01:01 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+16:01:02 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+16:01:02 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:01:02 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.ict_config' doesn't existThe sql is: SELECT * FROM `ict_config` wHeRe owner IN ('system','beanGou') oRdEr bY id in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting 
+
+16:01:02 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+16:01:02 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+16:01:02 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:01:02 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.ict_config' doesn't existThe sql is: SELECT * FROM `ict_config` wHeRe owner IN ('system','beanGou') oRdEr bY id in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting 
+
+16:01:02 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+16:01:02 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+16:01:02 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:01:02 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.ict_config' doesn't existThe sql is: SELECT * FROM `ict_config` wHeRe owner IN ('system','beanGou') oRdEr bY id in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting 
+
+16:01:02 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+16:01:03 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+16:01:03 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:01:03 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.ict_config' doesn't existThe sql is: SELECT * FROM `ict_config` wHeRe owner IN ('system','beanGou') oRdEr bY id in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting 
+
+16:01:03 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+16:01:03 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+16:01:03 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:01:03 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.ict_config' doesn't existThe sql is: SELECT * FROM `ict_config` wHeRe owner IN ('system','beanGou') oRdEr bY id in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting 
+
+16:01:03 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+16:01:03 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+16:01:03 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:01:03 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.ict_config' doesn't existThe sql is: SELECT * FROM `ict_config` wHeRe owner IN ('system','beanGou') oRdEr bY id in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting 
+
+16:01:03 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+16:01:03 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+16:01:03 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:01:03 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.ict_config' doesn't existThe sql is: SELECT * FROM `ict_config` wHeRe owner IN ('system','beanGou') oRdEr bY id in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting 
+
+16:01:03 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+16:01:03 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+16:01:03 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:01:04 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.ict_config' doesn't existThe sql is: SELECT * FROM `ict_config` wHeRe owner IN ('system','beanGou') oRdEr bY id in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting 
+
+16:01:04 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+16:01:04 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+16:01:04 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:01:04 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.ict_config' doesn't existThe sql is: SELECT * FROM `ict_config` wHeRe owner IN ('system','beanGou') oRdEr bY id in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting 
+
+16:01:04 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+16:07:02 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:07:02 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.ict_config' doesn't existThe sql is: SELECT * FROM `ict_config` wHeRe owner IN ('system','beanGou') oRdEr bY id in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting 
+
+16:07:02 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+16:07:04 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:07:04 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.ict_config' doesn't existThe sql is: SELECT * FROM `ict_config` wHeRe owner IN ('system','beanGou') oRdEr bY id in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 561 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting 
+
+16:07:04 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+16:08:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:08:30 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+16:08:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:08:30 Undefined index: HTTP_X_REQUESTED_WITH in D:\www\zendZentao\www\upgrade.php on line 41 when visiting 
+
+16:08:30 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/upgrade.php
+
+16:10:11 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:10:11 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+16:10:11 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:10:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:10:31 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting 
+
+16:10:32 fsockopen():  in D:\www\zendZentao\lib\snoopy\snoopy.class.php on line 1142 when visiting /zendZentao/www/install.php
+
+16:10:32 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php
+
+16:10:32 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php
+
+16:10:32 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php
+
+16:10:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:10:53 fsockopen():  in D:\www\zendZentao\lib\snoopy\snoopy.class.php on line 1142 when visiting /zendZentao/www/install.php
+
+16:10:53 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php
+
+16:10:53 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php
+
+16:10:53 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php
+
+16:10:55 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:10:55 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php?m=install&f=step1
+
+16:10:55 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step1
+
+16:10:55 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step1
+
+16:10:56 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:10:56 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+16:10:56 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\colorbox.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+16:10:56 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+16:10:56 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+16:11:00 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:11:01 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+16:11:01 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+16:11:01 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+16:11:03 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:11:03 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step4
+
+16:11:07 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:11:07 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step4
+
+16:11:07 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:11:07 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/install.php?m=install&f=step5
+
+16:11:09 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:11:09 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/index.php
+
+16:11:09 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:11:09 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.user' doesn't existThe sql is: SELECT * FROM `user` wHeRe account  = 'beanGou' in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 546 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=my&f=index
+
+16:11:09 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/index.php?m=my&f=index
+
+16:11:24 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:11:24 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.user' doesn't existThe sql is: SELECT * FROM `user` wHeRe account  = 'beanGou' in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 546 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=my&f=index
+
+16:11:24 Undefined property: stdClass::$ict in D:\www\zendZentao\config\config.php on line 102 when visiting /zendZentao/www/index.php?m=my&f=index
+
+16:14:09 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:14:09 Use of undefined constant TABLE_ICTUSER - assumed 'TABLE_ICTUSER' in D:\www\zendZentao\module\my\model.php on line 49 when visiting /zendZentao/www/index.php?m=my&f=index
+
+16:14:09 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.table_ictuser' doesn't existThe sql is: SELECT * FROM TABLE_ICTUSER wHeRe account  = 'beanGou' in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 546 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=my&f=index
+
+16:14:11 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:14:11 Use of undefined constant TABLE_ICTUSER - assumed 'TABLE_ICTUSER' in D:\www\zendZentao\module\my\model.php on line 49 when visiting /zendZentao/www/index.php?m=my&f=index
+
+16:14:11 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.table_ictuser' doesn't existThe sql is: SELECT * FROM TABLE_ICTUSER wHeRe account  = 'beanGou' in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 546 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=my&f=index
+
+16:14:27 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:14:27 Use of undefined constant TABLE_ICTUSER - assumed 'TABLE_ICTUSER' in D:\www\zendZentao\module\my\model.php on line 49 when visiting /zendZentao/www/index.php?m=my&f=index
+
+16:14:27 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.table_ictuser' doesn't existThe sql is: SELECT * FROM TABLE_ICTUSER wHeRe account  = 'beanGou' in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 546 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=my&f=index
+
+16:14:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:14:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:14:29 Use of undefined constant TABLE_ICTUSER - assumed 'TABLE_ICTUSER' in D:\www\zendZentao\module\my\model.php on line 49 when visiting /zendZentao/www/index.php?m=my&f=index
+
+16:14:29 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.table_ictuser' doesn't existThe sql is: SELECT * FROM TABLE_ICTUSER wHeRe account  = 'beanGou' in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 546 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=my&f=index
+
+16:15:40 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:15:40 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:16:01 fsockopen():  in D:\www\zendZentao\lib\snoopy\snoopy.class.php on line 1142 when visiting /zendZentao/www/install.php
+
+16:16:01 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php
+
+16:16:01 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php
+
+16:16:09 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:16:09 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php?m=install&f=step1
+
+16:16:09 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step1
+
+16:16:10 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:16:10 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+16:16:10 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\colorbox.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+16:16:10 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step2
+
+16:16:22 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:16:23 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\header.lite.html.php on line 18 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+16:16:23 Undefined property: config::$debug in D:\www\zendZentao\module\common\view\footer.lite.html.php on line 3 when visiting /zendZentao/www/install.php?m=install&f=step3
+
+16:16:24 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:16:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:16:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:16:35 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:16:35 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:16:35 Use of undefined constant TABLE_ICTUSER - assumed 'TABLE_ICTUSER' in D:\www\zendZentao\module\my\model.php on line 49 when visiting /zendZentao/www/index.php?m=my&f=index
+
+16:16:35 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.table_ictuser' doesn't existThe sql is: SELECT * FROM TABLE_ICTUSER wHeRe account  = 'beanGou' in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 546 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=my&f=index
+
+16:26:00 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+16:26:00 Use of undefined constant TABLE_ICTUSER - assumed 'TABLE_ICTUSER' in D:\www\zendZentao\module\my\model.php on line 49 when visiting /zendZentao/www/index.php?m=my&f=index
+
+16:26:00 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.table_ictuser' doesn't existThe sql is: SELECT * FROM TABLE_ICTUSER wHeRe account  = 'beanGou' in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 546 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=my&f=index
+
+17:15:54 Use of undefined constant TABLE_ICTUSER - assumed 'TABLE_ICTUSER' in D:\www\zendZentao\module\my\model.php on line 49 when visiting /zendZentao/www/index.php?m=my&f=index
+
+17:15:54 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.table_ictuser' doesn't existThe sql is: SELECT * FROM TABLE_ICTUSER wHeRe account  = 'beanGou' in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 546 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=my&f=index
+
+17:15:57 Use of undefined constant TABLE_ICTUSER - assumed 'TABLE_ICTUSER' in D:\www\zendZentao\module\my\model.php on line 49 when visiting /zendZentao/www/index.php?m=my&f=index
+
+17:15:57 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.table_ictuser' doesn't existThe sql is: SELECT * FROM TABLE_ICTUSER wHeRe account  = 'beanGou' in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 546 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=my&f=index
+
+17:18:06 Use of undefined constant TABLE_ICTUSER - assumed 'TABLE_ICTUSER' in D:\www\zendZentao\module\my\model.php on line 49 when visiting /zendZentao/www/index.php?m=my&f=index
+
+17:18:06 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.table_ictuser' doesn't existThe sql is: SELECT * FROM TABLE_ICTUSER wHeRe account  = 'beanGou' in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 546 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=my&f=index
+
+17:18:12 Use of undefined constant TABLE_ICTUSER - assumed 'TABLE_ICTUSER' in D:\www\zendZentao\module\my\model.php on line 49 when visiting /zendZentao/www/index.php?m=my&f=index
+
+17:18:12 ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zentao.table_ictuser' doesn't existThe sql is: SELECT * FROM TABLE_ICTUSER wHeRe account  = 'beanGou' in D:\www\zendZentao\lib\dao\dao.class.php on line 462, last called by D:\www\zendZentao\lib\dao\dao.class.php on line 546 through function query.
+ in D:\www\zendZentao\framework\router.class.php on line 1576 when visiting /zendZentao/www/index.php?m=my&f=index

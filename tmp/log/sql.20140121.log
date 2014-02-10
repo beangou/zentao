@@ -1,0 +1,1676 @@
+20140121 08:52:31: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 08:57:31: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 09:02:31: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 09:02:56: /zendZentao/www/index.php?m=project&f=create
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND deleted  = '0' ORDER BY isDone, status
+  SELECT * FROM `zt_project` WHERE `id` = '0' 
+  SELECT id, name FROM `zt_group`
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+
+20140121 09:03:03: /zendZentao/www/index.php?m=project&f=create
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND deleted  = '0' ORDER BY isDone, status
+  SELECT * FROM `zt_project` WHERE `id` = '0' 
+  SELECT id, name FROM `zt_group`
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+
+20140121 09:03:06: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `zt_task` WHERE project IN ('') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `zt_burn` WHERE project IN ('') ORDER BY date desc
+  SELECT * FROM `zt_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+  SELECT product, status, count(status) AS count FROM `zt_story` WHERE deleted  = '0' AND product IN ('') GROUP BY product, status
+  SELECT product, count(*) AS count FROM `zt_productPlan` WHERE deleted  = '0' AND product IN ('') AND end  > '2014-01-21 09:03:06' GROUP BY product
+  SELECT product, count(*) AS count FROM `zt_release` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS conut FROM `zt_bug` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE status  = 'active' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE AssignedTo  = '' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT * FROM `zt_action` WHERE 1  AND date  > '2014-01-19' AND date  < '2014-01-22' ORDER BY date desc  limit 0, 14 
+  SELECT commiter, account, realname FROM `zt_user` WHERE commiter  != ''
+  SELECT id, account AS name FROM `zt_user` WHERE id IN ('1')
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.id, t1.title, t2.name as product FROM `zt_bug` AS t1  LEFT JOIN `zt_product` AS t2  ON t1.product=t2.id  WHERE t1.assignedTo  = 'beanGou' AND t1.deleted  = '0' ORDER BY id desc LIMIT 10 
+  SELECT id, title FROM `zt_story` WHERE deleted  = '0' AND assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT account, realname FROM `zt_user` ORDER BY account
+
+20140121 09:03:09: /zendZentao/www/index.php?m=salary&f=monthly&typeID=2
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) AS estimate,finishedBy,DATE(finishedDate) AS finishedDate FROM `zt_task` WHERE DATE_FORMAT(finishedDate,'%Y-%m')  = '2014-01' AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE(finishedDate) ORDER BY finishedDate Desc
+
+20140121 09:03:11: /zendZentao/www/index.php?m=salary&f=monthly&typeID=1
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) AS estimate,finishedBy,DATE(finishedDate) AS finishedDate FROM `zt_task` WHERE DATE_FORMAT(finishedDate,'%Y-%m')  = '2014-01' AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE(finishedDate) ORDER BY finishedDate Desc
+
+20140121 09:03:13: /zendZentao/www/index.php?m=salary&f=monthly&typeID=2
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) AS estimate,finishedBy,DATE(finishedDate) AS finishedDate FROM `zt_task` WHERE DATE_FORMAT(finishedDate,'%Y-%m')  = '2014-01' AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE(finishedDate) ORDER BY finishedDate Desc
+
+20140121 09:03:14: /zendZentao/www/index.php?m=salary&f=monthly&typeID=2
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) AS estimate,finishedBy,DATE(finishedDate) AS finishedDate FROM `zt_task` WHERE DATE_FORMAT(finishedDate,'%Y-%m')  = '2014-01' AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE(finishedDate) ORDER BY finishedDate Desc
+
+20140121 09:03:17: /zendZentao/www/index.php?m=salary&f=monthly
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) AS estimate,finishedBy,DATE(finishedDate) AS finishedDate FROM `zt_task` WHERE DATE_FORMAT(finishedDate,'%Y-%m')  = '2014-01' AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE(finishedDate) ORDER BY finishedDate Desc
+
+20140121 09:03:19: /zendZentao/www/index.php?m=my&f=changepassword
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+
+20140121 09:03:21: /zendZentao/www/index.php?m=salary&f=monthly
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) AS estimate,finishedBy,DATE(finishedDate) AS finishedDate FROM `zt_task` WHERE DATE_FORMAT(finishedDate,'%Y-%m')  = '2014-01' AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE(finishedDate) ORDER BY finishedDate Desc
+
+20140121 09:03:22: /zendZentao/www/index.php?m=salary&f=monthly&typeID=1
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) AS estimate,finishedBy,DATE(finishedDate) AS finishedDate FROM `zt_task` WHERE DATE_FORMAT(finishedDate,'%Y-%m')  = '2014-01' AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE(finishedDate) ORDER BY finishedDate Desc
+
+20140121 09:03:23: /zendZentao/www/index.php?m=salary&f=monthly&typeID=2
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) AS estimate,finishedBy,DATE(finishedDate) AS finishedDate FROM `zt_task` WHERE DATE_FORMAT(finishedDate,'%Y-%m')  = '2014-01' AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE(finishedDate) ORDER BY finishedDate Desc
+
+20140121 09:03:24: /zendZentao/www/index.php?m=salary&f=monthly&typeID=2
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) AS estimate,finishedBy,DATE(finishedDate) AS finishedDate FROM `zt_task` WHERE DATE_FORMAT(finishedDate,'%Y-%m')  = '2014-01' AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE(finishedDate) ORDER BY finishedDate Desc
+
+20140121 09:03:25: /zendZentao/www/index.php?m=system&f=personnel
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT distinct u.*,i.realname from ict_user u left join zt_user i on u.account=i.account  WHERE u.account  LIKE '%%'
+  SELECT u.account,u.realname,u.dept,i.standsalary,i.role FROM zt_user u LEFT JOIN ict_user i ON u.account=i.account  WHERE u.deleted  = '0' AND u.account  != '' AND u.account  != 'admin' AND u.account NOT IN(SELECT account FROM ict_user)  AND u.account  LIKE '%%'
+
+20140121 09:03:30: /zendZentao/www/index.php?m=system&f=personnel
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT distinct u.*,i.realname from ict_user u left join zt_user i on u.account=i.account  WHERE u.account  LIKE '%beanGou%'
+  SELECT u.account,u.realname,u.dept,i.standsalary,i.role FROM zt_user u LEFT JOIN ict_user i ON u.account=i.account  WHERE u.deleted  = '0' AND u.account  != '' AND u.account  != 'admin' AND u.account NOT IN(SELECT account FROM ict_user)  AND u.account  LIKE '%beanGou%'
+  SELECT u.account,u.realname,i.standsalary,i.role FROM zt_user u LEFT JOIN ict_user i ON u.account=i.account  WHERE u.deleted  = '0' AND u.account  = 'beanGou'
+  SELECT u.account,u.realname,i.standsalary,i.role FROM zt_user u LEFT JOIN ict_user i ON u.account=i.account  WHERE u.deleted  = '0' AND u.account  = 'beanGou'
+
+20140121 09:03:33: /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT distinct u.*,i.realname from ict_user u left join zt_user i on u.account=i.account  WHERE u.account  LIKE '%%'
+  SELECT u.account,u.realname,u.dept,i.standsalary,i.role FROM zt_user u LEFT JOIN ict_user i ON u.account=i.account  WHERE u.deleted  = '0' AND u.account  != '' AND u.account  != 'admin' AND u.account NOT IN(SELECT account FROM ict_user)  AND u.account  LIKE '%%'
+  SELECT * FROM `zt_user` WHERE account  = 'beanGou'
+  INSERT INTO `ict_user` SET `account` = 'beanGou',`dept` = '0'
+
+20140121 09:03:33: /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT distinct u.*,i.realname from ict_user u left join zt_user i on u.account=i.account  WHERE u.account  LIKE '%%'
+  SELECT u.account,u.realname,u.dept,i.standsalary,i.role FROM zt_user u LEFT JOIN ict_user i ON u.account=i.account  WHERE u.deleted  = '0' AND u.account  != '' AND u.account  != 'admin' AND u.account NOT IN(SELECT account FROM ict_user)  AND u.account  LIKE '%%'
+
+20140121 09:03:36: /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT distinct u.*,i.realname from ict_user u left join zt_user i on u.account=i.account  WHERE u.account  LIKE '%%'
+  SELECT u.account,u.realname,u.dept,i.standsalary,i.role FROM zt_user u LEFT JOIN ict_user i ON u.account=i.account  WHERE u.deleted  = '0' AND u.account  != '' AND u.account  != 'admin' AND u.account NOT IN(SELECT account FROM ict_user)  AND u.account  LIKE '%%'
+
+20140121 09:03:36: /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT distinct u.*,i.realname from ict_user u left join zt_user i on u.account=i.account  WHERE u.account  LIKE '%%'
+  SELECT u.account,u.realname,u.dept,i.standsalary,i.role FROM zt_user u LEFT JOIN ict_user i ON u.account=i.account  WHERE u.deleted  = '0' AND u.account  != '' AND u.account  != 'admin' AND u.account NOT IN(SELECT account FROM ict_user)  AND u.account  LIKE '%%'
+
+20140121 09:03:44: /zendZentao/www/index.php?m=admin&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 09:03:45: /zendZentao/www/index.php?m=system&f=personnel
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT distinct u.*,i.realname from ict_user u left join zt_user i on u.account=i.account  WHERE u.account  LIKE '%%'
+  SELECT u.account,u.realname,u.dept,i.standsalary,i.role FROM zt_user u LEFT JOIN ict_user i ON u.account=i.account  WHERE u.deleted  = '0' AND u.account  != '' AND u.account  != 'admin' AND u.account NOT IN(SELECT account FROM ict_user)  AND u.account  LIKE '%%'
+
+20140121 09:03:46: /zendZentao/www/index.php?m=system&f=parameter
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT u.realname,i.account from ict_user i LEFT JOIN zt_user u on i.account=u.account  WHERE i.role=2 
+  SELECT id,name FROM `zt_product` WHERE deleted  = '0'
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND deleted  = '0' ORDER BY isDone, status
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t.name as productName,j.name as projectName,u.realname,p.* FROM ict_product p,
+						zt_product t,zt_project j,zt_user u  WHERE p.productId=t.id  AND p.project=j.id  AND p.DM=u.account  AND DATE_FORMAT(p.createDate,"%Y-%m")  = '2014-01'
+  SELECT r.name,r.integratedBug,r.deliverBug,r.onlineBug,r.documentPunish,
+							r.rewards,r.delay,r.bonus,r.month,r.total,z.realname,u.account,
+							0 AS count FROM ict_user u LEFT JOIN ict_rewards r ON u.account=r.name and date_format(r.month,"%Y-%m")="2014-01"
+							LEFT JOIN zt_user z ON z.account=u.account  WHERE u.role in (2,3) 
+  SELECT resolvedBy,COUNT(resolvedBy) AS count,DATE_FORMAT(openedDate,"%Y-%m") as month FROM `zt_bug` WHERE DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT u.account,z.realname,i.* FROM ict_user u LEFT JOIN ict_increase i ON u.account=i.name and DATE_FORMAT(i.month,"%Y-%m")='2014-01' left join zt_user z on u.account=z.account  WHERE u.role in (2,3) 
+
+20140121 09:03:50: /zendZentao/www/index.php?m=system&f=personnel
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT distinct u.*,i.realname from ict_user u left join zt_user i on u.account=i.account  WHERE u.account  LIKE '%%'
+  SELECT u.account,u.realname,u.dept,i.standsalary,i.role FROM zt_user u LEFT JOIN ict_user i ON u.account=i.account  WHERE u.deleted  = '0' AND u.account  != '' AND u.account  != 'admin' AND u.account NOT IN(SELECT account FROM ict_user)  AND u.account  LIKE '%%'
+
+20140121 09:03:53: /zendZentao/www/index.php?m=system&f=parameter
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT u.realname,i.account from ict_user i LEFT JOIN zt_user u on i.account=u.account  WHERE i.role=2 
+  SELECT id,name FROM `zt_product` WHERE deleted  = '0'
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND deleted  = '0' ORDER BY isDone, status
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t.name as productName,j.name as projectName,u.realname,p.* FROM ict_product p,
+						zt_product t,zt_project j,zt_user u  WHERE p.productId=t.id  AND p.project=j.id  AND p.DM=u.account  AND DATE_FORMAT(p.createDate,"%Y-%m")  = '2014-01'
+  SELECT r.name,r.integratedBug,r.deliverBug,r.onlineBug,r.documentPunish,
+							r.rewards,r.delay,r.bonus,r.month,r.total,z.realname,u.account,
+							0 AS count FROM ict_user u LEFT JOIN ict_rewards r ON u.account=r.name and date_format(r.month,"%Y-%m")="2014-01"
+							LEFT JOIN zt_user z ON z.account=u.account  WHERE u.role in (2,3) 
+  SELECT resolvedBy,COUNT(resolvedBy) AS count,DATE_FORMAT(openedDate,"%Y-%m") as month FROM `zt_bug` WHERE DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT u.account,z.realname,i.* FROM ict_user u LEFT JOIN ict_increase i ON u.account=i.name and DATE_FORMAT(i.month,"%Y-%m")='2014-01' left join zt_user z on u.account=z.account  WHERE u.role in (2,3) 
+
+20140121 09:04:01: /zendZentao/www/index.php
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 09:04:01: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `zt_task` WHERE project IN ('') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `zt_burn` WHERE project IN ('') ORDER BY date desc
+  SELECT * FROM `zt_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+  SELECT product, status, count(status) AS count FROM `zt_story` WHERE deleted  = '0' AND product IN ('') GROUP BY product, status
+  SELECT product, count(*) AS count FROM `zt_productPlan` WHERE deleted  = '0' AND product IN ('') AND end  > '2014-01-21 09:04:01' GROUP BY product
+  SELECT product, count(*) AS count FROM `zt_release` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS conut FROM `zt_bug` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE status  = 'active' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE AssignedTo  = '' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT * FROM `zt_action` WHERE 1  AND date  > '2014-01-19' AND date  < '2014-01-22' ORDER BY date desc  limit 0, 14 
+  SELECT commiter, account, realname FROM `zt_user` WHERE commiter  != ''
+  SELECT id, account AS name FROM `zt_user` WHERE id IN ('1')
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.id, t1.title, t2.name as product FROM `zt_bug` AS t1  LEFT JOIN `zt_product` AS t2  ON t1.product=t2.id  WHERE t1.assignedTo  = 'beanGou' AND t1.deleted  = '0' ORDER BY id desc LIMIT 10 
+  SELECT id, title FROM `zt_story` WHERE deleted  = '0' AND assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT account, realname FROM `zt_user` ORDER BY account
+
+20140121 09:04:03: /zendZentao/www/index.php?m=salary&f=monthly&typeID=2
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(estimate) as count,DATE_FORMAT(finishedDate,"%m") AS date,
+					DATE_FORMAT(finishedDate,"%Y-%m") AS year,0 as bug,0 as personnelCoeff,0 as measure,
+					0 as finalSalary,0 as deptCoeff,0 as bonus,0 as standsalary,"" as account,"" as realname, 
+					"" as dept,"" as allRank,"" as deptRank,"" as officeRank,"" as deptName FROM `zt_task` WHERE DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT name,(rewards+delay+documentPunish) AS count,DATE_FORMAT(month,"%Y-%m") AS date FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT round(SUM(estimate)/count(distinct finishedBy),2) as sumEst,DATE_FORMAT(finishedDate,"%Y-%m") AS date FROM `zt_task` WHERE finishedBy  != '' AND finishedBy  != 'admin' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT finishedBy,DATE_FORMAT(finishedDate,"%Y-%m") AS date,SUM(estimate) as count,0 as personnelCoeff FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT DISTINCT DATE_FORMAT(createDate,"%Y-%m") AS date,deptCoeff FROM `ict_product` WHERE date_format(createDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deptCoeff  != ''
+  SELECT name,rewards,bonus,DATE_FORMAT(month,"%Y-%m") AS date,0 as standsalary FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT DATE_FORMAT(t.finishedDate,"%Y-%m") as date,SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE_FORMAT(t.finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY t.finishedBy,DATE_FORMAT(t.finishedDate,"%Y-%m")
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(estimate) as count,DATE_FORMAT(finishedDate,"%m") AS date,
+					DATE_FORMAT(finishedDate,"%Y-%m") AS year,0 as bug,0 as personnelCoeff,0 as measure,
+					0 as finalSalary,0 as deptCoeff,0 as bonus,0 as standsalary,"" as account,"" as realname, 
+					"" as dept,"" as allRank,"" as deptRank,"" as officeRank,"" as deptName FROM `zt_task` WHERE DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT name,(rewards+delay+documentPunish) AS count,DATE_FORMAT(month,"%Y-%m") AS date FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT round(SUM(estimate)/count(distinct finishedBy),2) as sumEst,DATE_FORMAT(finishedDate,"%Y-%m") AS date FROM `zt_task` WHERE finishedBy  != '' AND finishedBy  != 'admin' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT finishedBy,DATE_FORMAT(finishedDate,"%Y-%m") AS date,SUM(estimate) as count,0 as personnelCoeff FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT DISTINCT DATE_FORMAT(createDate,"%Y-%m") AS date,deptCoeff FROM `ict_product` WHERE date_format(createDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deptCoeff  != ''
+  SELECT name,rewards,bonus,DATE_FORMAT(month,"%Y-%m") AS date,0 as standsalary FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT DATE_FORMAT(t.finishedDate,"%Y-%m") as date,SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE_FORMAT(t.finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY t.finishedBy,DATE_FORMAT(t.finishedDate,"%Y-%m")
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(estimate) AS estimate,finishedBy,DATE(finishedDate) AS finishedDate FROM `zt_task` WHERE DATE_FORMAT(finishedDate,'%Y-%m')  = '2014-01' AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE(finishedDate) ORDER BY finishedDate Desc
+
+20140121 09:04:06: /zendZentao/www/index.php?m=salary&f=monthly&typeID=1
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(estimate) as count,DATE_FORMAT(finishedDate,"%m") AS date,
+					DATE_FORMAT(finishedDate,"%Y-%m") AS year,0 as bug,0 as personnelCoeff,0 as measure,
+					0 as finalSalary,0 as deptCoeff,0 as bonus,0 as standsalary,"" as account,"" as realname, 
+					"" as dept,"" as allRank,"" as deptRank,"" as officeRank,"" as deptName FROM `zt_task` WHERE DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT name,(rewards+delay+documentPunish) AS count,DATE_FORMAT(month,"%Y-%m") AS date FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT round(SUM(estimate)/count(distinct finishedBy),2) as sumEst,DATE_FORMAT(finishedDate,"%Y-%m") AS date FROM `zt_task` WHERE finishedBy  != '' AND finishedBy  != 'admin' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT finishedBy,DATE_FORMAT(finishedDate,"%Y-%m") AS date,SUM(estimate) as count,0 as personnelCoeff FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT DISTINCT DATE_FORMAT(createDate,"%Y-%m") AS date,deptCoeff FROM `ict_product` WHERE date_format(createDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deptCoeff  != ''
+  SELECT name,rewards,bonus,DATE_FORMAT(month,"%Y-%m") AS date,0 as standsalary FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT DATE_FORMAT(t.finishedDate,"%Y-%m") as date,SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE_FORMAT(t.finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY t.finishedBy,DATE_FORMAT(t.finishedDate,"%Y-%m")
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(estimate) as count,DATE_FORMAT(finishedDate,"%m") AS date,
+					DATE_FORMAT(finishedDate,"%Y-%m") AS year,0 as bug,0 as personnelCoeff,0 as measure,
+					0 as finalSalary,0 as deptCoeff,0 as bonus,0 as standsalary,"" as account,"" as realname, 
+					"" as dept,"" as allRank,"" as deptRank,"" as officeRank,"" as deptName FROM `zt_task` WHERE DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT name,(rewards+delay+documentPunish) AS count,DATE_FORMAT(month,"%Y-%m") AS date FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT round(SUM(estimate)/count(distinct finishedBy),2) as sumEst,DATE_FORMAT(finishedDate,"%Y-%m") AS date FROM `zt_task` WHERE finishedBy  != '' AND finishedBy  != 'admin' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT finishedBy,DATE_FORMAT(finishedDate,"%Y-%m") AS date,SUM(estimate) as count,0 as personnelCoeff FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT DISTINCT DATE_FORMAT(createDate,"%Y-%m") AS date,deptCoeff FROM `ict_product` WHERE date_format(createDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deptCoeff  != ''
+  SELECT name,rewards,bonus,DATE_FORMAT(month,"%Y-%m") AS date,0 as standsalary FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT DATE_FORMAT(t.finishedDate,"%Y-%m") as date,SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE_FORMAT(t.finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY t.finishedBy,DATE_FORMAT(t.finishedDate,"%Y-%m")
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(estimate) AS estimate,finishedBy,DATE(finishedDate) AS finishedDate FROM `zt_task` WHERE DATE_FORMAT(finishedDate,'%Y-%m')  = '2014-01' AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE(finishedDate) ORDER BY finishedDate Desc
+
+20140121 09:04:08: /zendZentao/www/index.php?m=salary&f=monthly&typeID=2
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(estimate) as count,DATE_FORMAT(finishedDate,"%m") AS date,
+					DATE_FORMAT(finishedDate,"%Y-%m") AS year,0 as bug,0 as personnelCoeff,0 as measure,
+					0 as finalSalary,0 as deptCoeff,0 as bonus,0 as standsalary,"" as account,"" as realname, 
+					"" as dept,"" as allRank,"" as deptRank,"" as officeRank,"" as deptName FROM `zt_task` WHERE DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT name,(rewards+delay+documentPunish) AS count,DATE_FORMAT(month,"%Y-%m") AS date FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT round(SUM(estimate)/count(distinct finishedBy),2) as sumEst,DATE_FORMAT(finishedDate,"%Y-%m") AS date FROM `zt_task` WHERE finishedBy  != '' AND finishedBy  != 'admin' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT finishedBy,DATE_FORMAT(finishedDate,"%Y-%m") AS date,SUM(estimate) as count,0 as personnelCoeff FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT DISTINCT DATE_FORMAT(createDate,"%Y-%m") AS date,deptCoeff FROM `ict_product` WHERE date_format(createDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deptCoeff  != ''
+  SELECT name,rewards,bonus,DATE_FORMAT(month,"%Y-%m") AS date,0 as standsalary FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT DATE_FORMAT(t.finishedDate,"%Y-%m") as date,SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE_FORMAT(t.finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY t.finishedBy,DATE_FORMAT(t.finishedDate,"%Y-%m")
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(estimate) as count,DATE_FORMAT(finishedDate,"%m") AS date,
+					DATE_FORMAT(finishedDate,"%Y-%m") AS year,0 as bug,0 as personnelCoeff,0 as measure,
+					0 as finalSalary,0 as deptCoeff,0 as bonus,0 as standsalary,"" as account,"" as realname, 
+					"" as dept,"" as allRank,"" as deptRank,"" as officeRank,"" as deptName FROM `zt_task` WHERE DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT name,(rewards+delay+documentPunish) AS count,DATE_FORMAT(month,"%Y-%m") AS date FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT round(SUM(estimate)/count(distinct finishedBy),2) as sumEst,DATE_FORMAT(finishedDate,"%Y-%m") AS date FROM `zt_task` WHERE finishedBy  != '' AND finishedBy  != 'admin' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT finishedBy,DATE_FORMAT(finishedDate,"%Y-%m") AS date,SUM(estimate) as count,0 as personnelCoeff FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT DISTINCT DATE_FORMAT(createDate,"%Y-%m") AS date,deptCoeff FROM `ict_product` WHERE date_format(createDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deptCoeff  != ''
+  SELECT name,rewards,bonus,DATE_FORMAT(month,"%Y-%m") AS date,0 as standsalary FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT DATE_FORMAT(t.finishedDate,"%Y-%m") as date,SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE_FORMAT(t.finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY t.finishedBy,DATE_FORMAT(t.finishedDate,"%Y-%m")
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(estimate) AS estimate,finishedBy,DATE(finishedDate) AS finishedDate FROM `zt_task` WHERE DATE_FORMAT(finishedDate,'%Y-%m')  = '2014-01' AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE(finishedDate) ORDER BY finishedDate Desc
+
+20140121 09:04:11: /zendZentao/www/index.php?m=system&f=personnel
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT distinct u.*,i.realname from ict_user u left join zt_user i on u.account=i.account  WHERE u.account  LIKE '%%'
+  SELECT u.account,u.realname,u.dept,i.standsalary,i.role FROM zt_user u LEFT JOIN ict_user i ON u.account=i.account  WHERE u.deleted  = '0' AND u.account  != '' AND u.account  != 'admin' AND u.account NOT IN(SELECT account FROM ict_user)  AND u.account  LIKE '%%'
+
+20140121 09:04:28: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `zt_task` WHERE project IN ('') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `zt_burn` WHERE project IN ('') ORDER BY date desc
+  SELECT * FROM `zt_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+  SELECT product, status, count(status) AS count FROM `zt_story` WHERE deleted  = '0' AND product IN ('') GROUP BY product, status
+  SELECT product, count(*) AS count FROM `zt_productPlan` WHERE deleted  = '0' AND product IN ('') AND end  > '2014-01-21 09:04:28' GROUP BY product
+  SELECT product, count(*) AS count FROM `zt_release` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS conut FROM `zt_bug` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE status  = 'active' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE AssignedTo  = '' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT * FROM `zt_action` WHERE 1  AND date  > '2014-01-19' AND date  < '2014-01-22' ORDER BY date desc  limit 0, 14 
+  SELECT commiter, account, realname FROM `zt_user` WHERE commiter  != ''
+  SELECT id, account AS name FROM `zt_user` WHERE id IN ('1')
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.id, t1.title, t2.name as product FROM `zt_bug` AS t1  LEFT JOIN `zt_product` AS t2  ON t1.product=t2.id  WHERE t1.assignedTo  = 'beanGou' AND t1.deleted  = '0' ORDER BY id desc LIMIT 10 
+  SELECT id, title FROM `zt_story` WHERE deleted  = '0' AND assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT account, realname FROM `zt_user` ORDER BY account
+
+20140121 09:04:30: /zendZentao/www/index.php?m=system&f=personnel
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT distinct u.*,i.realname from ict_user u left join zt_user i on u.account=i.account  WHERE u.account  LIKE '%%'
+  SELECT u.account,u.realname,u.dept,i.standsalary,i.role FROM zt_user u LEFT JOIN ict_user i ON u.account=i.account  WHERE u.deleted  = '0' AND u.account  != '' AND u.account  != 'admin' AND u.account NOT IN(SELECT account FROM ict_user)  AND u.account  LIKE '%%'
+
+20140121 09:04:42: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `zt_task` WHERE project IN ('') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `zt_burn` WHERE project IN ('') ORDER BY date desc
+  SELECT * FROM `zt_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+  SELECT product, status, count(status) AS count FROM `zt_story` WHERE deleted  = '0' AND product IN ('') GROUP BY product, status
+  SELECT product, count(*) AS count FROM `zt_productPlan` WHERE deleted  = '0' AND product IN ('') AND end  > '2014-01-21 09:04:42' GROUP BY product
+  SELECT product, count(*) AS count FROM `zt_release` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS conut FROM `zt_bug` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE status  = 'active' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE AssignedTo  = '' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT * FROM `zt_action` WHERE 1  AND date  > '2014-01-19' AND date  < '2014-01-22' ORDER BY date desc  limit 0, 14 
+  SELECT commiter, account, realname FROM `zt_user` WHERE commiter  != ''
+  SELECT id, account AS name FROM `zt_user` WHERE id IN ('1')
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.id, t1.title, t2.name as product FROM `zt_bug` AS t1  LEFT JOIN `zt_product` AS t2  ON t1.product=t2.id  WHERE t1.assignedTo  = 'beanGou' AND t1.deleted  = '0' ORDER BY id desc LIMIT 10 
+  SELECT id, title FROM `zt_story` WHERE deleted  = '0' AND assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT account, realname FROM `zt_user` ORDER BY account
+
+20140121 09:04:45: /zendZentao/www/index.php?m=salary&f=monthly&typeID=2
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(estimate) as count,DATE_FORMAT(finishedDate,"%m") AS date,
+					DATE_FORMAT(finishedDate,"%Y-%m") AS year,0 as bug,0 as personnelCoeff,0 as measure,
+					0 as finalSalary,0 as deptCoeff,0 as bonus,0 as standsalary,"" as account,"" as realname, 
+					"" as dept,"" as allRank,"" as deptRank,"" as officeRank,"" as deptName FROM `zt_task` WHERE DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT name,(rewards+delay+documentPunish) AS count,DATE_FORMAT(month,"%Y-%m") AS date FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT round(SUM(estimate)/count(distinct finishedBy),2) as sumEst,DATE_FORMAT(finishedDate,"%Y-%m") AS date FROM `zt_task` WHERE finishedBy  != '' AND finishedBy  != 'admin' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT finishedBy,DATE_FORMAT(finishedDate,"%Y-%m") AS date,SUM(estimate) as count,0 as personnelCoeff FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT DISTINCT DATE_FORMAT(createDate,"%Y-%m") AS date,deptCoeff FROM `ict_product` WHERE date_format(createDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deptCoeff  != ''
+  SELECT name,rewards,bonus,DATE_FORMAT(month,"%Y-%m") AS date,0 as standsalary FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT DATE_FORMAT(t.finishedDate,"%Y-%m") as date,SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE_FORMAT(t.finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY t.finishedBy,DATE_FORMAT(t.finishedDate,"%Y-%m")
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(estimate) as count,DATE_FORMAT(finishedDate,"%m") AS date,
+					DATE_FORMAT(finishedDate,"%Y-%m") AS year,0 as bug,0 as personnelCoeff,0 as measure,
+					0 as finalSalary,0 as deptCoeff,0 as bonus,0 as standsalary,"" as account,"" as realname, 
+					"" as dept,"" as allRank,"" as deptRank,"" as officeRank,"" as deptName FROM `zt_task` WHERE DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT name,(rewards+delay+documentPunish) AS count,DATE_FORMAT(month,"%Y-%m") AS date FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT round(SUM(estimate)/count(distinct finishedBy),2) as sumEst,DATE_FORMAT(finishedDate,"%Y-%m") AS date FROM `zt_task` WHERE finishedBy  != '' AND finishedBy  != 'admin' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT finishedBy,DATE_FORMAT(finishedDate,"%Y-%m") AS date,SUM(estimate) as count,0 as personnelCoeff FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT DISTINCT DATE_FORMAT(createDate,"%Y-%m") AS date,deptCoeff FROM `ict_product` WHERE date_format(createDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deptCoeff  != ''
+  SELECT name,rewards,bonus,DATE_FORMAT(month,"%Y-%m") AS date,0 as standsalary FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT DATE_FORMAT(t.finishedDate,"%Y-%m") as date,SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE_FORMAT(t.finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY t.finishedBy,DATE_FORMAT(t.finishedDate,"%Y-%m")
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(estimate) AS estimate,finishedBy,DATE(finishedDate) AS finishedDate FROM `zt_task` WHERE DATE_FORMAT(finishedDate,'%Y-%m')  = '2014-01' AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE(finishedDate) ORDER BY finishedDate Desc
+
+20140121 09:05:45: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 09:10:45: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 09:11:09: /zendZentao/www/index.php
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 09:11:09: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `zt_task` WHERE project IN ('') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `zt_burn` WHERE project IN ('') ORDER BY date desc
+  SELECT * FROM `zt_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+  SELECT product, status, count(status) AS count FROM `zt_story` WHERE deleted  = '0' AND product IN ('') GROUP BY product, status
+  SELECT product, count(*) AS count FROM `zt_productPlan` WHERE deleted  = '0' AND product IN ('') AND end  > '2014-01-21 09:11:09' GROUP BY product
+  SELECT product, count(*) AS count FROM `zt_release` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS conut FROM `zt_bug` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE status  = 'active' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE AssignedTo  = '' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT * FROM `zt_action` WHERE 1  AND date  > '2014-01-19' AND date  < '2014-01-22' ORDER BY date desc  limit 0, 14 
+  SELECT commiter, account, realname FROM `zt_user` WHERE commiter  != ''
+  SELECT id, account AS name FROM `zt_user` WHERE id IN ('1')
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.id, t1.title, t2.name as product FROM `zt_bug` AS t1  LEFT JOIN `zt_product` AS t2  ON t1.product=t2.id  WHERE t1.assignedTo  = 'beanGou' AND t1.deleted  = '0' ORDER BY id desc LIMIT 10 
+  SELECT id, title FROM `zt_story` WHERE deleted  = '0' AND assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT account, realname FROM `zt_user` ORDER BY account
+
+20140121 09:11:15: /zendZentao/www/index.php?m=plan&f=myplan
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *,"" as auditorName,"" as chargeName FROM `ict_weekplan` WHERE week  = '4' AND charge  = 'beanGou' AND isSubmit  = '1'
+
+20140121 09:11:44: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `zt_task` WHERE project IN ('') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `zt_burn` WHERE project IN ('') ORDER BY date desc
+  SELECT * FROM `zt_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+  SELECT product, status, count(status) AS count FROM `zt_story` WHERE deleted  = '0' AND product IN ('') GROUP BY product, status
+  SELECT product, count(*) AS count FROM `zt_productPlan` WHERE deleted  = '0' AND product IN ('') AND end  > '2014-01-21 09:11:43' GROUP BY product
+  SELECT product, count(*) AS count FROM `zt_release` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS conut FROM `zt_bug` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE status  = 'active' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE AssignedTo  = '' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT * FROM `zt_action` WHERE 1  AND date  > '2014-01-19' AND date  < '2014-01-22' ORDER BY date desc  limit 0, 14 
+  SELECT commiter, account, realname FROM `zt_user` WHERE commiter  != ''
+  SELECT id, account AS name FROM `zt_user` WHERE id IN ('1')
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.id, t1.title, t2.name as product FROM `zt_bug` AS t1  LEFT JOIN `zt_product` AS t2  ON t1.product=t2.id  WHERE t1.assignedTo  = 'beanGou' AND t1.deleted  = '0' ORDER BY id desc LIMIT 10 
+  SELECT id, title FROM `zt_story` WHERE deleted  = '0' AND assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT account, realname FROM `zt_user` ORDER BY account
+
+20140121 09:12:44: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 09:13:14: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `zt_task` WHERE project IN ('') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `zt_burn` WHERE project IN ('') ORDER BY date desc
+  SELECT * FROM `zt_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+  SELECT product, status, count(status) AS count FROM `zt_story` WHERE deleted  = '0' AND product IN ('') GROUP BY product, status
+  SELECT product, count(*) AS count FROM `zt_productPlan` WHERE deleted  = '0' AND product IN ('') AND end  > '2014-01-21 09:13:14' GROUP BY product
+  SELECT product, count(*) AS count FROM `zt_release` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS conut FROM `zt_bug` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE status  = 'active' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE AssignedTo  = '' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT * FROM `zt_action` WHERE 1  AND date  > '2014-01-19' AND date  < '2014-01-22' ORDER BY date desc  limit 0, 14 
+  SELECT commiter, account, realname FROM `zt_user` WHERE commiter  != ''
+  SELECT id, account AS name FROM `zt_user` WHERE id IN ('1')
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.id, t1.title, t2.name as product FROM `zt_bug` AS t1  LEFT JOIN `zt_product` AS t2  ON t1.product=t2.id  WHERE t1.assignedTo  = 'beanGou' AND t1.deleted  = '0' ORDER BY id desc LIMIT 10 
+  SELECT id, title FROM `zt_story` WHERE deleted  = '0' AND assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT account, realname FROM `zt_user` ORDER BY account
+
+20140121 09:13:15: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `zt_task` WHERE project IN ('') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `zt_burn` WHERE project IN ('') ORDER BY date desc
+  SELECT * FROM `zt_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+  SELECT product, status, count(status) AS count FROM `zt_story` WHERE deleted  = '0' AND product IN ('') GROUP BY product, status
+  SELECT product, count(*) AS count FROM `zt_productPlan` WHERE deleted  = '0' AND product IN ('') AND end  > '2014-01-21 09:13:15' GROUP BY product
+  SELECT product, count(*) AS count FROM `zt_release` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS conut FROM `zt_bug` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE status  = 'active' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE AssignedTo  = '' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT * FROM `zt_action` WHERE 1  AND date  > '2014-01-19' AND date  < '2014-01-22' ORDER BY date desc  limit 0, 14 
+  SELECT commiter, account, realname FROM `zt_user` WHERE commiter  != ''
+  SELECT id, account AS name FROM `zt_user` WHERE id IN ('1')
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.id, t1.title, t2.name as product FROM `zt_bug` AS t1  LEFT JOIN `zt_product` AS t2  ON t1.product=t2.id  WHERE t1.assignedTo  = 'beanGou' AND t1.deleted  = '0' ORDER BY id desc LIMIT 10 
+  SELECT id, title FROM `zt_story` WHERE deleted  = '0' AND assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT account, realname FROM `zt_user` ORDER BY account
+
+20140121 09:13:16: /zendZentao/www/index.php?m=salary&f=monthly
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT ROUND(i.coefficient*i.completrate*SUM(t.estimate)/i.partnum,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project = i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.project
+  SELECT ROUND(SUM(t.estimate)*i.coefficient/8,2) AS coeff,t.project,i.DM,u.dept FROM zt_task t,ict_product i,zt_user u  WHERE t.project=i.project  AND u.account=i.DM  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY i.DM
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE(t.finishedDate)  >= '2014-01-01' AND DATE(t.finishedDate)  <= '2014-01-31' GROUP BY t.finishedBy
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(estimate) as count,DATE_FORMAT(finishedDate,"%m") AS date,
+					DATE_FORMAT(finishedDate,"%Y-%m") AS year,0 as bug,0 as personnelCoeff,0 as measure,
+					0 as finalSalary,0 as deptCoeff,0 as bonus,0 as standsalary,"" as account,"" as realname, 
+					"" as dept,"" as allRank,"" as deptRank,"" as officeRank,"" as deptName FROM `zt_task` WHERE DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT name,(rewards+delay+documentPunish) AS count,DATE_FORMAT(month,"%Y-%m") AS date FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT round(SUM(estimate)/count(distinct finishedBy),2) as sumEst,DATE_FORMAT(finishedDate,"%Y-%m") AS date FROM `zt_task` WHERE finishedBy  != '' AND finishedBy  != 'admin' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT finishedBy,DATE_FORMAT(finishedDate,"%Y-%m") AS date,SUM(estimate) as count,0 as personnelCoeff FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT DISTINCT DATE_FORMAT(createDate,"%Y-%m") AS date,deptCoeff FROM `ict_product` WHERE date_format(createDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deptCoeff  != ''
+  SELECT name,rewards,bonus,DATE_FORMAT(month,"%Y-%m") AS date,0 as standsalary FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT DATE_FORMAT(t.finishedDate,"%Y-%m") as date,SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE_FORMAT(t.finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY t.finishedBy,DATE_FORMAT(t.finishedDate,"%Y-%m")
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(estimate) as count,DATE_FORMAT(finishedDate,"%m") AS date,
+					DATE_FORMAT(finishedDate,"%Y-%m") AS year,0 as bug,0 as personnelCoeff,0 as measure,
+					0 as finalSalary,0 as deptCoeff,0 as bonus,0 as standsalary,"" as account,"" as realname, 
+					"" as dept,"" as allRank,"" as deptRank,"" as officeRank,"" as deptName FROM `zt_task` WHERE DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT name,(rewards+delay+documentPunish) AS count,DATE_FORMAT(month,"%Y-%m") AS date FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT round(SUM(estimate)/count(distinct finishedBy),2) as sumEst,DATE_FORMAT(finishedDate,"%Y-%m") AS date FROM `zt_task` WHERE finishedBy  != '' AND finishedBy  != 'admin' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT finishedBy,DATE_FORMAT(finishedDate,"%Y-%m") AS date,SUM(estimate) as count,0 as personnelCoeff FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY DATE_FORMAT(finishedDate,"%Y-%m")
+  SELECT DISTINCT DATE_FORMAT(createDate,"%Y-%m") AS date,deptCoeff FROM `ict_product` WHERE date_format(createDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deptCoeff  != ''
+  SELECT name,rewards,bonus,DATE_FORMAT(month,"%Y-%m") AS date,0 as standsalary FROM `ict_rewards` WHERE name  = 'beanGou' AND DATE_FORMAT(month,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  GROUP BY DATE_FORMAT(month,"%Y-%m")
+  SELECT DATE_FORMAT(t.finishedDate,"%Y-%m") as date,SUM(t.estimate) as sum,t.finishedBy,u.dept FROM zt_task t,ict_user u  WHERE t.finishedBy=u.account  AND u.role=3  AND DATE_FORMAT(t.finishedDate,"%Y-%m")  BETWEEN '2014-01' AND '2014-01'  AND deleted  = '0' GROUP BY t.finishedBy,DATE_FORMAT(t.finishedDate,"%Y-%m")
+  SELECT dept FROM `zt_user` WHERE account  = 'beanGou' AND deleted  = '0'
+  SELECT SUM(estimate) AS estimate,finishedBy,DATE(finishedDate) AS finishedDate FROM `zt_task` WHERE DATE_FORMAT(finishedDate,'%Y-%m')  = '2014-01' AND finishedBy  = 'beanGou' AND deleted  = '0' GROUP BY DATE(finishedDate) ORDER BY finishedDate Desc
+
+20140121 09:13:18: /zendZentao/www/index.php?m=plan&f=myplan
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *,"" as auditorName,"" as chargeName FROM `ict_weekplan` WHERE week  = '4' AND charge  = 'beanGou' AND isSubmit  = '1'
+  SELECT t1.team,t3.realname FROM `ict_proteam` AS t1  LEFT JOIN `ict_membset` AS t2  ON t1.id = t2.proteam  LEFT JOIN `zt_user` AS t3  ON t1.leader = t3.account  WHERE t2.account  = 'beanGou'
+  SELECT *,"" as auditorName,"" as chargeName FROM `ict_weekplan` WHERE week  = '4' AND charge  = 'beanGou'
+  SELECT id,name,deadline,assignedTo FROM `zt_task` WHERE date(openedDate)  >= '2014-01-20' AND status IN ('wait') AND assignedTo  = 'beanGou'
+  SELECT * FROM `ict_weekplan` WHERE charge  = 'beanGou' AND week  = '4' AND (complete IN ('0') OR appraise in(0,1)) 
+  SELECT taskID FROM `ict_weekplan`
+  SELECT * FROM `ict_weekplan` WHERE charge  = 'beanGou' AND week  = '05' AND isSubmit  != '1'
+  SELECT t1.account,t2.realname FROM `ict_user` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.account = t2.account  ORDER BY t1.account
+
+20140121 09:14:18: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 09:17:37: /zendZentao/www/index.php?m=plan&f=myplan
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *,"" as auditorName,"" as chargeName FROM `ict_weekplan` WHERE week  = '4' AND charge  = 'beanGou' AND isSubmit  = '1'
+  SELECT t1.team,t3.realname FROM `ict_proteam` AS t1  LEFT JOIN `ict_membset` AS t2  ON t1.id = t2.proteam  LEFT JOIN `zt_user` AS t3  ON t1.leader = t3.account  WHERE t2.account  = 'beanGou'
+  SELECT *,"" as auditorName,"" as chargeName FROM `ict_weekplan` WHERE week  = '4' AND charge  = 'beanGou'
+  SELECT id,name,deadline,assignedTo FROM `zt_task` WHERE date(openedDate)  >= '2014-01-20' AND status IN ('wait') AND assignedTo  = 'beanGou'
+  SELECT * FROM `ict_weekplan` WHERE charge  = 'beanGou' AND week  = '4' AND (complete IN ('0') OR appraise in(0,1)) 
+  SELECT taskID FROM `ict_weekplan`
+  SELECT * FROM `ict_weekplan` WHERE charge  = 'beanGou' AND week  = '05' AND isSubmit  != '1'
+  SELECT t1.account,t2.realname FROM `ict_user` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.account = t2.account  ORDER BY t1.account
+
+20140121 09:17:38: /zendZentao/www/index.php?m=plan&f=myplan
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *,"" as auditorName,"" as chargeName FROM `ict_weekplan` WHERE week  = '4' AND charge  = 'beanGou' AND isSubmit  = '1'
+  SELECT t1.team,t3.realname FROM `ict_proteam` AS t1  LEFT JOIN `ict_membset` AS t2  ON t1.id = t2.proteam  LEFT JOIN `zt_user` AS t3  ON t1.leader = t3.account  WHERE t2.account  = 'beanGou'
+  SELECT *,"" as auditorName,"" as chargeName FROM `ict_weekplan` WHERE week  = '4' AND charge  = 'beanGou'
+  SELECT id,name,deadline,assignedTo FROM `zt_task` WHERE date(openedDate)  >= '2014-01-20' AND status IN ('wait') AND assignedTo  = 'beanGou'
+  SELECT * FROM `ict_weekplan` WHERE charge  = 'beanGou' AND week  = '4' AND (complete IN ('0') OR appraise in(0,1)) 
+  SELECT taskID FROM `ict_weekplan`
+  SELECT * FROM `ict_weekplan` WHERE charge  = 'beanGou' AND week  = '05' AND isSubmit  != '1'
+  SELECT t1.account,t2.realname FROM `ict_user` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.account = t2.account  ORDER BY t1.account
+
+20140121 09:17:43: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `zt_task` WHERE project IN ('') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `zt_burn` WHERE project IN ('') ORDER BY date desc
+  SELECT * FROM `zt_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+  SELECT product, status, count(status) AS count FROM `zt_story` WHERE deleted  = '0' AND product IN ('') GROUP BY product, status
+  SELECT product, count(*) AS count FROM `zt_productPlan` WHERE deleted  = '0' AND product IN ('') AND end  > '2014-01-21 09:17:43' GROUP BY product
+  SELECT product, count(*) AS count FROM `zt_release` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS conut FROM `zt_bug` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE status  = 'active' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE AssignedTo  = '' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT * FROM `zt_action` WHERE 1  AND date  > '2014-01-19' AND date  < '2014-01-22' ORDER BY date desc  limit 0, 14 
+  SELECT commiter, account, realname FROM `zt_user` WHERE commiter  != ''
+  SELECT id, account AS name FROM `zt_user` WHERE id IN ('1')
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.id, t1.title, t2.name as product FROM `zt_bug` AS t1  LEFT JOIN `zt_product` AS t2  ON t1.product=t2.id  WHERE t1.assignedTo  = 'beanGou' AND t1.deleted  = '0' ORDER BY id desc LIMIT 10 
+  SELECT id, title FROM `zt_story` WHERE deleted  = '0' AND assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT account, realname FROM `zt_user` ORDER BY account
+
+20140121 09:17:56: /zendZentao/www/index.php?m=report&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 09:17:56: /zendZentao/www/index.php?m=report&f=productinfo
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0'
+  SELECT * FROM `zt_productPlan` WHERE deleted  = '0' AND product IN ('')
+  SELECT account, realname FROM `zt_user` ORDER BY account
+
+20140121 09:17:59: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-01-21' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('') ORDER BY t1.end
+
+20140121 09:18:02: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-01-21' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('') ORDER BY t1.end
+
+20140121 09:18:05: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-01-21' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('') ORDER BY t1.end
+
+20140121 09:18:06: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('1')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('1') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('1') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140121 09:18:07: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('1')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('1') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('1') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140121 09:18:07: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-01-21' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('') ORDER BY t1.end
+
+20140121 09:18:08: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('1')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('1') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('1') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140121 09:18:10: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('1')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('1') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('1') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140121 09:19:10: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 09:19:23: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('1')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('1') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('1') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140121 09:19:24: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-01-21' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('') ORDER BY t1.end
+
+20140121 09:19:25: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('1')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('1') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('1') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140121 09:19:28: /zendZentao/www/index.php?m=admin&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 09:19:28: /zendZentao/www/index.php?m=system&f=personnel
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT distinct u.*,i.realname from ict_user u left join zt_user i on u.account=i.account  WHERE u.account  LIKE '%%'
+  SELECT u.account,u.realname,u.dept,i.standsalary,i.role FROM zt_user u LEFT JOIN ict_user i ON u.account=i.account  WHERE u.deleted  = '0' AND u.account  != '' AND u.account  != 'admin' AND u.account NOT IN(SELECT account FROM ict_user)  AND u.account  LIKE '%%'
+
+20140121 09:19:29: /zendZentao/www/index.php?m=admin&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 09:19:30: /zendZentao/www/index.php?m=system&f=personnel
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT distinct u.*,i.realname from ict_user u left join zt_user i on u.account=i.account  WHERE u.account  LIKE '%%'
+  SELECT u.account,u.realname,u.dept,i.standsalary,i.role FROM zt_user u LEFT JOIN ict_user i ON u.account=i.account  WHERE u.deleted  = '0' AND u.account  != '' AND u.account  != 'admin' AND u.account NOT IN(SELECT account FROM ict_user)  AND u.account  LIKE '%%'
+
+20140121 09:20:31: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 09:25:31: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 09:30:32: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 09:35:35: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 09:40:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 09:45:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 09:50:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 09:55:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 10:00:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 10:05:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 10:10:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 10:15:38: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 10:20:38: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 10:25:38: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 10:30:38: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 10:35:38: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 10:40:38: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 10:45:38: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 10:50:48: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 10:55:48: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 11:00:48: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 11:05:48: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 11:10:48: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 11:15:49: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 11:20:49: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 11:25:49: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 11:30:50: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 11:35:50: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 11:39:01: /zendZentao/www/index.php?m=product&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+
+20140121 11:39:01: /zendZentao/www/index.php?m=product&f=create
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT id, name FROM `zt_group`
+  SELECT account, realname, INSTR(',pd,po,', role) AS roleOrder FROM `zt_user` WHERE deleted  = '0' ORDER BY roleOrder DESC, account
+  SELECT account, realname, INSTR(',qa,qd,', role) AS roleOrder FROM `zt_user` WHERE deleted  = '0' ORDER BY roleOrder DESC, account
+  SELECT account, realname, INSTR(',td,pm,qd,qa,dev,', role) AS roleOrder FROM `zt_user` WHERE deleted  = '0' ORDER BY roleOrder DESC, account
+
+20140121 11:39:04: /zendZentao/www/index.php?m=product&f=browse&productID=
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+
+20140121 11:39:04: /zendZentao/www/index.php?m=product&f=create
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT id, name FROM `zt_group`
+  SELECT account, realname, INSTR(',pd,po,', role) AS roleOrder FROM `zt_user` WHERE deleted  = '0' ORDER BY roleOrder DESC, account
+  SELECT account, realname, INSTR(',qa,qd,', role) AS roleOrder FROM `zt_user` WHERE deleted  = '0' ORDER BY roleOrder DESC, account
+  SELECT account, realname, INSTR(',td,pm,qd,qa,dev,', role) AS roleOrder FROM `zt_user` WHERE deleted  = '0' ORDER BY roleOrder DESC, account
+
+20140121 11:39:10: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_user` WHERE account  = '1'
+  SELECT * FROM `zt_user` WHERE id  = '1'
+  SELECT * FROM `ict_user` WHERE account  = 'beanGou'
+  SELECT SUM(estimate) as sum FROM `zt_task` WHERE finishedBy  = 'beanGou' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `zt_bug` WHERE resolvedBy  = 'beanGou' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `zt_task` WHERE project IN ('') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `zt_burn` WHERE project IN ('') ORDER BY date desc
+  SELECT * FROM `zt_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+  SELECT product, status, count(status) AS count FROM `zt_story` WHERE deleted  = '0' AND product IN ('') GROUP BY product, status
+  SELECT product, count(*) AS count FROM `zt_productPlan` WHERE deleted  = '0' AND product IN ('') AND end  > '2014-01-21 11:39:10' GROUP BY product
+  SELECT product, count(*) AS count FROM `zt_release` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS conut FROM `zt_bug` WHERE deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE status  = 'active' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT product,count(*) AS count FROM `zt_bug` WHERE AssignedTo  = '' AND deleted  = '0' AND product IN ('') GROUP BY product
+  SELECT * FROM `zt_action` WHERE 1  AND date  > '2014-01-19' AND date  < '2014-01-22' ORDER BY date desc  limit 0, 14 
+  SELECT commiter, account, realname FROM `zt_user` WHERE commiter  != ''
+  SELECT id, account AS name FROM `zt_user` WHERE id IN ('1')
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT * FROM `zt_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.id, t1.title, t2.name as product FROM `zt_bug` AS t1  LEFT JOIN `zt_product` AS t2  ON t1.product=t2.id  WHERE t1.assignedTo  = 'beanGou' AND t1.deleted  = '0' ORDER BY id desc LIMIT 10 
+  SELECT id, title FROM `zt_story` WHERE deleted  = '0' AND assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT account, realname FROM `zt_user` ORDER BY account
+
+20140121 11:40:10: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 11:45:11: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 11:50:11: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 11:55:11: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 12:00:11: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 12:05:11: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 12:10:11: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 12:15:11: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 12:20:19: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 12:25:20: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 12:30:21: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 12:35:21: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 12:40:21: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 12:45:21: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 12:50:21: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 12:55:21: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 13:00:21: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 13:05:21: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 13:10:21: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 13:15:22: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 13:20:22: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 13:25:22: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 13:30:22: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 13:35:22: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 13:40:22: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 13:45:22: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 13:50:22: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 13:55:22: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 14:00:23: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 14:05:23: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 14:10:23: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 14:12:00: /zendZentao/www/index.php?m=product&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+
+20140121 14:12:01: /zendZentao/www/index.php?m=product&f=create
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT id, name FROM `zt_group`
+  SELECT account, realname, INSTR(',pd,po,', role) AS roleOrder FROM `zt_user` WHERE deleted  = '0' ORDER BY roleOrder DESC, account
+  SELECT account, realname, INSTR(',qa,qd,', role) AS roleOrder FROM `zt_user` WHERE deleted  = '0' ORDER BY roleOrder DESC, account
+  SELECT account, realname, INSTR(',td,pm,qd,qa,dev,', role) AS roleOrder FROM `zt_user` WHERE deleted  = '0' ORDER BY roleOrder DESC, account
+
+20140121 14:13:02: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 14:18:02: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 14:23:02: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 14:28:02: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 14:33:02: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 14:38:02: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 14:43:02: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 14:48:02: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 14:53:03: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 14:58:03: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 15:03:04: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 15:08:04: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 15:13:04: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 15:18:04: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 15:23:04: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 15:28:04: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 15:33:04: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 15:38:05: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 15:43:05: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 15:48:06: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 15:53:06: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 15:58:06: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 16:03:06: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 16:08:06: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 16:13:06: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 16:18:06: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 16:23:06: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 16:28:07: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 16:33:07: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 16:38:07: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 16:43:07: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 16:48:09: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 16:53:10: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 16:58:12: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 17:03:13: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 17:08:13: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 17:13:13: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 17:18:13: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 17:23:13: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 17:28:14: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 17:33:14: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 17:38:15: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 17:43:18: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 17:48:20: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140121 17:53:20: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 17:58:21: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140121 18:03:21: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+

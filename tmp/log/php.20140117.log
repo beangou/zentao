@@ -1,0 +1,12 @@
+
+09:35:12 Undefined offset: 1 in D:\www\zentaopms\module\user\control.php on line 660 when visiting /zentaopms/www/index.php?m=user&f=login&referer=L3plbnRhb3Btcy93d3cvaW5kZXgucGhw
+
+09:41:51 Creating default object from empty value in D:\www\zentaopms\module\dept\model.php on line 265 when visiting /zentaopms/www/index.php?m=dept&f=manageChild
+
+09:42:12 Creating default object from empty value in D:\www\zentaopms\module\dept\model.php on line 265 when visiting /zentaopms/www/index.php?m=dept&f=manageChild
+
+09:42:44 Creating default object from empty value in D:\www\zentaopms\module\dept\model.php on line 265 when visiting /zentaopms/www/index.php?m=dept&f=manageChild
+
+10:00:46 Undefined offset: 1 in D:\www\zentaopms\module\user\control.php on line 660 when visiting /zentaopms/www/index.php?m=user&f=login&referer=L3plbnRhb3Btcy93d3cvaW5kZXgucGhw
+
+10:38:05 Undefined offset: 0 in D:\www\zentaopms\module\tree\model.php on line 367 when visiting /zentaopms/www/index.php?m=project&f=task

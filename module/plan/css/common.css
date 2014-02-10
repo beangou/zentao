@@ -1,0 +1,56 @@
+/* È«¾Ö */
+body {padding:0;margin:0;background:#fff;font-size:12px;color:#333}
+h1,h2,h3,h4,p {padding:0;margin:0;}
+input,select,textarea {font-size:12px;margin:0;padding:0;}
+img {border:0;}
+li {list-style-type:none;}
+ul {margin:0;padding:0;}
+a:hover {text-decoration:none;color:#437dd1}
+a:focus {outline:0;}
+
+
+.left-main {
+	
+	width:auto;
+	border: 1px solid gray;
+}
+.left-p {
+	height: 40px;
+	line-height: 40px;
+	font-size: 14px;
+	font-weight: bold;
+	background: lightskyblue;
+	border-bottom: 1px solid gray ;
+	padding-left: 6px;
+}
+.left-child {height: 20px;line-height: 20px;border-bottom: 1px solid gray ;padding-left: 6px;}
+.week-title {font-size: 18px;font-weight: bold;margin-bottom: 6px;}
+.prot-add {border: #e4e4e4 1px solid; padding: 5px;}
+.prot-add div {display: inline-block;}
+.table-memb {text-align: center;}
+.table-memb TD {height: 20px;padding: 0;}
+.addtr{margin-top: 12px;}
+.listPlan{margin-top: 12px;}
+.addtr td {padding: 0;margin: 0;overflow: hidden;text-align: center;}
+.listPlan td {padding: 0;margin: 0;overflow: hidden;text-align: center;}
+.handle-title {font-size: 14px;font-weight: bold;margin-bottom: 2px;margin-top:18px;}
+.handle-plan {width: 100px;}
+.desc{width: 150px;}
+.handle-input {border: 0;}
+.remark {width: 60px;}
+.newBoxs td{border-right: 1px solid #f8f8f8}
+.newBoxs th{border-right: 1px solid #e2e2e2}
+#topmyplan {height:28px; line-height:28px; cursor:pointer; padding:20px 8px 10px 8px; margin: -15px -15px 0px -15px;}
+#topmyplan a{text-decoration:none; border-right:1px solid #ddd;color:#003366; font-size:14px}
+#topmyplan .f-left a{padding: 0px 4px 4px 4px}
+#topmyplan a:hover        {color:#ff3600;}
+#topmyplan .f-right a{border-right-style: none;}
+#topmyplan .active a       {color:#009900; font-weight:bold;}
+.icon-green-plan-finish   {padding:2px 8px; background:url(theme/default/images/main/zt-icons.png) -80px  -242px;}
+.icon-gray-plan-finish    {padding:2px 8px; background:url(heme/default/images/main/zt-icons.png) -80px  -262px;} 
+.icon-green-plan-batchCreate {padding:2px 7px 2px 10px; background:url(theme/default/images/main/zt-icons.png) -20px -242px;}
+.icon-green-plan-create {padding:2px 7px 2px 10px; background:url(theme/default/images/main/zt-icons.png) 0px   -242px;}
+.icon-green-common-copy    {padding:2px 8px; background:url(theme/default/images/main/zt-icons.png) -40px 0px no-repeat;}
+
+
+.deal-alert {background: url("image/circle.png");width: 15px;height: 10px;}

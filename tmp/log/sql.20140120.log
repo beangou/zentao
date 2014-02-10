@@ -1,0 +1,213 @@
+20140120 14:42:48: /zendZentao/www/index.php?m=user&f=login
+  SELECT * FROM `cm_config` WHERE owner IN ('system','') ORDER BY id
+  SELECT * FROM `cm_lang` ORDER BY lang,id
+
+20140120 14:42:51: /zendZentao/www/index.php?m=user&f=login
+  SELECT * FROM `cm_config` WHERE owner IN ('system','') ORDER BY id
+  SELECT * FROM `cm_lang` ORDER BY lang,id
+
+20140120 14:42:53: /zendZentao/www/index.php?m=user&f=login
+  SELECT * FROM `cm_config` WHERE owner IN ('system','') ORDER BY id
+  SELECT * FROM `cm_lang` ORDER BY lang,id
+  SELECT locked FROM `cm_user` WHERE account  = 'beanGou'
+  SELECT * FROM `cm_user` WHERE account  = 'beanGou' AND password  = '63a9f0ea7bb98050796b649e85481845' AND deleted  = '0'
+  UPDATE `cm_user` SET  visits = visits + 1 , ip = '::1', last = '1390200173' WHERE account  = 'beanGou'
+  UPDATE `cm_user` SET  fails  = '0', locked = '0000-00-00 00:00:00' WHERE account  = 'beanGou'
+  SELECT module, method FROM `cm_userGroup` AS t1  LEFT JOIN `cm_groupPriv` AS t2  ON t1.group = t2.group  WHERE t1.account  = 'beanGou'
+  SELECT `group` FROM `cm_userGroup` WHERE `account` = 'beanGou' 
+  INSERT INTO `cm_action` SET `objectType` = 'user',`objectID` = '1',`actor` = 'beanGou',`action` = 'login',`date` = '2014-01-20 14:42:53',`comment` = '',`extra` = '',`product` = ',0,',`project` = '0'
+
+20140120 14:42:53: /zendZentao/www/index.php?m=index&f=index
+  SELECT * FROM `cm_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `cm_lang` ORDER BY lang,id
+
+20140120 14:42:53: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `cm_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `cm_lang` ORDER BY lang,id
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `cm_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `cm_task` WHERE project IN ('1') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `cm_burn` WHERE project IN ('1') ORDER BY date desc
+  SELECT * FROM `cm_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+  SELECT product, status, count(status) AS count FROM `cm_story` WHERE deleted  = '0' AND product IN ('1') GROUP BY product, status
+  SELECT product, count(*) AS count FROM `cm_productPlan` WHERE deleted  = '0' AND product IN ('1') AND end  > '2014-01-20 14:42:53' GROUP BY product
+  SELECT product, count(*) AS count FROM `cm_release` WHERE deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT product,count(*) AS conut FROM `cm_bug` WHERE deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT product,count(*) AS count FROM `cm_bug` WHERE status  = 'active' AND deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT product,count(*) AS count FROM `cm_bug` WHERE AssignedTo  = '' AND deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT * FROM `cm_action` WHERE 1  AND date  > '2014-01-18' AND date  < '2014-01-21' ORDER BY date desc  limit 0, 14 
+  SELECT commiter, account, realname FROM `cm_user` WHERE commiter  != ''
+  SELECT id, account AS name FROM `cm_user` WHERE id IN ('1','3','2')
+  SELECT * FROM `cm_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT * FROM `cm_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `cm_task` AS t1  LEFT JOIN `cm_project` AS t2  ON t1.project = t2.id  LEFT JOIN `cm_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `cm_task` AS t1  LEFT JOIN `cm_project` AS t2  ON t1.project = t2.id  LEFT JOIN `cm_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.id, t1.title, t2.name as product FROM `cm_bug` AS t1  LEFT JOIN `cm_product` AS t2  ON t1.product=t2.id  WHERE t1.assignedTo  = 'beanGou' AND t1.deleted  = '0' ORDER BY id desc LIMIT 10 
+  SELECT id, title FROM `cm_story` WHERE deleted  = '0' AND assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT account, realname FROM `cm_user` ORDER BY account
+
+20140120 14:43:33: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `cm_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `cm_lang` ORDER BY lang,id
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `cm_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `cm_task` WHERE project IN ('1') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `cm_burn` WHERE project IN ('1') ORDER BY date desc
+  SELECT * FROM `cm_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+  SELECT product, status, count(status) AS count FROM `cm_story` WHERE deleted  = '0' AND product IN ('1') GROUP BY product, status
+  SELECT product, count(*) AS count FROM `cm_productPlan` WHERE deleted  = '0' AND product IN ('1') AND end  > '2014-01-20 14:43:33' GROUP BY product
+  SELECT product, count(*) AS count FROM `cm_release` WHERE deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT product,count(*) AS conut FROM `cm_bug` WHERE deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT product,count(*) AS count FROM `cm_bug` WHERE status  = 'active' AND deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT product,count(*) AS count FROM `cm_bug` WHERE AssignedTo  = '' AND deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT * FROM `cm_action` WHERE 1  AND date  > '2014-01-18' AND date  < '2014-01-21' ORDER BY date desc  limit 0, 14 
+  SELECT commiter, account, realname FROM `cm_user` WHERE commiter  != ''
+  SELECT id, account AS name FROM `cm_user` WHERE id IN ('1','3','2')
+  SELECT * FROM `cm_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT * FROM `cm_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `cm_task` AS t1  LEFT JOIN `cm_project` AS t2  ON t1.project = t2.id  LEFT JOIN `cm_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `cm_task` AS t1  LEFT JOIN `cm_project` AS t2  ON t1.project = t2.id  LEFT JOIN `cm_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.id, t1.title, t2.name as product FROM `cm_bug` AS t1  LEFT JOIN `cm_product` AS t2  ON t1.product=t2.id  WHERE t1.assignedTo  = 'beanGou' AND t1.deleted  = '0' ORDER BY id desc LIMIT 10 
+  SELECT id, title FROM `cm_story` WHERE deleted  = '0' AND assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT account, realname FROM `cm_user` ORDER BY account
+
+20140120 14:43:52: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `cm_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `cm_lang` ORDER BY lang,id
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `cm_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `cm_task` WHERE project IN ('1') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `cm_burn` WHERE project IN ('1') ORDER BY date desc
+  SELECT * FROM `cm_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+  SELECT product, status, count(status) AS count FROM `cm_story` WHERE deleted  = '0' AND product IN ('1') GROUP BY product, status
+  SELECT product, count(*) AS count FROM `cm_productPlan` WHERE deleted  = '0' AND product IN ('1') AND end  > '2014-01-20 14:43:52' GROUP BY product
+  SELECT product, count(*) AS count FROM `cm_release` WHERE deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT product,count(*) AS conut FROM `cm_bug` WHERE deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT product,count(*) AS count FROM `cm_bug` WHERE status  = 'active' AND deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT product,count(*) AS count FROM `cm_bug` WHERE AssignedTo  = '' AND deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT * FROM `cm_action` WHERE 1  AND date  > '2014-01-18' AND date  < '2014-01-21' ORDER BY date desc  limit 0, 14 
+  SELECT commiter, account, realname FROM `cm_user` WHERE commiter  != ''
+  SELECT id, account AS name FROM `cm_user` WHERE id IN ('1','3','2')
+  SELECT * FROM `cm_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT * FROM `cm_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `cm_task` AS t1  LEFT JOIN `cm_project` AS t2  ON t1.project = t2.id  LEFT JOIN `cm_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `cm_task` AS t1  LEFT JOIN `cm_project` AS t2  ON t1.project = t2.id  LEFT JOIN `cm_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.id, t1.title, t2.name as product FROM `cm_bug` AS t1  LEFT JOIN `cm_product` AS t2  ON t1.product=t2.id  WHERE t1.assignedTo  = 'beanGou' AND t1.deleted  = '0' ORDER BY id desc LIMIT 10 
+  SELECT id, title FROM `cm_story` WHERE deleted  = '0' AND assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT account, realname FROM `cm_user` ORDER BY account
+
+20140120 14:43:53: /zendZentao/www/index.php?m=plan&f=myplan
+  SELECT * FROM `cm_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `cm_lang` ORDER BY lang,id
+  SELECT *,"" as auditorName,"" as chargeName FROM `cm_weekplan` WHERE week  = '4' AND charge  = 'beanGou' AND isSubmit  = '1'
+
+20140120 14:46:06: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `cm_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `cm_lang` ORDER BY lang,id
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `cm_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `cm_task` WHERE project IN ('1') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `cm_burn` WHERE project IN ('1') ORDER BY date desc
+  SELECT * FROM `cm_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+  SELECT product, status, count(status) AS count FROM `cm_story` WHERE deleted  = '0' AND product IN ('1') GROUP BY product, status
+  SELECT product, count(*) AS count FROM `cm_productPlan` WHERE deleted  = '0' AND product IN ('1') AND end  > '2014-01-20 14:46:06' GROUP BY product
+  SELECT product, count(*) AS count FROM `cm_release` WHERE deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT product,count(*) AS conut FROM `cm_bug` WHERE deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT product,count(*) AS count FROM `cm_bug` WHERE status  = 'active' AND deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT product,count(*) AS count FROM `cm_bug` WHERE AssignedTo  = '' AND deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT * FROM `cm_action` WHERE 1  AND date  > '2014-01-18' AND date  < '2014-01-21' ORDER BY date desc  limit 0, 14 
+  SELECT commiter, account, realname FROM `cm_user` WHERE commiter  != ''
+  SELECT id, account AS name FROM `cm_user` WHERE id IN ('1','3','2')
+  SELECT * FROM `cm_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT * FROM `cm_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `cm_task` AS t1  LEFT JOIN `cm_project` AS t2  ON t1.project = t2.id  LEFT JOIN `cm_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `cm_task` AS t1  LEFT JOIN `cm_project` AS t2  ON t1.project = t2.id  LEFT JOIN `cm_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.id, t1.title, t2.name as product FROM `cm_bug` AS t1  LEFT JOIN `cm_product` AS t2  ON t1.product=t2.id  WHERE t1.assignedTo  = 'beanGou' AND t1.deleted  = '0' ORDER BY id desc LIMIT 10 
+  SELECT id, title FROM `cm_story` WHERE deleted  = '0' AND assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT account, realname FROM `cm_user` ORDER BY account
+
+20140120 14:46:06: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `cm_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `cm_lang` ORDER BY lang,id
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `cm_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `cm_task` WHERE project IN ('1') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `cm_burn` WHERE project IN ('1') ORDER BY date desc
+  SELECT * FROM `cm_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+  SELECT product, status, count(status) AS count FROM `cm_story` WHERE deleted  = '0' AND product IN ('1') GROUP BY product, status
+  SELECT product, count(*) AS count FROM `cm_productPlan` WHERE deleted  = '0' AND product IN ('1') AND end  > '2014-01-20 14:46:06' GROUP BY product
+  SELECT product, count(*) AS count FROM `cm_release` WHERE deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT product,count(*) AS conut FROM `cm_bug` WHERE deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT product,count(*) AS count FROM `cm_bug` WHERE status  = 'active' AND deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT product,count(*) AS count FROM `cm_bug` WHERE AssignedTo  = '' AND deleted  = '0' AND product IN ('1') GROUP BY product
+  SELECT * FROM `cm_action` WHERE 1  AND date  > '2014-01-18' AND date  < '2014-01-21' ORDER BY date desc  limit 0, 14 
+  SELECT commiter, account, realname FROM `cm_user` WHERE commiter  != ''
+  SELECT id, account AS name FROM `cm_user` WHERE id IN ('1','3','2')
+  SELECT * FROM `cm_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT * FROM `cm_todo` WHERE account  = 'beanGou' AND date >= '1970-01-01'  AND date <= '2109-01-01'  AND status IN ('wait','doing') ORDER BY date, status, begin LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `cm_task` AS t1  LEFT JOIN `cm_project` AS t2  ON t1.project = t2.id  LEFT JOIN `cm_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.*, t2.id as projectID, t2.name as projectName, t3.id as storyID, t3.title as storyTitle, t3.status AS storyStatus, t3.version AS latestStoryVersion FROM `cm_task` AS t1  LEFT JOIN `cm_project` AS t2  ON t1.project = t2.id  LEFT JOIN `cm_story` AS t3  ON t1.story = t3.id  WHERE t1.deleted  = '0' AND t1.assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT t1.id, t1.title, t2.name as product FROM `cm_bug` AS t1  LEFT JOIN `cm_product` AS t2  ON t1.product=t2.id  WHERE t1.assignedTo  = 'beanGou' AND t1.deleted  = '0' ORDER BY id desc LIMIT 10 
+  SELECT id, title FROM `cm_story` WHERE deleted  = '0' AND assignedTo  = 'beanGou' ORDER BY id desc LIMIT 10 
+  SELECT account, realname FROM `cm_user` ORDER BY account
+
+20140120 14:46:07: /zendZentao/www/index.php?m=plan&f=myplan
+  SELECT * FROM `cm_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `cm_lang` ORDER BY lang,id
+  SELECT *,"" as auditorName,"" as chargeName FROM `cm_weekplan` WHERE week  = '4' AND charge  = 'beanGou' AND isSubmit  = '1'
+
+20140120 15:18:23: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `cm_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `cm_lang` ORDER BY lang,id
+  SELECT * FROM `cm_user` WHERE account  = '1'
+  SELECT * FROM `cm_user` WHERE id  = '1'
+  SELECT * FROM `cm_user` WHERE account  = ''
+  SELECT SUM(estimate) as sum FROM `cm_task` WHERE finishedBy  = '' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `cm_bug` WHERE resolvedBy  = '' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `cm_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `cm_task` WHERE project IN ('1') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `cm_burn` WHERE project IN ('1') ORDER BY date desc
+  SELECT * FROM `cm_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+
+20140120 15:20:04: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `cm_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `cm_lang` ORDER BY lang,id
+  SELECT * FROM `cm_user` WHERE account  = '1'
+  SELECT * FROM `cm_user` WHERE id  = '1'
+  SELECT * FROM `cm_user` WHERE account  = ''
+  SELECT SUM(estimate) as sum FROM `cm_task` WHERE finishedBy  = '' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `cm_bug` WHERE resolvedBy  = '' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `cm_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `cm_task` WHERE project IN ('1') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `cm_burn` WHERE project IN ('1') ORDER BY date desc
+  SELECT * FROM `cm_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+
+20140120 15:20:16: /zendZentao/www/index.php
+  SELECT * FROM `cm_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `cm_lang` ORDER BY lang,id
+
+20140120 15:20:16: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `cm_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `cm_lang` ORDER BY lang,id
+  SELECT * FROM `cm_user` WHERE account  = '1'
+  SELECT * FROM `cm_user` WHERE id  = '1'
+  SELECT * FROM `cm_user` WHERE account  = ''
+  SELECT SUM(estimate) as sum FROM `cm_task` WHERE finishedBy  = '' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `cm_bug` WHERE resolvedBy  = '' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `cm_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `cm_task` WHERE project IN ('1') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `cm_burn` WHERE project IN ('1') ORDER BY date desc
+  SELECT * FROM `cm_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+
+20140120 15:20:57: /zendZentao/www/index.php
+  SELECT * FROM `cm_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `cm_lang` ORDER BY lang,id
+
+20140120 15:20:57: /zendZentao/www/index.php?m=my&f=index
+  SELECT * FROM `cm_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `cm_lang` ORDER BY lang,id
+  SELECT * FROM `cm_user` WHERE account  = '1'
+  SELECT * FROM `cm_user` WHERE id  = '1'
+  SELECT * FROM `cm_user` WHERE account  = ''
+  SELECT SUM(estimate) as sum FROM `cm_task` WHERE finishedBy  = '' AND DATE_FORMAT(finishedDate,"%Y-%m")  = '2014-01' AND deleted  = '0'
+  SELECT count(resolvedBy) as count FROM `cm_bug` WHERE resolvedBy  = '' AND DATE_FORMAT(openedDate,"%Y-%m")  = '2014-01' AND title NOT LIKE '%内测%' GROUP BY resolvedBy
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `cm_project` WHERE iscat  = '0' AND status  != 'done' AND deleted  = '0' ORDER BY code
+  SELECT id, project, estimate, consumed, `left`, status, closedReason FROM `cm_task` WHERE project IN ('1') AND deleted  = '0'
+  SELECT project, date AS name, `left` AS value FROM `cm_burn` WHERE project IN ('1') ORDER BY date desc
+  SELECT * FROM `cm_product` WHERE deleted  = '0' AND status  != 'closed' ORDER BY code
+

@@ -1,0 +1,1046 @@
+
+09:42:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:42:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:42:38 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:42:38 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:42:40 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:42:40 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:42:40 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:42:40 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:42:43 Undefined offset: 1 in D:\www\zendZentao\module\user\control.php on line 660 when visiting /zendZentao/www/index.php?m=user&f=login&referer=L3plbmRaZW50YW8vd3d3L2luZGV4LnBocA==
+
+09:42:43 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:42:43 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:42:43 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:42:43 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:42:51 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:42:51 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:42:52 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+09:42:58 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:42:58 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:42:58 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+09:43:01 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:43:01 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:43:01 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+09:43:05 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:43:05 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:43:05 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+09:43:10 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:43:10 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:43:10 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:12 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:43:12 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:43:12 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:12 Undefined variable: singleInfo in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 7 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:12 Trying to get property of non-object in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 7 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:12 Undefined variable: singleInfo in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 11 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:12 Trying to get property of non-object in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 11 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:12 Undefined variable: singleInfo in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 20 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:12 Trying to get property of non-object in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 20 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:43:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:43:23 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:24 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:43:24 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:43:24 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:27 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:43:27 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:43:28 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+09:43:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:43:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:43:32 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=edit&typeID=1&account=beanGou
+
+09:43:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:43:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:43:32 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel&typeID=1&account=beanGou
+
+09:43:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:43:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:43:37 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:38 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:43:38 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:43:38 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:44 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:43:44 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:43:45 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:50 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:43:50 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:43:50 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:53 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:43:53 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:43:53 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:54 Undefined variable: singleInfo in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 7 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:54 Trying to get property of non-object in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 7 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:54 Undefined variable: singleInfo in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 11 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:54 Trying to get property of non-object in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 11 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:54 Undefined variable: singleInfo in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 20 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:43:54 Trying to get property of non-object in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 20 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:44:02 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:44:02 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:44:02 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:44:02 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:44:02 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:44:02 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel&t=html&typeID=2
+
+09:44:09 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:44:09 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:44:09 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=parameter
+
+09:44:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:44:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:44:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:44:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:44:15 Creating default object from empty value in D:\www\zendZentao\module\group\ext\lang\zh-cn\defect.php on line 3 when visiting /zendZentao/www/index.php?m=product&f=create
+
+09:44:15 Creating default object from empty value in D:\www\zendZentao\module\group\ext\lang\zh-cn\salary.php on line 4 when visiting /zendZentao/www/index.php?m=product&f=create
+
+09:44:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:44:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:44:22 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:44:22 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:44:23 Creating default object from empty value in D:\www\zendZentao\module\group\ext\lang\zh-cn\defect.php on line 3 when visiting /zendZentao/www/index.php?m=project&f=create
+
+09:44:23 Creating default object from empty value in D:\www\zendZentao\module\group\ext\lang\zh-cn\salary.php on line 4 when visiting /zendZentao/www/index.php?m=project&f=create
+
+09:45:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:45:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:46:08 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:46:08 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:46:09 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:46:09 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:46:14 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:46:14 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:46:25 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:46:25 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:46:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:46:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:46:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:46:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:46:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:46:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:46:36 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:46:36 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:46:37 Creating default object from empty value in D:\www\zendZentao\module\group\ext\lang\zh-cn\defect.php on line 3 when visiting /zendZentao/www/index.php?m=product&f=create
+
+09:46:37 Creating default object from empty value in D:\www\zendZentao\module\group\ext\lang\zh-cn\salary.php on line 4 when visiting /zendZentao/www/index.php?m=product&f=create
+
+09:47:11 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:47:11 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:47:11 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:47:11 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:47:26 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:47:26 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:47:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:47:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:47:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:47:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:47:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:47:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:47:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:47:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:47:45 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:47:45 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:47:48 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:47:48 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:47:50 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:47:50 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:47:50 Creating default object from empty value in D:\www\zendZentao\module\tree\model.php on line 975 when visiting /zendZentao/www/index.php?m=tree&f=fix&root=1&type=story
+
+09:47:51 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:47:51 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:47:57 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:47:57 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:47:59 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:47:59 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:48:06 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:48:06 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:48:08 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:48:08 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:48:13 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:48:13 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:48:14 Creating default object from empty value in D:\www\zendZentao\module\group\ext\lang\zh-cn\defect.php on line 3 when visiting /zendZentao/www/index.php?m=product&f=view&product=1
+
+09:48:14 Creating default object from empty value in D:\www\zendZentao\module\group\ext\lang\zh-cn\salary.php on line 4 when visiting /zendZentao/www/index.php?m=product&f=view&product=1
+
+09:48:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:48:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:48:23 Creating default object from empty value in D:\www\zendZentao\module\group\ext\lang\zh-cn\defect.php on line 3 when visiting /zendZentao/www/index.php?m=product&f=edit&product=1
+
+09:48:23 Creating default object from empty value in D:\www\zendZentao\module\group\ext\lang\zh-cn\salary.php on line 4 when visiting /zendZentao/www/index.php?m=product&f=edit&product=1
+
+09:48:28 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:48:28 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:48:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:48:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:48:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:48:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:48:35 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:48:35 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:48:39 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:48:39 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:48:42 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:48:42 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:48:47 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:48:47 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:48:54 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:48:54 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:49:06 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:49:06 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:49:40 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:49:40 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:49:40 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:49:40 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:49:45 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:49:45 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:49:50 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:49:50 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:49:56 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:49:56 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:50:51 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:50:51 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:51:00 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:51:00 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:51:01 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:51:01 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:52:02 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:52:02 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:54:56 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:54:56 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:57:03 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:57:03 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:58:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:58:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:58:42 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+09:58:45 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:58:45 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:58:46 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+09:58:50 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:58:50 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:58:50 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+09:58:52 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:58:52 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:58:52 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+09:58:52 Undefined variable: singleInfo in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 7 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+09:58:52 Trying to get property of non-object in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 7 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+09:58:52 Undefined variable: singleInfo in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 11 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+09:58:52 Trying to get property of non-object in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 11 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+09:58:52 Undefined variable: singleInfo in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 20 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+09:58:52 Trying to get property of non-object in D:\www\zendZentao\module\system\view\personnelEdit.html.php on line 20 when visiting /zendZentao/www/index.php?m=system&f=personnel
+
+09:59:02 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:59:02 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:59:02 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=parameter
+
+09:59:05 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:59:05 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:59:22 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:59:22 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:59:22 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=parameter
+
+09:59:24 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:59:24 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:59:24 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=parameter
+
+09:59:27 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:59:27 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:59:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:59:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:59:37 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=parameter
+
+09:59:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:59:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:59:51 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:59:51 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+09:59:51 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=parameter
+
+09:59:57 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+09:59:57 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:00:04 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:00:04 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:00:04 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=parameter&typeID=1
+
+10:00:05 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:00:05 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:00:05 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=parameter&typeID=2
+
+10:00:13 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:00:13 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:00:13 Declaration of systemModel::delete() should be compatible with model::delete($table, $id) in D:\www\zendZentao\module\system\model.php on line 223 when visiting /zendZentao/www/index.php?m=system&f=parameter&typeID=1
+
+10:00:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:00:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:01:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:01:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:02:14 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:02:14 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:06:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:06:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:07:14 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:07:14 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:11:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:11:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:12:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:12:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:16:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:16:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:17:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:17:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:21:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:21:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:22:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:22:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:26:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:26:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:27:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:27:15 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:31:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:31:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:32:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:32:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:36:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:36:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:37:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:37:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:41:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:41:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:42:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:42:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:46:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:46:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:47:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:47:16 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:51:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:51:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:52:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:52:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:56:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:56:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+10:57:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+10:57:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:01:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:01:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:02:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:02:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:06:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:06:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:07:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:07:17 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:11:25 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:11:25 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:12:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:12:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:16:27 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:16:27 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:17:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:17:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:21:28 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:21:28 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:22:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:22:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:26:28 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:26:28 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:27:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:27:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:31:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:31:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:32:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:32:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:36:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:36:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:37:19 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:37:19 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:41:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:41:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:42:19 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:42:19 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:46:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:46:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:47:19 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:47:19 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:51:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:51:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:52:20 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:52:20 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:56:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:56:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+11:57:20 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+11:57:20 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:01:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:01:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:02:20 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:02:20 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:06:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:06:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:07:20 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:07:20 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:11:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:11:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:12:21 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:12:21 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:16:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:16:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:17:21 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:17:21 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:21:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:21:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:22:21 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:22:21 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:26:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:26:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:27:22 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:27:22 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:31:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:31:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:32:22 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:32:22 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:36:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:36:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:37:22 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:37:22 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:41:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:41:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:42:22 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:42:22 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:46:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:46:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:47:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:47:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:51:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:51:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:52:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:52:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:56:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:56:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+12:57:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+12:57:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:01:34 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:01:34 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:02:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:02:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:06:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:06:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:07:24 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:07:24 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:11:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:11:38 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:12:24 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:12:24 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:16:39 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:16:39 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:17:24 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:17:24 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:21:39 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:21:39 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:22:25 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:22:25 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:26:39 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:26:39 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:27:25 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:27:25 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:31:40 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:31:40 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:32:25 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:32:25 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:36:40 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:36:40 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:37:25 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:37:25 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:41:40 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:41:40 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:42:26 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:42:26 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:46:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:46:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:47:26 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:47:26 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:51:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:51:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:52:26 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:52:26 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:56:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:56:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+13:57:27 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+13:57:27 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:01:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:01:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:02:27 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:02:27 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:06:42 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:06:42 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:07:27 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:07:27 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:11:42 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:11:42 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:12:27 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:12:27 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:16:42 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:16:42 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:17:28 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:17:28 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:21:43 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:21:43 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:22:28 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:22:28 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:26:43 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:26:43 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:27:28 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:27:28 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:31:43 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:31:43 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:32:28 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:32:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:36:43 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:36:43 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:37:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:37:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:41:44 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:41:44 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:42:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:42:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:46:44 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:46:44 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:47:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:47:29 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:51:44 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:51:44 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:52:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:52:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:56:44 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:56:45 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+14:57:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+14:57:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:01:52 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:01:52 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:02:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:02:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:06:54 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:06:54 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:07:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:07:30 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:11:54 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:11:54 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:12:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:12:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:16:55 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:16:55 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:17:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:17:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:22:00 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:22:00 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:22:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:22:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:27:00 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:27:00 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:27:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:27:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:32:00 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:32:00 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:32:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:32:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:37:00 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:37:00 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:37:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:37:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:42:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:42:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:47:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:47:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+15:52:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+15:52:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
