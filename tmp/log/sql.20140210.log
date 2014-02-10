@@ -1897,3 +1897,13 @@
   SELECT * FROM `zt_lang` ORDER BY lang,id
   SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
 
+20140210 11:41:48: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 11:44:16: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
