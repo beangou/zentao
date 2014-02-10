@@ -1907,3 +1907,1299 @@
   SELECT * FROM `zt_lang` ORDER BY lang,id
   SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
 
+20140210 11:46:49: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 11:49:17: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 11:51:49: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 11:54:17: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 11:56:49: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 11:59:17: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 12:01:50: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 12:04:18: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 12:06:50: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 12:09:18: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 12:11:50: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 12:14:18: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 12:16:51: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 12:19:19: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 12:21:53: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 12:24:19: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 12:26:54: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 12:29:19: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 12:31:54: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 12:34:20: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 12:36:54: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 12:39:20: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 12:41:55: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 12:44:20: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 12:46:55: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 12:49:21: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 12:51:55: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 12:54:21: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 12:56:56: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 12:59:21: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 13:01:56: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 13:04:21: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 13:06:56: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 13:09:22: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 13:11:56: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 13:14:22: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 13:16:57: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 13:19:22: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 13:21:59: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 13:24:34: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 13:27:01: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 13:29:36: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 13:32:03: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 13:34:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 13:37:03: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 13:39:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 13:42:03: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 13:44:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 13:47:04: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 13:49:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 13:52:04: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 13:53:36: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 13:54:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 13:54:54: /zendZentao/www/index.php?m=doc&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT id, name FROM `zt_docLib` WHERE deleted  = '0'
+
+20140210 13:54:55: /zendZentao/www/index.php?m=doc&f=browse
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT id, name FROM `zt_docLib` WHERE deleted  = '0'
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND deleted  = '0' ORDER BY isDone, status
+  SELECT * FROM `zt_doc` WHERE deleted  = '0' AND product IN ('1','2') AND project IN ('1','2','0') ORDER BY id desc
+  SELECT COUNT(*) AS recTotal FROM `zt_doc` WHERE deleted  = '0' AND product IN ('1','2') AND project IN ('1','2','0') 
+  SELECT * FROM `zt_doc` WHERE deleted  = '0' AND product IN ('1','2') AND project IN ('1','2','0') ORDER BY id desc
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT * FROM `zt_module` WHERE `type` = 'productdoc'  ORDER BY `order`
+  SELECT * FROM `zt_module` WHERE `type` = 'projectdoc'  ORDER BY `order`
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND deleted  = '0' ORDER BY isDone, status
+  SELECT * FROM `zt_module` WHERE root  = '0' AND type  = 'productdoc' ORDER BY grade desc, `order`
+  SELECT account, realname FROM `zt_user` ORDER BY account
+
+20140210 13:54:56: /zendZentao/www/index.php?m=report&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 13:54:57: /zendZentao/www/index.php?m=report&f=productinfo
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0'
+  SELECT * FROM `zt_productPlan` WHERE deleted  = '0' AND product IN ('1','2')
+  SELECT plan, id, status FROM `zt_story` WHERE deleted  = '0' AND plan IN ('1','2')
+  SELECT product, id, status FROM `zt_story` WHERE deleted  = '0' AND plan  = '0' AND product IN ('1','2')
+  SELECT account, realname FROM `zt_user` ORDER BY account
+
+20140210 13:55:03: /zendZentao/www/index.php?m=report&f=projectdeviation
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT t1.* FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.status  != 'cancel' AND t1.deleted  = '0' AND t2.deleted  = '0'
+  SELECT t1.project FROM `zt_bug` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.deleted  = '0' AND t2.deleted  = '0'
+  SELECT t1.project FROM `zt_projectStory` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t2.deleted  = '0' AND t3.deleted  = '0'
+  SELECT id, name, status FROM `zt_project`
+
+20140210 13:55:05: /zendZentao/www/index.php?m=report&f=bugsummary
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT id, resolution, openedBy, status FROM `zt_bug` WHERE deleted  = '0' AND openedDate  >= '2014-01-10' AND openedDate  <= '20140211'
+  SELECT account, realname FROM `zt_user` WHERE deleted  = '0' ORDER BY account
+
+20140210 13:55:06: /zendZentao/www/index.php?m=report&f=workload
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT t1.*, t2.name as projectName FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.deleted  = '0' AND t1.status  NOT IN ('cancel','closed','done') AND t2.deleted  = '0'
+  SELECT account, realname FROM `zt_user` WHERE deleted  = '0' ORDER BY account
+
+20140210 13:55:08: /zendZentao/www/index.php?m=report&f=projectdeviation
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT t1.* FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.status  != 'cancel' AND t1.deleted  = '0' AND t2.deleted  = '0'
+  SELECT t1.project FROM `zt_bug` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.deleted  = '0' AND t2.deleted  = '0'
+  SELECT t1.project FROM `zt_projectStory` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  LEFT JOIN `zt_story` AS t3  ON t1.story = t3.id  WHERE t2.deleted  = '0' AND t3.deleted  = '0'
+  SELECT id, name, status FROM `zt_project`
+
+20140210 13:55:09: /zendZentao/www/index.php?m=report&f=bugsummary
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT id, resolution, openedBy, status FROM `zt_bug` WHERE deleted  = '0' AND openedDate  >= '2014-01-10' AND openedDate  <= '20140211'
+  SELECT account, realname FROM `zt_user` WHERE deleted  = '0' ORDER BY account
+
+20140210 13:55:20: /zendZentao/www/index.php?m=report&f=bugassign
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT t1.*, t2.name as productName FROM `zt_bug` AS t1  LEFT JOIN `zt_product` AS t2  ON t1.product = t2.id  WHERE t1.deleted  = '0' AND t1.status  = 'active' AND t2.deleted  = '0'
+  SELECT account, realname FROM `zt_user` WHERE deleted  = '0' ORDER BY account
+
+20140210 13:55:23: /zendZentao/www/index.php?m=report&f=workload
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT t1.*, t2.name as projectName FROM `zt_task` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.deleted  = '0' AND t1.status  NOT IN ('cancel','closed','done') AND t2.deleted  = '0'
+  SELECT account, realname FROM `zt_user` WHERE deleted  = '0' ORDER BY account
+
+20140210 13:55:25: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 13:55:30: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 13:56:31: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 13:57:37: /zendZentao/www/index.php?m=indexcompare&f=completed
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 13:57:38: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 13:57:39: /zendZentao/www/index.php?m=indexcompare&f=completed
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 13:57:40: /zendZentao/www/index.php?m=indexcompare&f=productivity
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 13:57:42: /zendZentao/www/index.php?m=indexcompare&f=completed
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 13:57:44: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 13:57:49: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 13:58:50: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 13:58:54: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('1')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('1') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('1') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140210 13:59:00: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('2')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('2') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('2') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140210 13:59:03: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 13:59:05: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('1')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('1') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('1') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140210 13:59:17: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 14:00:18: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 14:02:08: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('1')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('1') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('1') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140210 14:03:08: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 14:03:15: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('2')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('2') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('2') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140210 14:03:23: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 14:04:05: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('1')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('1') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('1') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140210 14:04:08: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('1')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('1') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('1') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140210 14:04:10: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('2')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('2') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('2') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140210 14:05:10: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 14:10:11: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 14:15:11: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 14:18:25: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('2')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('2') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('2') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140210 14:18:27: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('2')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('2') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('2') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140210 14:18:28: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 14:18:37: /zendZentao/www/index.php?m=indexcompare&f=perStability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 14:19:39: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 14:24:39: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 14:29:39: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 14:34:40: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 14:39:40: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 14:44:40: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 14:49:41: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 14:54:41: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 14:59:41: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 15:04:41: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 15:09:42: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 15:14:42: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 15:19:42: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 15:24:42: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 15:25:36: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 15:25:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 15:26:45: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 15:29:43: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 15:31:46: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 15:34:43: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 15:36:47: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 15:39:44: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 15:41:47: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 15:44:44: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 15:44:58: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:45:04: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 15:46:04: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 15:46:47: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 15:47:34: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:47:36: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 15:48:36: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 15:51:47: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 15:53:21: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 15:53:22: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 15:53:24: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:53:29: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:53:30: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:54:00: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 15:54:02: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:55:02: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 15:55:33: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:55:34: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:55:35: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:55:35: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:55:36: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:56:02: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:56:03: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:56:04: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:56:04: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:56:47: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 15:57:05: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 15:57:50: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:57:51: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 15:58:28: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 15:58:29: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:58:33: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 15:58:34: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:58:37: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 15:58:39: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:58:41: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 15:59:08: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 15:59:15: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 15:59:19: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('1')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('1') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('1') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140210 15:59:21: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('1')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('1') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('1') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140210 15:59:23: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 15:59:24: /zendZentao/www/index.php?m=defect&f=personalRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name,t1.begin,t1.end FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND t1.id  != '0' AND t3.id IN ('1')
+  SELECT product,project,count(*) as total FROM `zt_bug` WHERE product IN ('1') GROUP BY project
+  SELECT t1.id,t1.product,t1.project,t1.resolvedBy,count(t1.resolvedBy) as self,t2.realname FROM `zt_bug` AS t1  LEFT JOIN `zt_user` AS t2  ON t1.resolvedBy = t2.account  WHERE t1.product IN ('1') AND t1.resolvedBy  != '' GROUP BY t1.project,t1.resolvedBy ORDER BY t1.resolvedBy
+
+20140210 16:00:24: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 16:01:48: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 16:05:24: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 16:06:48: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 16:10:25: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 16:11:48: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 16:12:42: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 16:12:46: /zendZentao/www/index.php?m=defect&f=defectRate
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-10' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140210 16:12:47: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 16:12:58: /zendZentao/www/index.php?m=doc&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT id, name FROM `zt_docLib` WHERE deleted  = '0'
+
+20140210 16:12:59: /zendZentao/www/index.php?m=doc&f=browse
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT id, name FROM `zt_docLib` WHERE deleted  = '0'
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND deleted  = '0' ORDER BY isDone, status
+  SELECT * FROM `zt_doc` WHERE deleted  = '0' AND product IN ('1','2') AND project IN ('1','2','0') ORDER BY id desc
+  SELECT COUNT(*) AS recTotal FROM `zt_doc` WHERE deleted  = '0' AND product IN ('1','2') AND project IN ('1','2','0') 
+  SELECT * FROM `zt_doc` WHERE deleted  = '0' AND product IN ('1','2') AND project IN ('1','2','0') ORDER BY id desc
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT * FROM `zt_module` WHERE `type` = 'productdoc'  ORDER BY `order`
+  SELECT * FROM `zt_module` WHERE `type` = 'projectdoc'  ORDER BY `order`
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT *, IF(INSTR(" done", status) < 2, 0, 1) AS isDone FROM `zt_project` WHERE iscat  = '0' AND deleted  = '0' ORDER BY isDone, status
+  SELECT * FROM `zt_module` WHERE root  = '0' AND type  = 'productdoc' ORDER BY grade desc, `order`
+  SELECT account, realname FROM `zt_user` ORDER BY account
+
+20140210 16:13:00: /zendZentao/www/index.php?m=report&f=index
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 16:13:01: /zendZentao/www/index.php?m=report&f=productinfo
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0'
+  SELECT * FROM `zt_productPlan` WHERE deleted  = '0' AND product IN ('1','2')
+  SELECT plan, id, status FROM `zt_story` WHERE deleted  = '0' AND plan IN ('1','2')
+  SELECT product, id, status FROM `zt_story` WHERE deleted  = '0' AND plan  = '0' AND product IN ('1','2')
+  SELECT account, realname FROM `zt_user` ORDER BY account
+
+20140210 16:14:01: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 16:15:25: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 16:19:01: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 16:20:25: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 16:23:47: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 16:24:01: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 16:24:47: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 16:29:02: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 16:29:47: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 16:34:02: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 16:34:48: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 16:39:00: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 16:39:02: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 16:39:06: /zendZentao/www/index.php?m=indexcompare&f=completed
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 16:39:08: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 16:40:08: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 16:44:03: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 16:45:08: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 16:49:03: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 16:50:09: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 16:54:03: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 16:55:09: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 16:59:04: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 17:00:09: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 17:04:04: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 17:05:09: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 17:09:04: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 17:10:10: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 17:14:04: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 17:15:10: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 17:19:04: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 17:20:10: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 17:24:05: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 17:25:11: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 17:29:04: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 17:29:05: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 17:30:04: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 17:33:10: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 17:33:23: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 17:34:05: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 17:34:23: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 17:35:48: /zendZentao/www/index.php?m=report&f=productinfo
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0'
+  SELECT * FROM `zt_productPlan` WHERE deleted  = '0' AND product IN ('1','2')
+  SELECT plan, id, status FROM `zt_story` WHERE deleted  = '0' AND plan IN ('1','2')
+  SELECT product, id, status FROM `zt_story` WHERE deleted  = '0' AND plan  = '0' AND product IN ('1','2')
+  SELECT account, realname FROM `zt_user` ORDER BY account
+
+20140210 17:35:51: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 17:35:55: /zendZentao/www/index.php?m=indexcompare&f=perStability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 17:35:59: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 17:36:01: /zendZentao/www/index.php?m=indexcompare&f=perStability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 17:36:03: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 17:36:04: /zendZentao/www/index.php?m=indexcompare&f=perStability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 17:36:06: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 17:36:08: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 17:37:08: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 17:37:49: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+
+20140210 17:38:49: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 17:39:24: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 17:43:50: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 17:44:24: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 17:48:50: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 17:49:24: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 17:53:50: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 17:54:25: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 17:58:50: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140210 17:59:25: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 18:03:51: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140210 18:04:25: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+

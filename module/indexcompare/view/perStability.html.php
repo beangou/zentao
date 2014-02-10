@@ -33,14 +33,14 @@
   		   <table class="table-1 fixed colored datatable border-sep" id="product">
   			  <thead>
   			  	<tr class="colhead">
-  			  		<th width='200'><?php echo $lang->indexcompare->productName;?></th>
   			  		<th width='260'><?php echo $lang->indexcompare->projectName;?></th>
+  			  		<th><?php echo $lang->indexcompare->proStartDate;?></th>
+  			  		<th><?php echo $lang->indexcompare->proEndDate;?></th>
+  			  		<th><?php echo $lang->indexcompare->name;?></th>
   			  		<th><?php echo $lang->indexcompare->addDemandNo;?></th>
   			  		<th><?php echo $lang->indexcompare->changeDemandNo;?></th>
   			  		<th><?php echo $lang->indexcompare->initDemandNo;?></th>
-  			  		<th><?php echo $lang->indexcompare->stability;?></th>
-  			  		<th><?php echo $lang->indexcompare->proStartDate;?></th>
-  			  		<th><?php echo $lang->indexcompare->proEndDate;?></th>
+  			  		
   			  	</tr>
   			  </thead>
   			  <tbody>

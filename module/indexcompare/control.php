@@ -63,6 +63,21 @@ class indexcompare extends control
     	$this->display();
     }
     
+    public function perStability($orderBy = '') {
+    	if(!empty($_POST)) {
+    		$proname = $this->post->proname;
+    		$empname = $this->post->empname;
+    	}
+    
+    	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
+    	setcookie('projectTaskOrder', $orderBy, $this->config->cookieLife, $this->config->webRoot);
+    
+    	$selInfo = $this->indexcompare->getIndex($proname, $empname);
+    	$this->view->selInfo = $selInfo;
+    
+    	$this->display();
+    }
+    
     public function completed($orderBy = '') {
     	if(!empty($_POST)) {
     		$proname = $this->post->proname;

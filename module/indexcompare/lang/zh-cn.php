@@ -15,8 +15,36 @@ $lang->conn->menu->create  = array('link' => '<span class="icon-add">&nbsp;</spa
 $lang->indexcompare->project      = "项目";
 $lang->indexcompare->employee      = "职员";
 
-$lang->indexcompare->stability      = "需求稳定度";
-$lang->indexcompare->completed      = "任务完成率";
-$lang->indexcompare->removed      = "缺陷去除率";
-$lang->indexcompare->productivity      = "生产率";
-$lang->indexcompare->performance      = "评审绩效";
+$lang->indexcompare->titStability      = "需求稳定度";
+$lang->indexcompare->titCompleted      = "任务完成率";
+$lang->indexcompare->titRemoved      = "缺陷去除率";
+$lang->indexcompare->titProductivity      = "生产率";
+$lang->indexcompare->titPerformance      = "评审绩效";
+
+$lang->indexcompare->stability      = "项目需求稳定度";
+$lang->indexcompare->completed      = "项目任务完成率";
+$lang->indexcompare->removed      = "项目缺陷去除率";
+$lang->indexcompare->productivity      = "项目生产率";
+$lang->indexcompare->performance      = "项目评审绩效";
+
+$lang->indexcompare->perStability      = "个人需求稳定度";
+$lang->indexcompare->perCompleted      = "个人任务完成率";
+$lang->indexcompare->perRemoved      = "个人缺陷去除率";
+$lang->indexcompare->perProductivity      = "个人生产率";
+$lang->indexcompare->perPerformance      = "个人评审绩效";
+
+$lang->indexcompare->choose = '请选择';
+
+$lang->indexcompare->productName      = "产品名";
+$lang->indexcompare->projectName      = "项目名";
+$lang->indexcompare->addDemandNo      = "新增需求数";
+$lang->indexcompare->changeDemandNo      = "修改需求数";
+$lang->indexcompare->initDemandNo      = "原始需求数";
+
+$lang->indexcompare->proStartDate      = "项目开始日期";
+$lang->indexcompare->proEndDate      = "项目结束日期";
+$lang->indexcompare->name      = "姓名";
+
+
+
+
