@@ -13,20 +13,20 @@
 	<table width="100%" class="cont-lt1">
 		<tr valign="top">
 		  <td width="12%" style="padding-right: 10px;" class="side">
-			  <div class="box-title"><?php echo $lang->indexcompare->titCompleted;?></div>
-			  <div class="box-content">
+				  <div class="box-title"><?php echo $lang->indexcompare->titProductivity;?></div>
+				  <div class="box-content">
 				  <ul id="report-list">
 				  	<li>
-				  		<?php echo html::a($this->createLink('indexcompare', 'completed'), $lang->indexcompare->proCompleted);?>
+				  		<?php echo html::a($this->createLink('indexcompare', 'productivity'), $lang->indexcompare->proProductivity);?>
 				  	</li>
 				  	<li>
-				  		<?php echo html::a($this->createLink('indexcompare', 'perCompleted'), $lang->indexcompare->perCompleted);?>
+				  		<?php echo html::a($this->createLink('indexcompare', 'perProductivity'), $lang->indexcompare->perProductivity);?>
 				  	</li>
 				  </ul>
-			  </div>
+				  </div>
 		  </td>
 		  <td>
-				<!-- <div class="week-title"><?php echo $lang->indexcompare->titCompleted;?></div>-->
+				<!-- <div class="week-title"><?php echo $lang->indexcompare->titProductivity;?></div>-->
 			<form method="post">
 				<table align='center' class='table-1 a-left'>
 					<tr>
@@ -45,14 +45,14 @@
   		   <table class="table-1 fixed colored datatable border-sep" id="product">
   			  <thead>
   			  	<tr class="colhead">
+  			  		<th width='200'><?php echo $lang->indexcompare->productName;?></th>
   			  		<th width='260'><?php echo $lang->indexcompare->projectName;?></th>
-  			  		<th><?php echo $lang->indexcompare->proStartDate;?></th>
-  			  		<th><?php echo $lang->indexcompare->proEndDate;?></th>
-  			  		<th><?php echo $lang->indexcompare->name;?></th>
   			  		<th><?php echo $lang->indexcompare->addDemandNo;?></th>
   			  		<th><?php echo $lang->indexcompare->changeDemandNo;?></th>
   			  		<th><?php echo $lang->indexcompare->initDemandNo;?></th>
-  			  		<th><?php echo $lang->indexcompare->perStability;?></th>
+  			  		<th><?php echo $lang->indexcompare->proStability;?></th>
+  			  		<th><?php echo $lang->indexcompare->proStartDate;?></th>
+  			  		<th><?php echo $lang->indexcompare->proEndDate;?></th>
   			  	</tr>
   			  </thead>
   			  <tbody>

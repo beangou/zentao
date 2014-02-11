@@ -12,6 +12,12 @@ $lang->conn->menu->delete  = array('link' => '删除|conn|deleteLib|libID=%s', '
 $lang->conn->menu->create  = array('link' => '<span class="icon-add">&nbsp;</span>添加文档库|conn|createLib', 'float' => 'right');
 */
 
+$lang->indexcompare->stability			= '需求稳定度';
+$lang->indexcompare->common			= '需求稳定度';
+
+$lang->indexcompare->leftProStability	= '项目需求稳定度|indexcompare|stability';
+$lang->indexcompare->leftPerStability	= '个人需求稳定度|indexcompare|perStability';
+
 $lang->indexcompare->project      = "项目";
 $lang->indexcompare->employee      = "职员";
 
@@ -21,11 +27,13 @@ $lang->indexcompare->titRemoved      = "缺陷去除率";
 $lang->indexcompare->titProductivity      = "生产率";
 $lang->indexcompare->titPerformance      = "评审绩效";
 
-$lang->indexcompare->stability      = "项目需求稳定度";
-$lang->indexcompare->completed      = "项目任务完成率";
-$lang->indexcompare->removed      = "项目缺陷去除率";
-$lang->indexcompare->productivity      = "项目生产率";
-$lang->indexcompare->performance      = "项目评审绩效";
+$lang->indexcompare->proStability      = "项目需求稳定度";
+$lang->indexcompare->proCompleted      = "项目任务完成率";
+$lang->indexcompare->proRemoved      = "项目缺陷去除率";
+$lang->indexcompare->proProductivity      = "项目生产率";
+$lang->indexcompare->proPerformance      = "项目评审绩效";
+
+
 
 $lang->indexcompare->perStability      = "个人需求稳定度";
 $lang->indexcompare->perCompleted      = "个人任务完成率";

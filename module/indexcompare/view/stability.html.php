@@ -12,7 +12,19 @@
 <body>
 	<table width="100%" class="cont-lt1">
 		<tr valign="top">
-		  <?php include 'left.html.php';?>
+		  <td width="12%" style="padding-right: 10px;" class="side">
+				  <div class="box-title"><?php echo $lang->indexcompare->titStability;?></div>
+				  <div class="box-content">
+				  <ul id="report-list">
+				  	<li>
+				  		<?php echo html::a($this->createLink('indexcompare', 'stability'), $lang->indexcompare->proStability);?>
+				  	</li>
+				  	<li>
+				  		<?php echo html::a($this->createLink('indexcompare', 'perStability'), $lang->indexcompare->perStability);?>
+				  	</li>
+				  </ul>
+				  </div>
+		  </td>
 		  <td>
 				<!-- <div class="week-title"><?php echo $lang->indexcompare->titStability;?></div>-->
 			<form method="post">
@@ -38,7 +50,7 @@
   			  		<th><?php echo $lang->indexcompare->addDemandNo;?></th>
   			  		<th><?php echo $lang->indexcompare->changeDemandNo;?></th>
   			  		<th><?php echo $lang->indexcompare->initDemandNo;?></th>
-  			  		<th><?php echo $lang->indexcompare->stability;?></th>
+  			  		<th><?php echo $lang->indexcompare->proStability;?></th>
   			  		<th><?php echo $lang->indexcompare->proStartDate;?></th>
   			  		<th><?php echo $lang->indexcompare->proEndDate;?></th>
   			  	</tr>

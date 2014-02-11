@@ -14,17 +14,6 @@
 class indexcompare extends control
 {
     /**
-     * Construct function, load project, product.
-     * 
-     * @access public
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * The index page of whole zentao system.
      * 
      * @access public
@@ -60,6 +49,16 @@ class indexcompare extends control
     	$selInfo = $this->indexcompare->getIndex($proname, $empname);
     	$this->view->selInfo = $selInfo;
     	 
+    	$this->view->products		= $this->loadModel('defect')->getProduct();
+    	$defect 	= array();
+    	if (!empty($_POST)){
+    		foreach ($_POST as $ids){
+    			$defect = $this->loadModel('defect')->queryDefect($ids);
+    		}
+    	}else {
+    		$defect = $this->loadModel('defect')->queryDefect(1);
+    	}
+    	
     	$this->display();
     }
     
@@ -74,11 +73,46 @@ class indexcompare extends control
     
     	$selInfo = $this->indexcompare->getIndex($proname, $empname);
     	$this->view->selInfo = $selInfo;
+    	
+    	$this->view->products		= $this->loadModel('defect')->getProduct();
+    	$defect 	= array();
+    	if (!empty($_POST)){
+    		foreach ($_POST as $ids){
+    			$defect = $this->loadModel('defect')->queryDefect($ids);
+    		}
+    	}else {
+    		$defect = $this->loadModel('defect')->queryDefect(1);
+    	}
     
     	$this->display();
     }
     
     public function completed($orderBy = '') {
+    	if(!empty($_POST)) {
+    		$proname = $this->post->proname;
+    		$empname = $this->post->empname;
+    	}
+    	 
+    	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
+    	setcookie('projectTaskOrder', $orderBy, $this->config->cookieLife, $this->config->webRoot);
+    	 
+    	$selInfo = $this->indexcompare->getIndex($proname, $empname);
+    	$this->view->selInfo = $selInfo;
+    	 
+    	$this->view->products		= $this->loadModel('defect')->getProduct();
+    	$defect 	= array();
+    	if (!empty($_POST)){
+    		foreach ($_POST as $ids){
+    			$defect = $this->loadModel('defect')->queryDefect($ids);
+    		}
+    	}else {
+    		$defect = $this->loadModel('defect')->queryDefect(1);
+    	}
+    	
+    	$this->display();
+    }
+    
+    public function perCompleted($orderBy = '') {
     	if(!empty($_POST)) {
     		$proname = $this->post->proname;
     		$empname = $this->post->empname;
@@ -90,6 +124,16 @@ class indexcompare extends control
     	$selInfo = $this->indexcompare->getIndex($proname, $empname);
     	$this->view->selInfo = $selInfo;
     
+    	$this->view->products		= $this->loadModel('defect')->getProduct();
+    	$defect 	= array();
+    	if (!empty($_POST)){
+    		foreach ($_POST as $ids){
+    			$defect = $this->loadModel('defect')->queryDefect($ids);
+    		}
+    	}else {
+    		$defect = $this->loadModel('defect')->queryDefect(1);
+    	}
+    	 
     	$this->display();
     }
     
@@ -105,6 +149,41 @@ class indexcompare extends control
     	$selInfo = $this->indexcompare->getIndex($proname, $empname);
     	$this->view->selInfo = $selInfo;
     
+    	$this->view->products		= $this->loadModel('defect')->getProduct();
+    	$defect 	= array();
+    	if (!empty($_POST)){
+    		foreach ($_POST as $ids){
+    			$defect = $this->loadModel('defect')->queryDefect($ids);
+    		}
+    	}else {
+    		$defect = $this->loadModel('defect')->queryDefect(1);
+    	}
+    	 
+    	$this->display();
+    }
+    
+    public function perProductivity($orderBy = '') {
+    	if(!empty($_POST)) {
+    		$proname = $this->post->proname;
+    		$empname = $this->post->empname;
+    	}
+    
+    	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
+    	setcookie('projectTaskOrder', $orderBy, $this->config->cookieLife, $this->config->webRoot);
+    
+    	$selInfo = $this->indexcompare->getIndex($proname, $empname);
+    	$this->view->selInfo = $selInfo;
+    
+    	$this->view->products		= $this->loadModel('defect')->getProduct();
+    	$defect 	= array();
+    	if (!empty($_POST)){
+    		foreach ($_POST as $ids){
+    			$defect = $this->loadModel('defect')->queryDefect($ids);
+    		}
+    	}else {
+    		$defect = $this->loadModel('defect')->queryDefect(1);
+    	}
+    
     	$this->display();
     }
     
@@ -119,6 +198,41 @@ class indexcompare extends control
     
     	$selInfo = $this->indexcompare->getIndex($proname, $empname);
     	$this->view->selInfo = $selInfo;
+    
+    	$this->view->products		= $this->loadModel('defect')->getProduct();
+    	$defect 	= array();
+    	if (!empty($_POST)){
+    		foreach ($_POST as $ids){
+    			$defect = $this->loadModel('defect')->queryDefect($ids);
+    		}
+    	}else {
+    		$defect = $this->loadModel('defect')->queryDefect(1);
+    	}
+    
+    	$this->display();
+    }
+    
+    public function perPerformance($orderBy = '') {
+    	if(!empty($_POST)) {
+    		$proname = $this->post->proname;
+    		$empname = $this->post->empname;
+    	}
+    
+    	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
+    	setcookie('projectTaskOrder', $orderBy, $this->config->cookieLife, $this->config->webRoot);
+    
+    	$selInfo = $this->indexcompare->getIndex($proname, $empname);
+    	$this->view->selInfo = $selInfo;
+    
+    	$this->view->products		= $this->loadModel('defect')->getProduct();
+    	$defect 	= array();
+    	if (!empty($_POST)){
+    		foreach ($_POST as $ids){
+    			$defect = $this->loadModel('defect')->queryDefect($ids);
+    		}
+    	}else {
+    		$defect = $this->loadModel('defect')->queryDefect(1);
+    	}
     
     	$this->display();
     }

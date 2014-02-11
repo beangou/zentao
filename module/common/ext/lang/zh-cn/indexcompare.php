@@ -19,10 +19,11 @@ $lang->indexcompare->menu->create  = array('link' => '<span class="icon-add">&nb
 $lang->indexcompare->menu = $lang->report->menu;
 /*添加导航条*/
 $lang->menugroup->indexcompare   	= 'report';
-$lang->indexcompare->menu->stability     = array('link' => '需求稳定度|indexcompare|stability|');
-$lang->indexcompare->menu->completed     = array('link' => '任务完成率|indexcompare|completed|');
-$lang->indexcompare->menu->productivity     = array('link' => '生产率|indexcompare|productivity|');
-$lang->indexcompare->menu->performance     = array('link' => '绩效评审|indexcompare|performance|');
+
+$lang->indexcompare->menu->stability     = array('link' => '需求稳定度|indexcompare|stability', 'alias' => 'perstability');
+$lang->indexcompare->menu->completed     = array('link' => '任务完成率|indexcompare|completed', 'alias' => 'percompleted');
+$lang->indexcompare->menu->productivity     = array('link' => '生产率|indexcompare|productivity', 'alias' => 'perproductivity');
+$lang->indexcompare->menu->performance     = array('link' => '绩效评审|indexcompare|performance', 'alias' => 'perperformance');
 
 /*
 <th class='w-stability'>    <?php common::printOrderLink('stability',           $orderBy, $vars, $lang->indexcompare->stability);?></th>
@@ -31,6 +32,5 @@ $lang->indexcompare->menu->performance     = array('link' => '绩效评审|index
 	          <th class='w-productivity'><?php common::printOrderLink('status',       $orderBy, $vars, $lang->indexcompare->productivity);?></th>
 	          <th class='w-performance'>  
 */
-
 
 ?>
