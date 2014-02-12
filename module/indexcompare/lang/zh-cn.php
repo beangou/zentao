@@ -53,6 +53,27 @@ $lang->indexcompare->proStartDate      = "项目开始日期";
 $lang->indexcompare->proEndDate      = "项目结束日期";
 $lang->indexcompare->name      = "姓名";
 
+//任务完成率
+$lang->indexcompare->proCloseTasks = "项目CLOSED任务数";
+$lang->indexcompare->proAllTasks = "项目所有任务数";
+$lang->indexcompare->perCloseTasks = "个人CLOSED任务数";
+$lang->indexcompare->perAllTasks = "个人所有任务数";
 
+//生产率
+$lang->indexcompare->proCodeNo = "项目代码行数";
+$lang->indexcompare->proPersonDays = "项目总人日";
+$lang->indexcompare->perCodeNo = "个人代码行数";
+$lang->indexcompare->perPersonDays = "个人总人日";
 
-
+//评审绩效
+$lang->indexcompare->proScore = "项目评审得分";
+$lang->indexcompare->proHighestScore = "项目最高评审得分";
+$lang->indexcompare->perScore = "个人评审得分";
+$lang->indexcompare->perHighestScore = "组内最高评审得分";
+$lang->indexcompare->serious = "严重问题";
+$lang->indexcompare->normal = "一般问题";
+$lang->indexcompare->prompt = "提示问题";
+$lang->indexcompare->seriousWeightedValue  = "严重问题加权值";
+$lang->indexcompare->normalWeightedValue = "一般问题加权值";
+$lang->indexcompare->promptWeightedValue = "提示问题加权值";
+$lang->indexcompare->reference = "参考";

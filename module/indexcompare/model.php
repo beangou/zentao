@@ -52,4 +52,12 @@ class indexcompareModel extends model
 		
 // 		return array();
 	}
+	
+	public function getInitStoryEndTime() {
+		//SELECT id FROM zt_project WHERE id NOT IN(SELECT project_id FROM ict_initstory_endtime);
+		$recordedIds = $this->dao->select('project_id')->from(TABLE_ICTINITSTORY_ENDTIME);
+		$ids = $this->dao->select('t1.id')->from(TABLE_PROJECT)->alias('t1')->where('t1.id')->notin($recordedIds)->fetchAll();
+		$ids = array('' => '') + $ids;
+		return $ids;
+	}
 }

@@ -58,7 +58,13 @@ class indexcompare extends control
     	}else {
     		$defect = $this->loadModel('defect')->queryDefect(1);
     	}
-    	
+
+    	$dbIds = $this->indexcompare->getInitStoryEndTime();
+    	$viewIds = array();
+    	foreach ($dbIds as $id) {
+    		array_push($viewIds, $id->id);
+    	}
+    	$this->view->ids = $viewIds;
     	$this->display();
     }
     
@@ -236,5 +242,17 @@ class indexcompare extends control
     
     	$this->display();
     }
+    
+    //获取原始需求结束时间
+    public function ajaxGetEndTime($id = '',$memb = '') {
+    	//找出没有记录到原始需求结束时间点表的项目 TABLE_ICTINITSTORY_ENDTIME
+    	$dbIds = $this->indexcompare->getInitStoryEndTime();
+    	$viewIds = array();
+    	foreach ($dbIds as $id) {
+    		array_push($viewIds, $id->id);
+    	}
+//     	$users = array("fff", "bb", "nnn");
+    	die(html::select('assignedTo', $viewIds, '', "class='select-1'"));
+    } 
 
 }

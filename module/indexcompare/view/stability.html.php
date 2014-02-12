@@ -9,6 +9,15 @@
 <style>
 .rowcolor{background:#F9F9F9;}
 </style>
+
+<script type="text/javascript">
+	//等页面加载完成后，、
+	//通过ajax请求，填充选择项目中后的下拉框
+	function getProjects() {
+		link = createLink('indexcompare', 'ajaxGetEndTime', 'id=44&memb=66');
+		$('#auditors_bean').load(link);
+	}
+</script>
 <body>
 	<table width="100%" class="cont-lt1">
 		<tr valign="top">
@@ -26,6 +35,23 @@
 				  </div>
 		  </td>
 		  <td>
+		  
+		    <table class='table-1 a-left' >
+		    	<tr>
+		    		<td>
+		    			输入项目：
+		    			<span id="auditors_bean">
+			    			<?php 
+			    				echo html::select('id', $ids, '', "class='select-1'");
+			    			?>
+						</span>	
+			    			&nbsp;&nbsp;&nbsp;&nbsp;
+		    			输入原始需求结束时间：<input type="datetime"/>
+		    			&nbsp;&nbsp;
+		    			<input type="button" onclick="getProjects()" value="确定"/>
+		    		</td>
+		    	</tr>
+		    </table>
 				<!-- <div class="week-title"><?php echo $lang->indexcompare->titStability;?></div>-->
 			<form method="post">
 				<table align='center' class='table-1 a-left'>

@@ -103,6 +103,8 @@ define('TABLE_ICTWEEKPLAN',	  '`' . $config->db->ict	. 'weekplan`');
 
 /*项目缺陷包0.5*/
 define('TABLE_ICTDEFECT',	  '`' . $config->db->ict	. 'defect`');
+/*原始需求结束时间点表*/
+define('TABLE_ICTINITSTORY_ENDTIME',	  '`' . $config->db->ict	. 'initstory_endtime`');
 
 //if(!isset($config->db->ict)) $config->db->prefix = 'ict_';
 
