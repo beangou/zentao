@@ -4223,3 +4223,7 @@
   SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
   SELECT * FROM `zt_lang` ORDER BY lang,id
 
+20140217 16:57:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
