@@ -4227,3 +4227,228 @@
   SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
   SELECT * FROM `zt_lang` ORDER BY lang,id
 
+20140217 17:02:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140217 17:03:07: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-17' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT * FROM `ict_defect` WHERE product  = '1' AND project  = '1'
+  UPDATE `ict_defect` SET `total` = '1',`defect` = '0',`selfBug` = '' WHERE product  = '1' AND project  = '1'
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+  SELECT project_id FROM `ict_initstory_endtime`
+  SELECT t1.id, t1.name FROM `zt_project` AS t1  WHERE t1.id  NOT IN ('1','2','3','8','9')
+  SELECT t4.name as prodName, t2.name as projName, t1.initstory_endtime FROM `ict_initstory_endtime` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project_id = t2.id  LEFT JOIN `zt_projectProduct` AS t3  ON t2.id = t3.project  LEFT JOIN `zt_product` AS t4  ON t3.product = t4.id 
+
+20140217 17:03:14: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-17' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT * FROM `ict_defect` WHERE product  = '1' AND project  = '1'
+  UPDATE `ict_defect` SET `total` = '1',`defect` = '0',`selfBug` = '' WHERE product  = '1' AND project  = '1'
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+  SELECT project_id FROM `ict_initstory_endtime`
+  SELECT t1.id, t1.name FROM `zt_project` AS t1  WHERE t1.id  NOT IN ('1','2','3','8','9')
+  SELECT t4.name as prodName, t2.name as projName, t1.initstory_endtime FROM `ict_initstory_endtime` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project_id = t2.id  LEFT JOIN `zt_projectProduct` AS t3  ON t2.id = t3.project  LEFT JOIN `zt_product` AS t4  ON t3.product = t4.id 
+
+20140217 17:03:36: /zendZentao/www/index.php?m=indexcompare&f=perStability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-17' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT * FROM `ict_defect` WHERE product  = '1' AND project  = '1'
+  UPDATE `ict_defect` SET `total` = '1',`defect` = '0',`selfBug` = '' WHERE product  = '1' AND project  = '1'
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140217 17:03:38: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-17' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT * FROM `ict_defect` WHERE product  = '1' AND project  = '1'
+  UPDATE `ict_defect` SET `total` = '1',`defect` = '0',`selfBug` = '' WHERE product  = '1' AND project  = '1'
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+  SELECT project_id FROM `ict_initstory_endtime`
+  SELECT t1.id, t1.name FROM `zt_project` AS t1  WHERE t1.id  NOT IN ('1','2','3','8','9')
+  SELECT t4.name as prodName, t2.name as projName, t1.initstory_endtime FROM `ict_initstory_endtime` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project_id = t2.id  LEFT JOIN `zt_projectProduct` AS t3  ON t2.id = t3.project  LEFT JOIN `zt_product` AS t4  ON t3.product = t4.id 
+
+20140217 17:03:41: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-17' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT * FROM `ict_defect` WHERE product  = '1' AND project  = '1'
+  UPDATE `ict_defect` SET `total` = '1',`defect` = '0',`selfBug` = '' WHERE product  = '1' AND project  = '1'
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+  SELECT project_id FROM `ict_initstory_endtime`
+  SELECT t1.id, t1.name FROM `zt_project` AS t1  WHERE t1.id  NOT IN ('1','2','3','8','9')
+  SELECT t4.name as prodName, t2.name as projName, t1.initstory_endtime FROM `ict_initstory_endtime` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project_id = t2.id  LEFT JOIN `zt_projectProduct` AS t3  ON t2.id = t3.project  LEFT JOIN `zt_product` AS t4  ON t3.product = t4.id 
+
+20140217 17:04:41: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140217 17:07:18: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-17' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT * FROM `ict_defect` WHERE product  = '1' AND project  = '1'
+  UPDATE `ict_defect` SET `total` = '1',`defect` = '0',`selfBug` = '' WHERE product  = '1' AND project  = '1'
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+  SELECT project_id FROM `ict_initstory_endtime`
+  SELECT t1.id, t1.name FROM `zt_project` AS t1  WHERE t1.id  NOT IN ('1','2','3','8','9')
+  SELECT t4.name as prodName, t2.name as projName, t1.initstory_endtime FROM `ict_initstory_endtime` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project_id = t2.id  LEFT JOIN `zt_projectProduct` AS t3  ON t2.id = t3.project  LEFT JOIN `zt_product` AS t4  ON t3.product = t4.id 
+
+20140217 17:07:19: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-17' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT * FROM `ict_defect` WHERE product  = '1' AND project  = '1'
+  UPDATE `ict_defect` SET `total` = '1',`defect` = '0',`selfBug` = '' WHERE product  = '1' AND project  = '1'
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+  SELECT project_id FROM `ict_initstory_endtime`
+  SELECT t1.id, t1.name FROM `zt_project` AS t1  WHERE t1.id  NOT IN ('1','2','3','8','9')
+  SELECT t4.name as prodName, t2.name as projName, t1.initstory_endtime FROM `ict_initstory_endtime` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project_id = t2.id  LEFT JOIN `zt_projectProduct` AS t3  ON t2.id = t3.project  LEFT JOIN `zt_product` AS t4  ON t3.product = t4.id 
+
+20140217 17:07:23: /zendZentao/www/index.php?m=indexcompare&f=perStability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-17' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT * FROM `ict_defect` WHERE product  = '1' AND project  = '1'
+  UPDATE `ict_defect` SET `total` = '1',`defect` = '0',`selfBug` = '' WHERE product  = '1' AND project  = '1'
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+  SELECT project_id FROM `ict_initstory_endtime`
+  SELECT t1.id, t1.name FROM `zt_project` AS t1  WHERE t1.id  NOT IN ('1','2','3','8','9')
+  SELECT t4.name as prodName, t2.name as projName, t1.initstory_endtime FROM `ict_initstory_endtime` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project_id = t2.id  LEFT JOIN `zt_projectProduct` AS t3  ON t2.id = t3.project  LEFT JOIN `zt_product` AS t4  ON t3.product = t4.id 
+
+20140217 17:07:32: /zendZentao/www/index.php?m=indexcompare&f=stability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-17' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT * FROM `ict_defect` WHERE product  = '1' AND project  = '1'
+  UPDATE `ict_defect` SET `total` = '1',`defect` = '0',`selfBug` = '' WHERE product  = '1' AND project  = '1'
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+  SELECT project_id FROM `ict_initstory_endtime`
+  SELECT t1.id, t1.name FROM `zt_project` AS t1  WHERE t1.id  NOT IN ('1','2','3','8','9')
+  SELECT t4.name as prodName, t2.name as projName, t1.initstory_endtime FROM `ict_initstory_endtime` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project_id = t2.id  LEFT JOIN `zt_projectProduct` AS t3  ON t2.id = t3.project  LEFT JOIN `zt_product` AS t4  ON t3.product = t4.id 
+
+20140217 17:07:34: /zendZentao/www/index.php?m=indexcompare&f=perStability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-17' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT * FROM `ict_defect` WHERE product  = '1' AND project  = '1'
+  UPDATE `ict_defect` SET `total` = '1',`defect` = '0',`selfBug` = '' WHERE product  = '1' AND project  = '1'
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+  SELECT project_id FROM `ict_initstory_endtime`
+  SELECT t1.id, t1.name FROM `zt_project` AS t1  WHERE t1.id  NOT IN ('1','2','3','8','9')
+  SELECT t4.name as prodName, t2.name as projName, t1.initstory_endtime FROM `ict_initstory_endtime` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project_id = t2.id  LEFT JOIN `zt_projectProduct` AS t3  ON t2.id = t3.project  LEFT JOIN `zt_product` AS t4  ON t3.product = t4.id 
+
+20140217 17:08:43: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140217 17:13:45: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140217 17:14:29: /zendZentao/www/index.php?m=indexcompare&f=perStability
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-17' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT * FROM `ict_defect` WHERE product  = '1' AND project  = '1'
+  UPDATE `ict_defect` SET `total` = '1',`defect` = '0',`selfBug` = '' WHERE product  = '1' AND project  = '1'
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+  SELECT project_id FROM `ict_initstory_endtime`
+  SELECT t1.id, t1.name FROM `zt_project` AS t1  WHERE t1.id  NOT IN ('1','2','3','8','9')
+  SELECT t4.name as prodName, t2.name as projName, t1.initstory_endtime FROM `ict_initstory_endtime` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project_id = t2.id  LEFT JOIN `zt_projectProduct` AS t3  ON t2.id = t3.project  LEFT JOIN `zt_product` AS t4  ON t3.product = t4.id 
+
+20140217 17:14:33: /zendZentao/www/index.php?m=indexcompare&f=completed
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_task` WHERE id  = '0'
+  SELECT *,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed FROM `zt_product` WHERE deleted  = '0' ORDER BY isClosed
+  SELECT t1.id,t1.name as project,t1.begin,t1.end,t3.id as productId,t3.name as product,0 as self,0 as total,0 as defect FROM `zt_project` AS t1  LEFT JOIN `zt_projectProduct` AS t2  ON t1.id = t2.project  LEFT JOIN `zt_product` AS t3  ON t2.product = t3.id  WHERE t1.deleted  = '0' AND date(t1.end)  <= '2014-02-17' AND t3.id IN ('1')
+  SELECT project,count(*) as total FROM `zt_bug` GROUP BY project
+  SELECT project,count(*) as self FROM `zt_bug` WHERE title  LIKE '%自测%' OR title  LIKE '%内测%' GROUP BY project
+  SELECT * FROM `ict_defect` WHERE product  = '1' AND project  = '1'
+  UPDATE `ict_defect` SET `total` = '1',`defect` = '0',`selfBug` = '' WHERE product  = '1' AND project  = '1'
+  SELECT id, code, name, PO FROM `zt_product` WHERE deleted  = '0' AND id IN ('1')
+  SELECT t1.*,t2.name as projectName FROM `ict_defect` AS t1  LEFT JOIN `zt_project` AS t2  ON t1.project = t2.id  WHERE t1.product IN ('1') ORDER BY t1.end
+
+20140217 17:15:33: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140217 17:20:36: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140217 17:25:36: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140217 17:30:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+  SELECT * FROM `zt_config` WHERE 1 = 1  AND owner IN ('system') AND module IN ('common') AND section IN ('global') AND `key` IN ('sn')
+
+20140217 17:35:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140217 17:40:37: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+
+20140217 17:45:38: /zendZentao/www/index.php?m=misc&f=ping&t=html
+  SELECT * FROM `zt_config` WHERE owner IN ('system','beanGou') ORDER BY id
+  SELECT * FROM `zt_lang` ORDER BY lang,id
+

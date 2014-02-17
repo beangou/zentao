@@ -4584,3 +4584,269 @@
 16:57:36 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
 
 16:57:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:02:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:02:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:02:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:03:06 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:03:06 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:03:06 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:03:07 Creating default object from empty value in D:\www\zendZentao\module\defect\model.php on line 54 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:07 Undefined property: stdClass::$selfBug in D:\www\zendZentao\module\defect\model.php on line 56 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:07 Undefined variable: id in D:\www\zendZentao\module\indexcompare\control.php on line 282 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:07 Undefined variable: defectRate in D:\www\zendZentao\module\indexcompare\view\stability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:07 Invalid argument supplied for foreach() in D:\www\zendZentao\module\indexcompare\view\stability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:13 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:03:13 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:03:13 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:03:14 Creating default object from empty value in D:\www\zendZentao\module\defect\model.php on line 54 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:14 Undefined property: stdClass::$selfBug in D:\www\zendZentao\module\defect\model.php on line 56 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:14 Undefined variable: id in D:\www\zendZentao\module\indexcompare\control.php on line 282 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:14 Undefined variable: defectRate in D:\www\zendZentao\module\indexcompare\view\stability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:14 Invalid argument supplied for foreach() in D:\www\zendZentao\module\indexcompare\view\stability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:36 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:03:36 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:03:36 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:03:36 Undefined variable: proname in D:\www\zendZentao\module\indexcompare\control.php on line 78 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:03:36 Undefined variable: empname in D:\www\zendZentao\module\indexcompare\control.php on line 78 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:03:36 Undefined variable: taskID in D:\www\zendZentao\module\indexcompare\model.php on line 51 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:03:36 Creating default object from empty value in D:\www\zendZentao\module\defect\model.php on line 54 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:03:36 Undefined property: stdClass::$selfBug in D:\www\zendZentao\module\defect\model.php on line 56 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:03:36 Undefined variable: defectRate in D:\www\zendZentao\module\indexcompare\view\perStability.html.php on line 60 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:03:36 Invalid argument supplied for foreach() in D:\www\zendZentao\module\indexcompare\view\perStability.html.php on line 60 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:03:38 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:03:38 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:03:38 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:03:38 Creating default object from empty value in D:\www\zendZentao\module\defect\model.php on line 54 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:38 Undefined property: stdClass::$selfBug in D:\www\zendZentao\module\defect\model.php on line 56 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:38 Undefined variable: id in D:\www\zendZentao\module\indexcompare\control.php on line 282 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:38 Undefined variable: defectRate in D:\www\zendZentao\module\indexcompare\view\stability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:38 Invalid argument supplied for foreach() in D:\www\zendZentao\module\indexcompare\view\stability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:03:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:03:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:03:41 Creating default object from empty value in D:\www\zendZentao\module\defect\model.php on line 54 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:41 Undefined property: stdClass::$selfBug in D:\www\zendZentao\module\defect\model.php on line 56 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:41 Undefined variable: id in D:\www\zendZentao\module\indexcompare\control.php on line 282 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:41 Undefined variable: defectRate in D:\www\zendZentao\module\indexcompare\view\stability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:03:41 Invalid argument supplied for foreach() in D:\www\zendZentao\module\indexcompare\view\stability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:04:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:04:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:04:41 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:07:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:07:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:07:18 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:07:18 Creating default object from empty value in D:\www\zendZentao\module\defect\model.php on line 54 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:07:18 Undefined property: stdClass::$selfBug in D:\www\zendZentao\module\defect\model.php on line 56 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:07:18 Undefined variable: id in D:\www\zendZentao\module\indexcompare\control.php on line 286 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:07:18 Undefined variable: defectRate in D:\www\zendZentao\module\indexcompare\view\stability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:07:18 Invalid argument supplied for foreach() in D:\www\zendZentao\module\indexcompare\view\stability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:07:19 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:07:19 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:07:19 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:07:19 Creating default object from empty value in D:\www\zendZentao\module\defect\model.php on line 54 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:07:19 Undefined property: stdClass::$selfBug in D:\www\zendZentao\module\defect\model.php on line 56 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:07:19 Undefined variable: id in D:\www\zendZentao\module\indexcompare\control.php on line 286 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:07:19 Undefined variable: defectRate in D:\www\zendZentao\module\indexcompare\view\stability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:07:19 Invalid argument supplied for foreach() in D:\www\zendZentao\module\indexcompare\view\stability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:07:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:07:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:07:23 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:07:23 Creating default object from empty value in D:\www\zendZentao\module\defect\model.php on line 54 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:07:23 Undefined property: stdClass::$selfBug in D:\www\zendZentao\module\defect\model.php on line 56 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:07:23 Undefined variable: id in D:\www\zendZentao\module\indexcompare\control.php on line 286 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:07:23 Undefined variable: defectRate in D:\www\zendZentao\module\indexcompare\view\perStability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:07:23 Invalid argument supplied for foreach() in D:\www\zendZentao\module\indexcompare\view\perStability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:07:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:07:31 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:07:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:07:32 Creating default object from empty value in D:\www\zendZentao\module\defect\model.php on line 54 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:07:32 Undefined property: stdClass::$selfBug in D:\www\zendZentao\module\defect\model.php on line 56 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:07:32 Undefined variable: id in D:\www\zendZentao\module\indexcompare\control.php on line 286 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:07:32 Undefined variable: defectRate in D:\www\zendZentao\module\indexcompare\view\stability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:07:32 Invalid argument supplied for foreach() in D:\www\zendZentao\module\indexcompare\view\stability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=stability
+
+17:07:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:07:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:07:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:07:33 Creating default object from empty value in D:\www\zendZentao\module\defect\model.php on line 54 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:07:33 Undefined property: stdClass::$selfBug in D:\www\zendZentao\module\defect\model.php on line 56 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:07:34 Undefined variable: id in D:\www\zendZentao\module\indexcompare\control.php on line 286 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:07:34 Undefined variable: defectRate in D:\www\zendZentao\module\indexcompare\view\perStability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:07:34 Invalid argument supplied for foreach() in D:\www\zendZentao\module\indexcompare\view\perStability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:08:38 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:08:39 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:08:39 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:13:44 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:13:44 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:13:44 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:14:28 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:14:28 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:14:28 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:14:28 Creating default object from empty value in D:\www\zendZentao\module\defect\model.php on line 54 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:14:28 Undefined property: stdClass::$selfBug in D:\www\zendZentao\module\defect\model.php on line 56 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:14:29 Undefined variable: id in D:\www\zendZentao\module\indexcompare\control.php on line 286 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:14:29 Undefined variable: defectRate in D:\www\zendZentao\module\indexcompare\view\perStability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:14:29 Invalid argument supplied for foreach() in D:\www\zendZentao\module\indexcompare\view\perStability.html.php on line 121 when visiting /zendZentao/www/index.php?m=indexcompare&f=perStability
+
+17:14:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:14:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:14:32 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:14:33 Undefined variable: proname in D:\www\zendZentao\module\indexcompare\control.php on line 107 when visiting /zendZentao/www/index.php?m=indexcompare&f=completed
+
+17:14:33 Undefined variable: empname in D:\www\zendZentao\module\indexcompare\control.php on line 107 when visiting /zendZentao/www/index.php?m=indexcompare&f=completed
+
+17:14:33 Undefined variable: taskID in D:\www\zendZentao\module\indexcompare\model.php on line 51 when visiting /zendZentao/www/index.php?m=indexcompare&f=completed
+
+17:14:33 Creating default object from empty value in D:\www\zendZentao\module\defect\model.php on line 54 when visiting /zendZentao/www/index.php?m=indexcompare&f=completed
+
+17:14:33 Undefined property: stdClass::$selfBug in D:\www\zendZentao\module\defect\model.php on line 56 when visiting /zendZentao/www/index.php?m=indexcompare&f=completed
+
+17:14:33 Undefined variable: defectRate in D:\www\zendZentao\module\indexcompare\view\completed.html.php on line 59 when visiting /zendZentao/www/index.php?m=indexcompare&f=completed
+
+17:14:33 Invalid argument supplied for foreach() in D:\www\zendZentao\module\indexcompare\view\completed.html.php on line 59 when visiting /zendZentao/www/index.php?m=indexcompare&f=completed
+
+17:15:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:15:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:15:33 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:20:34 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:20:34 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:20:35 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:25:36 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:25:36 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:25:36 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:30:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:30:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:30:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:35:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:35:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:35:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:40:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:40:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:40:37 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 
+
+17:45:38 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\defect.php on line 6 when visiting 
+
+17:45:38 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\indexcompare.php on line 19 when visiting 
+
+17:45:38 Creating default object from empty value in D:\www\zendZentao\module\common\ext\lang\zh-cn\salary.php on line 6 when visiting 

@@ -67,17 +67,9 @@ class indexcompare extends control
     }
     
     public function perStability($orderBy = '') {
-    	if(!empty($_POST)) {
-    		$proname = $this->post->proname;
-    		$empname = $this->post->empname;
-    	}
-    
-    	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
+    	    	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
     	setcookie('projectTaskOrder', $orderBy, $this->config->cookieLife, $this->config->webRoot);
-    
-    	$selInfo = $this->indexcompare->getIndex($proname, $empname);
-    	$this->view->selInfo = $selInfo;
-    	
+    	 
     	$this->view->products		= $this->loadModel('defect')->getProduct();
     	$defect 	= array();
     	if (!empty($_POST)){
@@ -87,6 +79,18 @@ class indexcompare extends control
     	}else {
     		$defect = $this->loadModel('defect')->queryDefect(1);
     	}
+
+    	$dbIds = $this->indexcompare->getInitStoryEndTime();
+    	$viewIds = array();
+    	$viewNames = array();
+    	foreach ($dbIds as $id) {
+    		array_push($viewIds, $id->id);
+    		array_push($viewNames, $id->name);
+    	}
+    	$viewSelect = array_combine($viewIds, $viewNames);
+    	
+    	$this->view->ids = $viewSelect;
+    	$this->view->proAndTimes = $this->indexcompare->selectProAndTime();
     
     	$this->display();
     }
