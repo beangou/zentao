@@ -14,9 +14,23 @@
 	//等页面加载完成后，、
 	//通过ajax请求，填充选择项目中后的下拉框
 	function getProjects() {
-		link = createLink('indexcompare', 'ajaxGetEndTime', 'id=44&memb=66');
-		$('#auditors_bean').load(link);
+		//alert($('#project_id').val() + ';' + $('#endTime').val());
+		if($('#project_id').val() && $('#endTime').val()) {
+			link1 = createLink('indexcompare', 'ajaxGetEndTime', 'id='+$('#project_id').val()+'&endTime='+$('#endTime').val());
+	
+			$('#auditors_time').load(link1, function() {
+				link2 = createLink('indexcompare', 'ajaxGetProjAndTime');
+				$('#auditors_pro_time').load(link2);
+			});
+		} else {
+			alert('暂时没有需要输入时间的项目或者您未输入！');
+		}
 	}
+
+	$(function(){  
+	    // do something  
+// 		getProjects();
+	});  
 </script>
 <body>
 	<table width="100%" class="cont-lt1">
@@ -40,18 +54,39 @@
 		    	<tr>
 		    		<td>
 		    			输入项目：
-		    			<span id="auditors_bean">
+		    			<span id="auditors_time">
 			    			<?php 
-			    				echo html::select('id', $ids, '', "class='select-1'");
+			    				echo indexcompare::select('project_id', $ids, '', "class='select-1'");
 			    			?>
 						</span>	
 			    			&nbsp;&nbsp;&nbsp;&nbsp;
-		    			输入原始需求结束时间：<input type="datetime"/>
+		    			输入原始需求结束时间：<input id="endTime" type="datetime"/>
 		    			&nbsp;&nbsp;
 		    			<input type="button" onclick="getProjects()" value="确定"/>
 		    		</td>
 		    	</tr>
 		    </table>
+		    
+		    <table class="table-1 fixed colored datatable border-sep" id="product">
+  			  <thead>
+  			  	<tr class="colhead">
+  			  		<th>产品名</th>
+  			  		<th width='260'>项目名</th>
+  			  		<th>原始需求结束时间</th>
+  			  	</tr>
+  			  </thead>
+  			  <tbody id='auditors_pro_time'>
+  			  		<?php foreach($proAndTimes as $proAndTime):?>
+  			  		<tr>
+  			  			<td><?php echo $proAndTime->prodName;?></td>
+  			  			<td><?php echo $proAndTime->projName;?></td>
+  			  			<td><?php echo $proAndTime->initstory_endtime;?></td>
+  			  		</tr>
+  			  	<?php endforeach;?>
+  			  </tbody>
+  			  
+  			</table>
+		    
 				<!-- <div class="week-title"><?php echo $lang->indexcompare->titStability;?></div>-->
 			<form method="post">
 				<table align='center' class='table-1 a-left'>

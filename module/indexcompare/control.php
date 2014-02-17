@@ -38,16 +38,9 @@ class indexcompare extends control
     }
     
     public function stability($orderBy = '') {
-    	if(!empty($_POST)) {
-    		$proname = $this->post->proname;
-    		$empname = $this->post->empname;
-    	}
     	 
     	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
     	setcookie('projectTaskOrder', $orderBy, $this->config->cookieLife, $this->config->webRoot);
-    	 
-    	$selInfo = $this->indexcompare->getIndex($proname, $empname);
-    	$this->view->selInfo = $selInfo;
     	 
     	$this->view->products		= $this->loadModel('defect')->getProduct();
     	$defect 	= array();
@@ -61,10 +54,15 @@ class indexcompare extends control
 
     	$dbIds = $this->indexcompare->getInitStoryEndTime();
     	$viewIds = array();
+    	$viewNames = array();
     	foreach ($dbIds as $id) {
     		array_push($viewIds, $id->id);
+    		array_push($viewNames, $id->name);
     	}
-    	$this->view->ids = $viewIds;
+    	$viewSelect = array_combine($viewIds, $viewNames);
+    	
+    	$this->view->ids = $viewSelect;
+    	$this->view->proAndTimes = $this->indexcompare->selectProAndTime();
     	$this->display();
     }
     
@@ -244,15 +242,109 @@ class indexcompare extends control
     }
     
     //获取原始需求结束时间
-    public function ajaxGetEndTime($id = '',$memb = '') {
+    public function ajaxGetEndTime($id = '',$endTime = '') {
+    	//将项目id和原始需求结束时间点插入到 TABLE_ICTINITSTORY_ENDTIME中
+    	$this->indexcompare->insertTime($id, $endTime);
     	//找出没有记录到原始需求结束时间点表的项目 TABLE_ICTINITSTORY_ENDTIME
     	$dbIds = $this->indexcompare->getInitStoryEndTime();
+    	
     	$viewIds = array();
+    	$viewNames = array();
     	foreach ($dbIds as $id) {
     		array_push($viewIds, $id->id);
+    		array_push($viewNames, $id->name);
     	}
-//     	$users = array("fff", "bb", "nnn");
-    	die(html::select('assignedTo', $viewIds, '', "class='select-1'"));
+    	$viewSelect = array_combine($viewIds, $viewNames);
+    	 
+    	die(indexcompare::select('project_id', $viewSelect, '', "class='select-1'"));
     } 
+    
+    //查询每个项目的原始需求结束时间，并以列表显示
+    public function ajaxGetProjAndTime() {
+    	$proAndTimes = $this->view->proAndTimes = $this->indexcompare->selectProAndTime();
+    	die(indexcompare::tableTr($proAndTimes));
+    }
+    
+    
+    /**
+     * Create tags like "<select><option></option></select>
+     *
+     * @param  string $name          the name of the select tag.
+     * @param  array  $options       the array to create select tag from.
+     * @param  string $selectedItems the item(s) to be selected, can like item1,item2.
+     * @param  string $attrib        other params such as multiple, size and style.
+     * @param  string $append        adjust if add options[$selectedItems].
+     * @return string
+     */
+    static public function select($name = '', $options = array(), $attrib = '')
+    {
+    	$options = (array)($options);
+    	if(!is_array($options) or empty($options)) return "<select id='$id' $attrib><option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option></select>";
+    
+    	$id = $name;
+    	$string = "<select name='$name' id='$id' $attrib>\n";
+    
+    	foreach($options as $key => $value)
+    	{
+    		$string  .= "<option value='$key'>$value</option>\n";
+    	}
+
+//     	$string = 
+//     	'[
+//     	{"optionKey":"1", "optionValue":"Canon in D"},
+//     	{"optionKey":"2", "optionValue":"Wind Song"},
+//     	{"optionKey":"3", "optionValue":"Wings"}
+//     	]';
+//     	return $string;
+    	return $string .= "</select>\n";
+    }
+    
+    /**
+     * Create tags like "<tr><td>...</td></tr>"
+     *
+     * @param  string $name          the name of the select tag.
+     * @param  array  $options       the array to create select tag from.
+     * @param  string $selectedItems the item(s) to be selected, can like item1,item2.
+     * @param  string $attrib        other params such as multiple, size and style.
+     * @param  string $append        adjust if add options[$selectedItems].
+     * @return string
+     */
+    static public function tableTr($trs = array())
+    {
+    	/* The begin. */
+    	foreach($trs as $mytr)
+    	{
+    		$string  .= "<tr><td>".$mytr->prodName.'</td><td>'.
+    					     $mytr->projName.'</td><td>'.
+    		 				 $mytr->initstory_endtime.'</td></tr>';
+    	}
+    	/* End. */
+    	return $string;
+    }
+    
+    /**
+     * 处理数组成为字符串，以‘,’分隔，以适应model里面的in方法的参数
+     *
+     * @param  string $name          the name of the select tag.
+     * @param  array  $options       the array to create select tag from.
+     * @param  string $selectedItems the item(s) to be selected, can like item1,item2.
+     * @param  string $attrib        other params such as multiple, size and style.
+     * @param  string $append        adjust if add options[$selectedItems].
+     * @return string
+     */
+    static public function dealForDbIn($temp = array())
+    {
+    	
+    	$queryLowStaff = '';
+    	for ($i=0;$i<count($temp);$i++){
+	   		if ($queryLowStaff!== ''){
+				$queryLowStaff = $queryLowStaff.','.$temp[$i]->project_id;
+			}else{
+				$queryLowStaff = $temp[$i]->project_id;
+			}
+    	}
+    	/* End. */
+    	return $queryLowStaff;
+    }
 
 }

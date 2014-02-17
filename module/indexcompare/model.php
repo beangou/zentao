@@ -55,9 +55,32 @@ class indexcompareModel extends model
 	
 	public function getInitStoryEndTime() {
 		//SELECT id FROM zt_project WHERE id NOT IN(SELECT project_id FROM ict_initstory_endtime);
-		$recordedIds = $this->dao->select('project_id')->from(TABLE_ICTINITSTORY_ENDTIME);
-		$ids = $this->dao->select('t1.id')->from(TABLE_PROJECT)->alias('t1')->where('t1.id')->notin($recordedIds)->fetchAll();
-		$ids = array('' => '') + $ids;
+		$recordedIds = indexcompare::dealForDbIn($this->dao->select('project_id')->from(TABLE_ICTINITSTORY_ENDTIME)->fetchAll());
+		$ids = $this->dao->select('t1.id, t1.name')->from(TABLE_PROJECT)->alias('t1')->where('t1.id')->notin($recordedIds)->fi()->fetchAll();
+// 		$ids = array('' => '') + $ids;
 		return $ids;
+	}
+	
+	public function insertTime($id='', $endTime='') {
+		$data->project_id   = $id;
+		$data->initstory_endtime     = $endTime;
+		$this->dao->insert(TABLE_ICTINITSTORY_ENDTIME)->data($data)->exec();
+	}
+	
+	public function selectProAndTime() {
+// 		SELECT t4.`name`, t2.`name`, t1.`initstory_endtime` FROM ict_initstory_endtime t1
+// LEFT JOIN zt_project t2 ON (t1.`project_id` = t2.`id`)
+// LEFT JOIN zt_projectproduct t3 ON (t2.`id` = t3.`project`)
+// LEFT JOIN zt_product t4 ON (t3.`product` = t4.id);
+
+		return $this->dao->select('t4.name as prodName, t2.name as projName, t1.initstory_endtime')->from(TABLE_ICTINITSTORY_ENDTIME)->alias('t1')
+		->leftJoin(TABLE_PROJECT)->alias('t2')->on('t1.project_id = t2.id')
+		->leftJoin(TABLE_PROJECTPRODUCT)->alias('t3')->on('t2.id = t3.project')
+		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t3.product = t4.id')
+		->fetchAll();
+	}
+	
+	public function selectStability() {
+		
 	}
 }
