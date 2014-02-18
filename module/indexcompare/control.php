@@ -92,7 +92,7 @@ class indexcompare extends control
     	
     	$this->view->ids = $viewSelect;
     	$this->view->proAndTimes = $this->indexcompare->selectProAndTime();
-    
+    	$this->view->stories = $this->indexcompare->selectPerStability();
     	$this->display();
     }
     

@@ -77,3 +77,5 @@ $lang->indexcompare->seriousWeightedValue  = "严重问题加权值";
 $lang->indexcompare->normalWeightedValue = "一般问题加权值";
 $lang->indexcompare->promptWeightedValue = "提示问题加权值";
 $lang->indexcompare->reference = "参考";
+
+$lang->indexcompare->query			= '查询';

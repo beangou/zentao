@@ -100,7 +100,7 @@
 				        <?php endforeach;?>
 					</td>
 					</tr>
-					<tr><th class='rowhead'></th><td class='a-center'><?php echo html::submitButton($lang->defect->query);?></td></tr>
+					<tr><th class='rowhead'></th><td class='a-center'><?php echo html::submitButton($lang->indexcompare->query);?></td></tr>
 				</table>
   		   </form>
   		   <table class="table-1 fixed colored datatable border-sep" id="product">

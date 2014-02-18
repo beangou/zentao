@@ -109,12 +109,6 @@ class indexcompareModel extends model
 		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')->groupBy('project')
 		->fetchAll();
 		$changeLen = count($changeStory);
-		
-		//将上述三个结果合成
-// 		$result = $this->dao->select('T1.product, T1.project, T1.name, T1.initstory, T2.addstory, T3.changestory')
-// 		->from($initStory->alias('T1'))->leftJoin($addStory->alias('T2'))->on('T1.project = T2.project')
-// 		->leftJoin($changeStory->alias('T3'))->on('T1.project = T3.project')
-// 		->fetchAll();
 
 		for ($i=0; $i<$initLen; $i++) {
 			$initStory[$i]->addstory = $addStory[$i]->addstory;
@@ -125,45 +119,47 @@ class indexcompareModel extends model
 		}
 
 		return $initStory;
-		
-		/*
-		$initSQL = 'SELECT t2.product, t1.project, t4.name, COUNT(t3.initstory_endtime) AS initstory
-		FROM zt_projectstory t1
-		LEFT JOIN zt_story t2 ON(t2.id=t1.story)
-		LEFT JOIN ict_initstory_endtime t3 ON (
-		t3.project_id = t1.project
-		AND t3.initstory_endtime >= t2.openedDate
-		AND t3.initstory_endtime >= t2.lastEditedDate)
-		LEFT JOIN zt_project t4 ON(t4.id = t1.project)
-		GROUP BY project';
-		
-		$addSQL = 'SELECT t1.project, t4.name, COUNT(t3.initstory_endtime) AS addstory
-		FROM zt_projectstory t1
-		LEFT JOIN zt_story t2 ON(t2.id=t1.story)
-		LEFT JOIN ict_initstory_endtime t3 ON (
-		t3.project_id = t1.project
-		AND t3.initstory_endtime <= t2.openedDate)
-		LEFT JOIN zt_project t4 ON(t4.id = t1.project)
-		GROUP BY project';
-		
-		$changeSQL = 'SELECT t1.project, t4.name, COUNT(t3.initstory_endtime) AS changestory
-		FROM zt_projectstory t1
-		LEFT JOIN zt_story t2 ON(t2.id=t1.story)
-		LEFT JOIN ict_initstory_endtime t3 ON (
-			t3.project_id = t1.project
-			AND t3.initstory_endtime >= t2.openedDate 
-			AND t3.initstory_endtime < t2.lastEditedDate)
-		LEFT JOIN zt_project t4 ON(t4.id = t1.project)
-		GROUP BY project';
-		
-		$resultSQL = 'SELECT T1.product, T1.project, T1.name, T1.initstory, T2.addstory, T3.changestory FROM ('
-				. $initSQL
-				. ') T1 LEFT JOIN ('
-				. $addSQL
-				. ') T2 ON(T1.project=T2.project) LEFT JOIN ('
-				. $changeSQL
-				. ') T3 ON(T1.project=T3.project)'; 
-		*/
-
 	}
+	
+	//查询个人需求稳定度
+	public function selectPerStability() {
+		//原始需求
+		$initStory = $this->dao->select('t1.project, t4.name, t2.title, t2.openedBy, COUNT(t3.initstory_endtime) AS initstory')->from(TABLE_PROJECTSTORY)->alias('t1')
+		->leftJoin(TABLE_STORY)->alias('t2')->on('t2.id=t1.story')
+		->leftJoin(TABLE_ICTINITSTORY_ENDTIME)->alias('t3')
+		->on('t3.project_id = t1.project AND t3.initstory_endtime >= t2.openedDate AND t3.initstory_endtime >= t2.lastEditedDate')
+		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')
+		->leftJoin(TABLE_PRODUCT)->alias('t5')->on('t5.id = t2.product')->groupBy('t2.openedBy')
+		->fetchAll();
+		$initLen = count($initStory);
+	
+		//新增需求
+		$addStory = $this->dao->select('t1.project, t4.name,t2.title, t2.openedBy, COUNT(t3.initstory_endtime) AS addstory')->from(TABLE_PROJECTSTORY)->alias('t1')
+		->leftJoin(TABLE_STORY)->alias('t2')->on('t2.id=t1.story')
+		->leftJoin(TABLE_ICTINITSTORY_ENDTIME)->alias('t3')
+		->on('t3.project_id = t1.project AND t3.project_id = t1.project AND t3.initstory_endtime <= t2.openedDate')
+		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')->groupBy('t2.openedBy')
+		->fetchAll();
+		$addLen = count($addStory);
+	
+		//修改需求
+		$changeStory = $this->dao->select('t1.project, t4.name,t2.title, t2.openedBy, COUNT(t3.initstory_endtime) AS changestory')->from(TABLE_PROJECTSTORY)->alias('t1')
+		->leftJoin(TABLE_STORY)->alias('t2')->on('t2.id=t1.story')
+		->leftJoin(TABLE_ICTINITSTORY_ENDTIME)->alias('t3')
+		->on('t3.project_id = t1.project AND t3.initstory_endtime >= t2.openedDate AND t3.initstory_endtime < t2.lastEditedDate')
+		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')->groupBy('t2.openedBy')
+		->fetchAll();
+		$changeLen = count($changeStory);
+	
+		for ($i=0; $i<$initLen; $i++) {
+			$initStory[$i]->addstory = $addStory[$i]->addstory;
+			$initStory[$i]->changestory = $changeStory[$i]->changestory;
+			if ($initStory[$i]->initstory != 0) {
+				$initStory[$i]->stability = (($addStory[$i]->addstory + $changeStory[$i]->changestory)*100 / $initStory[$i]->initstory). '%';
+			} 
+		}
+	
+		return $initStory;
+	}
+	
 }
