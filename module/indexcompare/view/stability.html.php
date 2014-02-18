@@ -112,42 +112,19 @@
   			  		<th><?php echo $lang->indexcompare->changeDemandNo;?></th>
   			  		<th><?php echo $lang->indexcompare->initDemandNo;?></th>
   			  		<th><?php echo $lang->indexcompare->proStability;?></th>
-  			  		<th><?php echo $lang->indexcompare->proStartDate;?></th>
-  			  		<th><?php echo $lang->indexcompare->proEndDate;?></th>
   			  	</tr>
   			  </thead>
   			  <tbody>
   			  <?php $color = false;?>
-  			  <?php foreach ($defectRate as $defect):?>
+  			  <?php foreach ($stories as $story):?>
   			  	<tr class="a-center">
-  			  		<?php $count = isset($defect->details) ? count($defect->details) : 1;?>
-  			  		<td align='left' rowspan="<?php echo $count;?>"><?php echo "<p>" . html::a($this->createLink('product', 'view', "product=$defect->id"), $defect->name) . "</p>";?></td>
-  			  		<?php if(isset($defect->details)):?>
-		            <?php $id = 1;?>
-		            <?php foreach($defect->details as $project):?>
-		            <?php $class = $color ? 'rowcolor' : '';?>
-		            <?php if($id != 1) echo "<tr class='a-center'>"?>
-  			  		<td><?php echo $project->projectName;?></td>
-  			  		<td><?php echo $project->selfBug;?></td>
-  			  		<td><?php echo $project->total;?></td>
-  			  		<td><?php echo $project->defect==0?$project->defect:round($project->defect*100,2).'%';?></td>
-  			  		<td><?php echo $project->begin;?></td>
-  			  		<td><?php echo $project->end;?></td>
-  			  		<?php if($id != 1) echo "</tr>"?>
-		            <?php $id ++;?>
-		            <?php $color = !$color;?>
-		            <?php endforeach;?>
-            		<?php else:?>
-	              <?php $class = $color ? 'rowcolor' : '';?>
-	              <td class="<?php echo $class;?>"></td>
-	              <td class="<?php echo $class;?>"></td>
-	              <td class="<?php echo $class;?>"></td>
-	              <td class="<?php echo $class;?>"></td>
-	              <td class="<?php echo $class;?>"></td>
-	              <td class="<?php echo $class;?>"></td>
-	              <td class="<?php echo $class;?>"></td>
-	              <?php $color = !$color;?>
-	              <?php endif;?>
+  			  		<td><?php echo $story->productname;?></td>
+  			  		<td><?php echo $story->projectname;?></td>
+  			  		<td><?php echo $story->addstory;?></td>
+  			  		<td><?php echo $story->changestory;?></td>
+  			  		
+  			  		<td><?php echo $story->initstory;?></td>
+  			  		<td><?php echo $story->stability;?></td>
   			  	</tr>
   			  <?php endforeach;?>
   			  </tbody>

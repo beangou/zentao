@@ -63,6 +63,7 @@ class indexcompare extends control
     	
     	$this->view->ids = $viewSelect;
     	$this->view->proAndTimes = $this->indexcompare->selectProAndTime();
+    	$this->view->stories = $this->indexcompare->selectStability();
     	$this->display();
     }
     
@@ -350,5 +351,26 @@ class indexcompare extends control
     	/* End. */
     	return $queryLowStaff;
     }
+    
 
+    public function getProCodeLine($proId = '') 
+    {
+    	//	system('diffcount -c test/count');
+    	//	passthru('diffcount -c test/count');
+    	$command = 'diffcount -c test/teamtoy2';
+    	
+    	@exec($command, $output, $result);
+    	echo count($output);
+    	//echo $output[8];
+    	
+    	foreach($output as $key=>$value) {
+    		echo $key. ':'. $value. '<br/>';
+    	}
+    	
+    	//echo $output;
+    	//$output_str = implode(' ', $output);
+    	//echo $command;
+    	//echo $result. '_________'. $output_str;
+    }
+    
 }
