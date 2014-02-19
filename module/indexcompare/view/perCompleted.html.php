@@ -46,8 +46,6 @@
   			  <thead>
   			  	<tr class="colhead">
   			  		<th width='260'><?php echo $lang->indexcompare->projectName;?></th>
-  			  		<th><?php echo $lang->indexcompare->proStartDate;?></th>
-  			  		<th><?php echo $lang->indexcompare->proEndDate;?></th>
   			  		<th><?php echo $lang->indexcompare->name;?></th>
   			  		<th><?php echo $lang->indexcompare->perCloseTasks;?></th>
   			  		<th><?php echo $lang->indexcompare->perAllTasks;?></th>
@@ -56,36 +54,13 @@
   			  </thead>
   			  <tbody>
   			  <?php $color = false;?>
-  			  <?php foreach ($defectRate as $defect):?>
+  			  <?php foreach ($tasks as $task):?>
   			  	<tr class="a-center">
-  			  		<?php $count = isset($defect->details) ? count($defect->details) : 1;?>
-  			  		<td align='left' rowspan="<?php echo $count;?>"><?php echo "<p>" . html::a($this->createLink('product', 'view', "product=$defect->id"), $defect->name) . "</p>";?></td>
-  			  		<?php if(isset($defect->details)):?>
-		            <?php $id = 1;?>
-		            <?php foreach($defect->details as $project):?>
-		            <?php $class = $color ? 'rowcolor' : '';?>
-		            <?php if($id != 1) echo "<tr class='a-center'>"?>
-  			  		<td><?php echo $project->projectName;?></td>
-  			  		<td><?php echo $project->selfBug;?></td>
-  			  		<td><?php echo $project->total;?></td>
-  			  		<td><?php echo $project->defect==0?$project->defect:round($project->defect*100,2).'%';?></td>
-  			  		<td><?php echo $project->begin;?></td>
-  			  		<td><?php echo $project->end;?></td>
-  			  		<?php if($id != 1) echo "</tr>"?>
-		            <?php $id ++;?>
-		            <?php $color = !$color;?>
-		            <?php endforeach;?>
-            		<?php else:?>
-	              <?php $class = $color ? 'rowcolor' : '';?>
-	              <td class="<?php echo $class;?>"></td>
-	              <td class="<?php echo $class;?>"></td>
-	              <td class="<?php echo $class;?>"></td>
-	              <td class="<?php echo $class;?>"></td>
-	              <td class="<?php echo $class;?>"></td>
-	              <td class="<?php echo $class;?>"></td>
-	              <td class="<?php echo $class;?>"></td>
-	              <?php $color = !$color;?>
-	              <?php endif;?>
+					<td><?php echo $task->name; ?></td>
+					<td><?php echo $task->assignedTo; ?></td>
+					<td><?php echo $task->closedtasks; ?></td>
+					<td><?php echo $task->alltasks; ?></td>
+					<td><?php echo $task->completed; ?></td>
   			  	</tr>
   			  <?php endforeach;?>
   			  </tbody>

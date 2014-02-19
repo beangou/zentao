@@ -68,10 +68,6 @@ class indexcompareModel extends model
 	}
 	
 	public function selectProAndTime() {
-// 		SELECT t4.`name`, t2.`name`, t1.`initstory_endtime` FROM ict_initstory_endtime t1
-// LEFT JOIN zt_project t2 ON (t1.`project_id` = t2.`id`)
-// LEFT JOIN zt_projectproduct t3 ON (t2.`id` = t3.`project`)
-// LEFT JOIN zt_product t4 ON (t3.`product` = t4.id);
 
 		return $this->dao->select('t4.name as prodName, t2.name as projName, t1.initstory_endtime')->from(TABLE_ICTINITSTORY_ENDTIME)->alias('t1')
 		->leftJoin(TABLE_PROJECT)->alias('t2')->on('t1.project_id = t2.id')
@@ -81,14 +77,16 @@ class indexcompareModel extends model
 	}
 	
 	//查询项目需求稳定度
-	public function selectStability() {
+	public function selectStability($productArr = array()) {
 		//原始需求
 		$initStory = $this->dao->select('t2.product, t5.name as productname, t1.project, t4.name as projectname, COUNT(t3.initstory_endtime) AS initstory')->from(TABLE_PROJECTSTORY)->alias('t1')
 		->leftJoin(TABLE_STORY)->alias('t2')->on('t2.id=t1.story')
 		->leftJoin(TABLE_ICTINITSTORY_ENDTIME)->alias('t3')
 		->on('t3.project_id = t1.project AND t3.initstory_endtime >= t2.openedDate AND t3.initstory_endtime >= t2.lastEditedDate')
 		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')
-		->leftJoin(TABLE_PRODUCT)->alias('t5')->on('t5.id = t2.product')->groupBy('project')
+		->leftJoin(TABLE_PRODUCT)->alias('t5')->on('t5.id = t2.product')
+		->where('t2.product')->in($productArr)
+		->groupBy('project')
 		->fetchAll();
 		$initLen = count($initStory);
 		
@@ -97,7 +95,9 @@ class indexcompareModel extends model
 		->leftJoin(TABLE_STORY)->alias('t2')->on('t2.id=t1.story')
 		->leftJoin(TABLE_ICTINITSTORY_ENDTIME)->alias('t3')
 		->on('t3.project_id = t1.project AND t3.project_id = t1.project AND t3.initstory_endtime <= t2.openedDate')
-		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')->groupBy('project')
+		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')
+		->where('t2.product')->in($productArr)
+		->groupBy('project')
 		->fetchAll();
 		$addLen = count($addStory);
 		
@@ -106,15 +106,21 @@ class indexcompareModel extends model
 		->leftJoin(TABLE_STORY)->alias('t2')->on('t2.id=t1.story')
 		->leftJoin(TABLE_ICTINITSTORY_ENDTIME)->alias('t3')
 		->on('t3.project_id = t1.project AND t3.initstory_endtime >= t2.openedDate AND t3.initstory_endtime < t2.lastEditedDate')
-		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')->groupBy('project')
+		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')
+		->where('t2.product')->in($productArr)
+		->groupBy('project')
 		->fetchAll();
 		$changeLen = count($changeStory);
 
 		for ($i=0; $i<$initLen; $i++) {
+			
 			$initStory[$i]->addstory = $addStory[$i]->addstory;
 			$initStory[$i]->changestory = $changeStory[$i]->changestory;
 			if ($initStory[$i]->initstory != 0) {
 				$initStory[$i]->stability = (($addStory[$i]->addstory + $changeStory[$i]->changestory)*100 / $initStory[$i]->initstory). '%';
+			}
+			if ($initStory[$i]->initstory == 0) {
+				array_splice($initStory, $i, 1);
 			}
 		}
 
@@ -122,14 +128,16 @@ class indexcompareModel extends model
 	}
 	
 	//查询个人需求稳定度
-	public function selectPerStability() {
+	public function selectPerStability($productArr = array()) {
 		//原始需求
 		$initStory = $this->dao->select('t1.project, t4.name, t2.title, t2.openedBy, COUNT(t3.initstory_endtime) AS initstory')->from(TABLE_PROJECTSTORY)->alias('t1')
 		->leftJoin(TABLE_STORY)->alias('t2')->on('t2.id=t1.story')
 		->leftJoin(TABLE_ICTINITSTORY_ENDTIME)->alias('t3')
 		->on('t3.project_id = t1.project AND t3.initstory_endtime >= t2.openedDate AND t3.initstory_endtime >= t2.lastEditedDate')
 		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')
-		->leftJoin(TABLE_PRODUCT)->alias('t5')->on('t5.id = t2.product')->groupBy('t2.openedBy')
+		->leftJoin(TABLE_PRODUCT)->alias('t5')->on('t5.id = t2.product')
+		->where('t2.product')->in($productArr)
+		->groupBy('t1.project, t2.openedBy')
 		->fetchAll();
 		$initLen = count($initStory);
 	
@@ -138,7 +146,9 @@ class indexcompareModel extends model
 		->leftJoin(TABLE_STORY)->alias('t2')->on('t2.id=t1.story')
 		->leftJoin(TABLE_ICTINITSTORY_ENDTIME)->alias('t3')
 		->on('t3.project_id = t1.project AND t3.project_id = t1.project AND t3.initstory_endtime <= t2.openedDate')
-		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')->groupBy('t2.openedBy')
+		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')
+		->where('t2.product')->in($productArr)
+		->groupBy('t1.project, t2.openedBy')
 		->fetchAll();
 		$addLen = count($addStory);
 	
@@ -147,7 +157,9 @@ class indexcompareModel extends model
 		->leftJoin(TABLE_STORY)->alias('t2')->on('t2.id=t1.story')
 		->leftJoin(TABLE_ICTINITSTORY_ENDTIME)->alias('t3')
 		->on('t3.project_id = t1.project AND t3.initstory_endtime >= t2.openedDate AND t3.initstory_endtime < t2.lastEditedDate')
-		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')->groupBy('t2.openedBy')
+		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')
+		->where('t2.product')->in($productArr)
+		->groupBy('t1.project, t2.openedBy')
 		->fetchAll();
 		$changeLen = count($changeStory);
 	
@@ -160,6 +172,63 @@ class indexcompareModel extends model
 		}
 	
 		return $initStory;
+	}
+	
+	//项目任务完成率
+	public function selectCompleted($productArr = array()) {
+		$allTasks = $this->dao->select('t4.name as productname, t1.project, t2.name as projectname,  COUNT(*) AS alltasks')->from(TABLE_TASK)->alias('t1')
+		->leftJoin(TABLE_PROJECT)->alias('t2')->on('t2.id = t1.project')
+		->leftJoin(TABLE_PROJECTPRODUCT)->alias('t3')->on('t3.project = t1.project')
+		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t4.id = t3.product')
+		->where('t3.product')->in($productArr)
+		->groupBy('t1.project')->fetchAll();
+		$closedTasks = $this->dao->select('project, COUNT(*) AS closedtasks')->from(TABLE_TASK)
+		->where('status')->eq('closed')->groupBy('project')->fetchAll();
+		$allLen = count($allTasks);
+		$closedLen = count($closedTasks);
+		
+		for ($i=0; $i<$allLen; $i++) {
+			for ($j=0; $j<$closedLen; $j++) {
+				if ($closedTasks[$j]->project == $allTasks[$i]->project && $closedTasks[$j]->closedtasks > 0) {
+					$allTasks[$i]->closedtasks = $closedTasks[$j]->closedtasks;
+					break;
+				} else {
+					$allTasks[$i]->closedtasks = 0;
+				}
+			}
+			$allTasks[$i]->completed = ($allTasks[$i]->closedtasks * 100 / $allTasks[$i]->alltasks). '%';
+		}
+		
+		return $allTasks;
+	}
+	
+	//个人任务完成率
+	public function selectPerCompleted($productArr = array()) {
+		$allTasks = $this->dao->select('t1.project, t2.name, t1.assignedTo, COUNT(*) AS alltasks')->from(TABLE_TASK)->alias('t1')
+		->leftJoin(TABLE_PROJECT)->alias('t2')->on('t2.id = t1.project')
+		->leftJoin(TABLE_PROJECTPRODUCT)->alias('t3')->on('t3.project = t2.id')
+		->where('t3.product')->in($productArr)
+		->groupBy('t1.project, t1.assignedTo')->fetchAll();
+		$closedTasks = $this->dao->select('project, assignedTo, COUNT(*) AS closedtasks')->from(TABLE_TASK)
+		->where('status')->eq('closed')->groupBy('project, assignedTo')->fetchAll();
+		$allLen = count($allTasks);
+		$closedLen = count($closedTasks);
+	
+		for ($i=0; $i<$allLen; $i++) {
+			for ($j=0; $j<$closedLen; $j++) {
+				if ($closedTasks[$j]->project == $allTasks[$i]->project &&
+					$closedTasks[$j]->assignedTo == $allTasks[$i]->assignedTo &&
+					$closedTasks[$j]->closedtasks > 0) {
+					$allTasks[$i]->closedtasks = $closedTasks[$j]->closedtasks;
+					break;
+				} else {
+					$allTasks[$i]->closedtasks = 0;
+				}
+			}
+			$allTasks[$i]->completed = ($allTasks[$i]->closedtasks * 100 / $allTasks[$i]->alltasks). '%';
+		}
+	
+		return $allTasks;
 	}
 	
 }

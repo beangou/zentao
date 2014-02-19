@@ -37,20 +37,17 @@ class indexcompare extends control
         $this->display();
     }
     
+    //项目需求稳定度
     public function stability($orderBy = '') {
+    	$productArr = array();
+    	if(!empty($_POST)) {
+    		$productArr = $this->post->ids;
+    	}
     	 
     	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
     	setcookie('projectTaskOrder', $orderBy, $this->config->cookieLife, $this->config->webRoot);
     	 
     	$this->view->products		= $this->loadModel('defect')->getProduct();
-    	$defect 	= array();
-    	if (!empty($_POST)){
-    		foreach ($_POST as $ids){
-    			$defect = $this->loadModel('defect')->queryDefect($ids);
-    		}
-    	}else {
-    		$defect = $this->loadModel('defect')->queryDefect(1);
-    	}
 
     	$dbIds = $this->indexcompare->getInitStoryEndTime();
     	$viewIds = array();
@@ -63,23 +60,20 @@ class indexcompare extends control
     	
     	$this->view->ids = $viewSelect;
     	$this->view->proAndTimes = $this->indexcompare->selectProAndTime();
-    	$this->view->stories = $this->indexcompare->selectStability();
+    	$this->view->stories = $this->indexcompare->selectStability($productArr);
     	$this->display();
     }
     
+	//个人需求稳定度
     public function perStability($orderBy = '') {
-    	    	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
+    	$productArr = array();
+    	if(!empty($_POST)) {
+    		$productArr = $this->post->ids;
+    	}
+    	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
     	setcookie('projectTaskOrder', $orderBy, $this->config->cookieLife, $this->config->webRoot);
     	 
     	$this->view->products		= $this->loadModel('defect')->getProduct();
-    	$defect 	= array();
-    	if (!empty($_POST)){
-    		foreach ($_POST as $ids){
-    			$defect = $this->loadModel('defect')->queryDefect($ids);
-    		}
-    	}else {
-    		$defect = $this->loadModel('defect')->queryDefect(1);
-    	}
 
     	$dbIds = $this->indexcompare->getInitStoryEndTime();
     	$viewIds = array();
@@ -92,56 +86,36 @@ class indexcompare extends control
     	
     	$this->view->ids = $viewSelect;
     	$this->view->proAndTimes = $this->indexcompare->selectProAndTime();
-    	$this->view->stories = $this->indexcompare->selectPerStability();
+    	$this->view->stories = $this->indexcompare->selectPerStability($productArr);
     	$this->display();
     }
     
     public function completed($orderBy = '') {
+    	$productArr = array();
     	if(!empty($_POST)) {
-    		$proname = $this->post->proname;
-    		$empname = $this->post->empname;
+    		$productArr = $this->post->ids;
     	}
     	 
     	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
     	setcookie('projectTaskOrder', $orderBy, $this->config->cookieLife, $this->config->webRoot);
     	 
-    	$selInfo = $this->indexcompare->getIndex($proname, $empname);
-    	$this->view->selInfo = $selInfo;
-    	 
     	$this->view->products		= $this->loadModel('defect')->getProduct();
-    	$defect 	= array();
-    	if (!empty($_POST)){
-    		foreach ($_POST as $ids){
-    			$defect = $this->loadModel('defect')->queryDefect($ids);
-    		}
-    	}else {
-    		$defect = $this->loadModel('defect')->queryDefect(1);
-    	}
+    	$this->view->tasks = $this->indexcompare->selectCompleted($productArr);
     	
     	$this->display();
     }
     
     public function perCompleted($orderBy = '') {
+  		$productArr = array();
     	if(!empty($_POST)) {
-    		$proname = $this->post->proname;
-    		$empname = $this->post->empname;
+    		$productArr = $this->post->ids;
     	}
     
     	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
     	setcookie('projectTaskOrder', $orderBy, $this->config->cookieLife, $this->config->webRoot);
     
-    	$selInfo = $this->indexcompare->getIndex($proname, $empname);
-    	$this->view->selInfo = $selInfo;
-    
     	$this->view->products		= $this->loadModel('defect')->getProduct();
-    	$defect 	= array();
-    	if (!empty($_POST)){
-    		foreach ($_POST as $ids){
-    			$defect = $this->loadModel('defect')->queryDefect($ids);
-    		}
-    	}else {
-    		$defect = $this->loadModel('defect')->queryDefect(1);
-    	}
+    	$this->view->tasks = $this->indexcompare->selectPerCompleted($productArr);
     	 
     	$this->display();
     }

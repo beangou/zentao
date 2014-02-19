@@ -60,7 +60,9 @@
 			    			?>
 						</span>	
 			    			&nbsp;&nbsp;&nbsp;&nbsp;
-		    			输入原始需求结束时间：<input id="endTime" type="datetime"/>
+		    			输入原始需求结束时间：
+		    			<?php echo html::input('endTime',date('Y-m-d'), "class='text-3 date'");?>
+		    			<!-- <input id="endTime" type="datetime"/> -->
 		    			&nbsp;&nbsp;
 		    			<input type="button" onclick="getProjects()" value="确定"/>
 		    		</td>
