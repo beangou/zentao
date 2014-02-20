@@ -109,4 +109,83 @@ class defectModel extends model
 		}
 		return $projects;
 	}
+	
+	//更改：项目缺陷缺陷去除率
+	public function myQueryDefect($ids = '') {
+		//测试阶段发现bug
+		$testBugs = $this->dao->select('t4.name AS productname, t1.project, t3.name AS projectname, COUNT(*) AS testbugs')->from(TABLE_BUG)->alias('t1')
+		->leftJoin(TABLE_USER)->alias('t2')->on('t1.openedBy = t2.account')
+		->leftJoin(TABLE_PROJECT)->alias('t3')->on('t3.id = t1.project')
+		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t4.id = t1.product')
+		->where('t2.role')->ne('dev')
+		->andWhere('t1.product')->in($ids)
+		->groupBy('t1.project')
+		->fetchAll();
+		
+		$testBugLen = count($testBugs); 
+		//研发阶段发现bug
+		$devBugs = $this->dao->select(' t1.project, COUNT(*) AS devbugs')->from(TABLE_BUG)->alias('t1')
+		->leftJoin(TABLE_USER)->alias('t2')->on('t1.openedBy = t2.account')
+		->leftJoin(TABLE_PROJECT)->alias('t3')->on('t3.id = t1.project')
+		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t4.id = t1.product')
+		->where('t2.role')->eq('dev')
+		->andWhere('t1.product')->in($ids)
+		->groupBy('t1.project')
+		->fetchAll();
+		
+		//组合两个阶段发现的bug
+		for ($i=0; $i<$testBugLen; $i++) {
+			$testBugs[$i]->devbugs = $devBugs[$i]->devbugs;
+			if (($testBugs[$i]->devbugs + $testBugs[$i]->testbugs) != 0) {
+				$testBugs[$i]->allbugs = ($testBugs[$i]->devbugs + $testBugs[$i]->testbugs);
+				$testBugs[$i]->defect = ($testBugs[$i]->devbugs*100 / ($testBugs[$i]->devbugs + $testBugs[$i]->testbugs)). '%';
+			}
+		}
+		
+		return $testBugs;
+	}
+	
+	//更改：个人缺陷缺陷去除率
+	public function myQueryPerDefect($ids = '') {
+		//测试阶段发现bug
+		$testBugs = $this->dao->select('t1.project, t3.name, t1.assignedTo, COUNT(*) AS testbugs, COUNT(*) AS allbugs')->from(TABLE_BUG)->alias('t1')
+		->leftJoin(TABLE_PROJECT)->alias('t3')->on('t3.id = t1.project')
+		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t4.id = t1.product')
+		->where('t1.openedBy != t1.assignedTo')
+		->andWhere('t1.product')->in($ids)
+		->groupBy('t1.project, t1.assignedTo')
+		->fetchAll();
+		$testBugLen = count($testBugs);
+		//->ne('t1.assignedTo')
+		
+		//研发阶段发现bug
+		$devBugs = $this->dao->select('t1.project, t1.assignedTo, COUNT(*) AS devbugs')->from(TABLE_BUG)->alias('t1')
+		->leftJoin(TABLE_PROJECT)->alias('t3')->on('t3.id = t1.project')
+		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t4.id = t1.product')
+		->where('t1.openedBy = t1.assignedTo')
+		->andWhere('t1.product')->in($ids)
+		->groupBy('t1.project, t1.assignedTo')
+		->fetchAll();
+		$devBugLen = count($devBugs);
+	
+		//->where('t1.openedBy')->eq('t1.assignedTo')
+		//组合两个阶段发现的bug
+		for ($i=0; $i<$testBugLen; $i++) {
+			$testBugs[$i]->devbugs = 0;
+			$testBugs[$i]->defect = '0%';
+			for ($j=0; $j<$devBugLen; $j++) {
+				if (($testBugs[$i]->project == $devBugs[$j]->project) && ($testBugs[$i]->assignedTo == $devBugs[$j]->assignedTo)) {
+					$testBugs[$i]->devbugs = $devBugs[$j]->devbugs;
+					$testBugs[$i]->allbugs = ($testBugs[$i]->devbugs + $testBugs[$i]->testbugs);
+					if ($testBugs[$i]->allbugs != 0) {
+// 						$testBugs[$i]->defect = (($devbugs[$i]->devbugs*100) / ($testBugs[$i]->devbugs + $testBugs[$i]->testbugs)). '%';
+						$testBugs[$i]->defect = ($testBugs[$i]->devbugs*100 / ($testBugs[$i]->devbugs + $testBugs[$i]->testbugs)). '%';
+					}
+					break;
+				}				
+			}
+		}
+	
+		return $testBugs;
+	}
 }

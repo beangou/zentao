@@ -34,10 +34,9 @@
   			  <thead>
   			  	<tr class="colhead">
   			  		<th width='260'><?php echo $lang->defect->project;?></th>
-  			  		<th><?php echo $lang->defect->startDate;?></th>
-  			  		<th><?php echo $lang->defect->endDate;?></th>
   			  		<th><?php echo $lang->defect->name;?></th>
   			  		<th><?php echo $lang->defect->personalDefect;?></th>
+  			  		<th><?php echo $lang->defect->total;?></th>
   			  		<th><?php echo $lang->defect->personalRate;?></th>
   			  	</tr>
   			  </thead>
@@ -45,29 +44,11 @@
   			  <?php $color = false;?>
   			  <?php foreach ($personalRate as $defect):?>
   			  	<tr class="a-center">
-  			  		<?php $count = isset($defect->details) ? count($defect->details) : 1;?>
-  			  		<td align='left' rowspan="<?php echo $count;?>"><?php echo "<p>" . $defect->name. "</p>";?></td>
-  			  		<td align='left' rowspan="<?php echo $count;?>"><?php echo $defect->begin;?></td>
-  			  		<td align='left' rowspan="<?php echo $count;?>"><?php echo $defect->end;?></td>
-  			  		<?php if(isset($defect->details)):?>
-		            <?php $id = 1;?>
-		            <?php foreach($defect->details as $account):?>
-		            <?php $class = $color ? 'rowcolor' : '';?>
-		            <?php if($id != 1) echo "<tr class='a-center'>"?>
-  			  		<td><?php echo $account->realname;?></td>
-  			  		<td><?php echo $account->self;?></td>
-            		<td><?php echo !empty($account->rate)?round($account->rate*100,2).'%':$account->rate;?></td>
-  			  		<?php if($id != 1) echo "</tr>"?>
-		            <?php $id ++;?>
-		            <?php $color = !$color;?>
-		            <?php endforeach;?>
-            		<?php else:?>
-	              <?php $class = $color ? 'rowcolor' : '';?>
-	              <td class="<?php echo $class;?>"></td>
-	              <td class="<?php echo $class;?>"></td>
-	              <td class="<?php echo $class;?>"></td>
-	              <?php $color = !$color;?>
-	              <?php endif;?>
+					<td><?php echo $defect->name;?></td>
+					<td><?php echo $defect->assignedTo;?></td>
+					<td><?php echo $defect->devbugs;?></td>
+					<td><?php echo $defect->allbugs;?></td>
+					<td><?php echo $defect->defect;?></td>
   			  	</tr>
   			  <?php endforeach;?>
   			  </tbody>

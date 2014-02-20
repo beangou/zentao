@@ -119,7 +119,8 @@ class indexcompareModel extends model
 			if ($initStory[$i]->initstory != 0) {
 				$initStory[$i]->stability = (($addStory[$i]->addstory + $changeStory[$i]->changestory)*100 / $initStory[$i]->initstory). '%';
 			}
-			if ($initStory[$i]->initstory == 0) {
+			//去除没用的记录（即原始需求数/新增需求数均为0）
+			if ($initStory[$i]->initstory == 0 && $initStory[$i]->addstory == 0) {
 				array_splice($initStory, $i, 1);
 			}
 		}
@@ -168,6 +169,10 @@ class indexcompareModel extends model
 			$initStory[$i]->changestory = $changeStory[$i]->changestory;
 			if ($initStory[$i]->initstory != 0) {
 				$initStory[$i]->stability = (($addStory[$i]->addstory + $changeStory[$i]->changestory)*100 / $initStory[$i]->initstory). '%';
+			}
+			//去除没用的记录（即原始需求数/新增需求数均为0）
+			if ($initStory[$i]->initstory == 0 && $initStory[$i]->addstory == 0) {
+				array_splice($initStory, $i, 1);
 			} 
 		}
 	

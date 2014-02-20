@@ -13,14 +13,18 @@ class defect extends control
 		$defect 	= array();
 		if (!empty($_POST)){
 			foreach ($_POST as $ids){
-				$defect = $this->defect->queryDefect($ids);
+// 				$defect = $this->defect->queryDefect($ids);
+				$defect = $this->defect->myQueryDefect($ids);
 			}
-		}else {
-			$defect = $this->defect->queryDefect(1);
 		}
+		
+// 		else {
+// 			$defect = $this->defect->queryDefect(1);
+// 		}
 		$this->view->defectRate = $defect;
 		$this->display();
 	}
+	
 	/**
 	 * 个人缺陷去除率
 	 */
@@ -32,11 +36,14 @@ class defect extends control
 		$defect 	= array();
 		if (!empty($_POST)){
 			foreach ($_POST as $ids){
-				$defect = $this->defect->getPersonalRate($ids);
+// 				$defect = $this->defect->getPersonalRate($ids);
+				$defect = $this->defect->myQueryPerDefect($ids);
 			}
-		}else {
-			$defect = $this->defect->getPersonalRate(1);
 		}
+		
+// 		else {
+// 			$defect = $this->defect->getPersonalRate(1);
+// 		}
 		$this->view->personalRate = $defect;
 		$this->display();
 	}
