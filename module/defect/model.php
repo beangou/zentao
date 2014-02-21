@@ -113,7 +113,7 @@ class defectModel extends model
 	//更改：项目缺陷缺陷去除率
 	public function myQueryDefect($ids = '') {
 		//测试阶段发现bug
-		$testBugs = $this->dao->select('t4.name AS productname, t1.project, t3.name AS projectname, COUNT(*) AS testbugs')->from(TABLE_BUG)->alias('t1')
+		$testBugs = $this->dao->select('t4.name AS productname, t1.project, t3.name AS projectname, 0 AS devbugs, COUNT(*) AS testbugs, COUNT(*) AS allbugs, \'0%\' AS defect')->from(TABLE_BUG)->alias('t1')
 		->leftJoin(TABLE_USER)->alias('t2')->on('t1.openedBy = t2.account')
 		->leftJoin(TABLE_PROJECT)->alias('t3')->on('t3.id = t1.project')
 		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t4.id = t1.product')
@@ -121,10 +121,10 @@ class defectModel extends model
 		->andWhere('t1.product')->in($ids)
 		->groupBy('t1.project')
 		->fetchAll();
-		
 		$testBugLen = count($testBugs); 
+		
 		//研发阶段发现bug
-		$devBugs = $this->dao->select(' t1.project, COUNT(*) AS devbugs')->from(TABLE_BUG)->alias('t1')
+		$devBugs = $this->dao->select('t1.project, COUNT(*) AS devbugs, COUNT(*) AS allbugs, \'100%\' AS defect')->from(TABLE_BUG)->alias('t1')
 		->leftJoin(TABLE_USER)->alias('t2')->on('t1.openedBy = t2.account')
 		->leftJoin(TABLE_PROJECT)->alias('t3')->on('t3.id = t1.project')
 		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t4.id = t1.product')
@@ -132,13 +132,25 @@ class defectModel extends model
 		->andWhere('t1.product')->in($ids)
 		->groupBy('t1.project')
 		->fetchAll();
+		$devBugLen = count($devBugs);
 		
-		//组合两个阶段发现的bug
-		for ($i=0; $i<$testBugLen; $i++) {
-			$testBugs[$i]->devbugs = $devBugs[$i]->devbugs;
-			if (($testBugs[$i]->devbugs + $testBugs[$i]->testbugs) != 0) {
-				$testBugs[$i]->allbugs = ($testBugs[$i]->devbugs + $testBugs[$i]->testbugs);
-				$testBugs[$i]->defect = ($testBugs[$i]->devbugs*100 / ($testBugs[$i]->devbugs + $testBugs[$i]->testbugs)). '%';
+// 		组合两个阶段发现的bug
+		for ($j=0; $j<$devBugLen; $j++) {
+			//标志：用于判断测试阶段和研发阶段的记录是否可以合并，即显示在同一行内，否则，应该显示为两条记录
+			$flag = 0;
+			for ($i=0; $i<$testBugLen; $i++) {
+				if ($testBugs[$i]->project == $devBugs[$j]->project) {
+					$testBugs[$i]->devbugs = $devBugs[$i]->devbugs;
+					$testBugs[$i]->allbugs = ($devBugs[$j]->devbugs + $testBugs[$i]->testbugs);
+					$testBugs[$i]->defect = (100*round($testBugs[$i]->devbugs / ($testBugs[$i]->devbugs + $testBugs[$i]->testbugs), 4)). '%';
+					$flag = 1;
+					break;
+				}	
+			}
+			
+			//如果没有进行合并，需要将研发阶段的记录作为数组中一元素加到返回数组中
+			if ($flag == 0) {
+				array_push($testBugs, $devBugs[$j]);
 			}
 		}
 		
@@ -148,7 +160,7 @@ class defectModel extends model
 	//更改：个人缺陷缺陷去除率
 	public function myQueryPerDefect($ids = '') {
 		//测试阶段发现bug
-		$testBugs = $this->dao->select('t1.project, t3.name, t1.assignedTo, COUNT(*) AS testbugs, COUNT(*) AS allbugs')->from(TABLE_BUG)->alias('t1')
+		$testBugs = $this->dao->select('t1.project, t3.name, t1.assignedTo, 0 AS devbugs, COUNT(*) AS testbugs, COUNT(*) AS allbugs, \'0%\' AS defect')->from(TABLE_BUG)->alias('t1')
 		->leftJoin(TABLE_PROJECT)->alias('t3')->on('t3.id = t1.project')
 		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t4.id = t1.product')
 		->where('t1.openedBy != t1.assignedTo')
@@ -159,7 +171,7 @@ class defectModel extends model
 		//->ne('t1.assignedTo')
 		
 		//研发阶段发现bug
-		$devBugs = $this->dao->select('t1.project, t1.assignedTo, COUNT(*) AS devbugs')->from(TABLE_BUG)->alias('t1')
+		$devBugs = $this->dao->select('t1.project, t3.name, t1.assignedTo, COUNT(*) AS devbugs, COUNT(*) AS allbugs, \'100%\' AS defect')->from(TABLE_BUG)->alias('t1')
 		->leftJoin(TABLE_PROJECT)->alias('t3')->on('t3.id = t1.project')
 		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t4.id = t1.product')
 		->where('t1.openedBy = t1.assignedTo')
@@ -167,22 +179,22 @@ class defectModel extends model
 		->groupBy('t1.project, t1.assignedTo')
 		->fetchAll();
 		$devBugLen = count($devBugs);
-	
-		//->where('t1.openedBy')->eq('t1.assignedTo')
-		//组合两个阶段发现的bug
-		for ($i=0; $i<$testBugLen; $i++) {
-			$testBugs[$i]->devbugs = 0;
-			$testBugs[$i]->defect = '0%';
-			for ($j=0; $j<$devBugLen; $j++) {
+		
+		for ($j=0; $j<$devBugLen; $j++) {
+			//标志：用于判断测试阶段和研发阶段的记录是否可以合并，即显示在同一行内，否则，应该显示为两条记录
+			$flag = 0;
+			for ($i=0; $i<$testBugLen; $i++) {
 				if (($testBugs[$i]->project == $devBugs[$j]->project) && ($testBugs[$i]->assignedTo == $devBugs[$j]->assignedTo)) {
 					$testBugs[$i]->devbugs = $devBugs[$j]->devbugs;
 					$testBugs[$i]->allbugs = ($testBugs[$i]->devbugs + $testBugs[$i]->testbugs);
-					if ($testBugs[$i]->allbugs != 0) {
-// 						$testBugs[$i]->defect = (($devbugs[$i]->devbugs*100) / ($testBugs[$i]->devbugs + $testBugs[$i]->testbugs)). '%';
-						$testBugs[$i]->defect = ($testBugs[$i]->devbugs*100 / ($testBugs[$i]->devbugs + $testBugs[$i]->testbugs)). '%';
-					}
+					$testBugs[$i]->defect = (100*round($testBugs[$i]->devbugs / ($testBugs[$i]->devbugs + $testBugs[$i]->testbugs), 4)). '%';
+					$flag = 1;
 					break;
-				}				
+				}
+			}
+			//如果没有进行合并，需要将研发阶段的记录作为数组中一元素加到返回数组中
+			if ($flag == 0) {
+				array_push($testBugs, $devBugs[$j]);
 			}
 		}
 	
