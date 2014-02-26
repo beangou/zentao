@@ -35,7 +35,8 @@
   			  	<tr class="colhead">
   			  		<th width='260'><?php echo $lang->defect->project;?></th>
   			  		<th><?php echo $lang->defect->name;?></th>
-  			  		<th><?php echo $lang->defect->selfBug;?></th>
+  			  		<th><?php echo $lang->defect->devBug;?></th>
+  			  		<th><?php echo $lang->defect->testBug;?></th>
   			  		<th><?php echo $lang->defect->total;?></th>
   			  		<th><?php echo $lang->defect->personalRate;?></th>
   			  	</tr>
@@ -44,9 +45,14 @@
   			  <?php $color = false;?>
   			  <?php foreach ($personalRate as $defect):?>
   			  	<tr class="a-center">
-					<td><?php echo $defect->name;?></td>
+  			  		<?php 
+  			  			if ($defect->rowspanVal > 0) {
+  			  				echo '<td rowspan="'. $defect->rowspanVal. '">'. $defect->name. '</td>';
+  			  			}
+  			  		?>
 					<td><?php echo $defect->assignedTo;?></td>
 					<td><?php echo $defect->devbugs;?></td>
+					<td><?php echo $defect->allbugs-$defect->devbugs;?></td>
 					<td><?php echo $defect->allbugs;?></td>
 					<td><?php echo $defect->defect;?></td>
   			  	</tr>

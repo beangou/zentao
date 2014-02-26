@@ -44,6 +44,7 @@ $lang->indexcompare->perPerformance      = "个人评审绩效";
 $lang->indexcompare->choose = '请选择';
 
 $lang->indexcompare->productName      = "产品名";
+$lang->indexcompare->productStability = "产品稳定度";
 $lang->indexcompare->projectName      = "项目名";
 $lang->indexcompare->addDemandNo      = "新增需求数";
 $lang->indexcompare->changeDemandNo      = "修改需求数";

@@ -47,4 +47,26 @@ class defect extends control
 		$this->view->personalRate = $defect;
 		$this->display();
 	}
+	
+	/**
+	 * 处理有一定顺序的数组，是根据其中某个key设置rowspan以表格形式显示到页面上来,返回的数组中某些元素多了rowspanVal的值
+	 * @param  array $temp          the name of the select tag.
+	 */
+	static public function dealArrForRowspan($temp = array(), $key = '')
+	{
+		$rowspanIndex = 0;
+		$rowspanValue = 0;
+		for ($i=0; $i<count($temp); $i++){
+			if ($temp[$i]->$key == $temp[$rowspanIndex]->$key) {
+				$rowspanValue++;
+			} else {
+				$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
+				$rowspanValue = 1;
+				$rowspanIndex = $i;
+			}
+		}
+		$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
+		/* End. */
+		return $temp;
+	}
 }

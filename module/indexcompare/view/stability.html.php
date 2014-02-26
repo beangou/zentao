@@ -109,6 +109,7 @@
   			  <thead>
   			  	<tr class="colhead">
   			  		<th width='200'><?php echo $lang->indexcompare->productName;?></th>
+  			  		<th width='80'><?php echo $lang->indexcompare->productStability;?></th>
   			  		<th width='260'><?php echo $lang->indexcompare->projectName;?></th>
   			  		<th><?php echo $lang->indexcompare->addDemandNo;?></th>
   			  		<th><?php echo $lang->indexcompare->changeDemandNo;?></th>
@@ -120,7 +121,12 @@
   			  <?php $color = false;?>
   			  <?php foreach ($stories as $story):?>
   			  	<tr class="a-center">
-  			  		<td><?php echo $story->productname;?></td>
+  			  		<?php 
+  			  			if ($story->rowspanVal > 0) {
+  			  				echo '<td rowspan="'. $story->rowspanVal. '">'. $story->productname. '</td>';
+  			  				echo '<td rowspan="'. $story->rowspanVal. '">'. $story->productStability. '</td>';
+  			  			}
+  			  		?>
   			  		<td><?php echo $story->projectname;?></td>
   			  		<td><?php echo $story->addstory;?></td>
   			  		<td><?php echo $story->changestory;?></td>

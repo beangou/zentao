@@ -313,7 +313,7 @@ GROUP BY t1.project, t2.openedBy;
 --select * FROM ict_initstory_endtime;
 
 
-
+SELECT * FROM zt_story;
 
 
 
@@ -370,21 +370,231 @@ SELECT * FROM zt_user;
 
 --项目缺陷去除率
 --测试阶段：角色不是开发人员
-SELECT t4.name AS productname, t1.project, t3.name AS projectname, COUNT(*) AS testbugs FROM zt_bug t1
+SELECT t1.product, t4.name AS productname, t1.project, t3.name AS projectname, COUNT(*) AS testbugs FROM zt_bug t1
 LEFT JOIN zt_user t2 ON (t1.openedBy = t2.account)
 LEFT JOIN zt_project t3 ON (t3.id = t1.project)
 LEFT JOIN zt_product t4 ON (t4.id = t1.product)
 WHERE t2.role != 'dev'
-GROUP BY t1.project;
+GROUP BY t1.project
+ORDER BY t1.product, t1.project;
 
 --研发阶段：角色为开发人员
-SELECT  t1.project, COUNT(*) AS devbugs FROM zt_bug t1
+SELECT  t1.product, t4.name AS productname, t1.project, t3.name AS projectname, COUNT(*) AS devbugs FROM zt_bug t1
 LEFT JOIN zt_user t2 ON (t1.openedBy = t2.account)
 LEFT JOIN zt_project t3 ON (t3.id = t1.project)
 LEFT JOIN zt_product t4 ON (t4.id = t1.product)
 WHERE t2.role = 'dev'
-GROUP BY t1.project;
+GROUP BY t1.project
+ORDER BY t1.product, t1.project;
 
+
+
+SELECT T1.product, T1.productname, T1.project, T1.projectname, T1.testbugs, T2.devbugs FROM (
+SELECT t1.product, t4.name AS productname, t1.project, t3.name AS projectname, COUNT(*) AS testbugs FROM zt_bug t1
+LEFT JOIN zt_user t2 ON (t1.openedBy = t2.account)
+LEFT JOIN zt_project t3 ON (t3.id = t1.project)
+LEFT JOIN zt_product t4 ON (t4.id = t1.product)
+WHERE t2.role != 'dev'
+GROUP BY t1.project
+ORDER BY t1.product, t1.project) T1 LEFT JOIN (
+SELECT  t1.product, t1.project, COUNT(*) AS devbugs FROM zt_bug t1
+LEFT JOIN zt_user t2 ON (t1.openedBy = t2.account)
+LEFT JOIN zt_project t3 ON (t3.id = t1.project)
+LEFT JOIN zt_product t4 ON (t4.id = t1.product)
+WHERE t2.role = 'dev'
+GROUP BY t1.project
+ORDER BY t1.product, t1.project) T2 ON (
+    T1.product = T2.product
+AND T1.project = T2.project
+);
+
+--对于缺陷去除率，更改了查询的条件， 即不是通过指派人员来区分是开发阶段还是测试阶段，
+--而是通过发布测试版本之前发现的bug即为研发阶段发现的bug，
+--发布测试版本之后发现的bug即为测试阶段发现的bug，
+SELECT * FROM ict_defect;
+
+SELECT * FROM zt_testtask;
+SELECT * FROM zt_bug;
+
+
+--研发阶段bug
+SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS devbugs FROM zt_bug t1, zt_testtask t2 
+	WHERE t2.product = t1.product 
+	AND t2.project = t1.project 	
+	AND t2.begin > t1.assignedDate
+GROUP BY t1.product, t1.project, t1.assignedTo
+ORDER BY t1.product, t1.project;
+--测试阶段
+SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS testbugs FROM zt_bug t1, zt_testtask t2 
+	WHERE t2.product = t1.product 
+	AND t2.project = t1.project 	
+	AND t2.begin <= t1.assignedDate
+GROUP BY t1.product, t1.project, t1.assignedTo
+ORDER BY t1.product, t1.project;
+
+
+
+SELECT T1.product, T1.project, T1.assignedTo, T1.devbugs, T2.testbugs FROM (
+SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS devbugs FROM zt_bug t1, zt_testtask t2 
+	WHERE t2.product = t1.product 
+	AND t2.project = t1.project 	
+	AND t2.begin > t1.assignedDate
+GROUP BY t1.product, t1.project, t1.assignedTo
+ORDER BY t1.product, t1.project) T1 ,(
+SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS testbugs FROM zt_bug t1, zt_testtask t2 
+	WHERE t2.product = t1.product 
+	AND t2.project = t1.project 	
+	AND t2.begin <= t1.assignedDate
+GROUP BY t1.product, t1.project, t1.assignedTo
+ORDER BY t1.product, t1.project) T2 
+WHERE
+T1.product = T2.product
+AND T1.project = T2.project
+AND T1.assignedTo = T2.assignedTo
+;
+
+--sql问题：先简单点，查出每个产品对应下的每个项目有多少研发bug，多少测试bug
+SELECT t1.product, t1.project, COUNT(*) AS devbugs FROM zt_bug t1, zt_testtask t2 
+	WHERE t2.product = t1.product 
+	AND t2.project = t1.project 	
+	AND t2.begin > t1.assignedDate
+GROUP BY t1.product, t1.project, t1.assignedTo
+ORDER BY t1.product, t1.project
+
+
+--对比使用左连接和未使用左连接的差别后，发现应该使用左连接
+--研发阶段
+SELECT t1.product, t2.product, t1.project, t2.project, COUNT(*) AS devbugs FROM zt_bug t1
+LEFT JOIN zt_testtask t2 ON (
+	t2.product = t1.product 
+	AND t2.project = t1.project 	
+	)
+WHERE t2.begin > t1.assignedDate
+GROUP BY t1.product, t1.project, t1.assignedTo
+ORDER BY t1.product, t1.project
+
+--测试阶段
+SELECT t1.product, t1.project, COUNT(*) AS testbugs FROM zt_bug t1
+LEFT JOIN zt_testtask t2 ON (
+	t2.product = t1.product 
+	AND t2.project = t1.project 	
+	)
+WHERE t2.begin <= t1.assignedDate
+GROUP BY t1.product, t1.project, t1.assignedTo
+ORDER BY t1.product, t1.project
+
+
+
+SELECT T1.product, T1.project, T1.devbugs, T2.testbugs FROM (
+SELECT t1.product, t1.project, COUNT(*) AS devbugs FROM zt_bug t1
+LEFT JOIN zt_testtask t2 ON (
+	t2.product = t1.product 
+	AND t2.project = t1.project 	
+	)
+WHERE t2.begin > t1.assignedDate
+GROUP BY t1.product, t1.project, t1.assignedTo
+ORDER BY t1.product, t1.project ) T1 FULL JOIN (
+SELECT t1.product, t1.project, COUNT(*) AS testbugs FROM zt_bug t1
+LEFT JOIN zt_testtask t2 ON (
+	t2.product = t1.product 
+	AND t2.project = t1.project 	
+	)
+WHERE t2.begin <= t1.assignedDate
+GROUP BY t1.product, t1.project, t1.assignedTo
+ORDER BY t1.product, t1.project
+) T2 ON (
+	T1.product = T2.product
+	AND T1.project = T2.project
+)
+
+
+SELECT * FROM zt_bug;
+
+
+SELECT T1.product, T1.project, T1.assignedTo, T1.devbugs, T2.testbugs FROM (
+SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS devbugs FROM zt_bug t1
+LEFT JOIN zt_testtask t2 ON (
+	t2.product = t1.product 
+	AND t2.project = t1.project 	
+	)
+WHERE t2.begin > t1.assignedDate
+GROUP BY t1.product, t1.project, t1.assignedTo
+ORDER BY t1.product, t1.project ) T1 LEFT JOIN (
+SELECT t1.product, t1.project, COUNT(*) AS testbugs FROM zt_bug t1
+LEFT JOIN zt_testtask t2 ON (
+	t2.product = t1.product 
+	AND t2.project = t1.project 	
+	)
+WHERE t2.begin <= t1.assignedDate
+GROUP BY t1.product, t1.project, t1.assignedTo
+ORDER BY t1.product, t1.project
+) T2 ON (
+	T1.product = T2.product
+	AND T1.project = T2.project
+) 
+UNION
+SELECT T1.product, T1.project, T1.assignedTo, T1.devbugs, T2.testbugs FROM (
+SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS devbugs FROM zt_bug t1
+LEFT JOIN zt_testtask t2 ON (
+	t2.product = t1.product 
+	AND t2.project = t1.project 	
+	)
+WHERE t2.begin > t1.assignedDate
+GROUP BY t1.product, t1.project, t1.assignedTo
+ORDER BY t1.product, t1.project ) T1 RIGHT JOIN (
+SELECT t1.product, t1.project, COUNT(*) AS testbugs FROM zt_bug t1
+LEFT JOIN zt_testtask t2 ON (
+	t2.product = t1.product 
+	AND t2.project = t1.project 	
+	)
+WHERE t2.begin <= t1.assignedDate
+GROUP BY t1.product, t1.project, t1.assignedTo
+ORDER BY t1.product, t1.project
+) T2 ON (
+	T1.product = T2.product
+	AND T1.project = T2.project
+) 
+
+
+
+
+
+
+SELECT t1.product, t2.product, t1.project, t2.project, t1.assignedTo, t2.begin, t1.assignedDate FROM zt_bug t1
+LEFT JOIN zt_testtask t2 ON (
+	t2.begin IS NOT NULL
+	AND t2.product = t1.product 
+	AND t2.project = t1.project 	
+	AND t2.begin < t1.assignedDate
+	)
+GROUP BY t1.project
+ORDER BY t1.product, t1.project;
+
+
+
+SELECT t1.product, t1.project, t1.assignedTo, t1.id, t2.id, COUNT(t2.id) FROM zt_bug t1
+LEFT JOIN zt_testtask t2 ON (t2.product = t1.product AND t2.project = t1.project AND t2.begin >= t1.assignedDate)
+GROUP BY t1.project
+ORDER BY t1.product, t1.project;
+
+
+
+SELECT T1.product, T1.project, T1.assignedTo, T1.testbugs, T2.devbugs FROM (
+SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS testbugs FROM zt_bug t1
+LEFT JOIN zt_testtask t2 ON (t2.product = t1.product AND t2.project = t1.project AND t2.begin < t1.assignedDate)
+GROUP BY t1.project
+ORDER BY t1.product, t1.project) T1 LEFT JOIN (
+SELECT  t1.product, t1.project, t1.assignedTo, COUNT(*) AS devbugs FROM zt_bug t1
+LEFT JOIN zt_testtask t2 ON (t2.product = t1.product AND t2.project = t1.project AND t2.begin >= t1.assignedDate)
+GROUP BY t1.project
+ORDER BY t1.product, t1.project) T2 ON (
+    T1.product = T2.product
+AND T1.project = T2.project
+AND T1.assignedTo = T2.assignedTo
+);
+
+DELETE FROM ict_defect;
+SELECT * FROM ict_defect;
 
 --个人缺陷去除率
 --测试阶段
@@ -393,13 +603,55 @@ LEFT JOIN zt_project t3 ON (t3.id = t1.project)
 WHERE t1.openedBy != t1.assignedTo
 GROUP BY t1.project, t1.assignedTo;
 
+
 --研发阶段
 SELECT t1.project, t3.name, t1.assignedTo, COUNT(*) AS devbugs FROM zt_bug t1
 LEFT JOIN zt_project t3 ON (t3.id = t1.project)
 WHERE t1.openedBy = t1.assignedTo
 GROUP BY t1.project, t1.assignedTo;
 
+
+
+SELECT T1.product, T1.project, T1.assignedTo, T1.testbugs, T2.devbugs FROM (
+SELECT t1.product, t1.project, t3.name, t1.assignedTo, COUNT(*) AS testbugs FROM zt_bug t1
+LEFT JOIN zt_project t3 ON (t3.id = t1.project)
+WHERE t1.openedBy != t1.assignedTo
+GROUP BY t1.project, t1.assignedTo) T1 LEFT JOIN (
+SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS devbugs FROM zt_bug t1
+LEFT JOIN zt_project t3 ON (t3.id = t1.project)
+WHERE t1.openedBy = t1.assignedTo
+GROUP BY t1.project, t1.assignedTo) T2 ON (
+	T1.product = T2.product
+	AND T1.project = T2.project
+	AND T1.assignedTo = T2.assignedTo
+);
+
+
+
+SELECT * FROM zt_action;
 SELECT * FROM zt_project;
+SELECT * FROM ict_product;
+SELECT * FROM zt_productplan;
+SELECT * FROM zt_testtask;
 
 
+SELECT t2.product, t1.project, t4.name, COUNT(t3.initstory_endtime) AS initstory
+FROM zt_projectstory t1
+LEFT JOIN zt_story t2 ON(t2.id=t1.story)
+LEFT JOIN ict_initstory_endtime t3 ON (
+	t3.project_id = t1.project
+	AND t3.initstory_endtime >= t2.openedDate)
+LEFT JOIN zt_project t4 ON(t4.id = t1.project)
+GROUP BY project ORDER BY t2.product;
 
+--产品稳定度
+SELECT product, COUNT(*), SUM(initstory) FROM (
+SELECT t2.product, t1.project, COUNT(t3.initstory_endtime) AS initstory
+FROM zt_projectstory t1
+LEFT JOIN zt_story t2 ON(t2.id=t1.story)
+LEFT JOIN ict_initstory_endtime t3 ON (
+	t3.project_id = t1.project
+	AND t3.initstory_endtime >= t2.openedDate)
+LEFT JOIN zt_project t4 ON(t4.id = t1.project)
+GROUP BY project ORDER BY t2.product) T1
+GROUP BY T1.product;

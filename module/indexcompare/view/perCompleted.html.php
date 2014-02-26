@@ -55,8 +55,12 @@
   			  <tbody>
   			  <?php $color = false;?>
   			  <?php foreach ($tasks as $task):?>
-  			  	<tr class="a-center">
-					<td><?php echo $task->name; ?></td>
+  			  	<tr class="a-center">	
+  			  		<?php 
+  			  			if ($task->rowspanVal > 0) {
+  			  				echo '<td rowspan="'. $task->rowspanVal. '">'. $task->name. '</td>';
+  			  			}
+  			  		?>
 					<td><?php echo $task->assignedTo; ?></td>
 					<td><?php echo $task->closedtasks; ?></td>
 					<td><?php echo $task->alltasks; ?></td>

@@ -113,13 +113,13 @@ class defectModel extends model
 	//更改：项目缺陷缺陷去除率
 	public function myQueryDefect($ids = '') {
 		//测试阶段发现bug
-		$testBugs = $this->dao->select('t4.name AS productname, t1.project, t3.name AS projectname, 0 AS devbugs, COUNT(*) AS testbugs, COUNT(*) AS allbugs, \'0%\' AS defect')->from(TABLE_BUG)->alias('t1')
+		$testBugs = $this->dao->select('t1.product, t4.name AS productname, t1.project, t3.name AS projectname, 0 AS devbugs, COUNT(*) AS testbugs, COUNT(*) AS allbugs, \'0%\' AS defect')->from(TABLE_BUG)->alias('t1')
 		->leftJoin(TABLE_USER)->alias('t2')->on('t1.openedBy = t2.account')
 		->leftJoin(TABLE_PROJECT)->alias('t3')->on('t3.id = t1.project')
 		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t4.id = t1.product')
 		->where('t2.role')->ne('dev')
 		->andWhere('t1.product')->in($ids)
-		->groupBy('t1.project')
+		->groupBy('t1.project')->orderBy('t1.product, t1.project')
 		->fetchAll();
 		$testBugLen = count($testBugs); 
 		
@@ -130,11 +130,11 @@ class defectModel extends model
 		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t4.id = t1.product')
 		->where('t2.role')->eq('dev')
 		->andWhere('t1.product')->in($ids)
-		->groupBy('t1.project')
+		->groupBy('t1.project')->orderBy('t1.product, t1.project')
 		->fetchAll();
 		$devBugLen = count($devBugs);
 		
-// 		组合两个阶段发现的bug
+		//组合两个阶段发现的bug
 		for ($j=0; $j<$devBugLen; $j++) {
 			//标志：用于判断测试阶段和研发阶段的记录是否可以合并，即显示在同一行内，否则，应该显示为两条记录
 			$flag = 0;
@@ -147,14 +147,13 @@ class defectModel extends model
 					break;
 				}	
 			}
-			
 			//如果没有进行合并，需要将研发阶段的记录作为数组中一元素加到返回数组中
 			if ($flag == 0) {
 				array_push($testBugs, $devBugs[$j]);
 			}
 		}
 		
-		return $testBugs;
+		return defect::dealArrForRowspan($testBugs, 'product');
 	}
 	
 	//更改：个人缺陷缺陷去除率
@@ -165,7 +164,7 @@ class defectModel extends model
 		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t4.id = t1.product')
 		->where('t1.openedBy != t1.assignedTo')
 		->andWhere('t1.product')->in($ids)
-		->groupBy('t1.project, t1.assignedTo')
+		->groupBy('t1.project, t1.assignedTo')->orderBy('t1.product, t1.project')
 		->fetchAll();
 		$testBugLen = count($testBugs);
 		//->ne('t1.assignedTo')
@@ -176,7 +175,7 @@ class defectModel extends model
 		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t4.id = t1.product')
 		->where('t1.openedBy = t1.assignedTo')
 		->andWhere('t1.product')->in($ids)
-		->groupBy('t1.project, t1.assignedTo')
+		->groupBy('t1.project, t1.assignedTo')->orderBy('t1.product, t1.project')
 		->fetchAll();
 		$devBugLen = count($devBugs);
 		
@@ -198,6 +197,6 @@ class defectModel extends model
 			}
 		}
 	
-		return $testBugs;
+		return defect::dealArrForRowspan($testBugs, 'project');
 	}
 }

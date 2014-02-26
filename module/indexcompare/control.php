@@ -304,12 +304,7 @@ class indexcompare extends control
     /**
      * 处理数组成为字符串，以‘,’分隔，以适应model里面的in方法的参数
      *
-     * @param  string $name          the name of the select tag.
-     * @param  array  $options       the array to create select tag from.
-     * @param  string $selectedItems the item(s) to be selected, can like item1,item2.
-     * @param  string $attrib        other params such as multiple, size and style.
-     * @param  string $append        adjust if add options[$selectedItems].
-     * @return string
+     * @param  array $temp          the name of the select tag.
      */
     static public function dealForDbIn($temp = array())
     {
@@ -346,5 +341,61 @@ class indexcompare extends control
     	//echo $command;
     	//echo $result. '_________'. $output_str;
     }
+    
+	/**
+	 * 处理有一定顺序的数组，是根据其中某个key设置rowspan以表格形式显示到页面上来,返回的数组中某些元素多了rowspanVal的值
+	 * @param  array $temp          the name of the select tag.
+	 */
+	static public function dealArrForRowspan($temp = array(), $key = '')
+	{
+		$rowspanIndex = 0;
+		$rowspanValue = 0;
+		for ($i=0; $i<count($temp); $i++){
+			if ($temp[$i]->$key == $temp[$rowspanIndex]->$key) {
+				$rowspanValue++;
+			} else {
+				$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
+				$rowspanValue = 1;
+				$rowspanIndex = $i;
+			}
+		}
+		$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
+		/* End. */
+		return $temp;
+	}
+	
+	/**
+	 * 处理有一定顺序的数组，是根据其中某个key设置rowspan以表格形式显示到页面上来,返回的数组中某些元素多了rowspanVal的值
+	 * @param  array $temp          the name of the select tag.
+	 */
+	static public function staDealArrForRowspan($temp = array(), $key = '')
+	{
+		$rowspanIndex = 0;
+		$rowspanValue = 0;
+		$productInit = 0;
+		$productAdd = 0;
+		$productChange = 0;
+		for ($i=0; $i<count($temp); $i++){
+			if ($temp[$i]->$key == $temp[$rowspanIndex]->$key) {
+				$productInit += $temp[$i]->initstory;
+				$productAdd += $temp[$i]->addstory;
+				$productChange += $temp[$i]->changestory;
+				$rowspanValue++;
+			} else {
+				$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
+				$rowspanValue = 1;
+				$temp[$rowspanIndex]->productStability = 100*round(($productAdd+$productChange) / $productInit, 4). "%";
+				
+				$rowspanIndex = $i;
+				$productInit = $temp[$i]->initstory;
+				$productAdd = $temp[$i]->addstory;
+				$productChange = $temp[$i]->changestory;
+			}
+		}
+		$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
+		$temp[$rowspanIndex]->productStability = 100*round(($productAdd+$productChange) / $productInit, 4). "%";
+		/* End. */
+		return $temp;
+	}
     
 }

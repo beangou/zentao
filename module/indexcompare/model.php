@@ -81,15 +81,15 @@ class indexcompareModel extends model
 		$initStory = $this->dao->select('t2.product, t5.name as productname, t1.project, t4.name as projectname, COUNT(t3.initstory_endtime) AS initstory, 0 AS addstory, 0 AS changestory, \'0%\' AS stability')->from(TABLE_PROJECTSTORY)->alias('t1')
 		->leftJoin(TABLE_STORY)->alias('t2')->on('t2.id=t1.story')
 		->leftJoin(TABLE_ICTINITSTORY_ENDTIME)->alias('t3')
-		->on('t3.project_id = t1.project AND t3.initstory_endtime >= t2.openedDate AND t3.initstory_endtime >= t2.lastEditedDate')
+		->on('t3.project_id = t1.project AND t3.initstory_endtime >= t2.openedDate')
 		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')
 		->leftJoin(TABLE_PRODUCT)->alias('t5')->on('t5.id = t2.product')
 		->where('t2.product')->in($productArr)
-// 		->andWhere('t3.initstory_endtime IS NOT NULL')
-		->groupBy('project')
+		->groupBy('t1.project')->orderBy('t2.product, t1.project')
 		->fetchAll();
 		$initLen = count($initStory);
 		
+		// 		->andWhere('t3.initstory_endtime IS NOT NULL')
 		//新增需求
 		$addStory = $this->dao->select('t2.product, t1.project, t4.name, 0 AS initstory, COUNT(t3.initstory_endtime) AS addstory, 0 AS changestory')->from(TABLE_PROJECTSTORY)->alias('t1')
 		->leftJoin(TABLE_STORY)->alias('t2')->on('t2.id=t1.story')
@@ -98,7 +98,7 @@ class indexcompareModel extends model
 		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')
 		->where('t2.product')->in($productArr)
 // 		->andWhere('t3.initstory_endtime IS NOT NULL')
-		->groupBy('project')
+		->groupBy('t1.project')->orderBy('t2.product, t1.project')
 		->fetchAll();
 		$addLen = count($addStory);
 		
@@ -110,18 +110,18 @@ class indexcompareModel extends model
 		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')
 		->where('t2.product')->in($productArr)
 // 		->andWhere('t3.initstory_endtime IS NOT NULL')
-		->groupBy('project')
+		->groupBy('t1.project')->orderBy('t2.product, t1.project')
 		->fetchAll();
 		$changeLen = count($changeStory);
-
+		
 		for ($i=0; $i<$initLen; $i++) {
 // 			for ()
 			$initStory[$i]->addstory = $addStory[$i]->addstory;
 			$initStory[$i]->changestory = $changeStory[$i]->changestory;
 			if ($initStory[$i]->initstory != 0) {
 				$initStory[$i]->stability = 100*(round(($addStory[$i]->addstory + $changeStory[$i]->changestory) / $initStory[$i]->initstory, 4)). '%';
-			} else if ($addStory[$i]->addstory + $changeStory[$i]->changestory == 0) {
-				$initStory[$i]->stability = '0%';
+			} else if ($addStory[$i]->addstory + $changeStory[$i]->changestory > 0) {
+				$initStory[$i]->stability = '无穷大';
 			}
 			
 			//去除没用的记录（即原始需求数/新增需求数均为0）
@@ -130,7 +130,7 @@ class indexcompareModel extends model
 			}
 		}
 
-		return $initStory;
+		return indexcompare::staDealArrForRowspan($initStory, 'product');
 	}
 	
 	//查询个人需求稳定度
@@ -139,22 +139,22 @@ class indexcompareModel extends model
 		$initStory = $this->dao->select('t1.project, t4.name, t2.title, t2.openedBy, COUNT(t3.initstory_endtime) AS initstory')->from(TABLE_PROJECTSTORY)->alias('t1')
 		->leftJoin(TABLE_STORY)->alias('t2')->on('t2.id=t1.story')
 		->leftJoin(TABLE_ICTINITSTORY_ENDTIME)->alias('t3')
-		->on('t3.project_id = t1.project AND t3.initstory_endtime >= t2.openedDate AND t3.initstory_endtime >= t2.lastEditedDate')
+		->on('t3.project_id = t1.project AND t3.initstory_endtime >= t2.openedDate')
 		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')
 		->leftJoin(TABLE_PRODUCT)->alias('t5')->on('t5.id = t2.product')
 		->where('t2.product')->in($productArr)
-		->groupBy('t1.project, t2.openedBy')
+		->groupBy('t1.project, t2.openedBy')->orderBy('t2.product, t1.project')
 		->fetchAll();
 		$initLen = count($initStory);
 	
 		//新增需求
-		$addStory = $this->dao->select('t1.project, t4.name,t2.title, t2.openedBy, COUNT(t3.initstory_endtime) AS addstory')->from(TABLE_PROJECTSTORY)->alias('t1')
+		$addStory = $this->dao->select('t1.project, t4.name, t2.title, t2.openedBy, COUNT(t3.initstory_endtime) AS addstory')->from(TABLE_PROJECTSTORY)->alias('t1')
 		->leftJoin(TABLE_STORY)->alias('t2')->on('t2.id=t1.story')
 		->leftJoin(TABLE_ICTINITSTORY_ENDTIME)->alias('t3')
 		->on('t3.project_id = t1.project AND t3.project_id = t1.project AND t3.initstory_endtime <= t2.openedDate')
 		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')
 		->where('t2.product')->in($productArr)
-		->groupBy('t1.project, t2.openedBy')
+		->groupBy('t1.project, t2.openedBy')->orderBy('t2.product, t1.project')
 		->fetchAll();
 		$addLen = count($addStory);
 	
@@ -165,7 +165,7 @@ class indexcompareModel extends model
 		->on('t3.project_id = t1.project AND t3.initstory_endtime >= t2.openedDate AND t3.initstory_endtime < t2.lastEditedDate')
 		->leftJoin(TABLE_PROJECT)->alias('t4')->on('t4.id = t1.project')
 		->where('t2.product')->in($productArr)
-		->groupBy('t1.project, t2.openedBy')
+		->groupBy('t1.project, t2.openedBy')->orderBy('t2.product, t1.project')
 		->fetchAll();
 		$changeLen = count($changeStory);
 	
@@ -174,6 +174,8 @@ class indexcompareModel extends model
 			$initStory[$i]->changestory = $changeStory[$i]->changestory;
 			if ($initStory[$i]->initstory != 0) {
 				$initStory[$i]->stability = 100*round(($addStory[$i]->addstory + $changeStory[$i]->changestory) / $initStory[$i]->initstory, 4). '%';
+			} else if ($addStory[$i]->addstory + $changeStory[$i]->changestory > 0) {
+				$initStory[$i]->stability = '无穷大';
 			}
 			//去除没用的记录（即原始需求数/新增需求数均为0）
 			if ($initStory[$i]->initstory == 0 && $initStory[$i]->addstory == 0) {
@@ -181,19 +183,22 @@ class indexcompareModel extends model
 			} 
 		}
 	
-		return $initStory;
+		return indexcompare::dealArrForRowspan($initStory, 'project');
 	}
 	
 	//项目任务完成率
 	public function selectCompleted($productArr = array()) {
-		$allTasks = $this->dao->select('t4.name as productname, t1.project, t2.name as projectname,  COUNT(*) AS alltasks')->from(TABLE_TASK)->alias('t1')
+		$allTasks = $this->dao->select('t3.product, t4.name as productname, t1.project, t2.name as projectname,  COUNT(*) AS alltasks')->from(TABLE_TASK)->alias('t1')
 		->leftJoin(TABLE_PROJECT)->alias('t2')->on('t2.id = t1.project')
 		->leftJoin(TABLE_PROJECTPRODUCT)->alias('t3')->on('t3.project = t1.project')
 		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t4.id = t3.product')
 		->where('t3.product')->in($productArr)
 		->groupBy('t1.project')->fetchAll();
 		$closedTasks = $this->dao->select('project, COUNT(*) AS closedtasks')->from(TABLE_TASK)
-		->where('status')->eq('closed')->groupBy('project')->fetchAll();
+		->where('status')->eq('closed')
+		->groupBy('project')
+		->orderBy('project')
+		->fetchAll();
 		$allLen = count($allTasks);
 		$closedLen = count($closedTasks);
 		
@@ -209,7 +214,7 @@ class indexcompareModel extends model
 			$allTasks[$i]->completed = 100*round(($allTasks[$i]->closedtasks / $allTasks[$i]->alltasks), 4). '%';
 		}
 		
-		return $allTasks;
+		return indexcompare::dealArrForRowspan($allTasks, 'product');
 	}
 	
 	//个人任务完成率
@@ -218,7 +223,9 @@ class indexcompareModel extends model
 		->leftJoin(TABLE_PROJECT)->alias('t2')->on('t2.id = t1.project')
 		->leftJoin(TABLE_PROJECTPRODUCT)->alias('t3')->on('t3.project = t2.id')
 		->where('t3.product')->in($productArr)
-		->groupBy('t1.project, t1.assignedTo')->fetchAll();
+		->groupBy('t1.project, t1.assignedTo')
+		->orderBy('t3.product, t1.project')
+		->fetchAll();
 		$closedTasks = $this->dao->select('project, assignedTo, COUNT(*) AS closedtasks')->from(TABLE_TASK)
 		->where('status')->eq('closed')->groupBy('project, assignedTo')->fetchAll();
 		$allLen = count($allTasks);
@@ -238,7 +245,7 @@ class indexcompareModel extends model
 			$allTasks[$i]->completed = 100*round($allTasks[$i]->closedtasks / $allTasks[$i]->alltasks, 4). '%';
 		}
 	
-		return $allTasks;
+		return indexcompare::dealArrForRowspan($allTasks, 'project');
 	}
 	
 }

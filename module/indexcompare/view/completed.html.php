@@ -56,7 +56,11 @@
   			  <?php $color = false;?>
   			  <?php foreach ($tasks as $task):?>
   			  	<tr class="a-center">
-  			  		<td><?php echo $task->productname;?></td>
+  			  		<?php 
+  			  			if ($task->rowspanVal > 0) {
+  			  				echo '<td rowspan="'. $task->rowspanVal. '">'. $task->productname. '</td>';
+  			  			}
+  			  		?>
   			  		<td><?php echo $task->projectname;?></td>
   			  		<td><?php echo $task->closedtasks;?></td>
   			  		<td><?php echo $task->alltasks;?></td>

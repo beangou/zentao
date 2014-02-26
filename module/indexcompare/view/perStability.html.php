@@ -118,10 +118,13 @@
   			  <?php $color = false;?>
   			  <?php foreach ($stories as $story):?>
   			  	<tr class="a-center">
-  			  		<td><?php echo $story->name;?></td>
+  			  		<?php 
+  			  			if ($story->rowspanVal > 0) {
+  			  				echo '<td rowspan="'. $story->rowspanVal. '">'. $story->name. '</td>';
+  			  			}
+  			  		?>
   			  		<td><?php echo $story->openedBy;?></td>
   			  		<td><?php echo $story->addstory;?></td>
-  			  		
   			  		<td><?php echo $story->changestory;?></td>
   			  		<td><?php echo $story->initstory;?></td>
   			  		<td><?php echo $story->stability;?></td>

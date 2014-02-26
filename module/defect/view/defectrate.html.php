@@ -35,7 +35,8 @@
   			  	<tr class="colhead">
   			  		<th width='200'><?php echo $lang->defect->product;?></th>
   			  		<th width='260'><?php echo $lang->defect->project;?></th>
-  			  		<th><?php echo $lang->defect->selfBug;?></th>
+  			  		<th><?php echo $lang->defect->devBug;?></th>
+  			  		<th><?php echo $lang->defect->testBug;?></th>
   			  		<th><?php echo $lang->defect->total;?></th>
   			  		<th><?php echo $lang->defect->defectRate;?></th>
   			  	</tr>
@@ -44,9 +45,14 @@
   			  <?php $color = false;?>
   			  <?php foreach ($defectRate as $defect):?>
   			  	<tr class="a-center">
-					<td><?php echo $defect->productname;?></td>
+  			  		<?php 
+  			  			if ($defect->rowspanVal > 0) {
+  			  				echo '<td rowspan="'. $defect->rowspanVal. '">'. $defect->productname. '</td>';
+  			  			}
+  			  		?>
 					<td><?php echo $defect->projectname;?></td>
 					<td><?php echo $defect->devbugs;?></td>
+					<td><?php echo $defect->allbugs-$defect->devbugs;?></td>
 					<td><?php echo $defect->allbugs;?></td>
 					<td><?php echo $defect->defect;?></td>
   			  	</tr>
