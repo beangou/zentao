@@ -153,7 +153,20 @@ class defectModel extends model
 			}
 		}
 		
-		return defect::dealArrForRowspan($testBugs, 'product');
+		
+// 		T1.product, T2.name AS productname, T3.name AS projectname, SUM(T1.devBug) AS devbugs, SUM(T1.testBug) AS testbugs, 
+// 				(SUM(T1.devBug)+SUM(T1.testBug)) AS allbugs, SUM(T1.devBug)/(SUM(T1.devBug)+SUM(T1.testBug)) AS defect
+		
+		$newResult = $this->dao->select('T1.product, T2.name AS productname, T3.name AS projectname, SUM(T1.devBug) AS devbugs, SUM(T1.testBug) AS testbugs, 
+				(SUM(T1.devBug)+SUM(T1.testBug)) AS allbugs, SUM(T1.devBug)/(SUM(T1.devBug)+SUM(T1.testBug)) AS defect')
+				->from(TABLE_ICTDEFECT)->alias('T1')
+				->leftJoin(TABLE_PRODUCT)->alias('T2')->on('T2.id = T1.product')
+				->leftJoin(TABLE_PROJECT)->alias('T3')->on('T3.id = T1.project')
+				->where('T1.product')->in($ids)
+				->groupBy('T1.product, T1.project')
+				->fetchAll();
+		
+		return defect::dealArrForRowspan($newResult, 'product');
 	}
 	
 	//更改：个人缺陷缺陷去除率

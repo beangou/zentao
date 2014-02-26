@@ -43,6 +43,13 @@ ORDER BY t1.product, t1.project
 	AND T1.project = T2.project
 ) 
 
+DELETE FROM ict_defect;
+
+SELECT * FROM ict_defect;
+
+SELECT T2.name, T3.name, T1.developer, T1.devBug, T1.testBug FROM ict_defect T1 
+LEFT JOIN zt_product T2 ON (T2.id = T1.product)
+LEFT JOIN zt_project T3 ON (T3.id = T1.project);
 
 --需求稳定度
 
