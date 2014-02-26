@@ -274,6 +274,45 @@ WHERE T1.project=T2.project
 
 
 
+SELECT * FROM zt_story;
+
+--
+SELECT T1.product, T1.project, T1.name, T1.initstory, T2.addstory, T3.changestory FROM
+(
+SELECT t2.product, t1.project, t4.name, COUNT(t3.initstory_endtime) AS initstory
+FROM zt_projectstory t1
+LEFT JOIN zt_story t2 ON(t2.id=t1.story)
+LEFT JOIN ict_initstory_endtime t3 ON (
+	t3.project_id = t1.project
+	AND t3.initstory_endtime >= t2.openedDate)
+LEFT JOIN zt_project t4 ON(t4.id = t1.project)
+GROUP BY project) T1 LEFT JOIN
+(
+SELECT t1.project, t4.name, COUNT(t3.initstory_endtime) AS addstory
+FROM zt_projectstory t1
+LEFT JOIN zt_story t2 ON(t2.id=t1.story)
+LEFT JOIN ict_initstory_endtime t3 ON (
+	t3.project_id = t1.project
+	AND t3.initstory_endtime <= t2.openedDate)
+LEFT JOIN zt_project t4 ON(t4.id = t1.project)
+GROUP BY project) T2 ON(T1.project=T2.project)
+LEFT JOIN
+(
+SELECT t1.project, t4.name, COUNT(t3.initstory_endtime) AS changestory
+FROM zt_projectstory t1
+LEFT JOIN zt_story t2 ON(t2.id=t1.story)
+LEFT JOIN ict_initstory_endtime t3 ON (
+	t3.project_id = t1.project
+	AND t3.initstory_endtime >= t2.openedDate 
+	AND t3.initstory_endtime < t2.lastEditedDate)
+LEFT JOIN zt_project t4 ON(t4.id = t1.project)
+GROUP BY project) T3 ON(T1.project=T3.project)
+WHERE T1.project=T2.project
+      AND T1.project=T3.project;    
+
+
+
+
 SELECT * FROM zt_story;  
 SELECT * FROM zt_storyspec;  
 

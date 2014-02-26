@@ -47,9 +47,17 @@ DELETE FROM ict_defect;
 
 SELECT * FROM ict_defect;
 
-SELECT T2.name, T3.name, T1.developer, T1.devBug, T1.testBug FROM ict_defect T1 
+--个人缺陷度
+SELECT T2.name AS productname, T3.name AS projectname, T1.developer, SUM(T1.devBug) AS devbugs, SUM(T1.testBug) AS testbugs, (SUM(T1.devBug)+SUM(T1.testBug)) AS allbugs, SUM(T1.devBug)/(SUM(T1.devBug)+SUM(T1.testBug)) AS defect FROM ict_defect T1 
 LEFT JOIN zt_product T2 ON (T2.id = T1.product)
-LEFT JOIN zt_project T3 ON (T3.id = T1.project);
+LEFT JOIN zt_project T3 ON (T3.id = T1.project)
+GROUP BY T1.developer;
+
+--项目缺陷度
+SELECT T2.name AS productname, T3.name AS projectname, SUM(T1.devBug) AS devbugs, SUM(T1.testBug) AS testbugs, (SUM(T1.devBug)+SUM(T1.testBug)) AS allbugs, SUM(T1.devBug)/(SUM(T1.devBug)+SUM(T1.testBug)) AS defect FROM ict_defect T1 
+LEFT JOIN zt_product T2 ON (T2.id = T1.product)
+LEFT JOIN zt_project T3 ON (T3.id = T1.project)
+GROUP BY T1.product, T1.project;
 
 --需求稳定度
 
