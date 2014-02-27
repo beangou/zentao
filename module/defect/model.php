@@ -164,6 +164,7 @@ class defectModel extends model
 				->leftJoin(TABLE_PROJECT)->alias('T3')->on('T3.id = T1.project')
 				->where('T1.product')->in($ids)
 				->groupBy('T1.product, T1.project')
+				->orderBy('T1.product, T1.project')
 				->fetchAll();
 		
 		return defect::dealArrForRowspan($newResult, 'product');
@@ -188,7 +189,8 @@ class defectModel extends model
 		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t4.id = t1.product')
 		->where('t1.openedBy = t1.assignedTo')
 		->andWhere('t1.product')->in($ids)
-		->groupBy('t1.project, t1.assignedTo')->orderBy('t1.product, t1.project')
+		->groupBy('t1.project, t1.assignedTo')
+		->orderBy('t1.project, t1.assignedTo')
 		->fetchAll();
 		$devBugLen = count($devBugs);
 		
@@ -209,7 +211,17 @@ class defectModel extends model
 				array_push($testBugs, $devBugs[$j]);
 			}
 		}
+		
+		
+		$newResult = $this->dao->select('T1.project, T2.name AS projectname, T1.developer, SUM(T1.devBug) AS devbugs, SUM(T1.testBug) AS testbugs,
+				(SUM(T1.devBug)+SUM(T1.testBug)) AS allbugs, SUM(T1.devBug)/(SUM(T1.devBug)+SUM(T1.testBug)) AS defect')
+						->from(TABLE_ICTDEFECT)->alias('T1')
+						->leftJoin(TABLE_PROJECT)->alias('T2')->on('T2.id = T1.project')
+						->where('T1.product')->in($ids)
+						->groupBy('T1.project, T1.developer')
+						->orderBy('T1.product, T1.project')
+						->fetchAll();
 	
-		return defect::dealArrForRowspan($testBugs, 'project');
+		return defect::dealArrForRowspan($newResult, 'project');
 	}
 }

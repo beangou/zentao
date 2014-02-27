@@ -105,7 +105,10 @@ define('TABLE_ICTWEEKPLAN',	  '`' . $config->db->ict	. 'weekplan`');
 define('TABLE_ICTDEFECT',	  '`' . $config->db->ict	. 'defect`');
 /*原始需求结束时间点表*/
 define('TABLE_ICTINITSTORY_ENDTIME',	  '`' . $config->db->ict	. 'initstory_endtime`');
-
+/*需求稳定度表*/
+define('TABLE_ICTSTABILITY',	  '`' . $config->db->ict	. 'stability`');
+/*任务完成率*/
+define('TABLE_ICTCOMPLETED',	  '`' . $config->db->ict	. 'completed`');
 //if(!isset($config->db->ict)) $config->db->prefix = 'ict_';
 
 /*

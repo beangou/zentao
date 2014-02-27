@@ -1,4 +1,4 @@
---缺陷去除率
+-- 脚本查询  缺陷去除率
 SELECT T1.product, T1.project, T1.assignedTo, T1.devbugs, T2.testbugs FROM (
 SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS devbugs FROM zt_bug t1
 LEFT JOIN zt_testtask t2 ON (
@@ -47,19 +47,20 @@ DELETE FROM ict_defect;
 
 SELECT * FROM ict_defect;
 
---个人缺陷度
-SELECT T2.name AS productname, T3.name AS projectname, T1.developer, SUM(T1.devBug) AS devbugs, SUM(T1.testBug) AS testbugs, (SUM(T1.devBug)+SUM(T1.testBug)) AS allbugs, SUM(T1.devBug)/(SUM(T1.devBug)+SUM(T1.testBug)) AS defect FROM ict_defect T1 
-LEFT JOIN zt_product T2 ON (T2.id = T1.product)
-LEFT JOIN zt_project T3 ON (T3.id = T1.project)
-GROUP BY T1.developer;
+--  model查询  个人缺陷度
+SELECT T2.name AS projectname, T1.developer, SUM(T1.devBug) AS devbugs, SUM(T1.testBug) AS testbugs, (SUM(T1.devBug)+SUM(T1.testBug)) AS allbugs, SUM(T1.devBug)/(SUM(T1.devBug)+SUM(T1.testBug)) AS defect FROM ict_defect T1 
+LEFT JOIN zt_project T2 ON (T2.id = T1.project)
+GROUP BY T2.id, T1.developer
+ORDER BY T2.id;
 
---项目缺陷度
+--  model查询  项目缺陷度
 SELECT T2.name AS productname, T3.name AS projectname, SUM(T1.devBug) AS devbugs, SUM(T1.testBug) AS testbugs, (SUM(T1.devBug)+SUM(T1.testBug)) AS allbugs, SUM(T1.devBug)/(SUM(T1.devBug)+SUM(T1.testBug)) AS defect FROM ict_defect T1 
 LEFT JOIN zt_product T2 ON (T2.id = T1.product)
 LEFT JOIN zt_project T3 ON (T3.id = T1.project)
-GROUP BY T1.product, T1.project;
+GROUP BY T1.product, T1.project
+ORDER BY T1.product, T1.project;
 
---需求稳定度
+--  脚本查询  需求稳定度
 
 SELECT T1.product, T1.project, T1.openedBy, T1.initstory, T2.addstory, T3.changestory FROM
 (
@@ -94,8 +95,27 @@ GROUP BY project) T3 ON(T1.product=T3.product AND T1.project=T3.project AND T1.o
  
 SELECT * FROM ict_stability;
 
+-- model 项目需求稳定度查询
+SELECT T2.name AS productname, T3.name AS projectname, SUM(T1.initstory) AS initstory, SUM(T1.addstory) AS addstory, 
+SUM(T1.changestory) AS changestory
+FROM ict_stability T1 
+LEFT JOIN zt_product T2 ON (T2.id = T1.product)
+LEFT JOIN zt_project T3 ON (T3.id = T1.project)
+GROUP BY T1.product, T1.project
+ORDER BY T1.product, T1.project;
 
---任务完成率
+
+--  model 个人需求稳定度查询 
+SELECT T2.name AS projectname, T1.developer, SUM(T1.devBug) AS devbugs, SUM(T1.testBug) AS testbugs, (SUM(T1.devBug)+SUM(T1.testBug)) AS allbugs, SUM(T1.devBug)/(SUM(T1.devBug)+SUM(T1.testBug)) AS defect FROM ict_defect T1 
+LEFT JOIN zt_project T2 ON (T2.id = T1.project)
+GROUP BY T2.id, T1.developer
+ORDER BY T2.id;
+
+SELECT * FROM ict_stability;
+DELETE FROM ict_stability;
+
+
+--  任务完成率
 SELECT * FROM zt_task;
 SELECT project, COUNT(*) AS alltasks FROM zt_task GROUP BY project;
 SELECT project, COUNT(*) AS completedtasks FROM zt_task WHERE STATUS='closed' GROUP BY project;
@@ -103,18 +123,42 @@ SELECT * FROM zt_taskestimate;
 SELECT * FROM zt_user;
 SELECT * FROM zt_projectproduct;
 
---closed任务数
+-- closed任务数
 SELECT t3.product, t1.project, t1.assignedTo, COUNT(*) AS closedtasks FROM zt_task t1 
 LEFT JOIN zt_project t2 ON (t2.id = t1.project)
 LEFT JOIN zt_projectproduct t3 ON (t3.project = t1.project)
 WHERE t1.status='closed'
 GROUP BY t3.product, t1.project, t1.assignedTo;
 
---总共任务数
+-- 总共任务数
 SELECT t3.product, t1.project, t1.assignedTo, COUNT(*) AS alltasks FROM zt_task t1 
 LEFT JOIN zt_project t2 ON (t2.id = t1.project)
 LEFT JOIN zt_projectproduct t3 ON (t3.project = t1.project)
 GROUP BY t3.product, t1.project, t1.assignedTo;
+
+
+SELECT * FROM ict_completed;
+
+DELETE FROM ict_completed;
+
+SELECT * FROM zt_task;
+
+SELECT * FROM zt_project;
+
+--  model查询  个人任务完成度
+SELECT T1.project, T2.name AS projectname, T1.assignedTo, T1.closedtasks, T1.alltasks, 
+ T1.closedtasks/ T1.alltasks AS completed FROM ict_completed T1 
+LEFT JOIN zt_project T2 ON (T2.id = T1.project)
+GROUP BY T2.id, T1.assignedTo
+ORDER BY T1.product, T2.id;
+
+--  model查询  项目任务完成度
+SELECT T2.name AS productname, T3.name AS projectname, SUM(T1.closedtasks) AS closedtasks, SUM(T1.alltasks) AS alltasks, 
+SUM(T1.closedtasks)/SUM(T1.alltasks) AS completed FROM ict_completed T1 
+LEFT JOIN zt_product T2 ON (T2.id = T1.product)
+LEFT JOIN zt_project T3 ON (T3.id = T1.project)
+GROUP BY T1.product, T1.project
+ORDER BY T1.product, T1.project;
 
 
 --使用左连接和右连接

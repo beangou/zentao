@@ -58,13 +58,13 @@
   			  	<tr class="a-center">	
   			  		<?php 
   			  			if ($task->rowspanVal > 0) {
-  			  				echo '<td rowspan="'. $task->rowspanVal. '">'. $task->name. '</td>';
+  			  				echo '<td rowspan="'. $task->rowspanVal. '">'. $task->projectname. '</td>';
   			  			}
   			  		?>
 					<td><?php echo $task->assignedTo; ?></td>
 					<td><?php echo $task->closedtasks; ?></td>
 					<td><?php echo $task->alltasks; ?></td>
-					<td><?php echo $task->completed; ?></td>
+					<td><?php echo 100*round($task->completed, 4). '%';?></td>
   			  	</tr>
   			  <?php endforeach;?>
   			  </tbody>

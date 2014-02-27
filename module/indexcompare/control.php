@@ -359,7 +359,12 @@ class indexcompare extends control
 				$rowspanIndex = $i;
 			}
 		}
-		$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
+		
+		//这有当数组有数据时，才给rowspanVal赋值，否则，没意义，多一条没用的数据
+		if ($rowspanValue > 0) {
+			$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
+		}
+		
 		/* End. */
 		return $temp;
 	}
@@ -376,6 +381,11 @@ class indexcompare extends control
 		$productAdd = 0;
 		$productChange = 0;
 		for ($i=0; $i<count($temp); $i++){
+			if ($temp[$i]->initstory == 0) {
+				$temp[$i]->stability = '无穷大';
+			} else {
+				$temp[$i]->stability = 100*round(($temp[$i]->addstory + $temp[$i]->changestory)/$temp[$i]->initstory, 4). '%'; 
+			}
 			if ($temp[$i]->$key == $temp[$rowspanIndex]->$key) {
 				$productInit += $temp[$i]->initstory;
 				$productAdd += $temp[$i]->addstory;
@@ -392,8 +402,10 @@ class indexcompare extends control
 				$productChange = $temp[$i]->changestory;
 			}
 		}
-		$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
-		$temp[$rowspanIndex]->productStability = 100*round(($productAdd+$productChange) / $productInit, 4). "%";
+		if ($rowspanIndex > 0) {
+			$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
+			$temp[$rowspanIndex]->productStability = 100*round(($productAdd+$productChange) / $productInit, 4). "%";
+		}
 		/* End. */
 		return $temp;
 	}

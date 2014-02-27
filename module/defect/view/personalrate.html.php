@@ -47,14 +47,14 @@
   			  	<tr class="a-center">
   			  		<?php 
   			  			if ($defect->rowspanVal > 0) {
-  			  				echo '<td rowspan="'. $defect->rowspanVal. '">'. $defect->name. '</td>';
+  			  				echo '<td rowspan="'. $defect->rowspanVal. '">'. $defect->projectname. '</td>';
   			  			}
   			  		?>
-					<td><?php echo $defect->assignedTo;?></td>
+					<td><?php echo $defect->developer;?></td>
 					<td><?php echo $defect->devbugs;?></td>
-					<td><?php echo $defect->allbugs-$defect->devbugs;?></td>
+					<td><?php echo $defect->testbugs;?></td>
 					<td><?php echo $defect->allbugs;?></td>
-					<td><?php echo $defect->defect;?></td>
+					<td><?php echo 100*round($defect->defect, 4). '%';?></td>
   			  	</tr>
   			  <?php endforeach;?>
   			  </tbody>

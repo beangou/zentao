@@ -606,7 +606,7 @@ LEFT JOIN zt_testtask t2 ON (
 	AND t2.project = t1.project 	
 	AND t2.begin < t1.assignedDate
 	)
-GROUP BY t1.project
+GROUP BY t1.product, t1.project
 ORDER BY t1.product, t1.project;
 
 

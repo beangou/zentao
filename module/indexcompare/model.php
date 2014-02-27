@@ -129,8 +129,18 @@ class indexcompareModel extends model
 				array_splice($initStory, $i, 1);
 			}
 		}
+		
+		$newResult = $this->dao->select('T1.product, T2.name AS productname, T3.name AS projectname, SUM(T1.initstory) AS initstory, SUM(T1.addstory) AS addstory,
+				SUM(T1.changestory) AS changestory')
+						->from(TABLE_ICTSTABILITY)->alias('T1')
+						->leftJoin(TABLE_PRODUCT)->alias('T2')->on('T2.id = T1.product')
+						->leftJoin(TABLE_PROJECT)->alias('T3')->on('T3.id = T1.project')
+						->where('T1.product')->in($productArr)
+						->groupBy('T1.product, T1.project')
+						->orderBy('T1.product, T1.project')
+						->fetchAll();
 
-		return indexcompare::staDealArrForRowspan($initStory, 'product');
+		return indexcompare::staDealArrForRowspan($newResult, 'product');
 	}
 	
 	//查询个人需求稳定度
@@ -182,8 +192,19 @@ class indexcompareModel extends model
 				array_splice($initStory, $i, 1);
 			} 
 		}
+		
+		
+		$newResult = $this->dao->select('T1.project, T3.name AS projectname, T1.openedBy, T1.initstory, T1.addstory,
+				T1.changestory, T1.stability')
+						->from(TABLE_ICTSTABILITY)->alias('T1')
+						->leftJoin(TABLE_PRODUCT)->alias('T2')->on('T2.id = T1.product')
+						->leftJoin(TABLE_PROJECT)->alias('T3')->on('T3.id = T1.project')
+						->where('T1.product')->in($productArr)
+						->groupBy('T1.product, T1.project, T1.openedBy')
+						->orderBy('T1.product, T1.project')
+						->fetchAll();
 	
-		return indexcompare::dealArrForRowspan($initStory, 'project');
+		return indexcompare::dealArrForRowspan($newResult, 'project');
 	}
 	
 	//项目任务完成率
@@ -214,7 +235,17 @@ class indexcompareModel extends model
 			$allTasks[$i]->completed = 100*round(($allTasks[$i]->closedtasks / $allTasks[$i]->alltasks), 4). '%';
 		}
 		
-		return indexcompare::dealArrForRowspan($allTasks, 'product');
+		$newResult = $this->dao->select('T1.product, T2.name AS productname, T3.name AS projectname, SUM(T1.closedtasks) AS closedtasks, 
+				SUM(T1.alltasks) AS alltasks, SUM(T1.closedtasks)/SUM(T1.alltasks) AS completed')
+						->from(TABLE_ICTCOMPLETED)->alias('T1')
+						->leftJoin(TABLE_PRODUCT)->alias('T2')->on('T2.id = T1.product')
+						->leftJoin(TABLE_PROJECT)->alias('T3')->on('T3.id = T1.project')
+						->where('T1.product')->in($productArr)
+						->groupBy('T1.product, T1.project')
+						->orderBy('T1.product, T1.project')
+						->fetchAll();
+		
+		return indexcompare::dealArrForRowspan($newResult, 'product');
 	}
 	
 	//个人任务完成率
@@ -244,8 +275,18 @@ class indexcompareModel extends model
 			}
 			$allTasks[$i]->completed = 100*round($allTasks[$i]->closedtasks / $allTasks[$i]->alltasks, 4). '%';
 		}
+		
+		
+		$newResult = $this->dao->select('T1.project, T2.name AS projectname, T1.assignedTo, T1.closedtasks, T1.alltasks, 
+ 						T1.closedtasks/ T1.alltasks AS completed')
+						->from(TABLE_ICTCOMPLETED)->alias('T1')
+						->leftJoin(TABLE_PROJECT)->alias('T2')->on('T2.id = T1.project')
+						->where('T1.product')->in($productArr)
+						->groupBy('T1.product, T2.id, T1.assignedTo')
+						->orderBy('T1.product, T2.id')
+						->fetchAll();
 	
-		return indexcompare::dealArrForRowspan($allTasks, 'project');
+		return indexcompare::dealArrForRowspan($newResult, 'project');
 	}
 	
 }

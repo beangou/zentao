@@ -65,7 +65,11 @@ class defect extends control
 				$rowspanIndex = $i;
 			}
 		}
-		$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
+		
+		if ($rowspanValue > 0) {
+			$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
+		}
+		
 		/* End. */
 		return $temp;
 	}

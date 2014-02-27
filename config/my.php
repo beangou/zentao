@@ -10,4 +10,4 @@ $config->db->password    = 'root';
 $config->db->prefix      = 'zt_';
 $config->webRoot         = getWebRoot();
 $config->default->lang   = 'zh-cn';
-$config->mysqldump       = 'D:\beanGou\mysql\bin\mysqldump.exe';
+$config->mysqldump       = 'D:\beanGou\mysql\bin\mysqldump.exe';	

@@ -52,9 +52,9 @@
   			  		?>
 					<td><?php echo $defect->projectname;?></td>
 					<td><?php echo $defect->devbugs;?></td>
-					<td><?php echo $defect->allbugs-$defect->devbugs;?></td>
+					<td><?php echo $defect->testbugs;?></td>
 					<td><?php echo $defect->allbugs;?></td>
-					<td><?php echo $defect->defect;?></td>
+					<td><?php echo 100*round($defect->defect, 4). '%';?></td>
   			  	</tr>
   			  <?php endforeach;?>
   			  </tbody>

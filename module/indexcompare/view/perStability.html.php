@@ -120,7 +120,7 @@
   			  	<tr class="a-center">
   			  		<?php 
   			  			if ($story->rowspanVal > 0) {
-  			  				echo '<td rowspan="'. $story->rowspanVal. '">'. $story->name. '</td>';
+  			  				echo '<td rowspan="'. $story->rowspanVal. '">'. $story->projectname. '</td>';
   			  			}
   			  		?>
   			  		<td><?php echo $story->openedBy;?></td>
