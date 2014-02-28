@@ -13,7 +13,7 @@ $lang->conn->menu->create  = array('link' => '<span class="icon-add">&nbsp;</spa
 */
 
 $lang->indexcompare->stability			= '需求稳定度';
-$lang->indexcompare->common			= '需求稳定度';
+$lang->indexcompare->common			= '禅道度量';
 
 $lang->indexcompare->leftProStability	= '项目需求稳定度|indexcompare|stability';
 $lang->indexcompare->leftPerStability	= '个人需求稳定度|indexcompare|perStability';
