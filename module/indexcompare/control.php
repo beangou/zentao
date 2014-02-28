@@ -402,7 +402,7 @@ class indexcompare extends control
 				$productChange = $temp[$i]->changestory;
 			}
 		}
-		if ($rowspanIndex > 0) {
+		if ($rowspanValue > 0) {
 			$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
 			$temp[$rowspanIndex]->productStability = 100*round(($productAdd+$productChange) / $productInit, 4). "%";
 		}
