@@ -64,7 +64,7 @@
   			  		<td><?php echo $task->projectname;?></td>
   			  		<td><?php echo $task->closedtasks;?></td>
   			  		<td><?php echo $task->alltasks;?></td>
-  			  		<td><?php echo $task->completed;?></td>
+  			  		<td><?php echo 100*$task->completed. '%';?></td>
   			  	</tr>
   			  <?php endforeach;?>
   			  </tbody>
