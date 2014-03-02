@@ -244,6 +244,11 @@ class indexcompare extends control
     	die(indexcompare::tableTr($proAndTimes));
     }
     
+    //执行插入数据操作
+    public function ajaxInsertData() {
+    	//$proAndTimes = $this->view->proAndTimes = $this->indexcompare->selectProAndTime();
+    	die('<script>alert("success!")</script>');
+    }
     
     /**
      * Create tags like "<select><option></option></select>
@@ -382,7 +387,7 @@ class indexcompare extends control
 		$productChange = 0;
 		for ($i=0; $i<count($temp); $i++){
 			if ($temp[$i]->initstory == 0) {
-				$temp[$i]->stability = '无穷大';
+				$temp[$i]->stability = '不存在';
 			} else {
 				$temp[$i]->stability = 100*round(($temp[$i]->addstory + $temp[$i]->changestory)/$temp[$i]->initstory, 4). '%'; 
 			}
@@ -408,6 +413,163 @@ class indexcompare extends control
 		}
 		/* End. */
 		return $temp;
+	}
+	
+	//执行插入需求稳定度数据操作
+	public function ajaxInsertStabilityData() {
+		global $config;
+	
+		$con = @mysql_connect($config->db->host, $config->db->user, $config->db->password)
+		or die("数据库服务器连接失败");
+		@mysql_select_db($config->db->name) //选择数据库mydb
+		or die("数据库不存在或不可用");
+	
+		//需求稳定度
+		$queProStability = @mysql_query("
+		SELECT T1.product, T1.project, T4.realname AS openedBy, T1.initstory, T2.addstory, T3.changestory FROM
+		(
+		SELECT t2.product, t1.project, t4.name, t2.openedBy, COUNT(t3.initstory_endtime) AS initstory
+		FROM zt_projectStory t1
+		LEFT JOIN zt_story t2 ON(t2.id=t1.story)
+		LEFT JOIN ict_initstory_endtime t3 ON (
+			t3.project_id = t1.project
+			AND t3.initstory_endtime >= t2.openedDate)
+		LEFT JOIN zt_project t4 ON(t4.id = t1.project)
+		GROUP BY t2.product, t1.project, t2.openedBy) T1 LEFT JOIN
+		(
+		SELECT t2.product, t1.project, t4.name, t2.openedBy, COUNT(t3.initstory_endtime) AS addstory
+		FROM zt_projectStory t1
+		LEFT JOIN zt_story t2 ON(t2.id=t1.story)
+		LEFT JOIN ict_initstory_endtime t3 ON (
+			t3.project_id = t1.project
+			AND t3.initstory_endtime <= t2.openedDate)
+		LEFT JOIN zt_project t4 ON(t4.id = t1.project)
+		GROUP BY t2.product, t1.project, t2.openedBy) T2 ON(T1.product=T2.product AND T1.project=T2.project AND T1.openedBy=T2.openedBy)
+		LEFT JOIN
+		(
+		SELECT t2.product, t1.project, t4.name, t2.openedBy, COUNT(t3.initstory_endtime) AS changestory
+		FROM zt_projectStory t1
+		LEFT JOIN zt_story t2 ON(t2.id=t1.story)
+		LEFT JOIN ict_initstory_endtime t3 ON (
+			t3.project_id = t1.project
+			AND t3.initstory_endtime >= t2.openedDate
+			AND t3.initstory_endtime < t2.lastEditedDate)
+		LEFT JOIN zt_project t4 ON(t4.id = t1.project)
+		GROUP BY t2.product, t1.project, t2.openedBy) T3 ON(T1.product=T3.product AND T1.project=T3.project AND T1.openedBy=T3.openedBy)
+		LEFT JOIN zt_user T4 ON (T1.openedBy = T4.account)
+		WHERE T1.product IS NOT NULL
+		")
+			or die("queProStability SQL语句执行失败");
+	
+			$parentStaArr = array();
+			while($rs= @mysql_fetch_array($queProStability)){
+				if ($rs[4]+$rs[3] == 0) {
+					continue;
+				}
+				$sonArr = array();
+				$stabilityStr = '';
+				array_push($sonArr, $rs[0]);
+				array_push($sonArr, $rs[1]);
+				array_push($sonArr, $rs[2]);
+	
+				if ($rs[4] == null) {
+					$rs[4] = 0;
+				}
+				if ($rs[5] == null) {
+					$rs[5] = 0;
+				}
+				if ($rs[3] == 0) {
+					$stabilityStr = '不存在';
+				} else {
+					$stabilityStr = 100*round(($rs[4] + $rs[5])/$rs[3], 4). '%';
+				}
+					
+				array_push($sonArr, $rs[3]);
+				array_push($sonArr, $rs[4]);
+				array_push($sonArr, $rs[5]);
+				array_push($sonArr, $stabilityStr);
+				array_push($parentStaArr, $sonArr);
+			}
+	
+			$splitNum = 1;
+			foreach(array_chunk($parentStaArr, $splitNum) as $values){
+				@mysql_query($this->insertBatch(TABLE_ICTSTABILITY, array('product', 'project', 'openedBy', 'initstory', 'addstory', 'changestory', 'stability'), $values));
+			}
+			die('<script>alert("生成数据成功!")</script>');
+			mysql_close($con);
+	}
+	
+	public function ajaxInsertCompletedData() {
+		global $config;
+	
+		$con = @mysql_connect($config->db->host, $config->db->user, $config->db->password)
+		or die("数据库服务器连接失败");
+		@mysql_select_db($config->db->name) //选择数据库mydb
+		or die("数据库不存在或不可用");
+	
+		//任务完成率
+		$queProCompleted = @mysql_query("
+		SELECT T1.product, T1.project, T3.realname AS assignedTo, T2.closedtasks, T1.alltasks FROM (
+		SELECT t3.product, t1.project, t1.assignedTo, COUNT(t1.assignedTo) AS alltasks FROM zt_task t1 
+		LEFT JOIN zt_project t2 ON (t2.id = t1.project)
+		LEFT JOIN zt_projectProduct t3 ON (t3.project = t1.project)
+		WHERE t3.product IS NOT NULL
+		AND t1.assignedTo != 'closed'
+		GROUP BY t3.product, t1.project, t1.assignedTo) T1 LEFT JOIN (
+		SELECT t3.product, t1.project, t1.assignedTo, COUNT(t1.assignedTo) AS closedtasks FROM zt_task t1 
+		LEFT JOIN zt_project t2 ON (t2.id = t1.project)
+		LEFT JOIN zt_projectProduct t3 ON (t3.project = t1.project)
+		WHERE t1.status='closed'
+		AND t3.product IS NOT NULL
+		AND t1.assignedTo != 'closed'
+		GROUP BY t3.product, t1.project, t1.assignedTo
+		) T2 ON (
+			T1.product = T2.product
+			AND T1.project = T2.project
+			AND T1.assignedTo = T2.assignedTo	
+		) LEFT JOIN zt_user T3 ON (T1.assignedTo = T3.account)
+		")
+		or die("queProCompleted SQL语句执行失败"); 
+		
+		$parentComArr = array();
+		while($rs= @mysql_fetch_array($queProCompleted)){
+			 if ($rs[4] == 0) {
+				continue;
+			 }
+			 $sonArr = array();
+			 array_push($sonArr, $rs[0]);
+			 array_push($sonArr, $rs[1]);
+			 array_push($sonArr, $rs[2]);
+			 if ($rs[3] == null) {
+				$rs[3] = 0;
+			 }
+			 if ($rs[4] == null) {
+				$rs[4] = 0;
+			 }
+		 
+			 array_push($sonArr, $rs[3]);
+			 array_push($sonArr, $rs[4]);
+		
+			 array_push($parentComArr, $sonArr);
+		}
+
+			$splitNum = 1;
+			foreach(array_chunk($parentComArr, $splitNum) as $values){
+				@mysql_query($this->insertBatch(TABLE_ICTCOMPLETED, array('product', 'project', 'assignedTo', 'closedtasks', 'alltasks'), $values));
+			}
+			
+			die('<script>alert("生成数据成功!")</script>');
+			mysql_close($con);
+	}
+	
+	//实现批量插入数据
+	function insertBatch($table, $keys, $values, $type = 'INSERT'){
+		$tempArray = array();
+		foreach($values as $value){
+			$tempArray[] = implode('\', \'', $value);
+		}
+		//return $type.' INTO `'.$table.'` (`'.implode('`, `', $keys).'`) VALUES (\''.implode('), (', $tempArray).'\')';
+		return $type.' INTO '.$table.' (`'.implode('`, `', $keys).'`) VALUES (\''.implode('\'), (\'', $tempArray).'\')';
 	}
     
 }

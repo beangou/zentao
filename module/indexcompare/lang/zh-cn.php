@@ -12,6 +12,8 @@ $lang->conn->menu->delete  = array('link' => '删除|conn|deleteLib|libID=%s', '
 $lang->conn->menu->create  = array('link' => '<span class="icon-add">&nbsp;</span>添加文档库|conn|createLib', 'float' => 'right');
 */
 
+// $lang->indexcompare->db
+
 $lang->indexcompare->stability			= '需求稳定度';
 $lang->indexcompare->common			= '禅道度量';
 

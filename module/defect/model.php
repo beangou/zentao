@@ -163,6 +163,7 @@ class defectModel extends model
 				->leftJoin(TABLE_PRODUCT)->alias('T2')->on('T2.id = T1.product')
 				->leftJoin(TABLE_PROJECT)->alias('T3')->on('T3.id = T1.project')
 				->where('T1.product')->in($ids)
+				->andWhere('T1.developer')->ne('')
 				->groupBy('T1.product, T1.project')
 				->orderBy('T1.product, T1.project')
 				->fetchAll();
@@ -218,6 +219,7 @@ class defectModel extends model
 						->from(TABLE_ICTDEFECT)->alias('T1')
 						->leftJoin(TABLE_PROJECT)->alias('T2')->on('T2.id = T1.project')
 						->where('T1.product')->in($ids)
+						->andWhere('T1.developer')->ne('')
 						->groupBy('T1.project, T1.developer')
 						->orderBy('T1.product, T1.project')
 						->fetchAll();

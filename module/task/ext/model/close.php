@@ -1,7 +1,7 @@
 <?php
 /**
  * Close a task.
- *
+ * 扩展：不将assignedTo字段设为closed
  * @param  int      $taskID
  * @access public
  * @return void

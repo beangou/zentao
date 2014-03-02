@@ -73,4 +73,113 @@ class defect extends control
 		/* End. */
 		return $temp;
 	}
+	
+	function insertBatch($table, $keys, $values, $type = 'INSERT'){
+		$tempArray = array();
+		foreach($values as $value){
+			$tempArray[] = implode('\', \'', $value);
+		}
+		//return $type.' INTO `'.$table.'` (`'.implode('`, `', $keys).'`) VALUES (\''.implode('), (', $tempArray).'\')';
+		return $type.' INTO '.$table.' (`'.implode('`, `', $keys).'`) VALUES (\''.implode('\'), (\'', $tempArray).'\')';
+	}
+	
+	//执行插入缺陷去除率操作
+	public function ajaxInsertDefectData() {
+		global $config;
+		
+		$con = @mysql_connect($config->db->host, $config->db->user, $config->db->password)
+		or die("数据库服务器连接失败");
+		@mysql_select_db($config->db->name) //选择数据库mydb
+		or die("数据库不存在或不可用");
+		
+		//缺陷去除率
+		$queProDefect = @mysql_query("
+		SELECT *  FROM (
+	SELECT T1.product, T1.project, T3.realname AS assignedTo, T2.devbugs ,T1.testbugs FROM (
+	SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS testbugs FROM zt_bug t1, zt_testTask t2
+	WHERE   t2.product = t1.product
+		AND t2.project = t1.project
+		AND t2.begin <= t1.openedDate
+		AND t1.assignedTo != 'closed'
+	GROUP BY t1.product, t1.project, t1.assignedTo
+		) T1 LEFT JOIN (
+			
+	SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS devbugs FROM zt_bug t1, zt_testTask t2
+	WHERE   t2.product = t1.product
+		AND t2.project = t1.project
+		AND t2.begin > t1.openedDate
+		AND t1.assignedTo != 'closed'
+	GROUP BY t1.product, t1.project, t1.assignedTo
+		) T2 ON (
+		T1.product = T2.product
+		AND T1.project = T2.project
+		AND T1.assignedTo = T2.assignedTo
+	) LEFT JOIN zt_user T3 ON (
+			T1.assignedTo = T3.account
+		)
+			
+	UNION
+			
+	SELECT T1.product, T1.project, T3.realname AS assignedTo, T1.devbugs, T2.testbugs FROM (
+	SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS devbugs FROM zt_bug t1, zt_testTask t2
+	WHERE   t2.product = t1.product
+		AND t2.project = t1.project
+		AND t2.begin > t1.openedDate
+		AND t1.assignedTo != 'closed'
+	GROUP BY t1.product, t1.project, t1.assignedTo
+	 ) T1 LEFT JOIN (
+			
+	SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS testbugs FROM zt_bug t1, zt_testTask t2
+	WHERE   t2.product = t1.product
+		AND t2.project = t1.project
+		AND t2.begin <= t1.openedDate
+		AND t1.assignedTo != 'closed'
+	GROUP BY t1.product, t1.project, t1.assignedTo
+	) T2 ON (
+		T1.product = T2.product
+		AND T1.project = T2.project
+		AND T1.assignedTo = T2.assignedTo
+		) LEFT JOIN zt_user T3 ON (
+			T1.assignedTo = T3.account
+		)
+		
+	) T
+") //执行SQL语句
+		or die("queProDefect SQL语句执行失败");
+		
+		$parentArr = array();
+		while($rs= @mysql_fetch_array($queProDefect)){
+			if ($rs[4]+$rs[3] == 0) {
+				continue;
+			}
+		
+			$sonArr = array();
+			array_push($sonArr, $rs[0]);
+			array_push($sonArr, $rs[1]);
+			if ($rs[3] == null) {
+				$rs[3] = 0;
+			}
+			if ($rs[4] == null) {
+				$rs[4] = 0;
+			}
+			array_push($sonArr, $rs[4]);
+			array_push($sonArr, $rs[3]);
+			array_push($sonArr, $rs[3]+$rs[4]);
+			array_push($sonArr, $rs[4]/($rs[3]+$rs[4]));
+		
+			array_push($sonArr, $rs[2]);
+			array_push($parentArr, $sonArr);
+			
+		}
+		
+		$splitNum = 1;
+		
+		foreach(array_chunk($parentArr, $splitNum) as $values){
+			@mysql_query($this->insertBatch(TABLE_ICTDEFECT, array('product', 'project', 'testBug', 'devBug', 'total', 'defect', 'developer'), $values));
+		}
+		
+		die('<script>alert("生成数据成功!")</script>');
+		mysql_close($con);
+	}
+	
 }

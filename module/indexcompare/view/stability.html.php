@@ -31,8 +31,15 @@
 	    // do something  
 // 		getProjects();
 	});  
+
+	function inputData() {
+			link1 = createLink('indexcompare', 'ajaxInsertStabilityData');
+			$('#getResult').load(link1);
+	}	
 </script>
 <body>
+	<span id="getResult"></span>
+	<input type="button" onclick="inputData()" value="生成数据" class="button-s"/>
 	<table width="100%" class="cont-lt1">
 		<tr valign="top">
 		  <td width="12%" style="padding-right: 10px;" class="side">

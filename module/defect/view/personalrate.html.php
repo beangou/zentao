@@ -9,7 +9,15 @@
 <style>
 .rowcolor{background:#F9F9F9;}
 </style>
+<script type="text/javascript">
+	function inputData() {
+			link1 = createLink('defect', 'ajaxInsertDefectData');
+			$('#getResult').load(link1);
+	}	
+</script>
 <body>
+	<span id="getResult"></span>
+	<input type="button" onclick="inputData()" value="生成数据" class="button-s"/>
 	<table width="100%" class="cont-lt1">
 		<tr valign="top">
 		  <?php include 'left.html.php';?>
