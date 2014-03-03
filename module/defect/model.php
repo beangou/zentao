@@ -214,10 +214,11 @@ class defectModel extends model
 		}
 		
 		
-		$newResult = $this->dao->select('T1.project, T2.name AS projectname, T1.developer, SUM(T1.devBug) AS devbugs, SUM(T1.testBug) AS testbugs,
+		$newResult = $this->dao->select('T1.project, T2.name AS projectname, T3.realname AS developer, SUM(T1.devBug) AS devbugs, SUM(T1.testBug) AS testbugs,
 				(SUM(T1.devBug)+SUM(T1.testBug)) AS allbugs, SUM(T1.devBug)/(SUM(T1.devBug)+SUM(T1.testBug)) AS defect')
 						->from(TABLE_ICTDEFECT)->alias('T1')
 						->leftJoin(TABLE_PROJECT)->alias('T2')->on('T2.id = T1.project')
+						->leftJoin(TABLE_USER)->alias('T3')->on('T3.account = T1.developer')
 						->where('T1.product')->in($ids)
 						->andWhere('T1.developer')->ne('')
 						->groupBy('T1.project, T1.developer')

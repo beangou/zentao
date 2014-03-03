@@ -95,55 +95,50 @@ class defect extends control
 		//缺陷去除率
 		$queProDefect = @mysql_query("
 		SELECT *  FROM (
-	SELECT T1.product, T1.project, T3.realname AS assignedTo, T2.devbugs ,T1.testbugs FROM (
-	SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS testbugs FROM zt_bug t1, zt_testTask t2
-	WHERE   t2.product = t1.product
-		AND t2.project = t1.project
-		AND t2.begin <= t1.openedDate
-		AND t1.assignedTo != 'closed'
-	GROUP BY t1.product, t1.project, t1.assignedTo
-		) T1 LEFT JOIN (
-			
-	SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS devbugs FROM zt_bug t1, zt_testTask t2
-	WHERE   t2.product = t1.product
-		AND t2.project = t1.project
-		AND t2.begin > t1.openedDate
-		AND t1.assignedTo != 'closed'
-	GROUP BY t1.product, t1.project, t1.assignedTo
-		) T2 ON (
-		T1.product = T2.product
-		AND T1.project = T2.project
-		AND T1.assignedTo = T2.assignedTo
-	) LEFT JOIN zt_user T3 ON (
-			T1.assignedTo = T3.account
-		)
-			
-	UNION
-			
-	SELECT T1.product, T1.project, T3.realname AS assignedTo, T1.devbugs, T2.testbugs FROM (
-	SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS devbugs FROM zt_bug t1, zt_testTask t2
-	WHERE   t2.product = t1.product
-		AND t2.project = t1.project
-		AND t2.begin > t1.openedDate
-		AND t1.assignedTo != 'closed'
-	GROUP BY t1.product, t1.project, t1.assignedTo
-	 ) T1 LEFT JOIN (
-			
-	SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS testbugs FROM zt_bug t1, zt_testTask t2
-	WHERE   t2.product = t1.product
-		AND t2.project = t1.project
-		AND t2.begin <= t1.openedDate
-		AND t1.assignedTo != 'closed'
-	GROUP BY t1.product, t1.project, t1.assignedTo
-	) T2 ON (
-		T1.product = T2.product
-		AND T1.project = T2.project
-		AND T1.assignedTo = T2.assignedTo
-		) LEFT JOIN zt_user T3 ON (
-			T1.assignedTo = T3.account
-		)
-		
-	) T
+			SELECT T1.product, T1.project, T1.assignedTo, T2.devbugs ,T1.testbugs FROM (
+			SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS testbugs FROM zt_bug t1, zt_testTask t2
+			WHERE   t2.product = t1.product
+				AND t2.project = t1.project
+				AND t2.begin <= t1.openedDate
+				AND t1.assignedTo != 'closed'
+			GROUP BY t1.product, t1.project, t1.assignedTo
+				) T1 LEFT JOIN (
+					
+			SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS devbugs FROM zt_bug t1, zt_testTask t2
+			WHERE   t2.product = t1.product
+				AND t2.project = t1.project
+				AND t2.begin > t1.openedDate
+				AND t1.assignedTo != 'closed'
+			GROUP BY t1.product, t1.project, t1.assignedTo
+				) T2 ON (
+				T1.product = T2.product
+				AND T1.project = T2.project
+				AND T1.assignedTo = T2.assignedTo
+			)
+					
+			UNION
+					
+			SELECT T1.product, T1.project, T1.assignedTo, T1.devbugs, T2.testbugs FROM (
+			SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS devbugs FROM zt_bug t1, zt_testTask t2
+			WHERE   t2.product = t1.product
+				AND t2.project = t1.project
+				AND t2.begin > t1.openedDate
+				AND t1.assignedTo != 'closed'
+			GROUP BY t1.product, t1.project, t1.assignedTo
+			 ) T1 LEFT JOIN (
+					
+			SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS testbugs FROM zt_bug t1, zt_testTask t2
+			WHERE   t2.product = t1.product
+				AND t2.project = t1.project
+				AND t2.begin <= t1.openedDate
+				AND t1.assignedTo != 'closed'
+			GROUP BY t1.product, t1.project, t1.assignedTo
+			) T2 ON (
+				T1.product = T2.product
+				AND T1.project = T2.project
+				AND T1.assignedTo = T2.assignedTo
+				)
+		) T
 ") //执行SQL语句
 		or die("queProDefect SQL语句执行失败");
 		

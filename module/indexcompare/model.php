@@ -195,11 +195,12 @@ class indexcompareModel extends model
 		}
 		
 		
-		$newResult = $this->dao->select('T1.project, T3.name AS projectname, T1.openedBy, T1.initstory, T1.addstory,
+		$newResult = $this->dao->select('T1.project, T3.name AS projectname, T4.realname AS openedBy, T1.initstory, T1.addstory,
 				T1.changestory, T1.stability')
 						->from(TABLE_ICTSTABILITY)->alias('T1')
 						->leftJoin(TABLE_PRODUCT)->alias('T2')->on('T2.id = T1.product')
 						->leftJoin(TABLE_PROJECT)->alias('T3')->on('T3.id = T1.project')
+						->leftJoin(TABLE_USER)->alias('T4')->on('T4.account = T1.openedBy')
 						->where('T1.product')->in($productArr)
 						->andWhere('T1.openedBy')->ne('')
 						->groupBy('T1.product, T1.project, T1.openedBy')
@@ -280,10 +281,11 @@ class indexcompareModel extends model
 		}
 		
 		
-		$newResult = $this->dao->select('T1.project, T2.name AS projectname, T1.assignedTo, T1.closedtasks, T1.alltasks, 
+		$newResult = $this->dao->select('T1.project, T2.name AS projectname, T3.realname AS assignedTo, T1.closedtasks, T1.alltasks, 
  						T1.closedtasks/ T1.alltasks AS completed')
 						->from(TABLE_ICTCOMPLETED)->alias('T1')
 						->leftJoin(TABLE_PROJECT)->alias('T2')->on('T2.id = T1.project')
+						->leftJoin(TABLE_USER)->alias('T3')->on('T3.account = T1.assignedTo')
 						->where('T1.product')->in($productArr)
 						->andWhere('T1.assignedTo')->ne('')
 						->groupBy('T1.product, T2.id, T1.assignedTo')

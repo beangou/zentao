@@ -426,7 +426,7 @@ class indexcompare extends control
 	
 		//需求稳定度
 		$queProStability = @mysql_query("
-		SELECT T1.product, T1.project, T4.realname AS openedBy, T1.initstory, T2.addstory, T3.changestory FROM
+		SELECT T1.product, T1.project, T1.openedBy, T1.initstory, T2.addstory, T3.changestory FROM
 		(
 		SELECT t2.product, t1.project, t4.name, t2.openedBy, COUNT(t3.initstory_endtime) AS initstory
 		FROM zt_projectStory t1
@@ -456,7 +456,6 @@ class indexcompare extends control
 			AND t3.initstory_endtime < t2.lastEditedDate)
 		LEFT JOIN zt_project t4 ON(t4.id = t1.project)
 		GROUP BY t2.product, t1.project, t2.openedBy) T3 ON(T1.product=T3.product AND T1.project=T3.project AND T1.openedBy=T3.openedBy)
-		LEFT JOIN zt_user T4 ON (T1.openedBy = T4.account)
 		WHERE T1.product IS NOT NULL
 		")
 			or die("queProStability SQL语句执行失败");
@@ -509,7 +508,7 @@ class indexcompare extends control
 	
 		//任务完成率
 		$queProCompleted = @mysql_query("
-		SELECT T1.product, T1.project, T3.realname AS assignedTo, T2.closedtasks, T1.alltasks FROM (
+		SELECT T1.product, T1.project, T1.assignedTo, T2.closedtasks, T1.alltasks FROM (
 		SELECT t3.product, t1.project, t1.assignedTo, COUNT(t1.assignedTo) AS alltasks FROM zt_task t1 
 		LEFT JOIN zt_project t2 ON (t2.id = t1.project)
 		LEFT JOIN zt_projectProduct t3 ON (t3.project = t1.project)
@@ -527,7 +526,7 @@ class indexcompare extends control
 			T1.product = T2.product
 			AND T1.project = T2.project
 			AND T1.assignedTo = T2.assignedTo	
-		) LEFT JOIN zt_user T3 ON (T1.assignedTo = T3.account)
+		)
 		")
 		or die("queProCompleted SQL语句执行失败"); 
 		
