@@ -54,7 +54,6 @@ class indexcompareModel extends model
 	}
 	
 	public function getInitStoryEndTime() {
-		//SELECT id FROM zt_project WHERE id NOT IN(SELECT project_id FROM ict_initstory_endtime);
 		$recordedIds = indexcompare::dealForDbIn($this->dao->select('project_id')->from(TABLE_ICTINITSTORY_ENDTIME)->fetchAll());
 		$ids = $this->dao->select('t1.id, t1.name')->from(TABLE_PROJECT)->alias('t1')->where('t1.id')->notin($recordedIds)->fi()->fetchAll();
 		return $ids;
@@ -74,6 +73,118 @@ class indexcompareModel extends model
 		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t3.product = t4.id')
 		->fetchAll();
 	}
+	
+	/**
+	 * 查询产品
+	 */
+	public function getProduct($mode = '')
+	{
+		$orderBy  = !empty($this->config->product->orderBy) ? $this->config->product->orderBy : 'isClosed';
+		$mode    .= $this->cookie->productMode;
+		$products = $this->dao->select('*,  IF(INSTR(" closed", status) < 2, 0, 1) AS isClosed')
+		->from(TABLE_PRODUCT)
+		->where('deleted')->eq(0)
+		->beginIF(strpos($mode, 'noclosed') !== false)->andWhere('status')->ne('closed')->fi()
+		->orderBy($orderBy)
+		->fetchAll();
+		$pairs = array();
+		foreach($products as $product)
+		{
+			if($this->loadModel('product')->checkPriv($product))
+			{
+				$pairs[$product->id] = $product->name;
+			}
+		}
+		return $pairs;
+	}	
+	
+	//更改：项目缺陷缺陷去除率
+	public function myQueryDefect($ids = '') {
+		//测试阶段发现bug
+		$testBugs = $this->dao->select('t1.product, t4.name AS productname, t1.project, t3.name AS projectname, 0 AS devbugs, COUNT(*) AS testbugs, COUNT(*) AS allbugs, \'0%\' AS defect')->from(TABLE_BUG)->alias('t1')
+		->leftJoin(TABLE_USER)->alias('t2')->on('t1.openedBy = t2.account')
+		->leftJoin(TABLE_PROJECT)->alias('t3')->on('t3.id = t1.project')
+		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t4.id = t1.product')
+		->where('t2.role')->ne('dev')
+		->andWhere('t1.product')->in($ids)
+		->groupBy('t1.project')->orderBy('t1.product, t1.project')
+		->fetchAll();
+		$testBugLen = count($testBugs);
+	
+		//研发阶段发现bug
+		$devBugs = $this->dao->select('t1.project, COUNT(*) AS devbugs, COUNT(*) AS allbugs, \'100%\' AS defect')->from(TABLE_BUG)->alias('t1')
+		->leftJoin(TABLE_USER)->alias('t2')->on('t1.openedBy = t2.account')
+		->leftJoin(TABLE_PROJECT)->alias('t3')->on('t3.id = t1.project')
+		->leftJoin(TABLE_PRODUCT)->alias('t4')->on('t4.id = t1.product')
+		->where('t2.role')->eq('dev')
+		->andWhere('t1.product')->in($ids)
+		->groupBy('t1.project')->orderBy('t1.product, t1.project')
+		->fetchAll();
+		$devBugLen = count($devBugs);
+	
+		//组合两个阶段发现的bug
+		for ($j=0; $j<$devBugLen; $j++) {
+			//标志：用于判断测试阶段和研发阶段的记录是否可以合并，即显示在同一行内，否则，应该显示为两条记录
+			$flag = 0;
+			for ($i=0; $i<$testBugLen; $i++) {
+				if ($testBugs[$i]->project == $devBugs[$j]->project) {
+					$testBugs[$i]->devbugs = $devBugs[$i]->devbugs;
+					$testBugs[$i]->allbugs = ($devBugs[$j]->devbugs + $testBugs[$i]->testbugs);
+					$testBugs[$i]->defect = (100*round($testBugs[$i]->devbugs / ($testBugs[$i]->devbugs + $testBugs[$i]->testbugs), 4)). '%';
+					$flag = 1;
+					break;
+				}
+			}
+			//如果没有进行合并，需要将研发阶段的记录作为数组中一元素加到返回数组中
+			if ($flag == 0) {
+				array_push($testBugs, $devBugs[$j]);
+			}
+		}
+	
+	
+		// 		T1.product, T2.name AS productname, T3.name AS projectname, SUM(T1.devBug) AS devbugs, SUM(T1.testBug) AS testbugs,
+		// 				(SUM(T1.devBug)+SUM(T1.testBug)) AS allbugs, SUM(T1.devBug)/(SUM(T1.devBug)+SUM(T1.testBug)) AS defect
+	
+		$newResult = $this->dao->select('T1.product, T2.name AS productname, T3.name AS projectname, SUM(T1.devBug) AS devbugs, SUM(T1.testBug) AS testbugs,
+				(SUM(T1.devBug)+SUM(T1.testBug)) AS allbugs, SUM(T1.devBug)/(SUM(T1.devBug)+SUM(T1.testBug)) AS defect')
+					->from(TABLE_ICTDEFECT)->alias('T1')
+					->leftJoin(TABLE_PRODUCT)->alias('T2')->on('T2.id = T1.product')
+					->leftJoin(TABLE_PROJECT)->alias('T3')->on('T3.id = T1.project')
+					->where('T1.product')->in($ids)
+					->andWhere('T1.developer')->ne('')
+					->groupBy('T1.product, T1.project')
+					->orderBy('T1.product, T1.project')
+					->fetchAll();
+	
+		return indexcompare::dealArrForRowspan($newResult, 'product');
+	}
+	
+	//更改：个人缺陷缺陷去除率
+	public function myQueryPerDefect($ids = '') {
+		$newResult = $this->dao->select('T1.project, T2.name AS projectname, T3.account, T3.realname AS developer, SUM(T1.devBug) AS devbugs, SUM(T1.testBug) AS testbugs,
+				(SUM(T1.devBug)+SUM(T1.testBug)) AS allbugs, SUM(T1.devBug)/(SUM(T1.devBug)+SUM(T1.testBug)) AS defect')
+					->from(TABLE_ICTDEFECT)->alias('T1')
+					->leftJoin(TABLE_PROJECT)->alias('T2')->on('T2.id = T1.project')
+					->leftJoin(TABLE_USER)->alias('T3')->on('T3.account = T1.developer')
+					->where('T1.product')->in($ids)
+					->andWhere('T1.developer')->ne('')
+					->groupBy('T1.project, T1.developer')
+					->orderBy('T1.product, T1.project')
+					->fetchAll();
+	
+		return indexcompare::dealArrForRowspan($newResult, 'project');
+	}
+	
+	public function searchPerHisRate($account = '') {
+		$hisResult = $this->dao->select('t2.begin, t2.end, t2.name, t1.devBug, t1.total, t1.defect')
+					 ->from(TABLE_ICTDEFECT)->alias('t1')
+					 ->leftJoin(TABLE_PROJECT)->alias('t2')->on('t2.id = t1.project')
+					 ->where('t1.developer')->eq($account)
+					 ->orderBy('t2.begin')
+					 ->fetchAll();
+		return $hisResult; 
+	}
+	
 	
 	//查询项目需求稳定度
 	public function selectStability($productArr = array()) {

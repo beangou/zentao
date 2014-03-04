@@ -12,7 +12,7 @@
 <script type="text/javascript">
 	function inputData() {
 		//alert($('#project_id').val() + ';' + $('#endTime').val());
-			link1 = createLink('defect', 'ajaxInsertDefectData');
+			link1 = createLink('indexcompare', 'ajaxInsertDefectData');
 			$('#getResult').load(link1);
 	}	
 </script>

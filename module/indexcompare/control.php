@@ -13,7 +13,155 @@
  */
 class indexcompare extends control
 {
-    /**
+	
+	/**
+	 * 项目缺陷去除率
+	 */
+	public function defectRate()
+	{
+		$this->view->title = $this->lang->indexcompare->common;
+		$this->view->position[] 	= $this->lang->indexcompare->common;
+		$this->view->products		= $this->indexcompare->getProduct();
+		$defect 	= array();
+		if (!empty($_POST)){
+			foreach ($_POST as $ids){
+				// 				$defect = $this->defect->queryDefect($ids);
+				$defect = $this->indexcompare->myQueryDefect($ids);
+			}
+		}
+	
+		$this->view->defectRate = $defect;
+		$this->display();
+	}
+	
+	/**
+	 * 个人缺陷去除率
+	 */
+	public function personalRate()
+	{
+		$this->view->title = $this->lang->indexcompare->common;
+		$this->view->position[] 	= $this->lang->indexcompare->common;
+		$this->view->products		= $this->indexcompare->getProduct();
+		$defect 	= array();
+		if (!empty($_POST)){
+			foreach ($_POST as $ids){
+				// 				$defect = $this->defect->getPersonalRate($ids);
+				$defect = $this->indexcompare->myQueryPerDefect($ids);
+			}
+		}
+	
+		$this->view->personalRate = $defect;
+		$this->display();
+	}
+	
+	//查看历史个人缺陷率
+	public function perHisRate($account = '', $realname = '') 
+	{
+		$hisRateList = array();
+		$hisRateList = $this->indexcompare->searchPerHisRate($account);
+		$this->view->hisRateList = $hisRateList;
+		 
+		$this->view->developer = $realname;
+		$this->display();
+	}
+
+	//执行插入缺陷去除率操作
+	public function ajaxInsertDefectData() {
+		global $config;
+	
+		$con = @mysql_connect($config->db->host, $config->db->user, $config->db->password)
+		or die("数据库服务器连接失败");
+		@mysql_select_db($config->db->name) //选择数据库mydb
+		or die("数据库不存在或不可用");
+	
+		//缺陷去除率
+		$queProDefect = @mysql_query("
+		SELECT *  FROM (
+			SELECT T1.product, T1.project, T1.assignedTo, T2.devbugs ,T1.testbugs FROM (
+			SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS testbugs FROM zt_bug t1, zt_testTask t2
+			WHERE   t2.product = t1.product
+				AND t2.project = t1.project
+				AND t2.begin <= t1.openedDate
+				AND t1.assignedTo != 'closed'
+			GROUP BY t1.product, t1.project, t1.assignedTo
+				) T1 LEFT JOIN (
+			
+			SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS devbugs FROM zt_bug t1, zt_testTask t2
+			WHERE   t2.product = t1.product
+				AND t2.project = t1.project
+				AND t2.begin > t1.openedDate
+				AND t1.assignedTo != 'closed'
+			GROUP BY t1.product, t1.project, t1.assignedTo
+				) T2 ON (
+				T1.product = T2.product
+				AND T1.project = T2.project
+				AND T1.assignedTo = T2.assignedTo
+			)
+			
+			UNION
+			
+			SELECT T1.product, T1.project, T1.assignedTo, T1.devbugs, T2.testbugs FROM (
+			SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS devbugs FROM zt_bug t1, zt_testTask t2
+			WHERE   t2.product = t1.product
+				AND t2.project = t1.project
+				AND t2.begin > t1.openedDate
+				AND t1.assignedTo != 'closed'
+			GROUP BY t1.product, t1.project, t1.assignedTo
+			 ) T1 LEFT JOIN (
+			
+			SELECT t1.product, t1.project, t1.assignedTo, COUNT(*) AS testbugs FROM zt_bug t1, zt_testTask t2
+			WHERE   t2.product = t1.product
+				AND t2.project = t1.project
+				AND t2.begin <= t1.openedDate
+				AND t1.assignedTo != 'closed'
+			GROUP BY t1.product, t1.project, t1.assignedTo
+			) T2 ON (
+				T1.product = T2.product
+				AND T1.project = T2.project
+				AND T1.assignedTo = T2.assignedTo
+				)
+		) T
+") //执行SQL语句
+	or die("queProDefect SQL语句执行失败");
+	
+	$parentArr = array();
+	while($rs= @mysql_fetch_array($queProDefect)){
+		if ($rs[4]+$rs[3] == 0) {
+			continue;
+		}
+	
+		$sonArr = array();
+		array_push($sonArr, $rs[0]);
+		array_push($sonArr, $rs[1]);
+		if ($rs[3] == null) {
+			$rs[3] = 0;
+		}
+		if ($rs[4] == null) {
+			$rs[4] = 0;
+		}
+		array_push($sonArr, $rs[4]);
+		array_push($sonArr, $rs[3]);
+		array_push($sonArr, $rs[3]+$rs[4]);
+		array_push($sonArr, $rs[3]/($rs[3]+$rs[4]));
+	
+		array_push($sonArr, $rs[2]);
+		array_push($parentArr, $sonArr);
+			
+	}
+	
+	$splitNum = 1;
+	
+	foreach(array_chunk($parentArr, $splitNum) as $values){
+		@mysql_query($this->insertBatch(TABLE_ICTDEFECT, array('product', 'project', 'testBug', 'devBug', 'total', 'defect', 'developer'), $values));
+	}
+	
+	die('<script>alert("生成数据成功!")</script>');
+	mysql_close($con);
+	}
+	
+	
+	
+	/**
      * The index page of whole zentao system.
      * 
      * @access public
@@ -47,7 +195,7 @@ class indexcompare extends control
     	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
     	setcookie('projectTaskOrder', $orderBy, $this->config->cookieLife, $this->config->webRoot);
     	 
-    	$this->view->products		= $this->loadModel('defect')->getProduct();
+    	$this->view->products		= $this->indexcompare->getProduct();
 
     	$dbIds = $this->indexcompare->getInitStoryEndTime();
     	$viewIds = array();
@@ -73,7 +221,7 @@ class indexcompare extends control
     	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
     	setcookie('projectTaskOrder', $orderBy, $this->config->cookieLife, $this->config->webRoot);
     	 
-    	$this->view->products		= $this->loadModel('defect')->getProduct();
+    	$this->view->products		= $this->indexcompare->getProduct();
 
     	$dbIds = $this->indexcompare->getInitStoryEndTime();
     	$viewIds = array();
@@ -99,7 +247,7 @@ class indexcompare extends control
     	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
     	setcookie('projectTaskOrder', $orderBy, $this->config->cookieLife, $this->config->webRoot);
     	 
-    	$this->view->products		= $this->loadModel('defect')->getProduct();
+    	$this->view->products		= $this->indexcompare->getProduct();
     	$this->view->tasks = $this->indexcompare->selectCompleted($productArr);
     	
     	$this->display();
@@ -114,35 +262,35 @@ class indexcompare extends control
     	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
     	setcookie('projectTaskOrder', $orderBy, $this->config->cookieLife, $this->config->webRoot);
     
-    	$this->view->products		= $this->loadModel('defect')->getProduct();
+    	$this->view->products		= $this->indexcompare->getProduct();
     	$this->view->tasks = $this->indexcompare->selectPerCompleted($productArr);
     	 
     	$this->display();
     }
     
     public function productivity($orderBy = '') {
-    	if(!empty($_POST)) {
-    		$proname = $this->post->proname;
-    		$empname = $this->post->empname;
-    	}
     
     	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
     	setcookie('projectTaskOrder', $orderBy, $this->config->cookieLife, $this->config->webRoot);
     
-    	$selInfo = $this->indexcompare->getIndex($proname, $empname);
-    	$this->view->selInfo = $selInfo;
-    
-    	$this->view->products		= $this->loadModel('defect')->getProduct();
-    	$defect 	= array();
-    	if (!empty($_POST)){
-    		foreach ($_POST as $ids){
-    			$defect = $this->loadModel('defect')->queryDefect($ids);
-    		}
-    	}else {
-    		$defect = $this->loadModel('defect')->queryDefect(1);
-    	}
+    	$this->view->products		= $this->indexcompare->getProduct();
     	 
     	$this->display();
+
+    	
+//     	$productArr = array();
+//     	if(!empty($_POST)) {
+//     		$productArr = $this->post->ids;
+//     	}
+    	
+//     	if(!$orderBy) $orderBy = $this->cookie->projectTaskOrder ? $this->cookie->projectTaskOrder : 'status,id_desc';
+//     	setcookie('projectTaskOrder', $orderBy, $this->config->cookieLife, $this->config->webRoot);
+    	
+//     	$this->view->products		= $this->indexcompare->getProduct();
+//     	$this->view->tasks = $this->indexcompare->selectPerCompleted($productArr);
+    	
+//     	$this->display();
+    	
     }
     
     public function perProductivity($orderBy = '') {
@@ -157,15 +305,7 @@ class indexcompare extends control
     	$selInfo = $this->indexcompare->getIndex($proname, $empname);
     	$this->view->selInfo = $selInfo;
     
-    	$this->view->products		= $this->loadModel('defect')->getProduct();
-    	$defect 	= array();
-    	if (!empty($_POST)){
-    		foreach ($_POST as $ids){
-    			$defect = $this->loadModel('defect')->queryDefect($ids);
-    		}
-    	}else {
-    		$defect = $this->loadModel('defect')->queryDefect(1);
-    	}
+    	$this->view->products		= $this->indexcompare->getProduct();
     
     	$this->display();
     }
@@ -182,15 +322,7 @@ class indexcompare extends control
     	$selInfo = $this->indexcompare->getIndex($proname, $empname);
     	$this->view->selInfo = $selInfo;
     
-    	$this->view->products		= $this->loadModel('defect')->getProduct();
-    	$defect 	= array();
-    	if (!empty($_POST)){
-    		foreach ($_POST as $ids){
-    			$defect = $this->loadModel('defect')->queryDefect($ids);
-    		}
-    	}else {
-    		$defect = $this->loadModel('defect')->queryDefect(1);
-    	}
+    	$this->view->products		= $this->indexcompare->getProduct();
     
     	$this->display();
     }
@@ -207,15 +339,7 @@ class indexcompare extends control
     	$selInfo = $this->indexcompare->getIndex($proname, $empname);
     	$this->view->selInfo = $selInfo;
     
-    	$this->view->products		= $this->loadModel('defect')->getProduct();
-    	$defect 	= array();
-    	if (!empty($_POST)){
-    		foreach ($_POST as $ids){
-    			$defect = $this->loadModel('defect')->queryDefect($ids);
-    		}
-    	}else {
-    		$defect = $this->loadModel('defect')->queryDefect(1);
-    	}
+    	$this->view->products		= $this->indexcompare->getProduct();
     
     	$this->display();
     }

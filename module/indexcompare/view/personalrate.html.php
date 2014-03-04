@@ -11,7 +11,7 @@
 </style>
 <script type="text/javascript">
 	function inputData() {
-			link1 = createLink('defect', 'ajaxInsertDefectData');
+			link1 = createLink('indexcompare', 'ajaxInsertDefectData');
 			$('#getResult').load(link1);
 	}	
 </script>
@@ -41,12 +41,13 @@
   		   <table class="table-1 fixed colored datatable border-sep" id="product">
   			  <thead>
   			  	<tr class="colhead">
-  			  		<th width='260'><?php echo $lang->defect->project;?></th>
+  			  		<th><?php echo $lang->defect->project;?></th>
   			  		<th><?php echo $lang->defect->name;?></th>
   			  		<th><?php echo $lang->defect->devBug;?></th>
   			  		<th><?php echo $lang->defect->testBug;?></th>
   			  		<th><?php echo $lang->defect->total;?></th>
   			  		<th><?php echo $lang->defect->personalRate;?></th>
+  			  		<th><?php echo $lang->defect->perHisRate;?></th>
   			  	</tr>
   			  </thead>
   			  <tbody>
@@ -63,6 +64,12 @@
 					<td><?php echo $defect->testbugs;?></td>
 					<td><?php echo $defect->allbugs;?></td>
 					<td><?php echo 100*round($defect->defect, 4). '%';?></td>
+					<td>
+						<?php
+						//common::printIcon('indexcompare', 'perHisRate', "projectID=1&taskID=2", '', 'list', '', '_self', 'iframe', true);
+						?>
+						<a href="/zentao/www/index.php?m=indexcompare&amp;f=perHisRate&amp;account=<?php echo $defect->account;?>&amp;realname=<?php echo $defect->developer;?>&amp;onlybody=yes" target="" class="link-icon iframe cboxElement" title="查看">查看</a>
+					</td>
   			  	</tr>
   			  <?php endforeach;?>
   			  </tbody>
