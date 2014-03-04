@@ -386,8 +386,11 @@ class indexcompare extends control
 		$productAdd = 0;
 		$productChange = 0;
 		for ($i=0; $i<count($temp); $i++){
-			$temp[$i]->stability = 100*round(1-
-						($temp[$i]->addstory+$temp[$i]->changestory)/($temp[$i]->addstory+$temp[$i]->changestory+$temp[$i]->initstory), 4). '%'; 
+			if ($temp[$i]->initstory == 0) {
+				$temp[$i]->stability = '不存在';
+			} else {
+				$temp[$i]->stability = round(($temp[$i]->addstory + $temp[$i]->changestory)/$temp[$i]->initstory, 2); 
+			}
 			if ($temp[$i]->$key == $temp[$rowspanIndex]->$key) {
 				$productInit += $temp[$i]->initstory;
 				$productAdd += $temp[$i]->addstory;
@@ -396,7 +399,7 @@ class indexcompare extends control
 			} else {
 				$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
 				$rowspanValue = 1;
-				$temp[$rowspanIndex]->productStability = 100*round(1-($productAdd+$productChange) / ($productAdd+$productChange+$productInit), 4). "%";
+				$temp[$rowspanIndex]->productStability = round(($productAdd+$productChange) / $productInit, 2);
 				
 				$rowspanIndex = $i;
 				$productInit = $temp[$i]->initstory;
@@ -406,7 +409,7 @@ class indexcompare extends control
 		}
 		if ($rowspanValue > 0) {
 			$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
-			$temp[$rowspanIndex]->productStability = 100*round(1-($productAdd+$productChange) / ($productAdd+$productChange+$productInit), 4). "%";
+			$temp[$rowspanIndex]->productStability = round(($productAdd+$productChange) / $productInit, 2);
 		}
 		/* End. */
 		return $temp;
@@ -463,6 +466,7 @@ class indexcompare extends control
 					continue;
 				}
 				$sonArr = array();
+				$stabilityStr = '';
 				array_push($sonArr, $rs[0]);
 				array_push($sonArr, $rs[1]);
 				array_push($sonArr, $rs[2]);
@@ -473,8 +477,11 @@ class indexcompare extends control
 				if ($rs[5] == null) {
 					$rs[5] = 0;
 				}
-				
-				$stabilityStr = 100*round(1 - ($rs[4]+$rs[5])/$rs[3]+$rs[4]+$rs[5], 4). '%';
+				if ($rs[3] == 0) {
+					$stabilityStr = '不存在';
+				} else {
+					$stabilityStr = round(($rs[4] + $rs[5])/$rs[3], 2);
+				}
 					
 				array_push($sonArr, $rs[3]);
 				array_push($sonArr, $rs[4]);
