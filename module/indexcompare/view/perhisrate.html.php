@@ -32,7 +32,7 @@
   			  		<td><?php echo $hisRate->name;?></td>
   			  		<td><?php echo $hisRate->devBug;?></td>
   			  		<td><?php echo $hisRate->total;?></td>
-  			  		<td><?php echo $hisRate->defect;?></td>
+  			  		<td><?php echo 100*round($hisRate->defect, 4). '%'?></td>
   			  	</tr>
   			  <?php endforeach;?>
   			  </tbody>
