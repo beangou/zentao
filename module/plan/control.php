@@ -27,15 +27,24 @@ class plan extends control{
 // 		if (empty($finish)) $finish = date('Y-m-d',time()+7*24*3600);
 		$week = floor(date('W',strtotime($finish)));
 		$account = $this->app->user->account;
-		$this->view->weekPlan		= $this->plan->queryWeekPlan($account, $week, 0, $pager);
-		$this->view->date           = (int)$finish == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($finish));
-		$this->view->team			= $this->plan->getTeaminfo();
-		$this->view->currentPlan	= $this->plan->queryCurrentPlans($account);
-		$this->view->lastPlan 		= $this->plan->queryLastPlan(date('Y-m-d', time()+7*24*3600));
-		$this->view->users			= $this->plan->queryUser();
-		$this->view->pager        	= $pager;
+		
+		$this->view->thisWeekPlan = $this->plan->queryPlanByTime(date('Y-m-d', time()));  
+// 		$this->view->weekPlan		= $this->plan->queryWeekPlan($account, $week, 0, $pager);
+// 		$this->view->date           = (int)$finish == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($finish));
+// 		$this->view->team			= $this->plan->getTeaminfo();
+// 		$this->view->currentPlan	= $this->plan->queryCurrentPlans($account);
+// 		$this->view->lastPlan 		= $this->plan->queryLastPlan(date('Y-m-d', time()+7*24*3600));
+// 		$this->view->users			= $this->plan->queryUser();
+// 		$this->view->pager        	= $pager;
 		$this->display();
 	}
+	
+	
+// 	public function addWeekPlan() {
+// 		$this->plan->addWeekPlan();
+// 	}
+	
+	
 	public function queryplan($date = ''){
 		$this->view->title = $this->lang->plan->common . $this->lang->colon . $this->lang->plan->queryPlan;
 		$this->view->position[] 	= $this->lang->plan->queryPlan;

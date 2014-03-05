@@ -116,11 +116,6 @@ $lang->plan->rank					= '月排名';
 $lang->plan->score					= '月计划完成率';
 
 $lang->plan->planCheck				= '周计划审核';
-$lang->plan->periods['myplan']      = '我的计划';
-$lang->plan->periods['queryplan']   = '计划查询';
-$lang->plan->periods['deal']	    = '待我处理';
-$lang->plan->periods['members']     = '成员计划';
+$lang->plan->periods['myplan']      = '我的计划';//主要是新增计划可以查看
+$lang->plan->periods['queryplan']   = '计划查询';//只可查询，不可操作
 $lang->plan->periods['handle']      = '待我审核';
-$lang->plan->periods['proteam'] 	= '项目组设定';
-$lang->plan->periods['membset']     = '成员设定';
-$lang->plan->periods['planrate']    = '月计划完成率';

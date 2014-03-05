@@ -91,34 +91,65 @@ class planModel extends model{
 		if(!$plan) return false;
 		return $plan;
 	}
+	
+	
+	
+	
+	/**
+	 * 获取周计划
+	 * @param unknown_type $finishedDate
+	 */
+	public function queryPlanByTime($finishedDate)
+	{
+		$account = $this->app->user->account;
+// 		$weekno = date('W', strtotime($finishedDate)); 
+// 		$other = date('W', strtotime($this->post->finishedDate));
+		$date_now=date("j"); //得到几号
+		$cal_result=ceil($date_now/7);
+		$myplan = $this->dao->select('*')->from(TABLE_ICTWEEKPLAN)->where('account')->eq($account)->andWhere('weekno')
+		->eq($cal_result)->fetchAll();
+// 		foreach ($lastPlan as $last){
+// 			$this->lang->plan->abcSort[$last->sort.'1'] = $last->sort.'1';
+// 			$last->sort 		= $this->lang->plan->abcSort[$last->sort.'1'];
+// 			$last->finishedDate = $finishedDate;
+// 			$last->week	  		= date('W',strtotime($finishedDate));
+// 		}
+		return $myplan;
+	}
+	
+	/**
+	 * 批量更新周计划（自评周计划）
+	 * */
+// 	public function batchUpdateWeekplan() {
+		
+// 	}
+	
 	/**
 	 * 批量增加周计划
 	 */
 	public function batchCreate()
 	{
 		$plans = fixer::input('post')->get();
-		for ($i = 0; $i < count($_POST['types']); $i++){
-			$taskID = $plans->taskID[$i]!==''?$plans->taskID[$i]:time();
-			$null = $this->dao->select('*')->from(TABLE_ICTWEEKPLAN)->where('charge')->eq($this->app->user->account)
-				->andWhere('(id')->eq((int)$plans->taskID[$i])->orWhere("taskID = $taskID)")
-				->andWhere('week')->eq(date('W', strtotime($this->post->limit)))->fetch();
-			if ($plans->sorts[$i] != '' && $plans->matters[$i] != ''){
+		
+		//批量插入周计划
+		for ($i = 0; $i < count($_POST['type']); $i++){
+			if ($plans->matter[$i] != ''){
 				$plan 				= new stdClass();
-				$plan->startDate	= isset($this->post->startDate)?$this->post->startDate:$this->post->limit;
-				$plan->finishedDate	= isset($this->post->finishedDate)?$this->post->finishedDate:$this->post->limit;				$plan->week			= date('W', strtotime($this->post->finishedDate));
-				$plan->charge   	= $this->app->user->account;
-				$plan->type			= $plans->types[$i];
-				$plan->sort			= $plans->sorts[$i];
-				$plan->matter		= $plans->matters[$i];
-				$plan->plan			= $plans->plans[$i];
-				if(isset($plan->appraises[$i]))$plan->appraise		= $plans->appraises[$i];
-				$plan->auditor		= $plans->auditors[$i];
-				$plan->limit		= $this->post->limit;
-				$plan->week			= date('W', strtotime($this->post->limit));
-				$plan->isSubmit		= !empty($_GET['isSubmit'])?$_GET['isSubmit']:'0';
-				if(isset($plans->taskID[$i]))$plan->taskID		= $taskID;
+				$plan->account   	= $this->app->user->account;
+				$plan->type			= $plans->type[$i];
+				$plan->matter		= $plans->matter[$i];
+				$plan->plan			= $plans->plan[$i];
+				$plan->deadtime     = $plans->deadtime[$i];
+				
+				//获取下个星期的月份和第几个星期
+				$nextWeek = date('Y-m-d', time()+7*24*3600);
+				$timeSplit = explode('-', $nextWeek);
+				
+				$plan->month 		= $timeSplit[1];
+				$plan->weekno		= ceil($timeSplit[2]/7);
+				$plan->submitTo		= $plans->submitTo[$i];
 				if (empty($null))$this->dao->insert(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->exec();
-				else $this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->where('id')->eq((int)$null->id)->exec();
+// 				else $this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->where('id')->eq((int)$null->id)->exec();
 				if(dao::isError())
 				{
 					echo js::error(dao::getError());
@@ -126,15 +157,73 @@ class planModel extends model{
 				}
 			}
 			else {
-				unset($plans->types[$i]);
-				unset($plans->sorts[$i]);
-				unset($plans->matters[$i]);
-				unset($plans->plans[$i]);
-				unset($plans->appraises[$i]);
-				unset($plans->auditors[$i]);
-				unset($plans->limits[$i]);
-			} 
+				unset($plans->type[$i]);
+				unset($plans->matter[$i]);
+				unset($plans->plan[$i]);
+				unset($plans->deadtime[$i]);
+				unset($plans->submitTo[$i]);
+			}
 		}
+		
+		//批量自评周计划
+		for ($i = 0; $i < count($_POST['status']); $i++){
+				$plan 				= new stdClass();
+				$plan->account   	= $this->app->user->account;
+		
+				$plan->status 		= $plans->status[$i];
+				$plan->evidence     = $plans->evidence[$i];
+				$plan->courseAndSolution    = $plans->courseAndSolution[$i];
+				
+				$this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->where('id')->eq((int)$plans->ids[$i])->exec();
+				if(dao::isError())
+				{
+					echo js::error(dao::getError());
+					die(js::reload('parent'));
+				}
+		}
+		
+		
+		
+		
+		
+// 		for ($i = 0; $i < count($_POST['types']); $i++){
+// 			$taskID = $plans->taskID[$i]!==''?$plans->taskID[$i]:time();
+// 			$null = $this->dao->select('*')->from(TABLE_ICTWEEKPLAN)->where('charge')->eq($this->app->user->account)
+// 				->andWhere('(id')->eq((int)$plans->taskID[$i])->orWhere("taskID = $taskID)")
+// 				->andWhere('week')->eq(date('W', strtotime($this->post->limit)))->fetch();
+// 			if ($plans->sorts[$i] != '' && $plans->matters[$i] != ''){
+// 				$plan 				= new stdClass();
+// 				$plan->startDate	= isset($this->post->startDate)?$this->post->startDate:$this->post->limit;
+// 				$plan->finishedDate	= isset($this->post->finishedDate)?$this->post->finishedDate:$this->post->limit;				$plan->week			= date('W', strtotime($this->post->finishedDate));
+// 				$plan->charge   	= $this->app->user->account;
+// 				$plan->type			= $plans->types[$i];
+// 				$plan->sort			= $plans->sorts[$i];
+// 				$plan->matter		= $plans->matters[$i];
+// 				$plan->plan			= $plans->plans[$i];
+// 				if(isset($plan->appraises[$i]))$plan->appraise		= $plans->appraises[$i];
+// 				$plan->auditor		= $plans->auditors[$i];
+// 				$plan->limit		= $this->post->limit;
+// 				$plan->week			= date('W', strtotime($this->post->limit));
+// 				$plan->isSubmit		= !empty($_GET['isSubmit'])?$_GET['isSubmit']:'0';
+// 				if(isset($plans->taskID[$i]))$plan->taskID		= $taskID;
+// 				if (empty($null))$this->dao->insert(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->exec();
+// 				else $this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->where('id')->eq((int)$null->id)->exec();
+// 				if(dao::isError())
+// 				{
+// 					echo js::error(dao::getError());
+// 					die(js::reload('parent'));
+// 				}
+// 			}
+// 			else {
+// 				unset($plans->types[$i]);
+// 				unset($plans->sorts[$i]);
+// 				unset($plans->matters[$i]);
+// 				unset($plans->plans[$i]);
+// 				unset($plans->appraises[$i]);
+// 				unset($plans->auditors[$i]);
+// 				unset($plans->limits[$i]);
+// 			} 
+// 		}
 	}
 	/**
 	 * 更新修改的单条周计划

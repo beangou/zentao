@@ -14,198 +14,93 @@
       }
       ?>
     </div>
-    <div class='f-right'>
-      <?php $finish = str_replace('-', '', date('Y-m-d', time()));
-      common::printIcon('plan', 'export', "finish=$finish&from=myplan");
-//       common::printIcon('plan', 'batchCreate', "date=" . str_replace('-', '', $date));
-//       common::printIcon('plan', 'create', "date=" . str_replace('-', '', $date));
-      ?>
-    </div>
   </div>
- <table class='table-1' id="addPlan"> 
-    <caption> 
-	    <div class='f-left'><?php echo $lang->plan->limit. $lang->colon . html::input('limit', date('Y-m-d',strtotime($date)+7*24*3600), "class='select-2 date'");?></div>
-    </caption>
-    <tr>
-      <th class='w-30px'>编号</th>
-      <th class='w-80px'><?php echo $lang->plan->type;?></th>
-      <th class='w-50px'><?php echo $lang->plan->sort;?></th>
+  
+  <table class='table-1' id="addPlan"> 
+    <caption><div align="center">自评本周计划完成情况(3月第1周        &nbsp;2014/03/01~2014/03/07)</div></caption>
+    <thead>
+      <th>编号</th>
+      <th><?php echo $lang->plan->sort;?></th>
       <th><?php echo $lang->plan->matter;?></th>
-      <th class='w-p50 red'><?php echo $lang->plan->plan;?></th>
-      <th class='w-80px'><?php echo $lang->plan->auditor;?></th>
-      <!-- <th class='w-82px'><?php echo $lang->plan->limit;?></th> -->
-      <th class='w-130px'><?php echo $lang->actions;?></th>
-    </tr>
+      <th><?php echo $lang->plan->plan;?></th>
+      <th>完成时限</th>
+      <th>完成情况</th>
+      <th>见证性材料</th>
+      <th>未完成原因说明及如何补救</th>
+      <th>审核人</th>
+    </thead>
     <?php 
     $stepID = 0;
-    if (!empty($lastPlan)):
-    foreach ($lastPlan as $plans):
+    if (!empty($thisWeekPlan)):
+    foreach ($thisWeekPlan as $plan):
     $stepID += 1;
     ?>
     <tr class='a-center' id="row<?php echo $stepID?>">
-      <td class='stepID'><?php echo $stepID ;?></td>
-      <td><?php echo html::hidden("taskID[]", $plans->id, "class=text-1");?>
-      <?php echo html::select("types[]", $lang->plan->types, isset($plans->type)?$plans->type:'', "class='select-1'");?></td>
-      <td><?php echo html::input("sorts[]", isset($plans->sort)?$plans->sort:'', "class='select-1'onkeyup='this.value=this.value.toUpperCase()'");?></td>
-      <td><?php echo html::input("matters[]", isset($plans->matter)?$plans->matter:$plans->name, 'class="f-left text-1"');?></td>
-      <td><?php echo html::input("plans[]", isset($plans->plan)?$plans->plan:'', "class=text-1");?></td>
-       <td><?php echo html::select("auditors[]", $users, isset($plans->auditor)?$plans->auditor:'', "class='select-1'");?></td>
-     <!--  <td><input name="limits[]" class="text-1 date" value="<?php echo $plans->limit?>"/></td> -->
-      <td><?php echo html::commonButton($lang->plan->delete, "onclick='deleteRow($stepID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepID)'")?></td>
+      <td class='stepID'><?php echo $stepID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
+      <td><?php echo $plan->type;?></td>
+      <td><?php echo $plan->matter;?></td>
+      <td><?php echo $plan->plan;?></td>
+      <td><?php echo $plan->deadtime;?>
+      <td><select name='status[]'>
+      		<option value='完成' <?php if('完成'==$plan->status){echo 'selected="selected"';}?>>完成</option>
+      		<option value='延期完成' <?php if('延期完成'==$plan->status){echo 'selected="selected"';}?>>延期完成</option>
+      		<option value='经领导允许延期完成' <?php if('经领导允许延期完成'==$plan->status){echo 'selected="selected"';}?>>经领导允许延期完成</option>
+      		<option value='未完成' <?php if('未完成'==$plan->status){echo 'selected="selected"';}?>>未完成</option>	
+          </select>
+      </td>
+      <td><?php echo html::input("evidence[]", $plan->evidence, "class=text-1");?></td>
+      <td><?php echo html::input("courseAndSolution[]", $plan->courseAndSolution, "class=text-1");?></td>
+      <td><?php echo $plan->submitTo;?></td>
     </tr>
     <?php endforeach;?>
     <?php else :
     $stepID = 1;
     ?>
     <tr class='a-center' id="row<?php echo $stepID?>">
-      <td class='stepID'><?php echo $stepID ;?></td>
-      <td><?php echo html::hidden("taskID[]", '', "class=text-1");?><?php echo html::select("types[]", $lang->plan->types, '', "class='select-1'");?></td>
-      <td><?php echo html::input("sorts[]", '', "class='select-1' onkeyup='this.value=this.value.toUpperCase()'");?></td>
-      <td><?php echo html::input("matters[]", '', 'class="f-left text-1"');?></td>
-      <td><?php echo html::input("plans[]", '', "class=text-1");?></td>
-       <td><?php echo html::select("auditors[]", $users, '', "class='select-1'");?></td>
-      <td><?php echo html::commonButton($lang->plan->delete, "onclick='deleteRow($stepID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepID)'")?></td>
+      <td class='stepID' colspan="9">无数据</td>
     </tr>
     <?php endif;?><?php $link = $this->createLink('plan', 'myplan', "isSubmit=1")?>
-    <tr><td colspan='7' class='a-center'><?php echo html::submitButton($lang->save, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=0") . "\")'") . 
-    		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=1") . "\")'").
-    		html::submitButton($lang->plan->lastPlan, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "plan=last") . "\")'") ;?>
+    <tr><td colspan='7' class='a-center'><?php echo  
+    		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=1") . "\")'") ;?>
     </td></tr>
   </table>
- 
-    <!-- 
-    <div align="center" style="font-size: 15px;margin: 18px 0px 6px 0px;">
-	    <?php echo date('Y年m月d日', strtotime($date)).' 第'.date('W', strtotime($date)).''.$lang->plan->planTitle;
-	    if (!empty($team)):
-	    echo ''.$team->team.'';
-	    endif;
-	    ?>
-    
-    </div>
-  <table class='table-1 tablesorter fixed colored datatable newBoxs'>
-    <thead>
-    <tr class='colhead'>
-      <th style="width: 20px;"></th>
-      <th style="width: 60px;"><?php echo $lang->plan->type;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->sort;?></th>
-      <th style="width: 200px;"><?php echo $lang->plan->matter;?></th>
-      <th ><?php echo $lang->plan->plan;?></th>
-      <th style="width: 70px;"><?php echo $lang->plan->limit;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->appraise;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->complete;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->auditor;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->status;?></th>
-      <th style="width: 80px;"><?php echo $lang->plan->remark;?></th>
-      <th style="width: 60px;"><?php echo $lang->actions;?></th>
-    </tr>
-    </thead>
-    <tbody>
-    <?php if (empty($weekPlan)):?>
-    <tr><td colspan="12" style="text-align: right;"><?php echo $lang->pager->noRecord ;?></td></tr>
-    <?php elseif (!empty($weekPlan)):?>
-    <?php foreach ((array)$weekPlan as $week):?>
-    <tr class='a-center'>
-    	<td><input type='checkbox' name='planIDList[<?php echo $week->id;?>]' value='<?php echo $week->id;?>' /></td>
-		<td><?php echo $lang->plan->types[$week->type];?></td>
-	    <td><?php echo $lang->plan->abcSort[$week->sort];?></td>
-        <td class='a-left' title="<?php echo $week->matter?>">
-        <?php echo $week->status !=3 ? html::a($this->createLink('plan', 'edit', "id=$week->id", '') , $week->matter, '', "") : $week->matter;?></td>
-        <td class='a-left' title="<?php echo $week->plan?>"><?php echo $week->plan;?></td>
-        <td><?php echo $week->limit;?></td>
-        <td><?php echo $lang->plan->completed[$week->appraise];?></td>
-        <td class='<?php if ($week->complete==1)echo 'delayed'?>'><?php echo $lang->plan->completed[$week->complete];?></td>
-        <td><?php echo $week->auditorName;?></td>
-        <td><?php echo $lang->plan->handleStatus[$week->status];?></td>
-        <td title="<?php echo $week->remark?>"><?php echo $week->remark;?></td>
-        <td>
-          <?php 
-          	if ($week->complete == 0 || $week->complete == 1){
-	          common::printIcon('plan', 'edit',   "id=$week->id&from=myplan", '', 'list');
-	          common::printIcon('plan', 'delete', "id=$week->id&module=myplan&date=" . str_replace('-', '', $date), '', 'list', '', 'hiddenwin');
-          	}
-          ?>
-        </td>
-    </tr>
-    <?php endforeach;?>
-    <?php endif;?>
-    <tr class='a-center'></tr>
-    </tbody>
-    <?php if (!empty($weekPlan)):?>
-    <tfoot>
-       <tr>
-          <td colspan='12' class='a-right'>
-              <div class='f-left'>
-              <?php
-                 echo html::selectAll() . html::selectReverse();
-                 
-                      $actionLink = $this->createLink('plan', 'batchEdit', "from=planBrowse&date=". str_replace('-', '', $date));
-                      echo html::commonButton($lang->edit, "onclick=\"changeAction('planform', 'batchEdit', '$actionLink')\"");
-              ?>
-              </div>
-            </td>
-        </tr>
-    </tfoot>
-    <?php endif;?>
-  </table>
-  -->
   
-     <div align="center" style="font-size: 15px;margin-bottom: 6px;margin-top: 20px;">
-    <?php echo date('Y年m月d日', time()).' 第'.date('W', time()).''.$lang->plan->planTitle.$lang->plan->currentPlan;
-    if (!empty($team)):
-    echo ''.$team->team.'';
-    endif;
-    ?>
-    
-    </div>
-
-    <table class='table-1 tablesorter fixed colored datatable newBoxs'>
+  
+  <table class='table-1' id="addPlan" style="margin-top: 5%"> 
+    <caption><div align="center">填写下周计划<?php echo '(3月第2周        &nbsp;2014/03/8~2014/03/14)'?></div></caption>
     <thead>
-    <tr class='colhead'>
-      <th style="width: 20px;"></th>
-      <th style="width: 60px;"><?php echo $lang->plan->type;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->sort;?></th>
-      <th style="width: 200px;"><?php echo $lang->plan->matter;?></th>
-      <th ><?php echo $lang->plan->plan;?></th>
-      <th style="width: 70px;"><?php echo $lang->plan->limit;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->appraise;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->complete;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->auditor;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->status;?></th>
-      <th style="width: 80px;"><?php echo $lang->plan->remark;?></th>
-      <th style="width: 60px;"><?php echo $lang->actions;?></th>
-    </tr>
+      <th>编号</th>
+      <th><?php echo $lang->plan->sort;?></th>
+      <th><?php echo $lang->plan->matter;?></th>
+      <th><?php echo $lang->plan->plan;?></th>
+      <th>完成时限</th>
+      <th>审核人</th>
     </thead>
-    <tbody>
-    <?php if (empty($weekPlan)):?>
-    <tr><td colspan="12" style="text-align: right;"><?php echo $lang->pager->noRecord ;?></td></tr>
-    <?php elseif (!empty($weekPlan)):?>
-    <?php foreach ((array)$weekPlan as $week):?>
-    <tr class='a-center'>
-    	<td><input type='checkbox' name='planIDList[<?php echo $week->id;?>]' value='<?php echo $week->id;?>' /></td>
-		<td><?php echo $lang->plan->types[$week->type];?></td>
-	    <td><?php echo $week->sort;?></td>
-        <td class='a-left' title="<?php echo $week->matter?>">
-        <?php echo html::a($this->createLink('plan', $week->status !=3 ?'edit':'copy', "id=$week->id", '', true) , $week->matter, '', "class='colorbox'");?></td>
-        <td class='a-left' title="<?php echo $week->plan?>"><?php echo $week->plan;?></td>
-        <td><?php echo $week->limit;?></td>
-        <td><?php echo $lang->plan->completed[$week->appraise];?></td>
-        <td class='<?php if ($week->complete==1)echo 'delayed'?>'><?php echo $lang->plan->completed[$week->complete];?></td>
-        <td><?php echo $week->auditorName;?></td>
-        <td><?php echo $lang->plan->handleStatus[$week->status];?></td>
-        <td title="<?php echo $week->remark?>"><?php echo $week->remark;?></td>
-        <td>
-          <?php 
-          	if ($week->complete == 0 || $week->complete == 1){
-	          common::printIcon('plan', 'edit',   "id=$week->id&from=myplan", '', 'list');
-// 	          common::printIcon('plan', 'delete', "id=$week->id&module=myplan", '', 'list', '', 'hiddenwin');
-          	}
-          ?>
-        </td>
+    <?php 
+    $stepID = 1;
+    ?>
+    <tr class='a-center' id="row<?php echo $stepID?>">
+      <td class='stepID'><?php echo $stepID ;?></td>
+      <td><?php echo html::input("type[]", '', "class='select-1' onkeyup='this.value=this.value.toUpperCase()'");?></td>
+      <td><?php echo html::input("matter[]", '', 'class="f-left text-1"');?></td>
+      <td><?php echo html::input("plan[]", '', "class=text-1");?></td>
+      <td><?php echo  html::input('deadtime[]', date('Y-m-d',strtotime($date)+7*24*3600), "class='select-2 date'");?>
+      <td><?php echo html::input("submitTo[]", '', "class=text-1");?></td>
+      <td><?php echo html::commonButton($lang->plan->delete, "onclick='deleteRow($stepID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepID)'")?></td>
     </tr>
-    <?php endforeach;?>
-    <?php endif;?>
-    <tr class='a-center'></tr>
-    </tbody>
+    <?php $link = $this->createLink('plan', 'myplan', "isSubmit=1")?>
+    <tr><td colspan='7' class='a-center'>
+    <?php echo  
+    		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=1") . "\")'");?>
+    </td></tr>
   </table>
+  
+  
+  
+  
+  
+  
+  
+  
 </form>
 <?php include '../../common/view/footer.html.php';?>
