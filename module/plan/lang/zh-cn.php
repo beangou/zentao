@@ -127,3 +127,10 @@ $lang->plan->planCheck				= '周计划审核';
 $lang->plan->periods['myplan']      = '我的计划';//主要是新增计划可以查看
 $lang->plan->periods['queryplan']   = '查询计划';//只可查询，不可操作
 $lang->plan->periods['handle']      = '审核计划';
+
+// $lang->plan->myplan      = '我的计划';//主要是新增计划可以查看
+// $lang->plan->queryplan   = '查询计划';//只可查询，不可操作
+// $lang->plan->handle      = '审核计划';
+
+
+$lang->plan->searchplan				= '按日期查询';

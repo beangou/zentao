@@ -119,7 +119,7 @@ class planModel extends model{
 	}
 	
 	/**
-	 * 待我审核页面--待我审核计划查询
+	 * 待我审核页面--待我审核计划查询(审核条件必须得通过自评)
 	 * @param unknown_type $account
 	 * @param unknown_type $startDate
 	 * @param unknown_type $finishedDate
@@ -132,12 +132,14 @@ class planModel extends model{
 				->from(TABLE_ICTWEEKPLAN)
 				->where('submitTo')->eq($account)
 				->andWhere('confirmedOrNo')->eq('是')
+				->andWhere('status is not null')
 				->fetchAll();
 		//未审核周计划
 		$uncheckedWeekPlan = $this->dao->select('*')
 				->from(TABLE_ICTWEEKPLAN)
 				->where('submitTo')->eq($account)
 				->andWhere('confirmedOrNo')->eq('否')
+				->andWhere('status is not null')
 				->fetchAll();
 		array_push($myplan, $checkWeekPlan);
 		array_push($myplan, $uncheckedWeekPlan);
@@ -168,6 +170,22 @@ class planModel extends model{
 // 			$last->finishedDate = $finishedDate;
 // 			$last->week	  		= date('W',strtotime($finishedDate));
 // 		}
+		return $myplan;
+	}
+	
+	/**
+	 * 获取下周未通过的周计划
+	 * @param unknown_type $finishedDate
+	 */
+	public function queryNextUnpassPlan($firstDayOfWeek)
+	{
+		$account = $this->app->user->account;
+	
+		$myplan = $this->dao->select('*')->from(TABLE_ICTWEEKPLAN)
+		->where('account')->eq($account)
+		->andWhere('firstDayOfWeek')->eq($firstDayOfWeek)
+		->andWhere('confirmedOrNo')->eq('是')
+		->fetchAll();
 		return $myplan;
 	}
 	
@@ -208,7 +226,13 @@ class planModel extends model{
 				$plan->lastDayOfWeek	   = $myDateArr[1];								
 				
 				$plan->submitTo		= $plans->submitTo[$i];
-				if (empty($null))$this->dao->insert(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->exec();
+				if (empty($plans->ids[$i])) {
+					$this->dao->insert(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->exec();
+				} else {
+					//审核不通过，重新改，更新，此时，将计划状态设为“未审核”
+					$plan->confirmedOrNo = '否';
+					$this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->where('id')->eq($plans->ids[$i])->exec();
+				} 
 // 				else $this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->where('id')->eq((int)$null->id)->exec();
 				if(dao::isError())
 				{
@@ -285,6 +309,17 @@ class planModel extends model{
 // 			} 
 // 		}
 	}
+	
+	//根据输入日期查询
+	public function searchplan($account, $beginDate, $endDate) {
+		$searchResult = $this->dao->select('*')->from(TABLE_ICTWEEKPLAN)
+						->where('account')->eq($account)
+						->andWhere('firstDayOfWeek')->gt($beginDate)
+						->andWhere('lastDayOfWeek')->lt($endDate)
+						->fetchAll();
+		return $searchResult; 
+	}
+	
 	/**
 	 * 更新修改的单条周计划
 	 * @param unknown_type $planID

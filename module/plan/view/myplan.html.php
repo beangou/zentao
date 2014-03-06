@@ -76,25 +76,44 @@
       <th>完成时限</th>
       <th>审核人</th>
     </thead>
+    
+    
     <?php 
-    $stepAddID = 1;
+    $stepAddID = 0;
+//     if (!empty($nextWeekPlan)):
+    foreach ($nextWeekPlan as $plan):
+    $stepAddID += 1;
+    ?>
+    <tr class='a-center'>
+      <td class='stepID'><?php echo $stepAddID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
+      <td><?php echo html::input("type[]", $plan->type, "class=text-1");?></td>
+      <td><?php echo html::input("matter[]", $plan->matter, "class=text-1");?></td>
+      <td><?php echo html::input("plan[]", $plan->plan, "class=text-1");?></td>
+      <td><?php echo html::input("deadtime[]", $plan->deadtime, "class=text-1");?></td>
+      <td><?php echo html::input("submitTo[]", $plan->submitTo, "class=text-1");?></td>
+    </tr>
+    <?php endforeach;?>
+    <?php 
+//     else :
+    $stepAddID++;
     ?>
     <tr class='a-center' id="row<?php echo $stepAddID?>">
       <td class='stepAddID'><?php echo $stepAddID ;?></td>
       <td><?php echo html::input("type[]", '', "class='select-1' onkeyup='this.value=this.value.toUpperCase()'");?></td>
-      <td><?php echo html::input("matter[]", '', 'class="f-left text-1"');?></td>
+      <td><?php echo html::input("matter[]", '', 'class="text-1"');?></td>
       <td><?php echo html::input("plan[]", '', "class=text-1");?></td>
-      <td><?php echo  html::input('deadtime[]', date('Y-m-d',strtotime($date)+7*24*3600), "class='select-2 date'");?>
+      <td><?php echo html::input("deadtime[]", '', "class=text-1");?></td>
       <td><?php echo html::input("submitTo[]", '', "class=text-1");?></td>
       <td><?php echo html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID)'")?></td>
     </tr>
-    <?php $link = $this->createLink('plan', 'myplan', "isSubmit=1")?>
+    <?php 
+//     endif;?>
+    <?php $link = $this->createLink('plan', 'myplan', "isSubmit=1");?>
     <tr><td colspan='7' class='a-center'>
     <?php echo  
     		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=1") . "\")'");?>
     </td></tr>
   </table>
-  
   
   
   

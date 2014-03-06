@@ -29,7 +29,10 @@ class plan extends control{
 		$account = $this->app->user->account;
 		
 		$myDateArr = $this->getLastAndEndDayOfWeek();
-		$this->view->thisWeekPlan = $this->plan->queryPlanByTime($myDateArr[2]);  
+		$this->view->thisWeekPlan = $this->plan->queryPlanByTime($myDateArr[2]);
+
+		//查出下周未通过的周计划（第一天为本周六）
+		$this->view->nextWeekPlan = $this->plan->queryNextUnpassPlan($myDateArr[0]);
 // 		$this->view->weekPlan		= $this->plan->queryWeekPlan($account, $week, 0, $pager);
 // 		$this->view->date           = (int)$finish == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($finish));
 // 		$this->view->team			= $this->plan->getTeaminfo();
@@ -40,6 +43,23 @@ class plan extends control{
 		$this->display();
 	}
 	
+	/**
+	 * 按日期查询
+	 * */
+	public function searchplan() {
+		$this->view->title = $this->lang->plan->common . $this->lang->colon . $this->lang->plan->queryPlan;
+		$this->view->position[] 	= $this->lang->plan->queryPlan;
+		if (!empty($_POST)){
+			$beginDate = $this->post->beginDate;
+			$endDate   = $this->post->endDate;
+			//在开始时间和结束时间之内
+			$planArr = $this->plan->searchplan($this->app->user->account, $beginDate, $endDate);
+			if (dao::isError())die(js::error(dao::getError()));
+		}
+		$this->view->searchPlans = $planArr;
+		$this->display();
+	}
+	
 	
 // 	public function addWeekPlan() {
 // 		$this->plan->addWeekPlan();
@@ -47,7 +67,12 @@ class plan extends control{
 	
 	
 	//可以查询上周计划、本周计划、下周计划，以及根据输入时间查询计划
-	public function queryplan($date = ''){
+	public function queryplan($goSearch = ''){
+		
+// 		if (!empty($goSearch)){
+// 			$this->locate($this->createLink('plan', 'searchplan'));
+// 		}
+		
 		$this->view->title = $this->lang->plan->common . $this->lang->colon . $this->lang->plan->queryPlan;
 		$this->view->position[] 	= $this->lang->plan->queryPlan;
 // 		if (empty($date)) $date = date('Y-m-d',time());

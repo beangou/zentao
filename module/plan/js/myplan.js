@@ -95,10 +95,9 @@ function mycreateRow()
     var newRow    = "<tr class='a-center' id='row" + newRowID + "'>";
     newRow += "<td class='stepAddID'></td>";
     newRow += "<td><input name='type[]' class='select-1' onkeyup='this.value=this.value.toUpperCase()')</td>";
-    newRow += "<td><input name='matter[]' class='f-left text-1')</td>";
+    newRow += "<td><input name='matter[]' class='text-1')</td>";
     newRow += "<td><input name='plan[]' class='text-1'</td>";
-    newRow += "<td><input name='deadtime[]'>" +
-    		"<a href='#' class='dp-choose-date' title='选择日期'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>";
+    newRow += "<td><input name='deadtime[]' class='text-1'</td>";
     newRow += "<td><input name='submitTo[]' class='text-1'</td>";
 //    newRow += "<td><select name='submitTo[]' class='select-1'>";
 //    for(var key in obj){
