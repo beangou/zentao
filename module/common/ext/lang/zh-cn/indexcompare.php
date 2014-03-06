@@ -1,7 +1,9 @@
 <?php
 
+$lang->indexcompare = new stdclass();
+$lang->indexcompare->menu = new stdclass();
 // $lang->searchObjects['indexcompare'] = 'IC:指标评比';
-$lang->menu->indexcompare = '禅道度量|indexcompare|index';
+$lang->menu->indexcompare = '禅道度量|indexcompare|defectrate';
 // $lang->menuOrder[21] = 'repo';
 /*
 $lang->indexcompare->menu->list    = '%s';
@@ -16,10 +18,11 @@ $lang->indexcompare->menu->create  = array('link' => '<span class="icon-add">&nb
  * The effort module zh-cn file of ZenTaoPMS.
  */
 
-$lang->indexcompare->menu = $lang->indexcompare->menu;
+// $lang->indexcompare->menu = $lang->indexcompare->menu;
 /*添加导航条*/
-$lang->menugroup->indexcompare   	= 'indexcompare';
+// $lang->menugroup->indexcompare   	= 'indexcompare';
 
+$lang->indexcompare->common			= '禅道度量';
 
 $lang->indexcompare->menu->defectRate     = array('link' => '项目缺陷|indexcompare|defectrate|','alias' => 'personalrate');
 

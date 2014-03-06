@@ -16,72 +16,87 @@
   </div>
   
   <table class='table-1 tablesorter fixed colored datatable newBoxs'>
+    <caption><div align="center">未审核计划</div></caption>
     <thead>
     <tr class='colhead'>
-      <th style="width: 20px;"></th>
-      <th style="width: 60px;"><?php echo $lang->plan->type;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->sort;?></th>
-      <th style="width: 200px;"><?php echo $lang->plan->matter;?></th>
+      <th><?php echo $lang->plan->type;?></th>
+      <th><?php echo $lang->plan->matter;?></th>
       <th><?php echo $lang->plan->plan;?></th>
-      <th style="width: 70px;"><?php echo $lang->plan->limit;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->appraise;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->complete;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->charge;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->status;?></th>
-      <th style="width: 80px;"><?php echo $lang->plan->remark;?></th>
-      <th style="width: 60px;"><?php echo $lang->actions;?></th>
+      <th><?php echo $lang->plan->deadtime;?></th>
+      <th><?php echo $lang->plan->status;?></th>
+      <th><?php echo $lang->plan->account;?></th>
+      <th><?php echo $lang->plan->confirmed;?></th>
+      <th><?php echo $lang->plan->remark;?></th>
     </tr>
     </thead>
     <tbody>
-    <?php if (empty($checkPlan)):?>
-    <tr><td colspan="12" style="text-align: right;"><?php echo $lang->pager->noRecord ;?></td></tr>
-    <?php elseif (!empty($checkPlan)):?>
-    <?php foreach ((array)$checkPlan as $week):?>
+    <?php if (empty($uncheckedPlan)):?>
+    <tr><td colspan="8" style="text-align: right;"><?php echo $lang->pager->noRecord ;?></td></tr>
+    <?php elseif (!empty($uncheckedPlan)):?>
+    <?php foreach ((array)$uncheckedPlan as $week):?>
     <tr class='a-center'>
-    	<td><input type='checkbox' name='planIDList[<?php echo $week->id;?>]' value='<?php echo $week->id;?>' /></td>
-		<td><?php echo $lang->plan->types[$week->type];?></td>
-	    <td><?php echo $week->sort;?></td>
-        <td class='a-left' title="<?php echo $week->matter?>">
-        <?php echo html::a($this->createLink('plan', 'copy', "id=$week->id", '') , $week->matter, '', "class='colorbox'");?></td>
-        <td class='a-left' title="<?php echo $week->plan?>"><?php echo $week->plan;?></td>
-        <td><?php echo $week->limit;?></td>
-        <td><?php echo $lang->plan->completed[$week->appraise];?></td>
-        <td class='<?php if ($week->complete==1)echo 'delayed'?>'><?php echo $lang->plan->completed[$week->complete];?></td>
-        <td><?php echo $week->chargeName;?></td>
-        <td><?php echo $lang->plan->handleStatus[$week->status];?></td>
-        <td title="<?php echo $week->remark?>"><?php echo $week->remark;?></td>
-        <td>
-          <?php
-          		common::printIcon('plan', 'finish', "planID=$week->id", $week, 'list', '', '', 'iframe', true);
-          	 if ($week->complete == 0 || $week->complete == 1){
-          		common::printIcon('plan', 'edit', "planID=$week->id&from=handle", $week, 'list', '', '', '', '');
-          	}
-          ?>
-        </td>
+    	<td><?php echo $week->type;?><?php echo html::hidden("ids[]", $week->id, "");?></td>
+    	<td><?php echo $week->matter;?></td>
+    	<td><?php echo $week->plan;?></td>
+    	<td><?php echo $week->deadtime;?></td>
+    	<td><?php echo $week->status;?></td>
+    	<td><?php echo $week->account;?></td>
+    	<td>
+    		<select name='confirmed[]'>
+    			<option value='不通过'>不通过</option>
+    			<option value='通过'>通过</option>
+    		</select>
+    	</td>
+    	<td><?php echo html::input("remark[]", $week->remark, "class=text-1");?></td>
     </tr>
     <?php endforeach;?>
     <?php endif;?>
     <tr class='a-center'></tr>
     </tbody>
-    <?php if (!empty($checkPlan)):?>
-    <tfoot>
-       <tr>
-          <td colspan='12' class='a-right'>
-              <div class='f-left'>
-              <?php
-                 echo html::selectAll() . html::selectReverse();
-                 
-//                   if(common::hasPriv('story', 'batchEdit'))
-//                   {
-                      $actionLink = $this->createLink('plan', 'batchAction', "from=handleBrowse");
-                      echo html::commonButton($lang->actions, "onclick=\"changeAction('planform', 'batchAction', '$actionLink')\"");
-//                   }
-              ?>
-              </div>
-            </td>
-        </tr>
-    </tfoot>
+    <?php if (!empty($uncheckedPlan)):?>
+    <tr>
+	    <td colspan='8' class='a-center'>
+	    <?php echo  
+	    		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'handle', "isSubmit=1") . "\")'");?>
+	    </td>
+    </tr>
     <?php endif;?>
   </table>
+  
 </form>
+
+<table class='table-1 tablesorter fixed colored datatable newBoxs' style="margin-top: 5%">
+  	<caption><div align="center">已审核计划</div></caption>
+    <thead>
+    <tr class='colhead'>
+      <th><?php echo $lang->plan->type;?></th>
+      <th><?php echo $lang->plan->matter;?></th>
+      <th><?php echo $lang->plan->plan;?></th>
+      <th><?php echo $lang->plan->deadtime;?></th>
+      <th><?php echo $lang->plan->status;?></th>
+      <th><?php echo $lang->plan->account;?></th>
+      <th><?php echo $lang->plan->confirmed;?></th>
+      <th><?php echo $lang->plan->remark;?></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php if (empty($checkPlan)):?>
+    <tr><td colspan="8" style="text-align: right;"><?php echo $lang->pager->noRecord ;?></td></tr>
+    <?php elseif (!empty($checkPlan)):?>
+    <?php foreach ((array)$checkPlan as $week):?>
+    <tr class='a-center'>
+    	<td><?php echo $week->type;?></td>
+    	<td><?php echo $week->matter;?></td>
+    	<td><?php echo $week->plan;?></td>
+    	<td><?php echo $week->deadtime;?></td>
+    	<td><?php echo $week->status;?></td>
+    	<td><?php echo $week->account;?></td>
+    	<td><?php echo $week->confirmed;?></td>
+    	<td><?php echo $week->remark;?></td>
+    </tr>
+    <?php endforeach;?>
+    <?php endif;?>
+    <tr class='a-center'></tr>
+    </tbody>
+  </table>
 <?php include '../../common/view/footer.html.php';?>

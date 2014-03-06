@@ -31,24 +31,27 @@ class planModel extends model{
 	}
 	
 	/**
-	 * 查询周计划管理
+	 * 根据年份，月份，星期查询周计划
 	 * @param unknown_type $account
 	 * @param unknown_type $startDate
 	 * @param unknown_type $finishedDate
 	 */
-	public function queryWeekPlan($account, $week, $limit = 0, $pager = null)
+	public function queryWeekPlan($account, $firstDayOfWeek)
 	{
-		$weekPlan = $this->dao->select('*,"" as auditorName,"" as chargeName')->from(TABLE_ICTWEEKPLAN)
-		->where('week')->eq((int)$week)
-// 		->andWhere('date_format(finishedDate,"%Y-%m")')->eq(date('Y-m',strtotime($finishedDate)))
-		->andWhere('charge')->eq($account)->andWhere('isSubmit')->eq('1')
-		->beginIF($this->post->exportType == 'selected')->andWhere('id')->in($this->cookie->checkedItem)->fi()
-// 		->beginIF($limit > 0)->limit($limit)->fi()->page($pager)
+// 		$weekPlan = $this->dao->select('*,"" as auditorName,"" as chargeName')->from(TABLE_ICTWEEKPLAN)
+// 		->where('week')->eq((int)$week)
+// 		->andWhere('charge')->eq($account)->andWhere('isSubmit')->eq('1')
+// 		->beginIF($this->post->exportType == 'selected')->andWhere('id')->in($this->cookie->checkedItem)->fi()
+// 		->fetchAll();
+// 			foreach ($weekPlan as $week){
+// 				if (!empty($week->auditor))$week->auditorName =  $this->queryRealName($week->auditor);
+// 				if (!empty($week->charge))$week->chargeName =  $this->queryRealName($week->charge);
+// 			}
+		$weekPlan = $this->dao->select('*')->from(TABLE_ICTWEEKPLAN)
+		->where('account')->eq($account)
+		->andWhere('firstDayOfWeek')->eq($firstDayOfWeek)
+		->orderBy('type')
 		->fetchAll();
-			foreach ($weekPlan as $week){
-				if (!empty($week->auditor))$week->auditorName =  $this->queryRealName($week->auditor);
-				if (!empty($week->charge))$week->chargeName =  $this->queryRealName($week->charge);
-			}
 		return $weekPlan;
 	}
 	/**
@@ -93,21 +96,72 @@ class planModel extends model{
 	}
 	
 	
+	public function updateCheckPlan() 
+	{
+		$plans = fixer::input('post')->get();
+		for ($i = 0; $i < count($_POST['ids']); $i++){
+			$plan 				= new stdClass();
+		
+			//使计划状态为已经审核（值为1）
+			$plan->confirmedOrNo 		= '是';
+			//添加备注
+			$plan->remark     = $plans->remark[$i];
+			//是否通过
+			$plan->confirmed     = $plans->confirmed[$i];
+			
+			$this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->where('id')->eq((int)$plans->ids[$i])->exec();
+			if(dao::isError())
+			{
+				echo js::error(dao::getError());
+				die(js::reload('parent'));
+			}
+		}
+	}
+	
+	/**
+	 * 待我审核页面--待我审核计划查询
+	 * @param unknown_type $account
+	 * @param unknown_type $startDate
+	 * @param unknown_type $finishedDate
+	 */
+	public function queryCheckPlan($account)
+	{
+		$myplan = array();
+		//已审核周计划
+		$checkWeekPlan = $this->dao->select('*')
+				->from(TABLE_ICTWEEKPLAN)
+				->where('submitTo')->eq($account)
+				->andWhere('confirmedOrNo')->eq('是')
+				->fetchAll();
+		//未审核周计划
+		$uncheckedWeekPlan = $this->dao->select('*')
+				->from(TABLE_ICTWEEKPLAN)
+				->where('submitTo')->eq($account)
+				->andWhere('confirmedOrNo')->eq('否')
+				->fetchAll();
+		array_push($myplan, $checkWeekPlan);
+		array_push($myplan, $uncheckedWeekPlan);
+		return $myplan;
+	}
 	
 	
 	/**
-	 * 获取周计划
+	 * 获取周计划（本周未审核的）
 	 * @param unknown_type $finishedDate
 	 */
-	public function queryPlanByTime($finishedDate)
+	public function queryPlanByTime($firstDayOfWeek)
 	{
 		$account = $this->app->user->account;
 // 		$weekno = date('W', strtotime($finishedDate)); 
 // 		$other = date('W', strtotime($this->post->finishedDate));
 		$date_now=date("j"); //得到几号
 		$cal_result=ceil($date_now/7);
-		$myplan = $this->dao->select('*')->from(TABLE_ICTWEEKPLAN)->where('account')->eq($account)->andWhere('weekno')
-		->eq($cal_result)->fetchAll();
+		
+		$myplan = $this->dao->select('*')->from(TABLE_ICTWEEKPLAN)
+		->where('account')->eq($account)
+		->andWhere('firstDayOfWeek')->eq($firstDayOfWeek)
+		->andWhere('confirmedOrNo')->eq('否')
+		->fetchAll();
 // 		foreach ($lastPlan as $last){
 // 			$this->lang->plan->abcSort[$last->sort.'1'] = $last->sort.'1';
 // 			$last->sort 		= $this->lang->plan->abcSort[$last->sort.'1'];
@@ -147,6 +201,12 @@ class planModel extends model{
 				
 				$plan->month 		= $timeSplit[1];
 				$plan->weekno		= ceil($timeSplit[2]/7);
+				
+				//找出本周六的日期和上周五的日期
+				$myDateArr = plan::getLastAndEndDayOfWeek();
+				$plan->firstDayOfWeek	   = $myDateArr[0];
+				$plan->lastDayOfWeek	   = $myDateArr[1];								
+				
 				$plan->submitTo		= $plans->submitTo[$i];
 				if (empty($null))$this->dao->insert(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->exec();
 // 				else $this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->where('id')->eq((int)$null->id)->exec();
@@ -408,7 +468,6 @@ class planModel extends model{
 		$proteam = $this->judgeAuditor($account);
 		if (!empty($proteam)){
 			$weekPlan = $this->dao->select("*,''as chargeName,'' as auditorName from ict_weekplan")->where('complete in(0,1)')
-// 						->andWhere('appraise')->eq(2)
 						->andWhere('isSubmit')->eq('1')->andWhere("(status =3 or auditor='$account')")->fetchAll();
 		}
 		else {
@@ -421,7 +480,14 @@ class planModel extends model{
 			if (isset($plan->charge))$plan->chargeName = $this->queryRealName($plan->charge);
 			if (isset($plan->auditor))$plan->auditorName = $this->queryRealName($plan->auditor);
 		}
-		return $weekPlan;
+
+// 		$checkWeekPlan = $this->dao->select('*')
+// 		->from(TABLE_ICTWEEKPLAN)
+// 		->where('submitTo')->eq($account)
+// 		->andWhere('confirmed')->ne('不通过')
+// 		->fetchAll();
+		
+// 		return $checkWeekPlan;
 	}
 /**
 	 * 判断当前用户是否是科室领导

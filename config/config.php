@@ -99,7 +99,7 @@ define('TABLE_ICTINCREASE',	  '`' . $config->db->ict	. 'increase`');
 /*计划管理模块1.3*/
 define('TABLE_ICTPROTEAM',	  '`' . $config->db->ict	. 'proteam`');
 define('TABLE_ICTMEMBSET',	  '`' . $config->db->ict	. 'membset`');
-define('TABLE_ICTWEEKPLAN',	  '`' . $config->db->ict	. 'weekplan`');
+define('TABLE_ICTWEEKPLAN',	  '`' . $config->db->ict	. 'my_weekplan`');
 
 /*项目缺陷包0.5*/
 define('TABLE_ICTDEFECT',	  '`' . $config->db->ict	. 'defect`');

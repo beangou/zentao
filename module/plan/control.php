@@ -28,7 +28,8 @@ class plan extends control{
 		$week = floor(date('W',strtotime($finish)));
 		$account = $this->app->user->account;
 		
-		$this->view->thisWeekPlan = $this->plan->queryPlanByTime(date('Y-m-d', time()));  
+		$myDateArr = $this->getLastAndEndDayOfWeek();
+		$this->view->thisWeekPlan = $this->plan->queryPlanByTime($myDateArr[2]);  
 // 		$this->view->weekPlan		= $this->plan->queryWeekPlan($account, $week, 0, $pager);
 // 		$this->view->date           = (int)$finish == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($finish));
 // 		$this->view->team			= $this->plan->getTeaminfo();
@@ -45,16 +46,37 @@ class plan extends control{
 // 	}
 	
 	
+	//可以查询上周计划、本周计划、下周计划，以及根据输入时间查询计划
 	public function queryplan($date = ''){
 		$this->view->title = $this->lang->plan->common . $this->lang->colon . $this->lang->plan->queryPlan;
 		$this->view->position[] 	= $this->lang->plan->queryPlan;
-		if (empty($date)) $date = date('Y-m-d',time());
-		$week = floor(date('W',strtotime($date)));
+// 		if (empty($date)) $date = date('Y-m-d',time());
+		
+		//本周
+		$lastWeek = date('Y-m-d', time()-7*24*3600);
+		$lastTimeSplit = explode('-', $lastWeek);
+		
+		//本周
+		$thisWeek = date('Y-m-d', time());
+		$thisTimeSplit = explode('-', $thisWeek);
+		
+		//下周
+		$nextWeek = date('Y-m-d', time()+7*24*3600);
+		$nextTimeSplit = explode('-', $nextWeek);
+		
+// 		$week = floor(date('W',strtotime($date)));
+		
 		$account = $this->app->user->account;
-		$this->view->weekPlan		= $this->plan->queryWeekPlan($account, $week, 0, null);
-		$this->view->lastPlan		= $this->plan->queryWeekPlan($account, $week-1, 0, null);
+		$myDateArr = $this->getLastAndEndDayOfWeek();
+		//上周第一天为上上周六
+		$this->view->lastPlan		= $this->plan->queryWeekPlan($account, $myDateArr[3]);
+		//本周第一天为上周六
+		$this->view->weekPlan		= $this->plan->queryWeekPlan($account, $myDateArr[2]);
+		//下周第一条为本周六
+		$this->view->nextPlan 		= $this->plan->queryWeekPlan($account, $myDateArr[0]);
+		
 		$this->view->date           = (int)$date == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($date));
-		$this->view->team			= $this->plan->getTeaminfo();
+// 		$this->view->team			= $this->plan->getTeaminfo();
 		$this->display();
 	}
 	/**
@@ -95,9 +117,11 @@ class plan extends control{
 		$this->view->title = $this->lang->my->common . $this->lang->colon . $this->lang->plan->handle;
 		$this->view->position[] 	= $this->lang->plan->common;
 		$account = $this->app->user->account;
-		if (!empty($_POST))$this->plan->updateCheck();
-		$this->view->checkPlan		= $this->plan->getCheckPlan($account);
-		$this->view->lead			= $this->plan->judgeAuditor($account);
+		if (!empty($_POST))$this->plan->updateCheckPlan();
+		$myplan 					= $this->plan->queryCheckPlan($account);
+		$this->view->checkPlan		= $myplan[0];
+		$this->view->uncheckedPlan  = $myplan[1];
+// 		$this->view->lead			= $this->plan->judgeAuditor($account);
 		$this->display();
 	}
 	/**
@@ -394,4 +418,26 @@ class plan extends control{
 		}
 		$this->display();
 	}
+	
+	//获取本周六和下周五的日期
+	static public function getLastAndEndDayOfWeek() {
+		$myDateArr = array();
+		//今天是星期几
+		$today = date("w");
+
+		//本周六日期
+		$thisSaturday = date('Y-m-d', time()+(6-$today)*24*3600);
+		//下周五
+		$nextFriday = date('Y-m-d', time()+(12-$today)*24*3600);
+		//上周六日期
+		$lastSaturday = date('Y-m-d', time()-(1+$today)*24*3600);
+		//上上周六
+		$lastLastSaturday = date('Y-m-d', time()-(8+$today)*24*3600);
+		array_push($myDateArr, $thisSaturday);
+		array_push($myDateArr, $nextFriday);
+		array_push($myDateArr, $lastSaturday);
+		array_push($myDateArr, $lastLastSaturday);
+		return $myDateArr;
+	}
+	
 }

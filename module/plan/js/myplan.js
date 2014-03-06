@@ -31,7 +31,8 @@ function deleteRow(rowID)
 {
     if($('.stepID').size() == 1) return;
     $('#row' + rowID).remove();
-    updateStepID();
+//    updateStepID();
+    updateStepAddID();
 }
 /**
  * Insert after the step.
@@ -44,7 +45,8 @@ function postInsert(rowID)
 {
 //    $('#row' + rowID).after(createRow());
 	$('#row' + rowID).after(mycreateRow());
-    updateStepID();
+//    updateStepID();
+	updateStepAddID();
 }
 
 /**
@@ -87,20 +89,22 @@ function createRow()
 function mycreateRow()
 {
 	var obj = eval("("+users+")");
-    if(newRowID == 0) newRowID = $('.stepID').size();
+//    if(newRowID == 0) newRowID = $('.stepAddID').size();
+	newRowID = $('.stepAddID').size();
     newRowID ++;
     var newRow    = "<tr class='a-center' id='row" + newRowID + "'>";
-    newRow += "<td class='stepID'></td>";
+    newRow += "<td class='stepAddID'></td>";
     newRow += "<td><input name='type[]' class='select-1' onkeyup='this.value=this.value.toUpperCase()')</td>";
     newRow += "<td><input name='matter[]' class='f-left text-1')</td>";
     newRow += "<td><input name='plan[]' class='text-1'</td>";
-    newRow += "<td><input name='deadtime' class='text-3 date dp-applied'>" +
+    newRow += "<td><input name='deadtime[]'>" +
     		"<a href='#' class='dp-choose-date' title='选择日期'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>";
-    newRow += "<td><select name='submitTo[]' class='select-1'>";
-    for(var key in obj){
-		newRow += "<option value="+key+">"+obj[key]+"</option>";
-	}
-    newRow += "</td></select>";
+    newRow += "<td><input name='submitTo[]' class='text-1'</td>";
+//    newRow += "<td><select name='submitTo[]' class='select-1'>";
+//    for(var key in obj){
+//		newRow += "<option value="+key+">"+obj[key]+"</option>";
+//	}
+//    newRow += "</td></select>";
     //newRow += "<td class='a-left w-100px'><nobr>";
     newRow += "<td><input type='button' tabindex='-1' class='button-s' value='删除 ' onclick='deleteRow("  + newRowID + ")' />";
     newRow += "<input type='button' tabindex='-1' class='button-s' value='新增' onclick='postInsert(" + newRowID + ")' /></td>";
@@ -123,4 +127,11 @@ function updateStepID()
 {
     var i = 1;
     $('.stepID').each(function(){$(this).html(i ++)});
+}
+
+
+function updateStepAddID()
+{
+    var i = 1;
+    $('.stepAddID').each(function(){$(this).html(i ++)});
 }

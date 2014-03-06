@@ -16,8 +16,8 @@
     </div>
   </div>
   
-  <table class='table-1' id="addPlan"> 
-    <caption><div align="center">自评本周计划完成情况(3月第1周        &nbsp;2014/03/01~2014/03/07)</div></caption>
+  <table class='table-1' id="commentPlan"> 
+    <caption><div align="center">自评本周计划完成情况(2014/03/01~2014/03/07)</div></caption>
     <thead>
       <th>编号</th>
       <th><?php echo $lang->plan->sort;?></th>
@@ -35,7 +35,7 @@
     foreach ($thisWeekPlan as $plan):
     $stepID += 1;
     ?>
-    <tr class='a-center' id="row<?php echo $stepID?>">
+    <tr class='a-center'>
       <td class='stepID'><?php echo $stepID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
       <td><?php echo $plan->type;?></td>
       <td><?php echo $plan->matter;?></td>
@@ -56,18 +56,18 @@
     <?php else :
     $stepID = 1;
     ?>
-    <tr class='a-center' id="row<?php echo $stepID?>">
+    <tr class='a-center'>
       <td class='stepID' colspan="9">无数据</td>
     </tr>
     <?php endif;?><?php $link = $this->createLink('plan', 'myplan', "isSubmit=1")?>
-    <tr><td colspan='7' class='a-center'><?php echo  
+    <tr><td colspan='9' class='a-center'><?php echo  
     		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=1") . "\")'") ;?>
     </td></tr>
   </table>
   
   
   <table class='table-1' id="addPlan" style="margin-top: 5%"> 
-    <caption><div align="center">填写下周计划<?php echo '(3月第2周        &nbsp;2014/03/8~2014/03/14)'?></div></caption>
+    <caption><div align="center">填写下周计划<?php echo '(2014/03/8~2014/03/14)'?></div></caption>
     <thead>
       <th>编号</th>
       <th><?php echo $lang->plan->sort;?></th>
@@ -77,16 +77,16 @@
       <th>审核人</th>
     </thead>
     <?php 
-    $stepID = 1;
+    $stepAddID = 1;
     ?>
-    <tr class='a-center' id="row<?php echo $stepID?>">
-      <td class='stepID'><?php echo $stepID ;?></td>
+    <tr class='a-center' id="row<?php echo $stepAddID?>">
+      <td class='stepAddID'><?php echo $stepAddID ;?></td>
       <td><?php echo html::input("type[]", '', "class='select-1' onkeyup='this.value=this.value.toUpperCase()'");?></td>
       <td><?php echo html::input("matter[]", '', 'class="f-left text-1"');?></td>
       <td><?php echo html::input("plan[]", '', "class=text-1");?></td>
       <td><?php echo  html::input('deadtime[]', date('Y-m-d',strtotime($date)+7*24*3600), "class='select-2 date'");?>
       <td><?php echo html::input("submitTo[]", '', "class=text-1");?></td>
-      <td><?php echo html::commonButton($lang->plan->delete, "onclick='deleteRow($stepID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepID)'")?></td>
+      <td><?php echo html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID)'")?></td>
     </tr>
     <?php $link = $this->createLink('plan', 'myplan', "isSubmit=1")?>
     <tr><td colspan='7' class='a-center'>

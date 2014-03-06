@@ -1,5 +1,7 @@
 <?php
 
+$lang->resource->indexcompare = new stdclass();
+
 $lang->resource->indexcompare->defectRate 	= 'defectRate';
 $lang->resource->indexcompare->personalRate 	= 'personalRate';
 

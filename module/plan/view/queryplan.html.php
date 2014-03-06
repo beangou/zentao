@@ -2,7 +2,7 @@
 <?php include '../../common/view/datepicker.html.php';?>
 <?php include '../../common/view/colorize.html.php';?>
 <form method='post'  id='planform'>
-  <div id='topmyplan'>
+  	<div id='topmyplan'>
     <div class='f-left'>
       <?php 
       foreach($lang->plan->periods as $period => $label)
@@ -11,131 +11,156 @@
 //           if($period == 'before') $vars .= "&account={$app->user->account}&status=undone";
           echo "<span id='$period'>" . html::a(inlink($vars), $label) . '</span>';
       }
-      echo "<span id='byDate'>" . html::input('date', $date,"class='w-date date' onchange='changeDate(this.value)'") . '</span>';
-
       ?>
     </div>
   </div>
- 
-    <div align="center" style="font-size: 15px;margin: 18px 0px 6px 0px;">
-	    <?php echo date('Y年', strtotime($date)).' 第'.date('W', strtotime($date)).''.$lang->plan->planTitle;
-	    if (!empty($team)):
-	    echo ''.$team->team.'';
-	    endif;
-	    $weekRange = getWeekDate(strtotime($date), date('W', strtotime($date)));
-	    echo '('.$weekRange[0].'--'.$weekRange[1].')';
-	    ?>
-    
-    </div>
-  <table class='table-1 tablesorter fixed colored datatable newBoxs'>
+  
+  <table  class='table-1 tablesorter fixed colored datatable newBoxs'> 
+    <caption><div align="center">上周周计划(2014/02/22~2014/02/28)</div></caption>
     <thead>
-    <tr class='colhead'>
-      <th style="width: 20px;"></th>
-      <th style="width: 60px;"><?php echo $lang->plan->type;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->sort;?></th>
-      <th style="width: 200px;"><?php echo $lang->plan->matter;?></th>
-      <th ><?php echo $lang->plan->plan;?></th>
-      <th style="width: 70px;"><?php echo $lang->plan->limit;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->appraise;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->complete;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->auditor;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->status;?></th>
-      <th style="width: 80px;"><?php echo $lang->plan->remark;?></th>
-    </tr>
+      <tr class='colhead'>
+	      <th>编号</th>
+	      <th><?php echo $lang->plan->sort;?></th>
+	      <th><?php echo $lang->plan->matter;?></th>
+	      <th><?php echo $lang->plan->plan;?></th>
+	      <th>完成时限</th>
+	      <th>完成情况</th>
+	      <th>见证性材料</th>
+	      <th>未完成原因说明及如何补救</th>
+	      <th>审核人</th>
+	      <th>是否审核</th>
+	      <th>审核结果</th>
+	      <th>备注</th>
+	  </tr>    
     </thead>
-    <tbody>
-    <?php if (empty($weekPlan)):?>
-    <tr><td colspan="11" style="text-align: right;"><?php echo $lang->pager->noRecord ;?></td></tr>
-    <?php elseif (!empty($weekPlan)):?>
-    <?php foreach ((array)$weekPlan as $week):?>
+    <?php 
+    $stepID = 0;
+    if (!empty($lastPlan)):
+    foreach ($lastPlan as $plan):
+    $stepID += 1;
+    ?>
     <tr class='a-center'>
-    	<td><input type='checkbox' name='planIDList[<?php echo $week->id;?>]' value='<?php echo $week->id;?>' /></td>
-		<td><?php echo $lang->plan->types[$week->type];?></td>
-	    <td><?php echo $week->sort;?></td>
-        <td class='a-left' title="<?php echo $week->matter?>">
-        <?php echo html::a($this->createLink('plan', $week->status !=3 ?'edit':'copy', "id=$week->id", '', true) , $week->matter, '', "class='colorbox'");?></td>
-        <td class='a-left' title="<?php echo $week->plan?>"><?php echo $week->plan;?></td>
-        <td><?php echo $week->limit;?></td>
-        <td><?php echo $lang->plan->completed[$week->appraise];?></td>
-        <td class='<?php if ($week->complete==1)echo 'delayed'?>'><?php echo $lang->plan->completed[$week->complete];?></td>
-        <td><?php echo $week->auditorName;?></td>
-        <td><?php echo $lang->plan->handleStatus[$week->status];?></td>
-        <td title="<?php echo $week->remark?>"><?php echo $week->remark;?></td>
+      <td class='stepID'><?php echo $stepID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
+      <td><?php echo $plan->type;?></td>
+      <td><?php echo $plan->matter;?></td>
+      <td><?php echo $plan->plan;?></td>
+      <td><?php echo $plan->deadtime;?>
+      <td><?php echo $plan->status;?></td>
+      <td><?php echo $plan->evidence;?></td>
+      <td><?php echo $plan->courseAndSolution;?></td>
+      <td><?php echo $plan->submitTo;?></td>
+      <td><?php echo $plan->confirmedOrNo;?></td>
+      <td><?php echo $plan->confirmed;?></td>
+      <td><?php echo $plan->remark;?></td>
     </tr>
     <?php endforeach;?>
+    <?php else :
+    $stepID = 1;
+    ?>
+    <tr class='a-center' id="row<?php echo $stepID?>">
+      <td class='stepID' colspan="12" style="text-align: right;"><?php echo $lang->pager->noRecord ;?></td>
+    </tr>
     <?php endif;?>
-    <tr class='a-center'></tr>
-    </tbody>
   </table>
   
-     <div align="center" style="font-size: 15px;margin-bottom: 6px;margin-top: 20px;">
-    <?php echo date('Y年', strtotime($date)-7*24*3600).' 第'.(date('W', strtotime($date)-7*24*3600)).''.$lang->plan->planTitle;
-    if (!empty($team)):
-    echo ''.$team->team.'';
-    endif;
-    $weekDate = getWeekDate(strtotime($date), date('W', strtotime($date))-1);
-    echo '('.$weekDate[0].'--'.$weekDate[1].')';
-    ?>
-    
-    </div>
-
-    <table class='table-1 tablesorter fixed colored datatable newBoxs'>
+  
+  <table  class='table-1 tablesorter fixed colored datatable newBoxs' style="margin-top: 5%"> 
+    <caption><div align="center">本周周计划(2014/03/01~2014/03/07)</div></caption>
     <thead>
-    <tr class='colhead'>
-      <th style="width: 20px;"></th>
-      <th style="width: 60px;"><?php echo $lang->plan->type;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->sort;?></th>
-      <th style="width: 200px;"><?php echo $lang->plan->matter;?></th>
-      <th ><?php echo $lang->plan->plan;?></th>
-      <th style="width: 70px;"><?php echo $lang->plan->limit;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->appraise;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->complete;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->auditor;?></th>
-      <th style="width: 60px;"><?php echo $lang->plan->status;?></th>
-      <th style="width: 80px;"><?php echo $lang->plan->remark;?></th>
-    </tr>
+      <tr class='colhead'>
+	      <th>编号</th>
+	      <th><?php echo $lang->plan->sort;?></th>
+	      <th><?php echo $lang->plan->matter;?></th>
+	      <th><?php echo $lang->plan->plan;?></th>
+	      <th>完成时限</th>
+	      <th>完成情况</th>
+	      <th>见证性材料</th>
+	      <th>未完成原因说明及如何补救</th>
+	      <th>审核人</th>
+	      <th>是否审核</th>
+	      <th>审核结果</th>
+	      <th>备注</th>
+	  </tr>    
     </thead>
-    <tbody>
-    <?php if (empty($lastPlan)):?>
-    <tr><td colspan="11" style="text-align: right;"><?php echo $lang->pager->noRecord ;?></td></tr>
-    <?php elseif (!empty($lastPlan)):?>
-    <?php foreach ((array)$lastPlan as $week):?>
+    <?php 
+    $stepID = 0;
+    if (!empty($weekPlan)):
+    foreach ($weekPlan as $plan):
+    $stepID += 1;
+    ?>
     <tr class='a-center'>
-    	<td><input type='checkbox' name='planIDList[<?php echo $week->id;?>]' value='<?php echo $week->id;?>' /></td>
-		<td><?php echo $lang->plan->types[$week->type];?></td>
-	    <td><?php echo $lang->plan->abcSort[$week->sort];?></td>
-        <td class='a-left' title="<?php echo $week->matter?>">
-        <?php echo html::a($this->createLink('plan', $week->status !=3 ?'edit':'copy', "id=$week->id", '', true) , $week->matter, '', "class='colorbox'");?></td>
-        <td class='a-left' title="<?php echo $week->plan?>"><?php echo $week->plan;?></td>
-        <td><?php echo $week->limit;?></td>
-        <td><?php echo $lang->plan->completed[$week->appraise];?></td>
-        <td class='<?php if ($week->complete==1)echo 'delayed'?>'><?php echo $lang->plan->completed[$week->complete];?></td>
-        <td><?php echo $week->auditorName;?></td>
-        <td><?php echo $lang->plan->handleStatus[$week->status];?></td>
-        <td title="<?php echo $week->remark?>"><?php echo $week->remark;?></td>
+      <td class='stepID'><?php echo $stepID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
+      <td><?php echo $plan->type;?></td>
+      <td><?php echo $plan->matter;?></td>
+      <td><?php echo $plan->plan;?></td>
+      <td><?php echo $plan->deadtime;?>
+      <td><?php echo $plan->status;?></td>
+      <td><?php echo $plan->evidence;?></td>
+      <td><?php echo $plan->courseAndSolution;?></td>
+      <td><?php echo $plan->submitTo;?></td>
+      <td><?php echo $plan->confirmedOrNo;?></td>
+      <td><?php echo $plan->confirmed;?></td>
+      <td><?php echo $plan->remark;?></td>
     </tr>
     <?php endforeach;?>
+    <?php else :
+    $stepID = 1;
+    ?>
+    <tr class='a-center' id="row<?php echo $stepID?>">
+      <td class='stepID' colspan="12" style="text-align: right;"><?php echo $lang->pager->noRecord ;?></td>
+    </tr>
     <?php endif;?>
-    <tr class='a-center'></tr>
-    </tbody>
   </table>
+  
+  
+  <table  class='table-1 tablesorter fixed colored datatable newBoxs' style="margin-top: 5%"> 
+    <caption><div align="center">下周周计划(2014/03/08~2014/03/14)</div></caption>
+    <thead>
+      <tr class='colhead'>
+	      <th>编号</th>
+	      <th><?php echo $lang->plan->sort;?></th>
+	      <th><?php echo $lang->plan->matter;?></th>
+	      <th><?php echo $lang->plan->plan;?></th>
+	      <th>完成时限</th>
+	      <th>完成情况</th>
+	      <th>见证性材料</th>
+	      <th>未完成原因说明及如何补救</th>
+	      <th>审核人</th>
+	      <th>是否审核</th>
+	      <th>审核结果</th>
+	      <th>备注</th>
+	  </tr>    
+    </thead>
+    <?php 
+    $stepID = 0;
+    if (!empty($nextPlan)):
+    foreach ($nextPlan as $plan):
+    $stepID += 1;
+    ?>
+    <tr class='a-center'>
+      <td class='stepID'><?php echo $stepID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
+      <td><?php echo $plan->type;?></td>
+      <td><?php echo $plan->matter;?></td>
+      <td><?php echo $plan->plan;?></td>
+      <td><?php echo $plan->deadtime;?>
+      <td><?php echo $plan->status;?></td>
+      <td><?php echo $plan->evidence;?></td>
+      <td><?php echo $plan->courseAndSolution;?></td>
+      <td><?php echo $plan->submitTo;?></td>
+      <td><?php echo $plan->confirmedOrNo;?></td>
+      <td><?php echo $plan->confirmed;?></td>
+      <td><?php echo $plan->remark;?></td>
+    </tr>
+    <?php endforeach;?>
+    <?php else :
+    $stepID = 1;
+    ?>
+    <tr class='a-center' id="row<?php echo $stepID?>">
+      <td class='stepID' colspan="12" style="text-align: right;"><?php echo $lang->pager->noRecord ;?></td>
+    </tr>
+    <?php endif;?>
+  </table>
+  
 </form>
-<?php 
-function getWeekDate($year, $weeknum){
-	$year = date('Y', $year);
-	$firstdayofyear=mktime(0,0,0,1,1,$year);
-	$firstweekday=date('N',$firstdayofyear);
-	$firstweenum=date('W',$firstdayofyear);
-	if($firstweenum==1){
-		$day=(1-($firstweekday-1))+7*($weeknum-1);
-		$startdate=date('Y/m/d',mktime(0,0,0,1,$day,$year));
-		$enddate=date('Y/m/d',mktime(0,0,0,1,$day+6,$year));
-	}else{
-		$day=(9-$firstweekday)+7*($weeknum-1);
-		$startdate=date('Y/m/d',mktime(0,0,0,1,$day,$year));
-		$enddate=date('Y/m/d',mktime(0,0,0,1,$day+6,$year));
-	}
-	return array($startdate,$enddate);
-}
-?>
+
 <?php include '../../common/view/footer.html.php';?>

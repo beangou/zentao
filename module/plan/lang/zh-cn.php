@@ -1,4 +1,12 @@
 <?php
+
+$lang->plan->confirmed 				= '审核状态';
+$lang->plan->account				= '负责人';
+$lang->plan->status					= '自评情况';
+$lang->plan->deadtime 				= '时限';
+
+
+
 $lang->plan->common					= '计划管理';
 $lang->plan->export 				= '导出';
 $lang->plan->query					= '查询';
@@ -53,7 +61,7 @@ $lang->plan->material				= '见证材料';
 $lang->plan->desc					= '未完成原因及补救';
 $lang->plan->charge					= '负责人';
 $lang->plan->auditor				= '审核人';
-$lang->plan->status					= '审核状态';
+// $lang->plan->status					= '审核状态';
 $lang->plan->remark					= '备注';
 $lang->plan->completed[0]			= '未评价';
 $lang->plan->completed[1]			= '未完成';
@@ -117,5 +125,5 @@ $lang->plan->score					= '月计划完成率';
 
 $lang->plan->planCheck				= '周计划审核';
 $lang->plan->periods['myplan']      = '我的计划';//主要是新增计划可以查看
-$lang->plan->periods['queryplan']   = '计划查询';//只可查询，不可操作
-$lang->plan->periods['handle']      = '待我审核';
+$lang->plan->periods['queryplan']   = '查询计划';//只可查询，不可操作
+$lang->plan->periods['handle']      = '审核计划';
