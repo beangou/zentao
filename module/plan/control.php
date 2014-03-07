@@ -30,9 +30,9 @@ class plan extends control{
 		
 		$myDateArr = $this->getLastAndEndDayOfWeek();
 		$this->view->thisWeekPlan = $this->plan->queryPlanByTime($myDateArr[2]);
-
 		//查出下周未通过的周计划（第一天为本周六）
 		$this->view->nextWeekPlan = $this->plan->queryNextUnpassPlan($myDateArr[0]);
+		$this->view->submitTos	  = $this->plan->getSubmitToName();
 // 		$this->view->weekPlan		= $this->plan->queryWeekPlan($account, $week, 0, $pager);
 // 		$this->view->date           = (int)$finish == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($finish));
 // 		$this->view->team			= $this->plan->getTeaminfo();
@@ -463,6 +463,59 @@ class plan extends control{
 		array_push($myDateArr, $lastSaturday);
 		array_push($myDateArr, $lastLastSaturday);
 		return $myDateArr;
+	}
+	
+	
+	/**
+	 * Create tags like "<select><option></option></select>
+	 *
+	 * @param  string $name          the name of the select tag.
+	 * @param  array  $options       the array to create select tag from.
+	 * @param  string $selectedItems the item(s) to be selected, can like item1,item2.
+	 * @param  string $attrib        other params such as multiple, size and style.
+	 * @param  string $append        adjust if add options[$selectedItems].
+	 * @return string
+	 */
+	static public function select1($name = '', $options = array(), $attrib = '')
+	{
+		$options = (array)($options);
+		if(!is_array($options) or empty($options)) return "<select id='$id' $attrib><option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option></select>";
+	
+		$id = $name;
+		$string = "<select name='$name' id='$id' $attrib>\n";
+	
+		foreach($options as $key => $value)
+		{
+			$string  .= "<option value='$key'>$value</option>\n";
+		}
+	
+		return $string .= "</select>\n";
+	}
+	
+	/**
+	 * Create tags like "<select><option></option></select>
+	 *
+	 * @param  string $name          the name of the select tag.
+	 * @param  array  $options       the array to create select tag from.
+	 * @param  string $selectedItems the item(s) to be selected, can like item1,item2.
+	 * @param  string $attrib        other params such as multiple, size and style.
+	 * @param  string $append        adjust if add options[$selectedItems].
+	 * @return string
+	 */
+	static public function select($name = '', $options = array(), $attrib = '')
+	{
+		$options = (array)($options);
+		if(!is_array($options) or empty($options)) return "<select id='$id' $attrib><option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option></select>";
+	
+		$id = $name;
+		$string = "<select name='$name' id='$id' $attrib>\n";
+	
+		foreach($options as $obj)
+		{
+			$string  .= "<option value='$obj->account'>$obj->realname</option>\n";
+		}
+	
+		return $string .= "</select>\n";
 	}
 	
 }

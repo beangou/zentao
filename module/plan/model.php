@@ -47,10 +47,12 @@ class planModel extends model{
 // 				if (!empty($week->auditor))$week->auditorName =  $this->queryRealName($week->auditor);
 // 				if (!empty($week->charge))$week->chargeName =  $this->queryRealName($week->charge);
 // 			}
-		$weekPlan = $this->dao->select('*')->from(TABLE_ICTWEEKPLAN)
-		->where('account')->eq($account)
-		->andWhere('firstDayOfWeek')->eq($firstDayOfWeek)
-		->orderBy('type')
+		
+		$weekPlan = $this->dao->select('T1.*, T2.realname AS submitToName')->from(TABLE_ICTWEEKPLAN)->alias('T1')
+		->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
+		->where('T1.account')->eq($account)
+		->andWhere('T1.firstDayOfWeek')->eq($firstDayOfWeek)
+		->orderBy('T1.type')
 		->fetchAll();
 		return $weekPlan;
 	}
@@ -159,10 +161,11 @@ class planModel extends model{
 		$date_now=date("j"); //得到几号
 		$cal_result=ceil($date_now/7);
 		
-		$myplan = $this->dao->select('*')->from(TABLE_ICTWEEKPLAN)
-		->where('account')->eq($account)
-		->andWhere('firstDayOfWeek')->eq($firstDayOfWeek)
-		->andWhere('confirmedOrNo')->eq('否')
+		$myplan = $this->dao->select('T1.*, T2.realname AS submitToName')->from(TABLE_ICTWEEKPLAN)->alias('T1')
+		->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
+		->where('T1.account')->eq($account)
+		->andWhere('T1.firstDayOfWeek')->eq($firstDayOfWeek)
+		->andWhere('T1.confirmedOrNo')->eq('否')
 		->fetchAll();
 // 		foreach ($lastPlan as $last){
 // 			$this->lang->plan->abcSort[$last->sort.'1'] = $last->sort.'1';
@@ -172,6 +175,35 @@ class planModel extends model{
 // 		}
 		return $myplan;
 	}
+	
+	// 不允许自己审核自己的
+	public function getSubmitToName() 
+	{
+		$submitToNames = array();
+		$name1->account = 'dingbing';
+		$name1->realname = '丁兵';
+		$name2->account = 'liutongbin';
+		$name2->realname = '刘同彬';
+		$name3->account = 'zhoubenwen';
+		$name3->realname = '周本文';
+		$name4->account = 'liyuchen';
+		$name4->realname = '李雨辰';
+		$name5->account = 'yangtao';
+		$name5->realname = '杨涛';
+		$name6->account = 'chendaoming';
+		$name6->realname = '陈道明';
+		
+		array_push($submitToNames, $name1);
+		array_push($submitToNames, $name2);
+		array_push($submitToNames, $name3);
+
+		array_push($submitToNames, $name4);
+		array_push($submitToNames, $name5);
+		array_push($submitToNames, $name6);
+		
+		return $submitToNames; 	
+	}
+	
 	
 	/**
 	 * 获取下周未通过的周计划
@@ -312,10 +344,11 @@ class planModel extends model{
 	
 	//根据输入日期查询
 	public function searchplan($account, $beginDate, $endDate) {
-		$searchResult = $this->dao->select('*')->from(TABLE_ICTWEEKPLAN)
-						->where('account')->eq($account)
-						->andWhere('firstDayOfWeek')->gt($beginDate)
-						->andWhere('lastDayOfWeek')->lt($endDate)
+		$searchResult = $this->dao->select('T1.*, T2.realname as submitToName')->from(TABLE_ICTWEEKPLAN)->alias('T1')
+						->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
+						->where('T1.account')->eq($account)
+						->andWhere('T1.firstDayOfWeek')->gt($beginDate)
+						->andWhere('T1.lastDayOfWeek')->lt($endDate)
 						->fetchAll();
 		return $searchResult; 
 	}

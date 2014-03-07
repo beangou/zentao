@@ -50,7 +50,7 @@
       </td>
       <td><?php echo html::input("evidence[]", $plan->evidence, "class=text-1");?></td>
       <td><?php echo html::input("courseAndSolution[]", $plan->courseAndSolution, "class=text-1");?></td>
-      <td><?php echo $plan->submitTo;?></td>
+      <td><?php echo $plan->submitToName;?></td>
     </tr>
     <?php endforeach;?>
     <?php else :
@@ -103,7 +103,13 @@
       <td><?php echo html::input("matter[]", '', 'class="text-1"');?></td>
       <td><?php echo html::input("plan[]", '', "class=text-1");?></td>
       <td><?php echo html::input("deadtime[]", '', "class=text-1");?></td>
-      <td><?php echo html::input("submitTo[]", '', "class=text-1");?></td>
+      <td id="selectName">
+      	 <?php 
+			    echo plan::select('submitTo[]', $submitTos, '', "class='select-1'");
+		 ?>
+      	 <?php 
+//       		echo html::input("submitTo[]", '', "class=text-1");?>
+      </td>
       <td><?php echo html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID)'")?></td>
     </tr>
     <?php 

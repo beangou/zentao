@@ -59,7 +59,7 @@
 			      <td><?php echo $plan->status;?></td>
 			      <td><?php echo $plan->evidence;?></td>
 			      <td><?php echo $plan->courseAndSolution;?></td>
-			      <td><?php echo $plan->submitTo;?></td>
+			      <td><?php echo $plan->submitToName;?></td>
 			      <td><?php echo $plan->confirmedOrNo;?></td>
 			      <td><?php echo $plan->confirmed;?></td>
 			      <td><?php echo $plan->remark;?></td>
@@ -108,7 +108,7 @@
 			      <td><?php echo $plan->status;?></td>
 			      <td><?php echo $plan->evidence;?></td>
 			      <td><?php echo $plan->courseAndSolution;?></td>
-			      <td><?php echo $plan->submitTo;?></td>
+			      <td><?php echo $plan->submitToName;?></td>
 			      <td><?php echo $plan->confirmedOrNo;?></td>
 			      <td><?php echo $plan->confirmed;?></td>
 			      <td><?php echo $plan->remark;?></td>
@@ -157,7 +157,7 @@
 			      <td><?php echo $plan->status;?></td>
 			      <td><?php echo $plan->evidence;?></td>
 			      <td><?php echo $plan->courseAndSolution;?></td>
-			      <td><?php echo $plan->submitTo;?></td>
+			      <td><?php echo $plan->submitToName;?></td>
 			      <td><?php echo $plan->confirmedOrNo;?></td>
 			      <td><?php echo $plan->confirmed;?></td>
 			      <td><?php echo $plan->remark;?></td>

@@ -29,7 +29,7 @@ var newRowID = 0;
  */
 function deleteRow(rowID)
 {
-    if($('.stepID').size() == 1) return;
+    if($('.stepAddID').size() == 1) return;
     $('#row' + rowID).remove();
 //    updateStepID();
     updateStepAddID();
@@ -94,11 +94,13 @@ function mycreateRow()
     newRowID ++;
     var newRow    = "<tr class='a-center' id='row" + newRowID + "'>";
     newRow += "<td class='stepAddID'></td>";
-    newRow += "<td><input name='type[]' class='select-1' onkeyup='this.value=this.value.toUpperCase()')</td>";
-    newRow += "<td><input name='matter[]' class='text-1')</td>";
-    newRow += "<td><input name='plan[]' class='text-1'</td>";
-    newRow += "<td><input name='deadtime[]' class='text-1'</td>";
-    newRow += "<td><input name='submitTo[]' class='text-1'</td>";
+    newRow += "<td><input name='type[]' class='select-1' onkeyup='this.value=this.value.toUpperCase()')></td>";
+    newRow += "<td><input name='matter[]' class='text-1')></td>";
+    newRow += "<td><input name='plan[]' class='text-1'></td>";
+    newRow += "<td><input name='deadtime[]' class='text-1'></td>";
+    newRow += "<td>"+$("#selectName").html()+"</td>"; 
+//    alert($("#selectName").html());	
+//    newRow += "<td><input name='submitTo[]' class='text-1'></td>";
 //    newRow += "<td><select name='submitTo[]' class='select-1'>";
 //    for(var key in obj){
 //		newRow += "<option value="+key+">"+obj[key]+"</option>";
