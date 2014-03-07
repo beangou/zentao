@@ -14,8 +14,15 @@ class plan extends control{
 	 */
 	public function myplan($finish = '', $recTotal = 0, $recPerPage = 20, $pageID = 1){
 		$finish = date('Y-m-d',time());
+		$myDateArr = $this->getLastAndEndDayOfWeek();
 		if (!empty($_POST) && !isset($_GET['submit'])){
-			$this->plan->batchCreate();
+			$getParam = $_GET['isSubmit'];
+			if ($getParam == '0') {
+				$this->plan->evaluateMyPlan();
+			} else {
+				$this->plan->myBatchCreate($myDateArr[0]);
+			}
+			
 			if (dao::isError())die(js::error(dao::getError()));
 		}
 		/* Load pager. */
@@ -28,7 +35,6 @@ class plan extends control{
 		$week = floor(date('W',strtotime($finish)));
 		$account = $this->app->user->account;
 		
-		$myDateArr = $this->getLastAndEndDayOfWeek();
 		$this->view->thisWeekPlan = $this->plan->queryPlanByTime($myDateArr[2]);
 		//查出下周未通过的周计划（第一天为本周六）
 		$this->view->nextWeekPlan = $this->plan->queryNextUnpassPlan($myDateArr[0]);
@@ -44,6 +50,16 @@ class plan extends control{
 	}
 	
 	/**
+	 * 查询计划详情
+	 * */
+	public function searchfordetail() {
+		$planId = $_GET['planId'];
+		$myDetailPlan = $this->plan->searchForDetail($planId);
+		$this->view->detailPlan = $myDetailPlan; 
+		$this->display();
+	}
+	
+	/**
 	 * 按日期查询
 	 * */
 	public function searchplan() {
@@ -54,6 +70,7 @@ class plan extends control{
 			$endDate   = $this->post->endDate;
 			//在开始时间和结束时间之内
 			$planArr = $this->plan->searchplan($this->app->user->account, $beginDate, $endDate);
+			$this->dealArrForRowspan($planArr, 'firstDayOfWeek');
 			if (dao::isError())die(js::error(dao::getError()));
 		}
 		$this->view->searchPlans = $planArr;
@@ -516,6 +533,33 @@ class plan extends control{
 		}
 	
 		return $string .= "</select>\n";
+	}
+	
+	/**
+	 * 处理有一定顺序的数组，是根据其中某个key设置rowspan以表格形式显示到页面上来,返回的数组中某些元素多了rowspanVal的值
+	 * @param  array $temp          the name of the select tag.
+	 */
+	static public function dealArrForRowspan($temp = array(), $key = '')
+	{
+		$rowspanIndex = 0;
+		$rowspanValue = 0;
+		for ($i=0; $i<count($temp); $i++){
+			if ($temp[$i]->$key == $temp[$rowspanIndex]->$key) {
+				$rowspanValue++;
+			} else {
+				$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
+				$rowspanValue = 1;
+				$rowspanIndex = $i;
+			}
+		}
+	
+		//这有当数组有数据时，才给rowspanVal赋值，否则，没意义，多一条没用的数据
+		if ($rowspanValue > 0) {
+			$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
+		}
+	
+		/* End. */
+		return $temp;
 	}
 	
 }

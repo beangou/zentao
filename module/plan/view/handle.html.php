@@ -40,7 +40,7 @@
     	<td><?php echo $week->plan;?></td>
     	<td><?php echo $week->deadtime;?></td>
     	<td><?php echo $week->status;?></td>
-    	<td><?php echo $week->account;?></td>
+    	<td><?php echo $week->accountname;?></td>
     	<td>
     		<select name='confirmed[]'>
     			<option value='不通过'>不通过</option>
@@ -90,7 +90,7 @@
     	<td><?php echo $week->plan;?></td>
     	<td><?php echo $week->deadtime;?></td>
     	<td><?php echo $week->status;?></td>
-    	<td><?php echo $week->account;?></td>
+    	<td><?php echo $week->accountname;?></td>
     	<td><?php echo $week->confirmed;?></td>
     	<td><?php echo $week->remark;?></td>
     </tr>

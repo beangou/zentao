@@ -97,13 +97,14 @@ class planModel extends model{
 		return $plan;
 	}
 	
-	
 	public function updateCheckPlan() 
 	{
 		$plans = fixer::input('post')->get();
 		for ($i = 0; $i < count($_POST['ids']); $i++){
 			$plan 				= new stdClass();
 		
+			//使计划的状态为未提交，这样才能在提交人的“自评”中出现
+			$plan->submitOrNo = '0';
 			//使计划状态为已经审核（值为1）
 			$plan->confirmedOrNo 		= '是';
 			//添加备注
@@ -130,18 +131,20 @@ class planModel extends model{
 	{
 		$myplan = array();
 		//已审核周计划
-		$checkWeekPlan = $this->dao->select('*')
-				->from(TABLE_ICTWEEKPLAN)
-				->where('submitTo')->eq($account)
-				->andWhere('confirmedOrNo')->eq('是')
-				->andWhere('status is not null')
+		$checkWeekPlan = $this->dao->select('T1.*, T2.realname AS accountname')
+				->from(TABLE_ICTWEEKPLAN)->alias('T1')
+				->leftJoin(TABLE_USER)->alias('T2')->on('T1.account = T2.account')
+				->where('T1.submitTo')->eq($account)
+				->andWhere('T1.confirmedOrNo')->eq('是')
+				->andWhere('T1.status is not null')
 				->fetchAll();
 		//未审核周计划
-		$uncheckedWeekPlan = $this->dao->select('*')
-				->from(TABLE_ICTWEEKPLAN)
-				->where('submitTo')->eq($account)
-				->andWhere('confirmedOrNo')->eq('否')
-				->andWhere('status is not null')
+		$uncheckedWeekPlan = $this->dao->select('T1.*, T2.realname AS accountname')
+				->from(TABLE_ICTWEEKPLAN)->alias('T1')
+				->leftJoin(TABLE_USER)->alias('T2')->on('T1.account = T2.account')
+				->where('T1.submitTo')->eq($account)
+				->andWhere('T1.confirmedOrNo')->eq('否')
+				->andWhere('T1.status is not null')
 				->fetchAll();
 		array_push($myplan, $checkWeekPlan);
 		array_push($myplan, $uncheckedWeekPlan);
@@ -161,11 +164,13 @@ class planModel extends model{
 		$date_now=date("j"); //得到几号
 		$cal_result=ceil($date_now/7);
 		
+		// 条件：审核没有通过并且没有提交（如果已经提交，则不显示）
 		$myplan = $this->dao->select('T1.*, T2.realname AS submitToName')->from(TABLE_ICTWEEKPLAN)->alias('T1')
 		->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
 		->where('T1.account')->eq($account)
 		->andWhere('T1.firstDayOfWeek')->eq($firstDayOfWeek)
-		->andWhere('T1.confirmedOrNo')->eq('否')
+		->andWhere('T1.submitOrNo')->eq('0')
+// 		->andWhere('T1.confirmed')->eq('不通过')
 		->fetchAll();
 // 		foreach ($lastPlan as $last){
 // 			$this->lang->plan->abcSort[$last->sort.'1'] = $last->sort.'1';
@@ -213,10 +218,13 @@ class planModel extends model{
 	{
 		$account = $this->app->user->account;
 	
-		$myplan = $this->dao->select('*')->from(TABLE_ICTWEEKPLAN)
-		->where('account')->eq($account)
-		->andWhere('firstDayOfWeek')->eq($firstDayOfWeek)
-		->andWhere('confirmedOrNo')->eq('是')
+		$myplan = $this->dao->select('T1.*, T2.realname AS submitName')->from(TABLE_ICTWEEKPLAN)->alias('T1')
+		->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
+		->where('T1.account')->eq($account)
+		->andWhere('T1.firstDayOfWeek')->eq($firstDayOfWeek)
+		->orderBy('T1.type')
+// 		->andWhere('confirmed')->eq('不通过')
+// 		->andWhere('confirmedOrNo')->eq('是')
 		->fetchAll();
 		return $myplan;
 	}
@@ -228,13 +236,83 @@ class planModel extends model{
 		
 // 	}
 	
+	
 	/**
 	 * 批量增加周计划
 	 */
-	public function batchCreate()
+	public function myBatchCreate($firstDayOfWeek)
 	{
 		$plans = fixer::input('post')->get();
-		
+		$delIds = $plans->ids;
+		//没有的id都删掉
+		$this->dao->delete()->from(TABLE_ICTWEEKPLAN)
+		->where('id')->notin($delIds)
+		->andWhere('account')->eq($this->app->user->account)
+		->andWhere('firstDayOfWeek')->eq($firstDayOfWeek)
+		->exec();
+		//批量插入周计划
+		for ($i = 0; $i < count($_POST['type']); $i++){
+			if ($plans->matter[$i] != ''){
+				$plan 				= new stdClass();
+				$plan->account   	= $this->app->user->account;
+				$plan->type			= $plans->type[$i];
+				$plan->matter		= $plans->matter[$i];
+				$plan->plan			= $plans->plan[$i];
+				$plan->deadtime     = $plans->deadtime[$i];
+	
+				//获取下个星期的月份和第几个星期
+				$nextWeek = date('Y-m-d', time()+7*24*3600);
+				$timeSplit = explode('-', $nextWeek);
+	
+				$plan->month 		= $timeSplit[1];
+				$plan->weekno		= ceil($timeSplit[2]/7);
+	
+				//找出本周六的日期和上周五的日期
+				$myDateArr = plan::getLastAndEndDayOfWeek();
+				$plan->firstDayOfWeek	   = $myDateArr[0];
+				$plan->lastDayOfWeek	   = $myDateArr[1];
+	
+				$plan->submitTo		= $plans->submitTo[$i];
+				// 				$plan->submitOrNo   = '1';
+				if (empty($plans->ids[$i])) {
+					$this->dao->insert(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->exec();
+				} else {
+					//审核不通过，重新改，更新，此时，将计划状态设为“未审核”
+					$plan->confirmedOrNo = '否';
+					$this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->where('id')->eq($plans->ids[$i])->exec();
+				}
+				// 				else $this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->where('id')->eq((int)$null->id)->exec();
+				if(dao::isError())
+				{
+					echo js::error(dao::getError());
+					die(js::reload('parent'));
+				}
+			}
+			else {
+				unset($plans->type[$i]);
+				unset($plans->matter[$i]);
+				unset($plans->plan[$i]);
+				unset($plans->deadtime[$i]);
+				unset($plans->submitTo[$i]);
+			}
+		}
+	
+	}
+	
+	
+	/**
+	 * 批量增加周计划
+	 */
+	public function batchCreate($firstDayOfWeek)
+	{
+		$plans = fixer::input('post')->get();
+		$delIds = $plans->ids;
+		//没有的id都删掉
+// 		$this->dao->delete()->from(TABLE_ICTWEEKPLAN)
+// 		->where('id')->notin($delIds)
+// 		->andWhere('account')->eq($this->app->user->account)
+// 		->andWhere('firstDayOfWeek')->eq($firstDayOfWeek)
+// 		->exec();
 		//批量插入周计划
 		for ($i = 0; $i < count($_POST['type']); $i++){
 			if ($plans->matter[$i] != ''){
@@ -258,6 +336,7 @@ class planModel extends model{
 				$plan->lastDayOfWeek	   = $myDateArr[1];								
 				
 				$plan->submitTo		= $plans->submitTo[$i];
+// 				$plan->submitOrNo   = '1';
 				if (empty($plans->ids[$i])) {
 					$this->dao->insert(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->exec();
 				} else {
@@ -281,66 +360,30 @@ class planModel extends model{
 			}
 		}
 		
+	}
+	
+	//自评周计划
+	public function evaluateMyPlan() {
+		$plans = fixer::input('post')->get();
 		//批量自评周计划
 		for ($i = 0; $i < count($_POST['status']); $i++){
-				$plan 				= new stdClass();
-				$plan->account   	= $this->app->user->account;
+			$plan 				= new stdClass();
+			$plan->account   	= $this->app->user->account;
 		
-				$plan->status 		= $plans->status[$i];
-				$plan->evidence     = $plans->evidence[$i];
-				$plan->courseAndSolution    = $plans->courseAndSolution[$i];
-				
-				$this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->where('id')->eq((int)$plans->ids[$i])->exec();
-				if(dao::isError())
-				{
-					echo js::error(dao::getError());
-					die(js::reload('parent'));
-				}
+			//使提交状态为1
+			$plan->submitOrNo   = '1';
+			$plan->status 		= $plans->status[$i];
+			$plan->evidence     = $plans->evidence[$i];
+			$plan->courseAndSolution    = $plans->courseAndSolution[$i];
+		
+			$this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->where('id')->eq((int)$plans->ids[$i])->exec();
+			if(dao::isError())
+			{
+				echo js::error(dao::getError());
+				die(js::reload('parent'));
+			}
 		}
-		
-		
-		
-		
-		
-// 		for ($i = 0; $i < count($_POST['types']); $i++){
-// 			$taskID = $plans->taskID[$i]!==''?$plans->taskID[$i]:time();
-// 			$null = $this->dao->select('*')->from(TABLE_ICTWEEKPLAN)->where('charge')->eq($this->app->user->account)
-// 				->andWhere('(id')->eq((int)$plans->taskID[$i])->orWhere("taskID = $taskID)")
-// 				->andWhere('week')->eq(date('W', strtotime($this->post->limit)))->fetch();
-// 			if ($plans->sorts[$i] != '' && $plans->matters[$i] != ''){
-// 				$plan 				= new stdClass();
-// 				$plan->startDate	= isset($this->post->startDate)?$this->post->startDate:$this->post->limit;
-// 				$plan->finishedDate	= isset($this->post->finishedDate)?$this->post->finishedDate:$this->post->limit;				$plan->week			= date('W', strtotime($this->post->finishedDate));
-// 				$plan->charge   	= $this->app->user->account;
-// 				$plan->type			= $plans->types[$i];
-// 				$plan->sort			= $plans->sorts[$i];
-// 				$plan->matter		= $plans->matters[$i];
-// 				$plan->plan			= $plans->plans[$i];
-// 				if(isset($plan->appraises[$i]))$plan->appraise		= $plans->appraises[$i];
-// 				$plan->auditor		= $plans->auditors[$i];
-// 				$plan->limit		= $this->post->limit;
-// 				$plan->week			= date('W', strtotime($this->post->limit));
-// 				$plan->isSubmit		= !empty($_GET['isSubmit'])?$_GET['isSubmit']:'0';
-// 				if(isset($plans->taskID[$i]))$plan->taskID		= $taskID;
-// 				if (empty($null))$this->dao->insert(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->exec();
-// 				else $this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->where('id')->eq((int)$null->id)->exec();
-// 				if(dao::isError())
-// 				{
-// 					echo js::error(dao::getError());
-// 					die(js::reload('parent'));
-// 				}
-// 			}
-// 			else {
-// 				unset($plans->types[$i]);
-// 				unset($plans->sorts[$i]);
-// 				unset($plans->matters[$i]);
-// 				unset($plans->plans[$i]);
-// 				unset($plans->appraises[$i]);
-// 				unset($plans->auditors[$i]);
-// 				unset($plans->limits[$i]);
-// 			} 
-// 		}
-	}
+	} 
 	
 	//根据输入日期查询
 	public function searchplan($account, $beginDate, $endDate) {
@@ -349,9 +392,16 @@ class planModel extends model{
 						->where('T1.account')->eq($account)
 						->andWhere('T1.firstDayOfWeek')->gt($beginDate)
 						->andWhere('T1.lastDayOfWeek')->lt($endDate)
+						->orderBy('T1.firstDayOfWeek')
 						->fetchAll();
 		return $searchResult; 
 	}
+	
+	public function searchForDetail ($planId) {
+		return $this->dao->select('*')->from(TABLE_ICTWEEKPLAN)
+		->where('id')->eq($planId)
+		->fetchAll();
+	} 
 	
 	/**
 	 * 更新修改的单条周计划

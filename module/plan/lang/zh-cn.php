@@ -134,3 +134,4 @@ $lang->plan->periods['handle']      = '审核计划';
 
 
 $lang->plan->searchplan				= '按日期查询';
+$lang->plan->searchfordetail		= '查询计划详情';

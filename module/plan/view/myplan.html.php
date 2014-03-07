@@ -28,6 +28,7 @@
       <th>见证性材料</th>
       <th>未完成原因说明及如何补救</th>
       <th>审核人</th>
+      <th>审核结果</th>
     </thead>
     <?php 
     $stepID = 0;
@@ -41,16 +42,27 @@
       <td><?php echo $plan->matter;?></td>
       <td><?php echo $plan->plan;?></td>
       <td><?php echo $plan->deadtime;?>
-      <td><select name='status[]'>
+      <td><select name='status[]' <?php if($plan->confirmed == '通过'){echo 'disabled';}?>>
       		<option value='完成' <?php if('完成'==$plan->status){echo 'selected="selected"';}?>>完成</option>
       		<option value='延期完成' <?php if('延期完成'==$plan->status){echo 'selected="selected"';}?>>延期完成</option>
       		<option value='经领导允许延期完成' <?php if('经领导允许延期完成'==$plan->status){echo 'selected="selected"';}?>>经领导允许延期完成</option>
       		<option value='未完成' <?php if('未完成'==$plan->status){echo 'selected="selected"';}?>>未完成</option>	
           </select>
       </td>
-      <td><?php echo html::input("evidence[]", $plan->evidence, "class=text-1");?></td>
-      <td><?php echo html::input("courseAndSolution[]", $plan->courseAndSolution, "class=text-1");?></td>
+      <td>
+      	<?php if($plan->confirmed != '通过'){echo html::input("evidence[]", $plan->evidence, "class=text-1");}
+      			else {echo $plan->evidence;}
+      	?>
+      </td>
+      <td><?php 
+	      if($plan->confirmed != '通过'){echo html::input("courseAndSolution[]", $plan->courseAndSolution, "class=text-1");}
+	      else {echo $plan->courseAndSolution;}
+      ?></td>
       <td><?php echo $plan->submitToName;?></td>
+      <td><?php if(!empty($plan->confirmed)) {
+      	echo $plan->confirmed;} else {
+			echo '未审核';
+      }?></td>
     </tr>
     <?php endforeach;?>
     <?php else :
@@ -61,7 +73,7 @@
     </tr>
     <?php endif;?><?php $link = $this->createLink('plan', 'myplan', "isSubmit=1")?>
     <tr><td colspan='9' class='a-center'><?php echo  
-    		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=1") . "\")'") ;?>
+    		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=0") . "\")'") ;?>
     </td></tr>
   </table>
   
@@ -75,6 +87,7 @@
       <th><?php echo $lang->plan->plan;?></th>
       <th>完成时限</th>
       <th>审核人</th>
+      <!-- <th>审核结果</th> -->
     </thead>
     
     
@@ -84,13 +97,25 @@
     foreach ($nextWeekPlan as $plan):
     $stepAddID += 1;
     ?>
-    <tr class='a-center'>
-      <td class='stepID'><?php echo $stepAddID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
-      <td><?php echo html::input("type[]", $plan->type, "class=text-1");?></td>
-      <td><?php echo html::input("matter[]", $plan->matter, "class=text-1");?></td>
-      <td><?php echo html::input("plan[]", $plan->plan, "class=text-1");?></td>
-      <td><?php echo html::input("deadtime[]", $plan->deadtime, "class=text-1");?></td>
-      <td><?php echo html::input("submitTo[]", $plan->submitTo, "class=text-1");?></td>
+    <tr class='a-center' id="row<?php echo $stepAddID?>">
+      <td class='stepAddID'><?php echo $stepAddID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
+      <?php 
+//       if($plan->confirmed != '通过'){
+	      echo '<td>'. html::input("type[]", $plan->type, "class=text-1"). '</td>
+	      <td>'. html::input("matter[]", $plan->matter, "class=text-1").'</td>
+	      <td>'. html::input("plan[]", $plan->plan, "class=text-1"). '</td>
+	      <td>'. html::input("deadtime[]", $plan->deadtime, "class=text-1"). '</td>
+	      <td>'. plan::select('submitTo[]', $submitTos, '', "class='select-1'"). '</td>';
+//       } else {
+//       	  echo '<td>'. $plan->type. '</td>
+// 	      <td>'. $plan->matter.'</td>
+// 	      <td>'. $plan->plan. '</td>
+// 	      <td>'. $plan->deadtime. '</td>
+// 	      <td>'. $plan->submitName. '</td>';
+//       }
+	     echo '<td>'. html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID)'"). '</td>';
+      ?>
+      <!-- <td><?php echo $plan->confirmed;?></td> -->
     </tr>
     <?php endforeach;?>
     <?php 
@@ -111,6 +136,7 @@
 //       		echo html::input("submitTo[]", '', "class=text-1");?>
       </td>
       <td><?php echo html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID)'")?></td>
+      
     </tr>
     <?php 
 //     endif;?>
