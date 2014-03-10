@@ -19,6 +19,7 @@
     <caption><div align="center">未审核计划</div></caption>
     <thead>
     <tr class='colhead'>
+      <th>时间</th>
       <th><?php echo $lang->plan->type;?></th>
       <th><?php echo $lang->plan->matter;?></th>
       <th><?php echo $lang->plan->plan;?></th>
@@ -31,10 +32,13 @@
     </thead>
     <tbody>
     <?php if (empty($uncheckedPlan)):?>
-    <tr><td colspan="8" style="text-align: right;"><?php echo $lang->pager->noRecord ;?></td></tr>
+    <tr><td colspan="9" style="text-align: right;"><?php echo $lang->pager->noRecord ;?></td></tr>
     <?php elseif (!empty($uncheckedPlan)):?>
     <?php foreach ((array)$uncheckedPlan as $week):?>
     <tr class='a-center'>
+    	<?php if(!empty($week->rowspanVal)) {
+			    echo '<td rowspan="'. $week->rowspanVal. '">('. $week->firstDayOfWeek. '<br/>~<br/>'. $week->lastDayOfWeek. ')</td>';
+		}?>
     	<td><?php echo $week->type;?><?php echo html::hidden("ids[]", $week->id, "");?></td>
     	<td><?php echo $week->matter;?></td>
     	<td><?php echo $week->plan;?></td>
@@ -55,7 +59,7 @@
     </tbody>
     <?php if (!empty($uncheckedPlan)):?>
     <tr>
-	    <td colspan='8' class='a-center'>
+	    <td colspan='9' class='a-center'>
 	    <?php echo  
 	    		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'handle', "isSubmit=1") . "\")'");?>
 	    </td>
@@ -69,6 +73,7 @@
   	<caption><div align="center">已审核计划</div></caption>
     <thead>
     <tr class='colhead'>
+      <th>时间</th>
       <th><?php echo $lang->plan->type;?></th>
       <th><?php echo $lang->plan->matter;?></th>
       <th><?php echo $lang->plan->plan;?></th>
@@ -81,10 +86,13 @@
     </thead>
     <tbody>
     <?php if (empty($checkPlan)):?>
-    <tr><td colspan="8" style="text-align: right;"><?php echo $lang->pager->noRecord ;?></td></tr>
+    <tr><td colspan="9" style="text-align: right;"><?php echo $lang->pager->noRecord ;?></td></tr>
     <?php elseif (!empty($checkPlan)):?>
     <?php foreach ((array)$checkPlan as $week):?>
     <tr class='a-center'>
+    	<?php if(!empty($week->rowspanVal)) {
+			    echo '<td rowspan="'. $week->rowspanVal. '">('. $week->firstDayOfWeek. '<br/>~<br/>'. $week->lastDayOfWeek. ')</td>';
+		}?>
     	<td><?php echo $week->type;?></td>
     	<td><?php echo $week->matter;?></td>
     	<td><?php echo $week->plan;?></td>

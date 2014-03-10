@@ -27,7 +27,7 @@
 		</td>
   		<td>
   			<table  class='table-1 tablesorter fixed colored datatable newBoxs'> 
-			    <caption><div align="center">上周周计划(2014/02/22~2014/02/28)</div></caption>
+			    <caption><div align="center">上周周计划(<?php echo $firstOfLastWeekDay. ' ~ '. $lastOfLastWeekDay;?>)</div></caption>
 			    <thead>
 			      <tr class='colhead'>
 				      <th>编号</th>
@@ -74,7 +74,8 @@
 			      <td><?php echo $plan->confirmedOrNo;?></td>
 			      <td><?php echo $plan->confirmed;?></td>
 			      <!-- <td><?php echo $plan->remark;?></td> -->
-			      <th><a href='#'>详情</a></th>
+			       <td><a href='/zentao/www/index.php?m=plan&amp;f=searchfordetail&amp;planId=<?php echo $plan->id;?>&amp;onlybody=yes'
+			       	 target="" class="link-icon iframe cboxElement" title="详情">详情</a></td>
 			    </tr>
 			    <?php endforeach;?>
 			    <?php else :
@@ -88,7 +89,7 @@
 			  
 			  
 			  <table  class='table-1 tablesorter fixed colored datatable newBoxs' style="margin-top: 5%"> 
-			    <caption><div align="center">本周周计划(2014/03/01~2014/03/07)</div></caption>
+			    <caption><div align="center">本周周计划(<?php echo $firstOfThisWeekDay. ' ~ '. $lastOfThisWeekDay;?>)</div></caption>
 			    <thead>
 			      <tr class='colhead'>
 				      <th>编号</th>
@@ -135,7 +136,8 @@
 			      <td><?php echo $plan->confirmedOrNo;?></td>
 			      <td><?php echo $plan->confirmed;?></td>
 			      <!-- <td><?php echo $plan->remark;?></td> -->
-			      <th><a href='#'>详情</a></th>
+			       <td><a href='/zentao/www/index.php?m=plan&amp;f=searchfordetail&amp;planId=<?php echo $plan->id;?>&amp;onlybody=yes'
+			       	 target="" class="link-icon iframe cboxElement" title="详情">详情</a></td>
 			    </tr>
 			    <?php endforeach;?>
 			    <?php else :
@@ -149,7 +151,7 @@
 			  
 			  
 			  <table  class='table-1 tablesorter fixed colored datatable newBoxs' style="margin-top: 5%"> 
-			    <caption><div align="center">下周周计划(2014/03/08~2014/03/14)</div></caption>
+			    <caption><div align="center">下周周计划(<?php echo $firstOfNextWeekDay. ' ~ '. $lastOfNextWeekDay;?>)</div></caption>
 			    <thead>
 			      <tr class='colhead'>
 				      <th>编号</th>
@@ -196,7 +198,8 @@
 			      <td><?php echo $plan->confirmedOrNo;?></td>
 			      <td><?php echo $plan->confirmed;?></td>
 			      <!-- <td><?php echo $plan->remark;?></td> -->
-			      <th><a href='#'>详情</a></th>
+			      <td><a href='/zentao/www/index.php?m=plan&amp;f=searchfordetail&amp;planId=<?php echo $plan->id;?>&amp;onlybody=yes'
+			       	 target="" class="link-icon iframe cboxElement" title="详情">详情</a></td>
 			    </tr>
 			    <?php endforeach;?>
 			    <?php else :

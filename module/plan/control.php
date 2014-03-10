@@ -18,8 +18,10 @@ class plan extends control{
 		if (!empty($_POST) && !isset($_GET['submit'])){
 			$getParam = $_GET['isSubmit'];
 			if ($getParam == '0') {
+				//自评本周周计划
 				$this->plan->evaluateMyPlan();
 			} else {
+				//填写下周周计划
 				$this->plan->myBatchCreate($myDateArr[0]);
 			}
 			
@@ -35,9 +37,14 @@ class plan extends control{
 		$week = floor(date('W',strtotime($finish)));
 		$account = $this->app->user->account;
 		
+		$this->view->firstOfThisWeekDay = $myDateArr[2];
+		$this->view->lastOfThisWeekDay = $myDateArr[4];
+		$this->view->firstOfNextWeekDay = $myDateArr[0];
+		$this->view->lastOfNextWeekDay = $myDateArr[1];
+		//查出本周自评未审核或者评审未通过的计划
 		$this->view->thisWeekPlan = $this->plan->queryPlanByTime($myDateArr[2]);
-		//查出下周未通过的周计划（第一天为本周六）
-		$this->view->nextWeekPlan = $this->plan->queryNextUnpassPlan($myDateArr[0]);
+		//查出下周未评审或评审未通过的周计划（第一天为本周六）
+		$this->view->nextWeekPlan = $this->plan->queryPlanByTime($myDateArr[0]);
 		$this->view->submitTos	  = $this->plan->getSubmitToName();
 // 		$this->view->weekPlan		= $this->plan->queryWeekPlan($account, $week, 0, $pager);
 // 		$this->view->date           = (int)$finish == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($finish));
@@ -110,6 +117,14 @@ class plan extends control{
 		
 		$account = $this->app->user->account;
 		$myDateArr = $this->getLastAndEndDayOfWeek();
+		
+		$this->view->firstOfThisWeekDay = $myDateArr[2];
+		$this->view->lastOfThisWeekDay = $myDateArr[4];
+		$this->view->firstOfNextWeekDay = $myDateArr[0];
+		$this->view->lastOfNextWeekDay = $myDateArr[1];
+		$this->view->firstOfLastWeekDay = $myDateArr[3];
+		$this->view->lastOfLastWeekDay = $myDateArr[5];
+		
 		//上周第一天为上上周六
 		$this->view->lastPlan		= $this->plan->queryWeekPlan($account, $myDateArr[3]);
 		//本周第一天为上周六
@@ -161,6 +176,8 @@ class plan extends control{
 		$account = $this->app->user->account;
 		if (!empty($_POST))$this->plan->updateCheckPlan();
 		$myplan 					= $this->plan->queryCheckPlan($account);
+		$this->dealArrForRowspan($myplan[0], 'firstDayOfWeek');
+		$this->dealArrForRowspan($myplan[1], 'firstDayOfWeek');
 		$this->view->checkPlan		= $myplan[0];
 		$this->view->uncheckedPlan  = $myplan[1];
 // 		$this->view->lead			= $this->plan->judgeAuditor($account);
@@ -467,18 +484,25 @@ class plan extends control{
 		//今天是星期几
 		$today = date("w");
 
-		//本周六日期
+		//下周周计划第一天（本周六）
 		$thisSaturday = date('Y-m-d', time()+(6-$today)*24*3600);
-		//下周五
-		$nextFriday = date('Y-m-d', time()+(12-$today)*24*3600);
-		//上周六日期
+		//本周周计划第一天（上周六）
 		$lastSaturday = date('Y-m-d', time()-(1+$today)*24*3600);
-		//上上周六
+		//上周计划第一天（上上周六）
 		$lastLastSaturday = date('Y-m-d', time()-(8+$today)*24*3600);
+		//下周周计划最后一天（下周五）
+		$nextFriday = date('Y-m-d', time()+(12-$today)*24*3600);
+		//本周最后一天为本周五
+		$thisFriday = date('Y-m-d', time()+(5-$today)*24*3600);
+		//上周计划最后一天（上周五）
+		$lastFriday = date('Y-m-d', time()-(1+$today)*24*3600);
+		
 		array_push($myDateArr, $thisSaturday);
 		array_push($myDateArr, $nextFriday);
 		array_push($myDateArr, $lastSaturday);
 		array_push($myDateArr, $lastLastSaturday);
+		array_push($myDateArr, $thisFriday);
+		array_push($myDateArr, $lastFriday);
 		return $myDateArr;
 	}
 	

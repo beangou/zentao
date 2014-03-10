@@ -2,7 +2,7 @@
 <?php include '../../common/view/datepicker.html.php';?>
 <?php include '../../common/view/colorize.html.php';?>
 <?php js::set('users', json_encode($users))?>
-<form method='post'  id='planform'>
+
   <div id='topmyplan'>
     <div class='f-left'>
       <?php 
@@ -16,8 +16,9 @@
     </div>
   </div>
   
+  <form method='post' id='planform'>
   <table class='table-1' id="commentPlan"> 
-    <caption><div align="center">自评本周计划完成情况(2014/03/01~2014/03/07)</div></caption>
+    <caption><div align="center">自评本周计划完成情况(<?php echo $firstOfThisWeekDay. ' ~ '. $lastOfThisWeekDay;?>)</div></caption>
     <thead>
       <th>编号</th>
       <th><?php echo $lang->plan->sort;?></th>
@@ -76,10 +77,11 @@
     		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=0") . "\")'") ;?>
     </td></tr>
   </table>
+  </form>
   
-  
+  <form method='post'>
   <table class='table-1' id="addPlan" style="margin-top: 5%"> 
-    <caption><div align="center">填写下周计划<?php echo '(2014/03/8~2014/03/14)'?></div></caption>
+    <caption><div align="center">填写下周计划(<?php echo $firstOfNextWeekDay. ' ~ '. $lastOfNextWeekDay;?>)</div></caption>
     <thead>
       <th>编号</th>
       <th><?php echo $lang->plan->sort;?></th>
@@ -87,7 +89,7 @@
       <th><?php echo $lang->plan->plan;?></th>
       <th>完成时限</th>
       <th>审核人</th>
-      <!-- <th>审核结果</th> -->
+      <th>审核结果</th>
     </thead>
     
     
@@ -105,7 +107,13 @@
 	      <td>'. html::input("matter[]", $plan->matter, "class=text-1").'</td>
 	      <td>'. html::input("plan[]", $plan->plan, "class=text-1"). '</td>
 	      <td>'. html::input("deadtime[]", $plan->deadtime, "class=text-1"). '</td>
-	      <td>'. plan::select('submitTo[]', $submitTos, '', "class='select-1'"). '</td>';
+	      <td>'. plan::select('submitTo[]', $submitTos, '', "class='select-1'"). '</td>
+		  <td>';
+	      if(empty($plan->confirmed)){
+		  	echo '未审核</td>';
+		  } else {
+		  	echo $plan->confirmed. '</td>';
+		  }
 //       } else {
 //       	  echo '<td>'. $plan->type. '</td>
 // 	      <td>'. $plan->matter.'</td>
@@ -115,7 +123,7 @@
 //       }
 	     echo '<td>'. html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID)'"). '</td>';
       ?>
-      <!-- <td><?php echo $plan->confirmed;?></td> -->
+      
     </tr>
     <?php endforeach;?>
     <?php 
@@ -135,23 +143,18 @@
       	 <?php 
 //       		echo html::input("submitTo[]", '', "class=text-1");?>
       </td>
+      <td>未审核</td>
       <td><?php echo html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID)'")?></td>
       
     </tr>
     <?php 
 //     endif;?>
     <?php $link = $this->createLink('plan', 'myplan', "isSubmit=1");?>
-    <tr><td colspan='7' class='a-center'>
+    <tr><td colspan='8' class='a-center'>
     <?php echo  
     		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=1") . "\")'");?>
     </td></tr>
   </table>
-  
-  
-  
-  
-  
-  
   
 </form>
 <?php include '../../common/view/footer.html.php';?>

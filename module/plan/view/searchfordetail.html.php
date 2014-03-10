@@ -18,37 +18,37 @@
 				      <th width="20%">时间</th><td><?php echo $detailPlan->firstDayOfWeek. '~'. $detailPlan->lastDayOfWeek;?></td>
 				  </tr>
 				  <tr>    
-				      <th><?php echo $lang->plan->sort;?></th><td><?php $detailPlan->type;?></td>
+				      <th><?php echo $lang->plan->sort;?></th><td><?php $myplan->type;?></td>
 				  </tr>
 				  <tr>    
-				      <th width="35%"><?php echo $lang->plan->matter;?></th><td><?php $detailPlan->matter;?></td>
+				      <th width="35%"><?php echo $lang->plan->matter;?></th><td><?php echo $detailPlan->matter;?></td>
 				  </tr>
 				  <tr>    
-       			      <th><?php echo $lang->plan->plan;?></th><td><?php $detailPlan->plan;?></td>
+       			      <th><?php echo $lang->plan->plan;?></th><td><?php echo $detailPlan->plan;?></td>
        			  </tr>
        			  <tr>    
-				      <th>完成时限</th><td><?php $detailPlan->deadtime;?></td>
+				      <th>完成时限</th><td><?php echo $detailPlan->deadtime;?></td>
 				  </tr>
 				  <tr>    
-				      <th>完成情况</th><td><?php $detailPlan->status;?></td>
+				      <th>完成情况</th><td><?php echo $detailPlan->status;?></td>
 				  </tr>
 				  <tr>    
-				      <th>见证性材料</th><td><?php $detailPlan->evidence;?></td>
+				      <th>见证性材料</th><td><?php echo $detailPlan->evidence;?></td>
 				  </tr>
 				  <tr>    
-				      <th>未完成原因说明及如何补救</th><td><?php $detailPlan->courseAndSolution;?></td>
+				      <th>未完成原因说明及如何补救</th><td><?php echo $detailPlan->courseAndSolution;?></td>
 				  </tr>
 				  <tr>    
-				      <th>审核人</th><td><?php $detailPlan->submitTo;?></td>
+				      <th>审核人</th><td><?php echo $detailPlan->submitToName;?></td>
 				  </tr>
 				  <tr>    
-				      <th>是否审核</th><td><?php $detailPlan->confirmedOrNo;?></td>
+				      <th>是否审核</th><td><?php echo $detailPlan->confirmedOrNo;?></td>
 				  </tr>    
 				  <tr>
-				      <th>审核结果</th><td><?php $detailPlan->confirmed;?></td>
+				      <th>审核结果</th><td><?php echo $detailPlan->confirmed;?></td>
 				  </tr>
 				  <tr>    
-				      <th>备注</th><td><?php $detailPlan->remark;?></td>
+				      <th>备注</th><td><?php echo $detailPlan->remark;?></td>
 				  </tr>				        			  
   			  </thead>
   		   </table>
