@@ -68,6 +68,9 @@ class indexcompare extends control
 	//执行插入缺陷去除率操作
 	public function ajaxInsertDefectData() {
 		global $config;
+		$myhost =  $config->db->host;
+		$myuser = $config->db->user;
+		$mypwd = $config->db->password;
 	
 		$con = @mysql_connect($config->db->host, $config->db->user, $config->db->password)
 		or die("数据库服务器连接失败");

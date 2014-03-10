@@ -398,9 +398,10 @@ class planModel extends model{
 	}
 	
 	public function searchForDetail ($planId) {
-		return $this->dao->select('*')->from(TABLE_ICTWEEKPLAN)
+		$planDetail = $this->dao->select('*')->from(TABLE_ICTWEEKPLAN)
 		->where('id')->eq($planId)
-		->fetchAll();
+		->fetchAll(); 
+		return $planDetail[0];
 	} 
 	
 	/**

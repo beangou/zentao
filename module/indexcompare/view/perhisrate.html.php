@@ -12,15 +12,15 @@
 
 <body>
   		   <table class="table-1 fixed colored datatable border-sep" id="product">
-  		    <caption><div align="center"><?php echo $developer. $lang->defect->perHisRateTitle;?></div></caption>
+  		    <caption><div align="center"><?php echo $developer. $lang->indexcompare->perHisRateTitle;?></div></caption>
   			  <thead>
   			  	<tr class="colhead">
-  			  		<th><?php echo $lang->defect->startDate;?></th>
-  			  		<th><?php echo $lang->defect->endDate;?></th>
-  			  		<th><?php echo $lang->defect->project;?></th>
-  			  		<th><?php echo $lang->defect->devBug;?></th>
-  			  		<th><?php echo $lang->defect->total;?></th>
-  			  		<th><?php echo $lang->defect->personalRate;?></th>
+  			  		<th><?php echo $lang->indexcompare->startDate;?></th>
+  			  		<th><?php echo $lang->indexcompare->endDate;?></th>
+  			  		<th><?php echo $lang->indexcompare->project;?></th>
+  			  		<th><?php echo $lang->indexcompare->devBug;?></th>
+  			  		<th><?php echo $lang->indexcompare->total;?></th>
+  			  		<th><?php echo $lang->indexcompare->personalRate;?></th>
   			  	</tr>
   			  </thead>
   			  <tbody>

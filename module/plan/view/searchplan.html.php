@@ -90,7 +90,7 @@
 			      	<td><?php echo $plan->remark;?></td>
 			       -->
 			       <td>
-			       	<a href='localhost:88/zentao/www/index.php?m=plan&f=searchfordetail&onlybody=yes&planId=<?php echo $plan->id;?>'
+			       	<a href='/zentao/www/index.php?m=plan&amp;f=searchfordetail&amp;planId=<?php echo $plan->id;?>&amp;onlybody=yes'
 			       	 target="" class="link-icon iframe cboxElement" title="详情">详情</a>
 			       </td>
 			    </tr>

@@ -14,38 +14,43 @@
   		   <table class="table-1 fixed colored datatable border-sep" id="product">
   		    <caption><div align="center">查看周计划详细信息</div></caption>
   			  <thead>
-				      <th width="20%">时间</th>
-				      <th><?php echo $lang->plan->sort;?></th>
-				      <th width="35%"><?php echo $lang->plan->matter;?></th>
-       			      <th><?php echo $lang->plan->plan;?></th>
-				      <th>完成时限</th>
-				      
-				      <th>完成情况</th>
-				      <th>见证性材料</th>
-				      <th>未完成原因说明及如何补救</th>
-				      <th>审核人</th>
-				      <th>是否审核</th>
-				      
-				      <th>审核结果</th>
-				      <th>备注</th>  			  
+				  <tr>    
+				      <th width="20%">时间</th><td><?php echo $detailPlan->firstDayOfWeek. '~'. $detailPlan->lastDayOfWeek;?></td>
+				  </tr>
+				  <tr>    
+				      <th><?php echo $lang->plan->sort;?></th><td><?php $detailPlan->type;?></td>
+				  </tr>
+				  <tr>    
+				      <th width="35%"><?php echo $lang->plan->matter;?></th><td><?php $detailPlan->matter;?></td>
+				  </tr>
+				  <tr>    
+       			      <th><?php echo $lang->plan->plan;?></th><td><?php $detailPlan->plan;?></td>
+       			  </tr>
+       			  <tr>    
+				      <th>完成时限</th><td><?php $detailPlan->deadtime;?></td>
+				  </tr>
+				  <tr>    
+				      <th>完成情况</th><td><?php $detailPlan->status;?></td>
+				  </tr>
+				  <tr>    
+				      <th>见证性材料</th><td><?php $detailPlan->evidence;?></td>
+				  </tr>
+				  <tr>    
+				      <th>未完成原因说明及如何补救</th><td><?php $detailPlan->courseAndSolution;?></td>
+				  </tr>
+				  <tr>    
+				      <th>审核人</th><td><?php $detailPlan->submitTo;?></td>
+				  </tr>
+				  <tr>    
+				      <th>是否审核</th><td><?php $detailPlan->confirmedOrNo;?></td>
+				  </tr>    
+				  <tr>
+				      <th>审核结果</th><td><?php $detailPlan->confirmed;?></td>
+				  </tr>
+				  <tr>    
+				      <th>备注</th><td><?php $detailPlan->remark;?></td>
+				  </tr>				        			  
   			  </thead>
-  			  
-  			  <tbody>
-  			  		<td><?php echo $detailPlan->firstDayOfWeek. '~'. $detailPlan->lastDayOfWeek;?></td>
-  			  		<td><?php $detailPlan->type;?></td>
-  			  		<td><?php $detailPlan->matter;?></td>
-  			  		<td><?php $detailPlan->plan;?></td>
-  			  		<td><?php $detailPlan->deadtime;?></td>
-  			  		
-  			  		<td><?php $detailPlan->status;?></td>
-  			  		<td><?php $detailPlan->evidence;?></td>
-  			  		<td><?php $detailPlan->courseAndSolution;?></td>
-  			  		<td><?php $detailPlan->submitTo;?></td>
-  			  		<td><?php $detailPlan->confirmedOrNo;?></td>
-  			  		
-  			  		<td><?php $detailPlan->confirmed;?></td>
-  			  		<td><?php $detailPlan->remark;?></td>
-  			  </tbody>
   		   </table>
 </body>
 <?php include '../../common/view/footer.html.php';?>	

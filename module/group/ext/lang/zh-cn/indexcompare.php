@@ -11,3 +11,6 @@ $lang->resource->indexcompare->perStability 	= 'perStability';
 $lang->resource->indexcompare->completed 	= 'proCompleted';
 $lang->resource->indexcompare->perCompleted 	= 'perCompleted';
 
+$lang->resource->indexcompare->perCompleted 	= 'perCompleted';
+
+$lang->resource->indexcompare->perHisRate	= 'perHisRate';
