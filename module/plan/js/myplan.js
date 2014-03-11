@@ -34,6 +34,18 @@ function deleteRow(rowID)
 //    updateStepID();
     updateStepAddID();
 }
+
+//取当前时间，格式为,yyyy-mm-dd hh:mm:ss
+function GetDateT()
+ {
+  var d,s;
+  d = new Date();
+  s = d.getYear() + "-";             //取年份
+  s = s + (d.getMonth() + 1) + "-";//取月份
+  s += d.getDate();         //取日期
+  return(s);  
+ } 
+
 /**
  * Insert after the step.
  * 
@@ -44,9 +56,34 @@ function deleteRow(rowID)
 function postInsert(rowID)
 {
 //    $('#row' + rowID).after(createRow());
-	$('#row' + rowID).after(mycreateRow());
+	$('#row' + rowID).after(mycreateRow(rowID));
 //    updateStepID();
 	updateStepAddID();
+//	ajaxGetDate(rowID);
+	
+	$(function() {
+	    $('.date').each(function(){
+	        time = $(this).val();
+	        if(!isNaN(time) && time != ''){
+	            var Y = time.substring(0, 4);
+	            var m = time.substring(4, 6);
+	            var d = time.substring(6, 8);
+	            time = Y + '-' + m + '-' + d;
+	            $('.date').val(time);
+	        }
+	    });
+
+	    startDate = new Date(1970, 1, 1);
+	    $(".date").datePicker({createButton:true, startDate:startDate})
+	        .dpSetPosition($.dpConst.POS_TOP, $.dpConst.POS_RIGHT)
+	});
+	
+}
+
+function ajaxGetDate(rowID)
+{
+	link1 = createLink('plan', 'ajaxGetDate');
+	$('#addRowDate_'+rowID).load(link1);
 }
 
 /**
@@ -86,7 +123,7 @@ function createRow()
  * @access public
  * @return void
  */
-function mycreateRow()
+function mycreateRow(paramRowId)
 {
 	var obj = eval("("+users+")");
 //    if(newRowID == 0) newRowID = $('.stepAddID').size();
@@ -97,7 +134,9 @@ function mycreateRow()
     newRow += "<td><input name='type[]' class='select-1' onkeyup='this.value=this.value.toUpperCase()')></td>";
     newRow += "<td><input name='matter[]' class='text-1')></td>";
     newRow += "<td><input name='plan[]' class='text-1'></td>";
-    newRow += "<td><input name='deadtime[]' class='text-1'></td>";
+//    newRow += "<td id='addRowDate_"+paramRowId+"'></td>";
+//    newRow += "<td>"+$("#copyDateTd").html()+"</td>";
+    newRow += "<td><input type='text' name='deadtime[]' class='select-2 date'></td>";//<input type='text' name='$name' id='$name' value='$value' $attrib />\n
     newRow += "<td>"+$("#selectName").html()+"</td>"; 
 //    alert($("#selectName").html());	
 //    newRow += "<td><input name='submitTo[]' class='text-1'></td>";

@@ -7,6 +7,20 @@
  	  include '../../common/view/datepicker.html.php';
 ?>
 <body>
+	
+  <div id='topmyplan'>
+    <div class='f-left'>
+      <?php 
+      foreach($lang->plan->periods as $period => $label)
+      {
+          $vars = $period;
+//           if($period == 'before') $vars .= "&account={$app->user->account}&status=undone";
+          echo "<span id='$period'>" . html::a(inlink($vars), $label) . '</span>';
+      }
+      ?>
+    </div>
+  </div>
+  
 	<table width="100%" id="proteam" style="border: 0">
 	  <tr>
 	  	<td valign="top">

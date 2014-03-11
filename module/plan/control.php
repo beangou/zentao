@@ -46,6 +46,8 @@ class plan extends control{
 		//查出下周未评审或评审未通过的周计划（第一天为本周六）
 		$this->view->nextWeekPlan = $this->plan->queryPlanByTime($myDateArr[0]);
 		$this->view->submitTos	  = $this->plan->getSubmitToName();
+		
+		$this->view->date           = $myDateArr[1];
 // 		$this->view->weekPlan		= $this->plan->queryWeekPlan($account, $week, 0, $pager);
 // 		$this->view->date           = (int)$finish == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($finish));
 // 		$this->view->team			= $this->plan->getTeaminfo();
@@ -54,6 +56,11 @@ class plan extends control{
 // 		$this->view->users			= $this->plan->queryUser();
 // 		$this->view->pager        	= $pager;
 		$this->display();
+	}
+	
+	public function ajaxGetDate() {
+		$myDateArr = $this->getLastAndEndDayOfWeek();
+		die(html::input('deadtime[]', date('Y-m-d',strtotime($myDateArr[1])), "class='select-2 date'"));
 	}
 	
 	/**
@@ -203,6 +210,7 @@ class plan extends control{
 // 		$this->view->role			= $this->plan->queryRole();
 		if (!empty($_POST['proteam'])){
 			foreach ($_POST['proteam'] as $key => $value){
+// 				$data->leader = '1';
 				$data->proteam = $value;
 				$this->dao->update(TABLE_ICTMEMBSET)->data($data)->where('id')->eq((int)$key)->exec();
 			}
@@ -262,7 +270,8 @@ class plan extends control{
 		die("<input name='auditor1[$memb]' value='$leader->auditor1' type='hidden'/>
 				<input name='auditor2[$memb]' value='$leader->leader' type='hidden'/>
 				<input value='$leader->rel1' style='border:0;width: 60px;' readonly/>
-				<input value='$leader->realname' style='border:0;width: 60px;' readonly/>");
+				<input value='$leader->realname' style='border:0;width: 60px;' readonly/>
+				<script>$('#leaderId_". $memb. "').text('". $leader->realname. "')</script>");
 	}
 	/**
 	 * 新增

@@ -106,7 +106,12 @@
 	      echo '<td>'. html::input("type[]", $plan->type, "class=text-1"). '</td>
 	      <td>'. html::input("matter[]", $plan->matter, "class=text-1").'</td>
 	      <td>'. html::input("plan[]", $plan->plan, "class=text-1"). '</td>
-	      <td>'. html::input("deadtime[]", $plan->deadtime, "class=text-1"). '</td>
+	      <td>';
+// 	       echo html::input("deadtime[]", $plan->deadtime, "class=text-1");
+
+	       echo html::input('deadtime[]', date('Y-m-d',strtotime($plan->deadtime)), "class='select-2 date'");
+	       
+	       echo '</td>
 	      <td>'. plan::select('submitTo[]', $submitTos, '', "class='select-1'"). '</td>
 		  <td>';
 	      if(empty($plan->confirmed)){
@@ -114,13 +119,6 @@
 		  } else {
 		  	echo $plan->confirmed. '</td>';
 		  }
-//       } else {
-//       	  echo '<td>'. $plan->type. '</td>
-// 	      <td>'. $plan->matter.'</td>
-// 	      <td>'. $plan->plan. '</td>
-// 	      <td>'. $plan->deadtime. '</td>
-// 	      <td>'. $plan->submitName. '</td>';
-//       }
 	     echo '<td>'. html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID)'"). '</td>';
       ?>
       
@@ -135,7 +133,11 @@
       <td><?php echo html::input("type[]", '', "class='select-1' onkeyup='this.value=this.value.toUpperCase()'");?></td>
       <td><?php echo html::input("matter[]", '', 'class="text-1"');?></td>
       <td><?php echo html::input("plan[]", '', "class=text-1");?></td>
-      <td><?php echo html::input("deadtime[]", '', "class=text-1");?></td>
+      <td id='copyDateTd'><?php 
+      		echo html::input('deadtime[]', '', "class='select-2 date'");
+//       		html::input("deadtime[]", '', "class=text-1");
+      		?>
+      </td>
       <td id="selectName">
       	 <?php 
 			    echo plan::select('submitTo[]', $submitTos, '', "class='select-1'");

@@ -190,27 +190,43 @@ class planModel extends model{
 	public function getSubmitToName() 
 	{
 		$submitToNames = array();
-		$name1->account = 'dingbing';
-		$name1->realname = '丁兵';
-		$name2->account = 'liutongbin';
-		$name2->realname = '刘同彬';
-		$name3->account = 'zhoubenwen';
-		$name3->realname = '周本文';
-		$name4->account = 'liyuchen';
-		$name4->realname = '李雨辰';
-		$name5->account = 'yangtao';
-		$name5->realname = '杨涛';
-		$name6->account = 'chendaoming';
-		$name6->realname = '吴道明';
 		
-		array_push($submitToNames, $name1);
-		array_push($submitToNames, $name2);
-		array_push($submitToNames, $name3);
-
-		array_push($submitToNames, $name4);
-		array_push($submitToNames, $name5);
-		array_push($submitToNames, $name6);
+		$result = $this->dao->select('*')->from(TABLE_ICTMEMBSET)
+				  ->where('account')->eq($this->app->user->account)
+				  ->andWhere('leader')->eq('1')
+				  ->fetchAll();
 		
+		//如果是组长，需要选择审核人（二选一）
+		if (count($result) > 0)		
+		{
+			$names = $this->dao->select('T1.auditor1, T2.realname as auditor1_name, T1.auditor2, T3.realname as auditor2_name')
+			->from(TABLE_ICTMEMBSET)->alias('T1')
+			->leftJoin(TABLE_USER)->alias('T2')->on('T2.account = T1.auditor1')
+			->leftJoin(TABLE_USER)->alias('T3')->on('T3.account = T1.auditor2')
+			->where('T1.account')->eq($this->app->user->account)
+			->fetchAll();
+			
+			$name1->account = $names[0]->auditor1;
+			$name1->realname = $names[0]->auditor1_name;
+			$name2->account = $names[0]->auditor2;
+			$name2->realname = $names[0]->auditor2_name;
+			
+			array_push($submitToNames, $name1);
+			array_push($submitToNames, $name2);
+		} else {
+			//如果是普通成员，找出其组长
+			$names = $this->dao->select('T2.leader, T3.realname')
+			->from(TABLE_ICTMEMBSET)->alias('T1')
+			->leftJoin(TABLE_ICTPROTEAM)->alias('T2')->on('T2.id = T1.proteam')
+			->leftJoin(TABLE_USER)->alias('T3')->on('T3.account = T2.leader')
+			->where('T1.account')->eq($this->app->user->account)
+			->fetchAll();
+				
+			$name1->account = $names[0]->leader;
+			$name1->realname = $names[0]->realname;
+				
+			array_push($submitToNames, $name1);
+		}
 		return $submitToNames; 	
 	}
 	
@@ -530,6 +546,7 @@ class planModel extends model{
 		{
 			$data->account = $account;
 			$proteam = $this->dao->select('*')->from(TABLE_ICTPROTEAM)->where('leader')->eq($account)->fetch();
+			//如果该成员是组长的话，才可以确定成员所在的组以及审核人
 			if (!empty($proteam->leader)){
 				$data->proteam = $proteam->id;
 				$data->leader = '1';
@@ -544,9 +561,10 @@ class planModel extends model{
 	 */
 	public function queryMembUser()
 	{
-		$memberUser = $this->dao->select('t1.*,t2.realname,t3.team,t4.name,"" as rel1,"" as rel2')
+		$memberUser = $this->dao->select('t1.*,t2.realname,t3.team,t5.realname AS leadname,t4.name,"" as rel1,"" as rel2')
 		->from(TABLE_ICTMEMBSET)->alias('t1')->leftJoin(TABLE_USER)
 		->alias('t2')->on('t1.account = t2.account')->leftJoin(TABLE_ICTPROTEAM)->alias('t3')->on('t1.proteam = t3.id')
+		->leftJoin(TABLE_USER)->alias('t5')->on('t5.account = t3.leader')
 		->leftJoin(TABLE_DEPT)->alias('t4')->on('t2.dept = t4.id')->orderBy('t1.proteam desc')->fetchAll();
 		foreach ($memberUser as $memb){
 			if (isset($memb->auditor1))$memb->rel1 = $this->queryRealName($memb->auditor1);

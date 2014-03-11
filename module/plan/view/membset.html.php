@@ -7,6 +7,20 @@
  	  include '../../common/view/datepicker.html.php';
 ?>
 <body>
+
+	   <div id='topmyplan'>
+	    <div class='f-left'>
+	      <?php 
+	      foreach($lang->plan->periods as $period => $label)
+	      {
+	          $vars = $period;
+	//           if($period == 'before') $vars .= "&account={$app->user->account}&status=undone";
+	          echo "<span id='$period'>" . html::a(inlink($vars), $label) . '</span>';
+	      }
+	      ?>
+	    </div>
+	  </div>
+	
 	<table width="100%" style="border: 0">
 		<tr valign="top">
 			<td valign="top">
@@ -32,6 +46,7 @@
 			  				<th><?php echo $lang->plan->realname;?></th>
 			  				<th><?php echo $lang->plan->dept;?></th>
 			  				<th><?php echo $lang->plan->team;?></th>
+			  				<th><?php echo $lang->plan->leader;?></th>
 			  				<th><?php echo $lang->plan->auditor;?></th>
 			  				<th><?php echo $lang->actions;?></th>
 			  			</tr>
@@ -42,6 +57,7 @@
 			  				<td><?php 
 			  				if ($memb->leader == '1')echo $memb->team;
 			  				else echo html::select("proteam[$memb->id]",$teams,$memb->proteam,"onchange=\"loadLeader($memb->id, this.value)\"");?></td>
+			  				<td id="leaderId_<?php echo $memb->id;?>"><?php echo $memb->leadname;?></td>
 			  				<td align="center">
 			  				  <table style="border: none;height: 20px;margin-top: 8px;">
 			  				    <tr>
