@@ -11,7 +11,7 @@
   <div id='topmyplan'>
     <div class='f-left'>
       <?php 
-      foreach($lang->plan->periods as $period => $label)
+      foreach($mymenu as $period => $label)
       {
           $vars = $period;
 //           if($period == 'before') $vars .= "&account={$app->user->account}&status=undone";

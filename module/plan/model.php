@@ -136,7 +136,7 @@ class planModel extends model{
 				->leftJoin(TABLE_USER)->alias('T2')->on('T1.account = T2.account')
 				->where('T1.submitTo')->eq($account)
 				->andWhere('T1.confirmedOrNo')->eq('是')
-				->orderBy('T1.firstDayOfWeek desc, T1.type')
+				->orderBy('T1.firstDayOfWeek desc, T1.account, T1.type')
 				->fetchAll();
 		//未审核周计划
 		$uncheckedWeekPlan = $this->dao->select('T1.*, T2.realname AS accountname')
@@ -144,11 +144,31 @@ class planModel extends model{
 				->leftJoin(TABLE_USER)->alias('T2')->on('T1.account = T2.account')
 				->where('T1.submitTo')->eq($account)
 				->andWhere('T1.confirmedOrNo')->eq('否')
-				->orderBy('T1.firstDayOfWeek desc, T1.type')
+				->orderBy('T1.firstDayOfWeek desc, T1.account, T1.type')
 				->fetchAll();
 		array_push($myplan, $checkWeekPlan);
 		array_push($myplan, $uncheckedWeekPlan);
 		return $myplan;
+	}
+	
+	
+	/**
+	 * 查出已经审核通过的计划，准备汇总
+	 * @param unknown_type $account
+	 * @param unknown_type $startDate
+	 * @param unknown_type $finishedDate
+	 */
+	public function queryPassedPlan($account)
+	{
+		//已通过周计划
+		$passedPlan = $this->dao->select('T1.*, T2.realname AS accountname')
+		->from(TABLE_ICTWEEKPLAN)->alias('T1')
+		->leftJoin(TABLE_USER)->alias('T2')->on('T1.account = T2.account')
+		->where('T1.submitTo')->eq($account)
+		->andWhere('T1.confirmed')->eq('通过')
+		->orderBy('T1.firstDayOfWeek desc, T1.account, T1.type')
+		->fetchAll();
+		return $passedPlan;
 	}
 	
 	
@@ -418,7 +438,7 @@ class planModel extends model{
 						->where('T1.account')->eq($account)
 						->andWhere('T1.firstDayOfWeek')->gt($beginDate)
 						->andWhere('T1.lastDayOfWeek')->lt($endDate)
-						->orderBy('T1.firstDayOfWeek')
+						->orderBy('T1.firstDayOfWeek desc, T1.type')
 						->fetchAll();
 		return $searchResult; 
 	}
@@ -798,4 +818,17 @@ class planModel extends model{
 	{
 		return $this->dao->select('realname')->from(TABLE_USER)->where('account')->eq($account)->fetch()->realname;
 	}
+	
+	/**
+	 * 
+	 */
+	public function checkCollectPlan()
+	{
+		$account = $this->app->user->account;
+		return $this->dao->select('*')->from(TABLE_ICTPROTEAM)
+				->where('auditor1')->eq($account)
+				->orWhere('auditor2')->eq($account)
+				->fetchAll();
+	}
+	
 }

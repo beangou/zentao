@@ -1,5 +1,5 @@
 <?php
-helper::import('D:\www\zendZentao\module\misc\model.php');
+helper::import('D:\www\zentao\module\misc\model.php');
 class extmiscModel extends miscModel 
 {
 public function hello2()

@@ -1,4 +1,7 @@
 <?php
+
+require_once('class.phpmailer.php'); //载入PHPMailer类
+
 class plan extends control{
 	
 	public function __construct()
@@ -8,6 +11,52 @@ class plan extends control{
 		$this->loadModel('dept');
 		$this->loadModel('my')->setMenu();
 	}
+	
+	/**
+	 * 发送邮件
+	 */
+	public function sendEmail($email)	
+	{
+		$mail = new PHPMailer(); //实例化
+		$mail->IsSMTP(); // 启用SMTP
+		$mail->Host = "smtp.163.com"; //SMTP服务器 以163邮箱为例子
+		$mail->Port = 25;  //邮件发送端口
+		$mail->SMTPAuth   = true;  //启用SMTP认证
+		
+		$mail->CharSet  = "UTF-8"; //字符集
+		$mail->Encoding = "base64"; //编码方式
+		
+		$mail->Username = "15955552919@163.com";  //你的邮箱
+		$mail->Password = "abcde12345";  //你的密码
+		$mail->Subject = "ict周计划汇总"; //邮件标题
+		
+		$mail->From = "15955552919@163.com";  //发件人地址（也就是你的邮箱）
+		$mail->FromName = "ict禅道系统";  //发件人姓名
+		
+// 		$address = "15955552919@163.com";//收件人email
+		$address = $email;
+		$mail->AddAddress($address, "ict周计划审核人");//添加收件人（地址，昵称）
+		
+		$mail->AddAttachment('control.xls','ict周计划汇总.xls'); // 添加附件,并指定名称
+		$mail->IsHTML(true); //支持html格式内容
+		
+		$mail->Body = '您好! <br/>这是一封来自安徽移动ict禅道系统的邮件！<br/>'; //邮件主体内容
+		
+		// $mail->AddEmbeddedImage("logo.jpg", "my-attach", "logo.jpg"); //设置邮件中的图片
+// 		$mail->Body = '你好, <b>朋友</b>! <br/>这是一封来自<a href="http://www.helloweba.com"
+// 		target="_blank">helloweba.com</a>的邮件！<br/>
+// 		<img alt="helloweba" src="cid:my-attach">'; //邮件主体内容
+		
+		//发送
+		if(!$mail->Send()) {
+// 			echo "Mailer Error: " . $mail->ErrorInfo;
+			return $mail->ErrorInfo;
+		} else {
+// 			echo "Message sent!";
+			return "发送成功!";
+		}
+    }
+	
 	/**
 	 * 我的计划
 	 * @param unknown_type $finish
@@ -48,6 +97,16 @@ class plan extends control{
 		$this->view->submitTos	  = $this->plan->getSubmitToName();
 		
 		$this->view->date           = $myDateArr[1];
+		
+		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
+		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
+		$mymenu['handle']      = '审核计划';
+		$mymenu['proteam'] 	= '项目组设定';
+		$mymenu['membset']     = '成员设定';
+		if (!$this->checkCollectPlan()) {
+			$mymenu['collectplan']     = '汇总计划';
+		}
+		$this->view->mymenu = $mymenu;
 // 		$this->view->weekPlan		= $this->plan->queryWeekPlan($account, $week, 0, $pager);
 // 		$this->view->date           = (int)$finish == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($finish));
 // 		$this->view->team			= $this->plan->getTeaminfo();
@@ -140,6 +199,17 @@ class plan extends control{
 		$this->view->nextPlan 		= $this->plan->queryWeekPlan($account, $myDateArr[0]);
 		
 		$this->view->date           = (int)$date == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($date));
+		
+		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
+		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
+		$mymenu['handle']      = '审核计划';
+		$mymenu['proteam'] 	= '项目组设定';
+		$mymenu['membset']     = '成员设定';
+		if (!$this->checkCollectPlan()) {
+			$mymenu['collectplan']     = '汇总计划';
+		}
+		$this->view->mymenu = $mymenu;
+		
 // 		$this->view->team			= $this->plan->getTeaminfo();
 		$this->display();
 	}
@@ -187,6 +257,17 @@ class plan extends control{
 		$this->dealArrForRowspan($myplan[1], 'firstDayOfWeek');
 		$this->view->checkPlan		= $myplan[0];
 		$this->view->uncheckedPlan  = $myplan[1];
+		
+		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
+		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
+		$mymenu['handle']      = '审核计划';
+		$mymenu['proteam'] 	= '项目组设定';
+		$mymenu['membset']     = '成员设定';
+		if (!$this->checkCollectPlan()) {
+			$mymenu['collectplan']     = '汇总计划';
+		}
+		$this->view->mymenu = $mymenu;
+		
 // 		$this->view->lead			= $this->plan->judgeAuditor($account);
 		$this->display();
 	}
@@ -199,6 +280,15 @@ class plan extends control{
 		$this->view->users			= $this->plan->queryUser();
 		if (!empty($_POST))$this->plan->saveProteam();
 		$this->view->proteam		= $this->plan->queryProteam();
+		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
+		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
+		$mymenu['handle']      = '审核计划';
+		$mymenu['proteam'] 	= '项目组设定';
+		$mymenu['membset']     = '成员设定';
+		if (!$this->checkCollectPlan()) {
+			$mymenu['collectplan']     = '汇总计划';
+		}
+		$this->view->mymenu = $mymenu;
 		$this->display();
 	}
 	/**
@@ -234,6 +324,15 @@ class plan extends control{
 		$this->view->members		= $member;
 		// 		$this->view->teams			= $teams;
 		$this->view->teams			= $this->plan->queryTeam();
+		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
+		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
+		$mymenu['handle']      = '审核计划';
+		$mymenu['proteam'] 	= '项目组设定';
+		$mymenu['membset']     = '成员设定';
+		if (!$this->checkCollectPlan()) {
+			$mymenu['collectplan']     = '汇总计划';
+		}
+		$this->view->mymenu = $mymenu;
 		$this->display();
 	}
 	/**
@@ -593,6 +692,196 @@ class plan extends control{
 	
 		/* End. */
 		return $temp;
+	}
+	
+	/**
+	 * 验证用户是否有权限进行“汇总计划”
+	 */
+	public function checkCollectPlan()
+	{
+		$result = $this->plan->checkCollectPlan();
+		
+		if(count($result)==0) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * 汇总计划(汇总并发送计划到指定邮箱)
+	 */
+	public function collectPlan()
+	{
+		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
+		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
+		$mymenu['handle']      = '审核计划';
+		$mymenu['proteam'] 	= '项目组设定';
+		$mymenu['membset']     = '成员设定';
+		if (!$this->checkCollectPlan()) {
+			$mymenu['collectplan']     = '汇总计划';
+		}
+		$this->view->mymenu = $mymenu;
+		if (!empty($_POST) && $this->post->email != '') {
+		$this->generateExcl();
+		$this->view->info = $this->sendEmail($this->post->email);
+		}
+		$account = $this->app->user->account;
+		$this->view->passedPlan = $this->plan->queryPassedPlan($account);
+		$this->display();
+	}
+	
+	/**
+	 * 生成excl文件
+	 */
+	public function generateExcl() 
+	{
+		/**
+		 * PHPExcel
+		 *
+		 * Copyright (C) 2006 - 2014 PHPExcel
+		 *
+		 * This library is free software; you can redistribute it and/or
+		 * modify it under the terms of the GNU Lesser General Public
+		 * License as published by the Free Software Foundation; either
+		 * version 2.1 of the License, or (at your option) any later version.
+		 *
+		 * This library is distributed in the hope that it will be useful,
+		 * but WITHOUT ANY WARRANTY; without even the implied warranty of
+		 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+		 * Lesser General Public License for more details.
+		 *
+		 * You should have received a copy of the GNU Lesser General Public
+		 * License along with this library; if not, write to the Free Software
+		 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+		 *
+		 * @category   PHPExcel
+		 * @package    PHPExcel
+		 * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
+		 * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
+		 * @version    1.8.0, 2014-03-02
+		 */
+		
+		/** Error reporting */
+		error_reporting(E_ALL);
+		ini_set('display_errors', TRUE);
+		ini_set('display_startup_errors', TRUE);
+		date_default_timezone_set('Europe/London');
+		
+		define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+		
+		/** Include PHPExcel */
+		require_once '../Classes/PHPExcel.php';
+		
+		
+		// Create new PHPExcel object
+// 		echo date('H:i:s') , " Create new PHPExcel object" , EOL;
+		$objPHPExcel = new PHPExcel();
+		
+		// Set document properties
+// 		echo date('H:i:s') , " Set document properties" , EOL;
+		$objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
+		->setLastModifiedBy("Maarten Balliauw")
+		->setTitle("PHPExcel Test Document")
+		->setSubject("PHPExcel Test Document")
+		->setDescription("Test document for PHPExcel, generated using PHP classes.")
+		->setKeywords("office PHPExcel php")
+		->setCategory("Test result file");
+		
+		
+		// Add some data
+// 		echo date('H:i:s') , " Add some data" , EOL;
+		$objPHPExcel->setActiveSheetIndex(0)
+		->setCellValue('A1', '时间')
+		->setCellValue('B1', '负责人')
+		->setCellValue('C1', '按ABC分类')
+		->setCellValue('D1', '本周事项')
+		->setCellValue('E1', '行动计划')
+		->setCellValue('F1', '完成时限')
+		->setCellValue('G1', '完成情况')
+		->setCellValue('H1', '见证性材料')
+		->setCellValue('I1', '未完成原因说明及如何补救');
+		
+		
+		$account = $this->app->user->account;
+		$myplanList = $this->plan->queryPassedPlan($account);
+// 		$this->dealArrForRowspan($myplan[0], 'firstDayOfWeek');
+// 		$this->view->checkPlan		= $myplan[0];
+// 		$this->view->uncheckedPlan  = $myplan[1];
+		
+		
+		$i = 1;
+		foreach ($myplanList as $myplan)
+		{
+			$i++;
+			$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue('A'. $i, $myplan->firstDayOfWeek. ' ~ '. $myplan->lastDayOfWeek)
+			->setCellValue('B'. $i, $myplan->accountname)
+			->setCellValue('C'. $i, $myplan->type)
+			->setCellValue('D'. $i, $myplan->matter)
+			->setCellValue('E'. $i, $myplan->plan)
+			->setCellValue('F'. $i, $myplan->deadtime)
+			->setCellValue('G'. $i, $myplan->status)
+			->setCellValue('H'. $i, $myplan->evidence)
+			->setCellValue('I'. $i, $myplan->courseAndSolution);
+		}
+		// Miscellaneous glyphs, UTF-8
+// 		$objPHPExcel->setActiveSheetIndex(0)
+// 		->setCellValue('A4', 'Miscellaneous glyphs')
+// 		->setCellValue('A5', '江山代有才人出，各领风骚数百年');
+		
+		
+// 		$objPHPExcel->getActiveSheet()->setCellValue('A8',"Hello\nWorld");
+// 		$objPHPExcel->getActiveSheet()->getRowDimension(8)->setRowHeight(-1);
+// 		$objPHPExcel->getActiveSheet()->getStyle('A8')->getAlignment()->setWrapText(true);
+		
+		
+		// Rename worksheet
+// 		echo date('H:i:s') , " Rename worksheet" , EOL;
+		$objPHPExcel->getActiveSheet()->setTitle('Simple');
+		
+		
+		// Set active sheet index to the first sheet, so Excel opens this as the first sheet
+		$objPHPExcel->setActiveSheetIndex(0);
+		
+		
+		// Save Excel 2007 file
+// 		echo date('H:i:s') , " Write to Excel2007 format" , EOL;
+		$callStartTime = microtime(true);
+		
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+		$objWriter->save(str_replace('.php', '.xlsx', __FILE__));
+		$callEndTime = microtime(true);
+		$callTime = $callEndTime - $callStartTime;
+		
+// 		echo date('H:i:s') , " File written to " , str_replace('.php', '.xlsx', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
+// 		echo 'Call time to write Workbook was ' , sprintf('%.4f',$callTime) , " seconds" , EOL;
+// 		// Echo memory usage
+// 		echo date('H:i:s') , ' Current memory usage: ' , (memory_get_usage(true) / 1024 / 1024) , " MB" , EOL;
+		
+		
+// 		// Save Excel 95 file
+// 		echo date('H:i:s') , " Write to Excel5 format" , EOL;
+		$callStartTime = microtime(true);
+		
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+		$objWriter->save(str_replace('.php', '.xls', __FILE__));
+		$callEndTime = microtime(true);
+		$callTime = $callEndTime - $callStartTime;
+		
+		return $myplanList;
+		
+// 		echo date('H:i:s') , " File written to " , str_replace('.php', '.xls', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
+// 		echo 'Call time to write Workbook was ' , sprintf('%.4f',$callTime) , " seconds" , EOL;
+// 		// Echo memory usage
+// 		echo date('H:i:s') , ' Current memory usage: ' , (memory_get_usage(true) / 1024 / 1024) , " MB" , EOL;
+		
+		
+// 		// Echo memory peak usage
+// 		echo date('H:i:s') , " Peak memory usage: " , (memory_get_peak_usage(true) / 1024 / 1024) , " MB" , EOL;
+		
+// 		// Echo done
+// 		echo date('H:i:s') , " Done writing files" , EOL;
+// 		echo 'Files have been created in ' , getcwd() , EOL;
 	}
 	
 }

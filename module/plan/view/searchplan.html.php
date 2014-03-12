@@ -32,7 +32,11 @@
   			<table  class='table-1 tablesorter fixed colored datatable newBoxs'> 
 			    <caption>
 			    	<div align="center">输入起始时间:
-  						<input type="text" name="beginDate">~<input type="text" name="endDate">
+			    	<?php 
+      		echo html::input('beginDate', '', "class='select-2 date'").' ~ '.html::input('endDate', '', "class='select-2 date'");
+//       		html::input("deadtime[]", '', "class=text-1");
+      		?>
+  						<!-- <input type="text" name="beginDate">~<input type="text" name="endDate"> -->
   						  <?php echo  
     		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'searchplan', "isSubmit=1") . "\")'") ;?>
   					</div>

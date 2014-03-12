@@ -3,20 +3,24 @@
 <?php include '../../common/view/colorize.html.php';?>
 <?php js::set('users', json_encode($users))?>
 
+  
   <div id='topmyplan'>
     <div class='f-left'>
       <?php 
-      foreach($lang->plan->periods as $period => $label)
+//       foreach($lang->plan->periods as $period => $label)
+      foreach($mymenu as $period => $label)
       {
-          $vars = $period;
+//           if ($period == 'collectplan') {continue;}
+      	  $vars = $period;
 //           if($period == 'before') $vars .= "&account={$app->user->account}&status=undone";
           echo "<span id='$period'>" . html::a(inlink($vars), $label) . '</span>';
       }
       ?>
     </div>
   </div>
-  
+
   <form method='post' id='planform'>
+  
   <table class='table-1' id="commentPlan"> 
     <caption><div align="center">自评本周计划完成情况(<?php echo $firstOfThisWeekDay. ' ~ '. $lastOfThisWeekDay;?>)</div></caption>
     <thead>
@@ -70,10 +74,10 @@
     $stepID = 1;
     ?>
     <tr class='a-center'>
-      <td class='stepID' colspan="9">无数据</td>
+      <td class='stepID' colspan="10">无数据</td>
     </tr>
     <?php endif;?><?php $link = $this->createLink('plan', 'myplan', "isSubmit=1")?>
-    <tr><td colspan='9' class='a-center'><?php echo  
+    <tr><td colspan='10' class='a-center'><?php echo  
     		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=0") . "\")'") ;?>
     </td></tr>
   </table>
@@ -112,8 +116,17 @@
 	       echo html::input('deadtime[]', date('Y-m-d',strtotime($plan->deadtime)), "class='select-2 date'");
 	       
 	       echo '</td>
-	      <td>'. plan::select('submitTo[]', $submitTos, '', "class='select-1'"). '</td>
-		  <td>';
+	      <td><select name="submitTo[]" class="select-1">';
+	      	// plan::select('submitTo[]', $submitTos, '', "class='select-1'"). 
+	      		$string = '';
+		       foreach($submitTos as $obj)
+		       {
+		       	$selected = '';
+		       	if($obj->account == $plan->submitTo) {$selected = 'selected';}
+		       	$string  .= "<option value='$obj->account' $selected>$obj->realname</option>\n";
+		       }
+		       $string .= "</select>\n";
+	       echo $string. '</td><td>';
 	      if(empty($plan->confirmed)){
 		  	echo '未审核</td>';
 		  } else {
@@ -140,7 +153,7 @@
       </td>
       <td id="selectName">
       	 <?php 
-			    echo plan::select('submitTo[]', $submitTos, '', "class='select-1'");
+			    echo plan::select('submitTo[]', $submitTos, "class='select-1'");
 		 ?>
       	 <?php 
 //       		echo html::input("submitTo[]", '', "class=text-1");?>

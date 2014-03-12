@@ -21,4 +21,5 @@ $lang->resource->plan->queryPlan  	 	= 'queryplan';
 
 $lang->resource->plan->searchplan		= 'searchplan';
 $lang->resource->plan->searchForDetail	= 'searchfordetail';
+$lang->resource->plan->collectplan		= 'collectplan';
 // $lang->resource->plan->deleteMembset	= 'deleteMemb';

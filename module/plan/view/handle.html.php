@@ -1,11 +1,12 @@
 <?php include '../../common/view/header.html.php';?>
 <?php include '../../common/view/colorize.html.php';?>
 <?php include '../../common/view/datepicker.html.php';?>
-<form method='post' id='planform'>
+<?php js::set('users', json_encode($users))?>
+
   <div id='featurebar'>
     <div class='f-left'>
       <?php 
-      foreach($lang->plan->periods as $period => $label)
+      foreach($mymenu as $period => $label)
       {
           $vars = $period;
 //           if($period == 'before') $vars .= "&account={$app->user->account}&status=undone";
@@ -14,18 +15,20 @@
       ?>
     </div>
   </div>
+
+<form method='post' id='planform'>
   
   <table class='table-1 tablesorter fixed colored datatable newBoxs'>
     <caption><div align="center">未审核计划</div></caption>
     <thead>
     <tr class='colhead'>
       <th>时间</th>
+	  <th><?php echo $lang->plan->account;?></th>
       <th><?php echo $lang->plan->type;?></th>
       <th><?php echo $lang->plan->matter;?></th>
       <th><?php echo $lang->plan->plan;?></th>
       <th><?php echo $lang->plan->deadtime;?></th>
       <th><?php echo $lang->plan->status;?></th>
-      <th><?php echo $lang->plan->account;?></th>
       <th><?php echo $lang->plan->confirmed;?></th>
       <th><?php echo $lang->plan->remark;?></th>
     </tr>
@@ -39,12 +42,12 @@
     	<?php if(!empty($week->rowspanVal)) {
 			    echo '<td rowspan="'. $week->rowspanVal. '">('. $week->firstDayOfWeek. '<br/>~<br/>'. $week->lastDayOfWeek. ')</td>';
 		}?>
+    	<td><?php echo $week->accountname;?></td>
     	<td><?php echo $week->type;?><?php echo html::hidden("ids[]", $week->id, "");?></td>
     	<td><?php echo $week->matter;?></td>
     	<td><?php echo $week->plan;?></td>
     	<td><?php echo $week->deadtime;?></td>
     	<td><?php echo $week->status;?></td>
-    	<td><?php echo $week->accountname;?></td>
     	<td>
     		<select name='confirmed[]'>
     			<option value='不通过'>不通过</option>
@@ -74,12 +77,12 @@
     <thead>
     <tr class='colhead'>
       <th>时间</th>
+	  <th><?php echo $lang->plan->account;?></th>
       <th><?php echo $lang->plan->type;?></th>
       <th><?php echo $lang->plan->matter;?></th>
       <th><?php echo $lang->plan->plan;?></th>
       <th><?php echo $lang->plan->deadtime;?></th>
       <th><?php echo $lang->plan->status;?></th>
-      <th><?php echo $lang->plan->account;?></th>
       <th><?php echo $lang->plan->confirmed;?></th>
       <th><?php echo $lang->plan->remark;?></th>
     </tr>
@@ -93,12 +96,12 @@
     	<?php if(!empty($week->rowspanVal)) {
 			    echo '<td rowspan="'. $week->rowspanVal. '">('. $week->firstDayOfWeek. '<br/>~<br/>'. $week->lastDayOfWeek. ')</td>';
 		}?>
+    	<td><?php echo $week->accountname;?></td>
     	<td><?php echo $week->type;?></td>
     	<td><?php echo $week->matter;?></td>
     	<td><?php echo $week->plan;?></td>
     	<td><?php echo $week->deadtime;?></td>
     	<td><?php echo $week->status;?></td>
-    	<td><?php echo $week->accountname;?></td>
     	<td><?php echo $week->confirmed;?></td>
     	<td><?php echo $week->remark;?></td>
     </tr>
