@@ -88,12 +88,12 @@
     <caption><div align="center">填写下周计划(<?php echo $firstOfNextWeekDay. ' ~ '. $lastOfNextWeekDay;?>)</div></caption>
     <thead>
       <th>编号</th>
-      <th><?php echo $lang->plan->sort;?></th>
+      <th width="5%"><?php echo $lang->plan->sort;?></th>
       <th><?php echo $lang->plan->matter;?></th>
       <th><?php echo $lang->plan->plan;?></th>
-      <th>完成时限</th>
-      <th>审核人</th>
-      <th>审核结果</th>
+      <th width="15%">完成时限</th>
+      <th width="8%">审核人</th>
+      <th width="5%">审核结果</th>
     </thead>
     
     
