@@ -286,11 +286,11 @@ class planModel extends model{
 	{
 		$plans = fixer::input('post')->get();
 		$delIds = $plans->ids;
-		//没有的id都删掉
+		//没有的id都删掉，并且通过的不要删除
 		$this->dao->delete()->from(TABLE_ICTWEEKPLAN)
 		->where('id')->notin($delIds)
 		->andWhere('account')->eq($this->app->user->account)
-		->andWhere('firstDayOfWeek')->eq($firstDayOfWeek)
+		->andWhere('firstDayOfWeek="'. $firstDayOfWeek. '" AND (confirmed IS NULL OR confirmed="不通过")')
 		->exec();
 		//批量插入周计划
 		for ($i = 0; $i < count($_POST['type']); $i++){

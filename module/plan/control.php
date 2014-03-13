@@ -367,9 +367,9 @@ class plan extends control{
 		if (! isset($leader->leader))$leader->leader = '';
 		if (! isset($leader->realname))$leader->realname = '';
 		die("<input name='auditor1[$memb]' value='$leader->auditor1' type='hidden'/>
-				<input name='auditor2[$memb]' value='$leader->leader' type='hidden'/>
+				<input name='auditor2[$memb]' value='$leader->auditor2' type='hidden'/>
 				<input value='$leader->rel1' style='border:0;width: 60px;' readonly/>
-				<input value='$leader->realname' style='border:0;width: 60px;' readonly/>
+				<input value='$leader->rel2' style='border:0;width: 60px;' readonly/>
 				<script>$('#leaderId_". $memb. "').text('". $leader->realname. "')</script>");
 	}
 	/**
@@ -846,12 +846,12 @@ class plan extends control{
 		
 		// Save Excel 2007 file
 // 		echo date('H:i:s') , " Write to Excel2007 format" , EOL;
-		$callStartTime = microtime(true);
+// 		$callStartTime = microtime(true);
 		
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-		$objWriter->save(str_replace('.php', '.xlsx', __FILE__));
-		$callEndTime = microtime(true);
-		$callTime = $callEndTime - $callStartTime;
+// 		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+// 		$objWriter->save(str_replace('.php', '.xlsx', __FILE__));
+// 		$callEndTime = microtime(true);
+// 		$callTime = $callEndTime - $callStartTime;
 		
 // 		echo date('H:i:s') , " File written to " , str_replace('.php', '.xlsx', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
 // 		echo 'Call time to write Workbook was ' , sprintf('%.4f',$callTime) , " seconds" , EOL;
