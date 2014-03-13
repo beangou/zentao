@@ -23,7 +23,7 @@ $lang->plan->prodelete				= '项目组删除';
 $lang->plan->deleteMemb				= '成员删除';
 $lang->plan->submit					= '提交';
 $lang->plan->delete					= '删除';
-$lang->plan->queryPlan				= '计划查询';
+$lang->plan->queryplan				= '查询计划';
 $lang->plan->lastPlan				= '上周未完成';
 
 /*left menu*/
@@ -34,7 +34,7 @@ $lang->plan->planrate				= '月计划完成率';
 
 $lang->plan->weekly					= '周计划管理';
 $lang->plan->monthly				= '月计划管理';
-$lang->plan->handle					= '待我审核';
+$lang->plan->handle					= '审核计划';
 $lang->plan->member					= '成员计划';
 $lang->plan->complete				= '月计划完成率';
 $lang->plan->planlist				= '月计划明细';

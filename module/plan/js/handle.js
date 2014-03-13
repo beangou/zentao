@@ -1,4 +1,4 @@
 $(function()
 {
-	$('#' + 'handle').addClass('active');
+	$('span:#' + 'handle').addClass('active');
 });

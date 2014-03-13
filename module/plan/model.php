@@ -524,13 +524,9 @@ class planModel extends model{
 	 */
 	public function queryProteam()
 	{
-		$proteam = $this->dao->select('t1.*,t2.realname,"" as rel1,"" as rel2')
+		$proteam = $this->dao->select('t1.*,t2.realname')
 		->from(TABLE_ICTPROTEAM)->alias('t1')->leftJoin(TABLE_USER)
 		->alias('t2')->on('t1.leader = t2.account')->fetchAll();
-		foreach ($proteam as $team){
-			if (isset($team->auditor1))$team->rel1 = $this->queryRealName($team->auditor1);
-			if (isset($team->auditor2))$team->rel2 = $this->queryRealName($team->auditor2);
-		}
 		return $proteam;
 	}
 	/**

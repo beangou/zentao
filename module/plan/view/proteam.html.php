@@ -31,8 +31,6 @@
 		  				<tr>
 		  				<td><?php echo $lang->plan->team.'：'.html::input('team','',"class='text-2'");?></td>
 		  				<td><?php echo $lang->plan->leader.'：'.html::select('leader',$users,'',"class='select-2'");?></td>
-		  				<td><?php echo $lang->plan->auditor1.'：'.html::select('auditor1',$users,'',"class='select-2'");?></td>
-		  				<td><?php echo $lang->plan->auditor2.'：'.html::select('auditor2',$users,'',"class='select-2'");?></td>
 		  				<td><?php echo html::submitButton().html::resetButton().html::backButton();?></td>
 		  				</tr>
 		  			</table>
@@ -43,8 +41,6 @@
 	  				<th></th>
 	  				<th><?php echo $lang->plan->team;?></th>
 	  				<th><?php echo $lang->plan->leader;?></th>
-	  				<th><?php echo $lang->plan->auditor1;?></th>
-	  				<th><?php echo $lang->plan->auditor2;?></th>
 	  				<th><?php echo $lang->actions;?></th>
 	  			</tr>
 	  			<?php $i = 0;?>
@@ -54,8 +50,6 @@
 	  				<td><?php echo $i ;?></td>
 	  				<td><?php echo $info->team ;?></td>
 	  				<td><?php echo $info->realname ;?></td>
-	  				<td><?php echo $info->rel1 ;?></td>
-	  				<td><?php echo $info->rel2 ;?></td>
 	  				<td>
 	  				<?php common::printIcon('plan', 'delete', "id=$info->id&module=proteam&date=0", '', 'list', '', "hiddenwin");?>
 	  				</td>

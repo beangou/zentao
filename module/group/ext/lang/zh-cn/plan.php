@@ -17,7 +17,7 @@ $lang->resource->plan->batchEdit  		= 'batchEdit';
 $lang->resource->plan->delete  	 		= 'prodelete';
 $lang->resource->plan->finish  	 		= 'finish';
 $lang->resource->plan->copy  	 		= 'copy';
-$lang->resource->plan->queryPlan  	 	= 'queryplan';
+$lang->resource->plan->queryplan  	 	= 'queryplan';
 
 $lang->resource->plan->searchplan		= 'searchplan';
 $lang->resource->plan->searchfordetail	= 'searchfordetail';
