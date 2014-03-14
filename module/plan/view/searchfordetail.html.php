@@ -39,13 +39,10 @@
 				      <th>未完成原因说明及如何补救</th><td><?php echo $detailPlan->courseAndSolution;?></td>
 				  </tr>
 				  <tr>    
-				      <th>审核人</th><td><?php echo $detailPlan->submitToName;?></td>
+				      <th>确认人</th><td><?php echo $detailPlan->submitToName;?></td>
 				  </tr>
-				  <tr>    
-				      <th>是否审核</th><td><?php echo $detailPlan->confirmedOrNo;?></td>
-				  </tr>    
 				  <tr>
-				      <th>审核结果</th><td><?php echo $detailPlan->confirmed;?></td>
+				      <th>确认结果</th><td><?php echo $detailPlan->confirmed;?></td>
 				  </tr>
 				  <tr>    
 				      <th>备注</th><td><?php echo $detailPlan->remark;?></td>

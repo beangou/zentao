@@ -47,7 +47,6 @@
 			  				<th><?php echo $lang->plan->dept;?></th>
 			  				<th><?php echo $lang->plan->team;?></th>
 			  				<th><?php echo $lang->plan->leader;?></th>
-			  				<th><?php echo $lang->plan->auditor;?></th>
 			  				<th><?php echo $lang->actions;?></th>
 			  			</tr>
 			  			<?php foreach ($members as $memb):?>
@@ -58,20 +57,6 @@
 			  				if ($memb->leader == '1')echo $memb->team;
 			  				else echo html::select("proteam[$memb->id]",$teams,$memb->proteam,"onchange=\"loadLeader($memb->id, this.value)\"");?></td>
 			  				<td id="leaderId_<?php echo $memb->id;?>"><?php echo $memb->leadname;?></td>
-			  				<td align="center">
-			  				  <table style="border: none;height: 20px;margin-top: 8px;">
-			  				    <tr>
-			  				      <td id="auditors<?php echo $memb->id ;?>">
-			  				      <?php if (isset($memb->rel1)):?>
-			  				      <input value='<?php echo isset($memb->rel1)?$memb->rel1:'' ;?>' style='border:0;width: 60px;' readonly/>
-			  				      <?php endif;?>
-			  				      <?php if (isset($memb->rel2)):?>
-			  				      	<input style='border:0;width: 60px;' value="<?php echo $memb->rel2;?> " readonly/>
-			  				      <?php endif;?></td>
-			  				    </tr>
-			  				  </table>
-			  				  
-			  				</td>
 			  				
 			  				<td><?php common::printIcon('plan', 'delete', "id=$memb->id&module=memb&date=0", '', 'list', '', "hiddenwin");?></td>
 			  			</tr>

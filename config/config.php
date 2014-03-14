@@ -100,6 +100,7 @@ define('TABLE_ICTINCREASE',	  '`' . $config->db->ict	. 'increase`');
 define('TABLE_ICTPROTEAM',	  '`' . $config->db->ict	. 'proteam`');
 define('TABLE_ICTMEMBSET',	  '`' . $config->db->ict	. 'membset`');
 define('TABLE_ICTWEEKPLAN',	  '`' . $config->db->ict	. 'my_weekplan`');
+define('TABLE_ICTAUDIT', '`' . $config->db->ict	. 'audit`');
 
 /*项目缺陷包0.5*/
 define('TABLE_ICTDEFECT',	  '`' . $config->db->ict	. 'defect`');

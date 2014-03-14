@@ -32,8 +32,8 @@
       <th>完成情况</th>
       <th>见证性材料</th>
       <th>未完成原因说明及如何补救</th>
-      <th>审核人</th>
-      <th>审核结果</th>
+      <th>确认人</th>
+      <th>确认结果</th>
     </thead>
     <?php 
     $stepID = 0;
@@ -92,46 +92,49 @@
       <th><?php echo $lang->plan->matter;?></th>
       <th><?php echo $lang->plan->plan;?></th>
       <th width="15%">完成时限</th>
-      <th width="8%">审核人</th>
+      <th width="8%">确认人</th>
       <th width="5%">审核结果</th>
+      <th width="15%">审核意见</th>
     </thead>
     
     
     <?php 
     $stepAddID = 0;
-//     if (!empty($nextWeekPlan)):
+    if (!empty($nextWeekPlan)):
     foreach ($nextWeekPlan as $plan):
     $stepAddID += 1;
     ?>
     <tr class='a-center' id="row<?php echo $stepAddID?>">
-      <td class='stepAddID'><?php echo $stepAddID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
+      <td class='stepAddID'>
+      	<?php echo $stepAddID ; echo html::hidden("ids[]", $plan->id, "class=text-1").
+      	html::hidden("auditIds[]", $plan->auditId, "class=text-1");?></td>
       <?php 
 //       if($plan->confirmed != '通过'){
 	      echo '<td>'. html::input("type[]", $plan->type, "class=text-1"). '</td>
 	      <td>'. html::input("matter[]", $plan->matter, "class=text-1").'</td>
 	      <td>'. html::input("plan[]", $plan->plan, "class=text-1"). '</td>
 	      <td>';
-// 	       echo html::input("deadtime[]", $plan->deadtime, "class=text-1");
-
 	       echo html::input('deadtime[]', date('Y-m-d',strtotime($plan->deadtime)), "class='select-2 date'");
-	       
-	       echo '</td>
-	      <td><select name="submitTo[]" class="select-1">';
-	      	// plan::select('submitTo[]', $submitTos, '', "class='select-1'"). 
-	      		$string = '';
-		       foreach($submitTos as $obj)
-		       {
-		       	$selected = '';
-		       	if($obj->account == $plan->submitTo) {$selected = 'selected';}
-		       	$string  .= "<option value='$obj->account' $selected>$obj->realname</option>\n";
-		       }
-		       $string .= "</select>\n";
-	       echo $string. '</td><td>';
-	      if(empty($plan->confirmed)){
-		  	echo '未审核</td>';
+									       
+	       echo '</td><td>'.html::select('submitTo[]', $users, '', "class='select-1'"). '</td><td>';
+// 		<td>'. html::select('submitTo[]',$users,'',"class='select-2'").
+// 	      '</td><td><select name="submitTo[]" class="select-1">';
+// 	      		$string = '';
+// 		       foreach($submitTos as $obj)
+// 		       {
+// 		       	$selected = '';
+// 		       	if($obj->account == $plan->submitTo) {$selected = 'selected';}
+// 		       	$string  .= "<option value='$obj->account' $selected>$obj->realname</option>\n";
+// 		       }
+// 		       $string .= "</select>\n";
+// 	       echo $string. '</td><td>';
+	      if(empty($plan->result)){
+			echo '未审核</td>';		  	
 		  } else {
-		  	echo $plan->confirmed. '</td>';
+			echo '不同意</td>';
 		  }
+			
+		  echo '<td>'.$plan->auditComment. '</td>';
 	     echo '<td>'. html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID)'"). '</td>';
       ?>
       
@@ -153,19 +156,20 @@
       </td>
       <td id="selectName">
       	 <?php 
-			    echo plan::select('submitTo[]', $submitTos, "class='select-1'");
+			    echo html::select('submitTo[]', $users, '', "class='select-1'");
 		 ?>
       	 <?php 
 //       		echo html::input("submitTo[]", '', "class=text-1");?>
       </td>
       <td>未审核</td>
+      <td></td>
       <td><?php echo html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID)'")?></td>
       
     </tr>
     <?php 
-//     endif;?>
+    endif;?>
     <?php $link = $this->createLink('plan', 'myplan', "isSubmit=1");?>
-    <tr><td colspan='8' class='a-center'>
+    <tr><td colspan='9' class='a-center'>
     <?php echo  
     		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=1") . "\")'");?>
     </td></tr>

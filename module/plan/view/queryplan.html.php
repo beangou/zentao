@@ -43,9 +43,9 @@
 				      <th>见证性材料</th>
 				      <th>未完成原因说明及如何补救</th>
 				       -->
-				      <th>审核人</th>
-				      <th>是否审核</th>
-				      <th>审核结果</th>
+				      <th>确认人</th>
+				      <th>是否确认</th>
+				      <th>确认结果</th>
 				      <!-- <th>备注</th> -->
 				      <th>详情</th>
 				  </tr>    
@@ -105,9 +105,9 @@
 				      <th>见证性材料</th>
 				      <th>未完成原因说明及如何补救</th>
 				       -->
-				      <th>审核人</th>
-				      <th>是否审核</th>
-				      <th>审核结果</th>
+				      <th>确认人</th>
+				      <th>是否确认</th>
+				      <th>确认结果</th>
 				      <!-- <th>备注</th> -->
 				      <th>详情</th>
 				  </tr>    
@@ -157,21 +157,12 @@
 				      <th>编号</th>
 				      <th><?php echo $lang->plan->sort;?></th>
 				       
-				      <th width="35%"><?php echo $lang->plan->matter;?></th>
-				      <!--
-				      <th><?php echo $lang->plan->plan;?></th>
-				       -->
+				      <th width="25%"><?php echo $lang->plan->matter;?></th>
+				      <th width="25%"><?php echo $lang->plan->plan;?></th>
 				      <th>完成时限</th>
-				      <th>完成情况</th>
-				      <!-- 
-				      <th>见证性材料</th>
-				      <th>未完成原因说明及如何补救</th>
-				       -->
-				      <th>审核人</th>
-				      <th>是否审核</th>
+				      <th>确认人</th>
 				      <th>审核结果</th>
-				      <!-- <th>备注</th> -->
-				      <th>详情</th>
+				      <th width="15%">审核意见</th>
 				  </tr>    
 			    </thead>
 			    <?php 
@@ -185,21 +176,11 @@
 			      <td><?php echo $plan->type;?></td>
 			      
 			      <td><?php echo $plan->matter;?></td>
-			      <!-- 
 			      <td><?php echo $plan->plan;?></td>
-			       -->
 			      <td><?php echo $plan->deadtime;?>
-			      <td><?php echo $plan->status;?></td>
-			      <!--
-			      <td><?php echo $plan->evidence;?></td>
-			      <td><?php echo $plan->courseAndSolution;?></td>
-			       -->
 			      <td><?php echo $plan->submitToName;?></td>
-			      <td><?php echo $plan->confirmedOrNo;?></td>
-			      <td><?php echo $plan->confirmed;?></td>
-			      <!-- <td><?php echo $plan->remark;?></td> -->
-			      <td><a href='/zentao/www/index.php?m=plan&amp;f=searchfordetail&amp;planId=<?php echo $plan->id;?>&amp;onlybody=yes'
-			       	 target="" class="link-icon iframe cboxElement" title="详情">详情</a></td>
+			      <td><?php echo $plan->result;?></td>
+			      <td><?php echo $plan->auditComment;?></td>
 			    </tr>
 			    <?php endforeach;?>
 			    <?php else :

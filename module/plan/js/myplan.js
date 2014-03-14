@@ -146,7 +146,7 @@ function mycreateRow(paramRowId)
 //	}
 //    newRow += "</td></select>";
     //newRow += "<td class='a-left w-100px'><nobr>";
-    newRow += "<td>未审核</td><td><input type='button' tabindex='-1' class='button-s' value='删除 ' onclick='deleteRow("  + newRowID + ")' />";
+    newRow += "<td>未审核</td><td></td><td><input type='button' tabindex='-1' class='button-s' value='删除 ' onclick='deleteRow("  + newRowID + ")' />";
     newRow += "<input type='button' tabindex='-1' class='button-s' value='新增' onclick='postInsert(" + newRowID + ")' /></td>";
     //newRow += "</nobr></td>";
     newRow += "</tr>";

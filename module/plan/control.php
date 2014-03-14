@@ -93,20 +93,23 @@ class plan extends control{
 		//查出本周自评未审核或者评审未通过的计划
 		$this->view->thisWeekPlan = $this->plan->queryPlanByTime($myDateArr[2]);
 		//查出下周未评审或评审未通过的周计划（第一天为本周六）
-		$this->view->nextWeekPlan = $this->plan->queryPlanByTime($myDateArr[0]);
+		$this->view->nextWeekPlan = $this->plan->queryNextUnpassPlan($myDateArr[0]);
 		$this->view->submitTos	  = $this->plan->getSubmitToName();
 		
 		$this->view->date           = $myDateArr[1];
 		
 		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
 		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
-		$mymenu['handle']      = '审核计划';
+		$mymenu['handle']      = '我的确认';
+		$mymenu['audit']	   = '我的审核';
 		$mymenu['proteam'] 	= '项目组设定';
 		$mymenu['membset']     = '成员设定';
 		if (!$this->checkCollectPlan()) {
 			$mymenu['collectplan']     = '汇总计划';
 		}
 		$this->view->mymenu = $mymenu;
+		
+		$this->view->users			= $this->plan->queryUser();
 // 		$this->view->weekPlan		= $this->plan->queryWeekPlan($account, $week, 0, $pager);
 // 		$this->view->date           = (int)$finish == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($finish));
 // 		$this->view->team			= $this->plan->getTeaminfo();
@@ -196,14 +199,15 @@ class plan extends control{
 		//本周第一天为上周六
 		$this->view->weekPlan		= $this->plan->queryWeekPlan($account, $myDateArr[2]);
 		//下周第一条为本周六
-		$this->view->nextPlan 		= $this->plan->queryWeekPlan($account, $myDateArr[0]);
+		$this->view->nextPlan 		= $this->plan->queryNextWeekPlan($account, $myDateArr[0]);
 		
 		$this->view->date           = (int)$date == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($date));
 		
 		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
 		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
-		$mymenu['handle']      = '审核计划';
-		$mymenu['proteam'] 	= '项目组设定';
+		$mymenu['handle']      = '我的确认';
+		$mymenu['audit']	   = '我的审核';
+		$mymenu['proteam'] 	   = '项目组设定';
 		$mymenu['membset']     = '成员设定';
 		if (!$this->checkCollectPlan()) {
 			$mymenu['collectplan']     = '汇总计划';
@@ -260,7 +264,8 @@ class plan extends control{
 		
 		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
 		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
-		$mymenu['handle']      = '审核计划';
+		$mymenu['handle']      = '我的确认';
+		$mymenu['audit']	   = '我的审核';
 		$mymenu['proteam'] 	= '项目组设定';
 		$mymenu['membset']     = '成员设定';
 		if (!$this->checkCollectPlan()) {
@@ -282,7 +287,8 @@ class plan extends control{
 		$this->view->proteam		= $this->plan->queryProteam();
 		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
 		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
-		$mymenu['handle']      = '审核计划';
+		$mymenu['handle']      = '我的确认';
+		$mymenu['audit']	   = '我的审核';
 		$mymenu['proteam'] 	= '项目组设定';
 		$mymenu['membset']     = '成员设定';
 		if (!$this->checkCollectPlan()) {
@@ -304,14 +310,6 @@ class plan extends control{
 				$data->proteam = $value;
 				$this->dao->update(TABLE_ICTMEMBSET)->data($data)->where('id')->eq((int)$key)->exec();
 			}
-			foreach ($_POST['auditor1'] as $key => $value){
-				$auditor1->auditor1 = $value;
-				$this->dao->update(TABLE_ICTMEMBSET)->data($auditor1)->where('id')->eq((int)$key)->exec();
-			}
-			foreach ($_POST['auditor2'] as $key => $value){
-				$auditor2->auditor2 = $value;
-				$this->dao->update(TABLE_ICTMEMBSET)->data($auditor2)->where('id')->eq((int)$key)->exec();
-			}
 		}
 		if (!empty($_POST['members']))$this->plan->saveMembUser();
 		$member	= $this->plan->queryMembUser();
@@ -326,7 +324,8 @@ class plan extends control{
 		$this->view->teams			= $this->plan->queryTeam();
 		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
 		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
-		$mymenu['handle']      = '审核计划';
+		$mymenu['handle']      = '我的确认';
+		$mymenu['audit']	   = '我的审核';
 		$mymenu['proteam'] 	= '项目组设定';
 		$mymenu['membset']     = '成员设定';
 		if (!$this->checkCollectPlan()) {
@@ -366,11 +365,7 @@ class plan extends control{
 		if (empty($leader))return;
 		if (! isset($leader->leader))$leader->leader = '';
 		if (! isset($leader->realname))$leader->realname = '';
-		die("<input name='auditor1[$memb]' value='$leader->auditor1' type='hidden'/>
-				<input name='auditor2[$memb]' value='$leader->auditor2' type='hidden'/>
-				<input value='$leader->rel1' style='border:0;width: 60px;' readonly/>
-				<input value='$leader->rel2' style='border:0;width: 60px;' readonly/>
-				<script>$('#leaderId_". $memb. "').text('". $leader->realname. "')</script>");
+		die("$leader->realname");
 	}
 	/**
 	 * 新增
@@ -714,7 +709,8 @@ class plan extends control{
 	{
 		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
 		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
-		$mymenu['handle']      = '审核计划';
+		$mymenu['handle']      = '我的确认';
+		$mymenu['audit']	   = '我的审核';
 		$mymenu['proteam'] 	= '项目组设定';
 		$mymenu['membset']     = '成员设定';
 		if (!$this->checkCollectPlan()) {
@@ -882,6 +878,76 @@ class plan extends control{
 // 		// Echo done
 // 		echo date('H:i:s') , " Done writing files" , EOL;
 // 		echo 'Files have been created in ' , getcwd() , EOL;
+	}
+	
+	/**
+	 * 我的审核
+	 */
+	public function audit() {
+		
+		//提交意见
+		if (!empty($_POST)) {
+			
+		}
+		
+		$mymembers = $this->plan->queryMyMember();
+		$this->view->mymembers = $mymembers;  
+		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
+		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
+		$mymenu['handle']      = '我的确认';
+		$mymenu['audit']	   = '我的审核';
+		$mymenu['proteam'] 	= '项目组设定';
+		$mymenu['membset']     = '成员设定';
+		if (!$this->checkCollectPlan()) {
+			$mymenu['collectplan']     = '汇总计划';
+		}
+		$this->view->mymenu = $mymenu;
+		$this->display();
+	}
+	
+	/**
+	 * 我的审核获取本周和下周计划
+	 */
+	public function ajaxGetPlan($account='', $flag='') {
+		$planArr = array();
+		$myDateArr = $this->getLastAndEndDayOfWeek();
+		if ($flag == 0) {
+			//本周第一天为上周六
+			$planArr		= $this->plan->queryWeekPlan($account, $myDateArr[2], 'passed');
+			if (count($planArr)  == 0) {
+				die('<tr><td colspan="10">暂无数据</td><tr>');
+			} else {
+				foreach ($planArr as $plan) {
+					$planStr.= '<tr><td>'.$plan->type. '</td>'.
+							'<td>'.$plan->matter. '</td>'.
+							'<td>'.$plan->plan. '</td>'.
+							'<td>'.$plan->deadtime. '</td>'.
+							'<td>'.$plan->status. '</td>'.
+							'<td>'.$plan->evidence. '</td>'.
+							'<td>'.$plan->courseAndSolution. '</td>'.
+							'<td>'.$plan->submitToName. '</td>'.
+							'<td>'.$plan->confirmed. '</td>'.
+							'<td>'.$plan->remark. '</td></tr>';
+				}
+				die($planStr);
+			}
+		} else if ($flag == 1) {
+			//下周第一条为本周六
+			$planArr		= $this->plan->queryNextWeekPlan($account, $myDateArr[0]);
+			if (count($planArr)  == 0) {
+				die('<tr><td colspan="10">暂无数据</td><tr>');
+			} else {
+				foreach ($planArr as $plan) {
+					$planStr.= '<tr><td>'.$plan->type. '</td>'.
+							'<td>'.$plan->matter. '</td>'.
+							'<td>'.$plan->plan. '</td>'.
+							'<td>'.$plan->deadtime. '</td>'.
+							'<td>'.$plan->submitToName. '</td></tr>';
+				}
+				die($planStr);
+			} 
+		}
+		
 	}
 	
 }

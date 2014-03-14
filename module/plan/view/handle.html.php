@@ -19,7 +19,7 @@
 <form method='post' id='planform'>
   
   <table class='table-1 tablesorter fixed colored datatable newBoxs'>
-    <caption><div align="center">未审核计划</div></caption>
+    <caption><div align="center">未确认计划</div></caption>
     <thead>
     <tr class='colhead'>
       <th>时间</th>
@@ -73,7 +73,7 @@
 </form>
 
 <table class='table-1 tablesorter fixed colored datatable newBoxs' style="margin-top: 5%">
-  	<caption><div align="center">已审核计划</div></caption>
+  	<caption><div align="center">已确认计划</div></caption>
     <thead>
     <tr class='colhead'>
       <th>时间</th>

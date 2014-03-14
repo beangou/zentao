@@ -1,6 +1,6 @@
 <?php
 
-$lang->plan->confirmed 				= '审核状态';
+$lang->plan->confirmed 				= '确认结果';
 $lang->plan->account				= '负责人';
 $lang->plan->status					= '自评情况';
 $lang->plan->deadtime 				= '时限';
@@ -34,7 +34,7 @@ $lang->plan->planrate				= '月计划完成率';
 
 $lang->plan->weekly					= '周计划管理';
 $lang->plan->monthly				= '月计划管理';
-$lang->plan->handle					= '审核计划';
+$lang->plan->handle					= '我的确认';
 $lang->plan->member					= '成员计划';
 $lang->plan->complete				= '月计划完成率';
 $lang->plan->planlist				= '月计划明细';
@@ -126,7 +126,7 @@ $lang->plan->score					= '月计划完成率';
 $lang->plan->planCheck				= '周计划审核';
 $lang->plan->periods['myplan']      = '我的计划';//主要是新增计划可以查看
 $lang->plan->periods['queryplan']   = '查询计划';//只可查询，不可操作
-$lang->plan->periods['handle']      = '审核计划';
+$lang->plan->periods['handle']      = '我的确认';
 $lang->plan->periods['proteam'] 	= '项目组设定';
 $lang->plan->periods['membset']     = '成员设定';
 $lang->plan->periods['collectplan']     = '汇总计划';
@@ -139,3 +139,4 @@ $lang->plan->periods['collectplan']     = '汇总计划';
 $lang->plan->searchplan				= '按日期查询';
 $lang->plan->searchfordetail		= '查询计划详情';
 $lang->plan->collectplan			= '汇总计划';
+$lang->plan->audit					= '我的审核';

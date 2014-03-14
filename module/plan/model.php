@@ -18,6 +18,34 @@ class planModel extends model{
 	}
 	
 	/**
+	 * “我的审核”页面里面取得我的成员下拉列表
+	 */
+	public function queryMyMember()
+	{
+		
+
+// 		SELECT T1.account, T2.realname FROM ict_membset T1
+// 		LEFT JOIN zt_user T2 ON(T2.account = T1.account)
+// 		LEFT JOIN ict_proteam T3 ON(T3.id = T1.proteam)
+// 		WHERE T3.leader = 'liutongbin'
+		
+		$members = $this->dao->select('T1.account, T2.realname')->from(TABLE_ICTMEMBSET)->alias('T1')
+					->leftJoin(TABLE_USER)->alias('T2')->on('T2.account = T1.account')
+					->leftJoin(TABLE_ICTPROTEAM)->alias('T3')->on('T3.id = T1.proteam')
+					->where('T3.leader')->eq($this->app->user->account)
+					->orderBy('T1.account')
+					->fetchPairs();
+		
+		if(!$members) return array();
+		foreach($members as $account => $realName)
+		{
+			$firstLetter = ucfirst(substr($account, 0, 1)) . ':';
+			$users[$account] =  $firstLetter . ($realName ? $realName : $account);
+		}
+		return array('' => '') + $members;
+	}
+	
+	/**
 	 * 保存周计划
 	 */
 	public function saveWeekPlan()
@@ -36,7 +64,7 @@ class planModel extends model{
 	 * @param unknown_type $startDate
 	 * @param unknown_type $finishedDate
 	 */
-	public function queryWeekPlan($account, $firstDayOfWeek)
+	public function queryWeekPlan($account, $firstDayOfWeek, $passed='')
 	{
 // 		$weekPlan = $this->dao->select('*,"" as auditorName,"" as chargeName')->from(TABLE_ICTWEEKPLAN)
 // 		->where('week')->eq((int)$week)
@@ -51,11 +79,31 @@ class planModel extends model{
 		$weekPlan = $this->dao->select('T1.*, T2.realname AS submitToName')->from(TABLE_ICTWEEKPLAN)->alias('T1')
 		->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
 		->where('T1.account')->eq($account)
+		->beginIF($passed != '')->andWhere('T1.confirmed')->eq('通过')->fi()
 		->andWhere('T1.firstDayOfWeek')->eq($firstDayOfWeek)
 		->orderBy('T1.type')
 		->fetchAll();
 		return $weekPlan;
 	}
+	
+	/**
+	 * 根据年份，月份，星期查询周计划(查询下周周计划，包括评审结果和评审意见)
+	 * @param unknown_type $account
+	 * @param unknown_type $startDate
+	 * @param unknown_type $finishedDate
+	 */
+	public function queryNextWeekPlan($account, $firstDayOfWeek)
+	{
+		$weekPlan = $this->dao->select('T1.*, T2.realname AS submitToName, T3.*')->from(TABLE_ICTWEEKPLAN)->alias('T1')
+		->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
+		->leftJoin(TABLE_ICTAUDIT)->alias('T3')->on('T3.id = T1.auditId')
+		->where('T1.account')->eq($account)
+		->andWhere('T1.firstDayOfWeek')->eq($firstDayOfWeek)
+		->orderBy('T1.type')
+		->fetchAll();
+		return $weekPlan;
+	}
+	
 	/**
 	 * 获取当前周周计划
 	 * @param unknown_type $account
@@ -123,6 +171,7 @@ class planModel extends model{
 	
 	/**
 	 * 待我审核页面--待我审核计划查询(审核条件必须得通过自评,现在改为可评价所有未评价的计划，包括下周周计划)
+	 * 又做变更：改为我的确认页面，一般只确认本周的计划完成情况，所以和下周计划无关，那么plan的status即自评肯定不为空
 	 * @param unknown_type $account
 	 * @param unknown_type $startDate
 	 * @param unknown_type $finishedDate
@@ -136,6 +185,7 @@ class planModel extends model{
 				->leftJoin(TABLE_USER)->alias('T2')->on('T1.account = T2.account')
 				->where('T1.submitTo')->eq($account)
 				->andWhere('T1.confirmedOrNo')->eq('是')
+				->andWhere('T1.status IS NOT NULL')
 				->orderBy('T1.firstDayOfWeek desc, T1.account, T1.type')
 				->fetchAll();
 		//未审核周计划
@@ -144,6 +194,7 @@ class planModel extends model{
 				->leftJoin(TABLE_USER)->alias('T2')->on('T1.account = T2.account')
 				->where('T1.submitTo')->eq($account)
 				->andWhere('T1.confirmedOrNo')->eq('否')
+				->andWhere('T1.status IS NOT NULL')
 				->orderBy('T1.firstDayOfWeek desc, T1.account, T1.type')
 				->fetchAll();
 		array_push($myplan, $checkWeekPlan);
@@ -253,17 +304,17 @@ class planModel extends model{
 	
 	/**
 	 * 获取下周未通过的周计划(审核通过的就不用选了)，此方法和queryPlanByTime一样，暂时略去，不用
+	 * 后来因为变更，还是使用
 	 * @param unknown_type $finishedDate
 	 */
 	public function queryNextUnpassPlan($firstDayOfWeek)
 	{
 		$account = $this->app->user->account;
 	
-		$myplan = $this->dao->select('T1.*, T2.realname AS submitName')->from(TABLE_ICTWEEKPLAN)->alias('T1')
-		->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
+		$myplan = $this->dao->select('T1.*, T2.*')->from(TABLE_ICTWEEKPLAN)->alias('T1')
+		->leftJoin(TABLE_ICTAUDIT)->alias('T2')->on('T2.`id` = T1.`auditId`')
 		->where('T1.account')->eq($account)
-		->andWhere('T1.firstDayOfWeek')->eq($firstDayOfWeek)
-		->andWhere('T1.')
+		->andWhere('T1.firstDayOfWeek="'. $firstDayOfWeek. '" AND (T2.`result` IS NULL OR T2.`result` = 0)')
 		->orderBy('T1.type')
 // 		->andWhere('confirmed')->eq('不通过')
 // 		->andWhere('confirmedOrNo')->eq('是')
@@ -286,6 +337,14 @@ class planModel extends model{
 	{
 		$plans = fixer::input('post')->get();
 		$delIds = $plans->ids;
+		$auditIds = $plans->auditIds;
+		if(!empty($auditIds)) {
+			//将评审意见表评审结果和评审意见置空，
+			$auditData->result = NULL;
+			$auditData->auditComment = NULL;
+			$this->dao->update(TABLE_ICTAUDIT)
+			->data($auditData)->autoCheck()->where('id')->eq($auditIds[0])->exec();
+		}
 		//没有的id都删掉，并且通过的不要删除
 		$this->dao->delete()->from(TABLE_ICTWEEKPLAN)
 		->where('id')->notin($delIds)
@@ -566,8 +625,8 @@ class planModel extends model{
 			if (!empty($proteam->leader)){
 				$data->proteam = $proteam->id;
 				$data->leader = '1';
-				$data->auditor1 = $proteam->auditor1;
-				$data->auditor2 = $proteam->auditor2;
+// 				$data->auditor1 = $proteam->auditor1;
+// 				$data->auditor2 = $proteam->auditor2;
 			}
 			$this->dao->insert(TABLE_ICTMEMBSET)->data($data)->check('account','unique')->exec();
 		}
@@ -688,12 +747,10 @@ class planModel extends model{
 	 */
 	public function querySingleTeam($id)
 	{
-		$singleTeam = $this->dao->select('t1.*,t2.realname,"" as rel1,"" as rel2')
+		$singleTeam = $this->dao->select('t1.*,t2.realname')
 		->from(TABLE_ICTPROTEAM)->alias('t1')->leftJoin(TABLE_USER)->alias('t2')
 		->on('t1.leader = t2.account')->where('t1.id')->eq((int)$id)->fetch();
 		if (empty($singleTeam))return array();
-		if (isset($singleTeam->auditor1))$singleTeam->rel1 = $this->queryRealName($singleTeam->auditor1);
-		if (isset($singleTeam->auditor1))$singleTeam->rel2 = $this->queryRealName($singleTeam->auditor2);
 		return $singleTeam;
 	}
 	/**
@@ -816,14 +873,15 @@ class planModel extends model{
 	}
 	
 	/**
-	 * 
+	 * 判断用户是否有查看‘汇总计划’的权限，否则不予显示
+	 * 只有科室经理即科长有权限查看以及操作,通过判断role为4来判断
 	 */
 	public function checkCollectPlan()
 	{
 		$account = $this->app->user->account;
-		return $this->dao->select('*')->from(TABLE_ICTPROTEAM)
-				->where('auditor1')->eq($account)
-				->orWhere('auditor2')->eq($account)
+		return $this->dao->select('*')->from(TABLE_ICTUSER)
+				->where('account')->eq($account)
+				->andWhere('role')->eq('4')
 				->fetchAll();
 	}
 	

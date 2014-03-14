@@ -4,7 +4,7 @@
  */
 function loadLeader(td, proteam){
 	link = createLink('plan', 'ajaxGetLeader', 'id='+proteam+'&memb='+td);
-	$('#auditors'+td).load(link);
+	$('#leaderId_'+td).load(link);
 }
 /**
  * Change form action.
