@@ -56,9 +56,9 @@
 	 <div align="center" style="margin-top:4%"> 
 	  评审意见：
 	  <div style="margin-top:2%">
-	  	<input type="radio" name="result" value="同意" checked>同意<input type="radio" name="result" value="不同意">不同意
+	  	<input id="resultYes" type="radio" name="result" value="同意" checked>同意<input id="resultNo" type="radio" name="result" value="不同意">不同意
 	  	<br/><br/>
-	  	<textarea name="auditComment" style="width:30%"></textarea>
+	  	<textarea id="auditComment" name="auditComment" style="width:30%"></textarea>
 	  	<br/><br/>
 	  	<input type="submit" value="提交"> 
 	  </div>	

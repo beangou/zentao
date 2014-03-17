@@ -884,10 +884,9 @@ class plan extends control{
 	 * 我的审核
 	 */
 	public function audit() {
-		
 		//提交意见
-		if (!empty($_POST)) {
-			
+		if (!empty($_POST) && !empty($_POST['weekPlanId'])) {
+			$this->plan->saveAudit();			
 		}
 		
 		$mymembers = $this->plan->queryMyMember();
@@ -918,7 +917,8 @@ class plan extends control{
 				die('<tr><td colspan="10">暂无数据</td><tr>');
 			} else {
 				foreach ($planArr as $plan) {
-					$planStr.= '<tr><td>'.$plan->type. '</td>'.
+					$planStr.= '<tr><td>'.$plan->type. 
+							'</td>'.
 							'<td>'.$plan->matter. '</td>'.
 							'<td>'.$plan->plan. '</td>'.
 							'<td>'.$plan->deadtime. '</td>'.
@@ -935,14 +935,32 @@ class plan extends control{
 			//下周第一条为本周六
 			$planArr		= $this->plan->queryNextWeekPlan($account, $myDateArr[0]);
 			if (count($planArr)  == 0) {
-				die('<tr><td colspan="10">暂无数据</td><tr>');
+				$planStr.= '<tr><td colspan="10">暂无数据</td><tr><script>';
+				$planStr.= '$("#resultYes").attr("checked", true);';
+					$planStr.= '$("#auditComment").val("");';
+				$planStr.= '</script>';
+				die($planStr);
 			} else {
 				foreach ($planArr as $plan) {
-					$planStr.= '<tr><td>'.$plan->type. '</td>'.
+					$planStr.= '<tr><td>'.$plan->type. 
+							'<input type="hidden" name="weekPlanId[]" value="'. $plan->id. '">
+							<input type="hidden" name="weekAuditId" value="'. $plan->auditId. '"></td>'.
 							'<td>'.$plan->matter. '</td>'.
 							'<td>'.$plan->plan. '</td>'.
 							'<td>'.$plan->deadtime. '</td>'.
 							'<td>'.$plan->submitToName. '</td></tr>';
+					$planStr.= '<script>';
+					if ($plan->result == '不同意') {
+						$planStr.= '$("#resultNo").attr("checked", true);';
+					} else {
+						$planStr.= '$("#resultYes").attr("checked", true);';
+					} 
+					if (empty($plan->auditComment)) {
+						$planStr.= '$("#auditComment").val("");';
+					} else {
+						$planStr.= '$("#auditComment").val("'. $plan->auditComment. '");';
+					}
+					$planStr.= '</script>';
 				}
 				die($planStr);
 			} 

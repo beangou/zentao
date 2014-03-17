@@ -100,7 +100,7 @@
     
     <?php 
     $stepAddID = 0;
-    if (!empty($nextWeekPlan)):
+//    if (!empty($nextWeekPlan)):
     foreach ($nextWeekPlan as $plan):
     $stepAddID += 1;
     ?>
@@ -116,7 +116,7 @@
 	      <td>';
 	       echo html::input('deadtime[]', date('Y-m-d',strtotime($plan->deadtime)), "class='select-2 date'");
 									       
-	       echo '</td><td>'.html::select('submitTo[]', $users, '', "class='select-1'"). '</td><td>';
+	       echo '</td><td>'.html::select('submitTo[]', $users, $plan->submitTo, "class='select-1'"). '</td><td>';
 // 		<td>'. html::select('submitTo[]',$users,'',"class='select-2'").
 // 	      '</td><td><select name="submitTo[]" class="select-1">';
 // 	      		$string = '';
@@ -141,7 +141,7 @@
     </tr>
     <?php endforeach;?>
     <?php 
-//     else :
+   // else :
     $stepAddID++;
     ?>
     <tr class='a-center' id="row<?php echo $stepAddID?>">
@@ -167,7 +167,7 @@
       
     </tr>
     <?php 
-    endif;?>
+ //   endif;?>
     <?php $link = $this->createLink('plan', 'myplan', "isSubmit=1");?>
     <tr><td colspan='9' class='a-center'>
     <?php echo  

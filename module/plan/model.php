@@ -94,7 +94,7 @@ class planModel extends model{
 	 */
 	public function queryNextWeekPlan($account, $firstDayOfWeek)
 	{
-		$weekPlan = $this->dao->select('T1.*, T2.realname AS submitToName, T3.*')->from(TABLE_ICTWEEKPLAN)->alias('T1')
+		$weekPlan = $this->dao->select('T1.*, T2.realname AS submitToName, T3.result, T3.auditComment')->from(TABLE_ICTWEEKPLAN)->alias('T1')
 		->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
 		->leftJoin(TABLE_ICTAUDIT)->alias('T3')->on('T3.id = T1.auditId')
 		->where('T1.account')->eq($account)
@@ -314,7 +314,7 @@ class planModel extends model{
 		$myplan = $this->dao->select('T1.*, T2.*')->from(TABLE_ICTWEEKPLAN)->alias('T1')
 		->leftJoin(TABLE_ICTAUDIT)->alias('T2')->on('T2.`id` = T1.`auditId`')
 		->where('T1.account')->eq($account)
-		->andWhere('T1.firstDayOfWeek="'. $firstDayOfWeek. '" AND (T2.`result` IS NULL OR T2.`result` = 0)')
+		->andWhere('T1.firstDayOfWeek="'. $firstDayOfWeek. '" AND (T2.`result` IS NULL OR T2.`result` = "不同意")')
 		->orderBy('T1.type')
 // 		->andWhere('confirmed')->eq('不通过')
 // 		->andWhere('confirmedOrNo')->eq('是')
@@ -883,6 +883,34 @@ class planModel extends model{
 				->where('account')->eq($account)
 				->andWhere('role')->eq('4')
 				->fetchAll();
+	}
+	
+	/**
+	 * 保存评审意见, 同时更新ict_my_weekplan表中的auditId字段，使之关联起来
+	 */
+	public function saveAudit()
+	{
+		//插入ict_audit数据		
+		$auditData->result = $_POST['result'];
+		$auditData->auditComment = $_POST['auditComment'];
+		//如果没有审核，此时就是新增
+		if (empty($_POST['weekAuditId'])) {
+			$this->dao->insert(TABLE_ICTAUDIT)->data($auditData)->autoCheck()->exec();
+			//查出ict_audit表中id的最大值
+			$maxIdInAudit = $this->dao->select('MAX(id) AS id')->from(TABLE_ICTAUDIT)->fetch()->id;
+			//更新ict_my_weekplan表中的auditId字段,只更新下个星期的auditId
+			$weekPlanIds = $_POST['weekPlanId'];
+			$plan->auditId = $maxIdInAudit;
+			$this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()
+			->where('id')->in($weekPlanIds)->exec();
+		} else {
+			//如果已经审核，就是重新更新下
+			$this->dao->update(TABLE_ICTAUDIT)->data($auditData)->autoCheck()
+			->where('id')->eq($_POST['weekAuditId'][0])->exec();
+		}
+		// 		$planLen = count($weekPlanIds);
+// 		for($i=0; $i<$planLen; $i++) {
+// 		}
 	}
 	
 }
