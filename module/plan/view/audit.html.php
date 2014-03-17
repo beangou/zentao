@@ -25,29 +25,33 @@
 	  <table class='table-1 tablesorter fixed colored datatable newBoxs'> 
 	    <caption><div align="center">本周周计划</div></caption>
 	    <thead>
-	      <th width="15%"><?php echo $lang->plan->sort;?></th>
-	      <th width="5%"><?php echo $lang->plan->matter;?></th>
-	      <th><?php echo $lang->plan->plan;?></th>
-	      <th>完成时限</th>
-	      <th>完成情况</th>
-	      <th>见证性材料</th>
-	      <th>未完成原因说明及如何补救</th>
-	      <th>确认人</th>
-	      <th>确认结果</th>
-	      <th>备注</th>
+	    	<tr class='colhead'>
+		      <th width="15%"><?php echo $lang->plan->sort;?></th>
+		      <th width="5%"><?php echo $lang->plan->matter;?></th>
+		      <th><?php echo $lang->plan->plan;?></th>
+		      <th>完成时限</th>
+		      <th>完成情况</th>
+		      <th>见证性材料</th>
+		      <th>未完成原因说明及如何补救</th>
+		      <th>确认人</th>
+		      <th>确认结果</th>
+		      <th>备注</th>
+		    </tr>  
 	    </thead>
 	    <tbody id="thisPlanBody">
 	    </tbody>
 	  </table>
 	  
-	  <table class='table-1 tablesorter fixed colored datatable newBoxs'> 
+	  <table class='table-1 tablesorter fixed colored datatable newBoxs' style="margin-top:5%"> 
 	    <caption><div align="center">下周周计划</div></caption>
 	    <thead>
-	      <th width="5%"><?php echo $lang->plan->sort;?></th>
-	      <th><?php echo $lang->plan->matter;?></th>
-	      <th><?php echo $lang->plan->plan;?></th>
-	      <th>完成时限</th>
-	      <th>确认人</th>
+	    	<tr class='colhead'>
+		      <th width="5%"><?php echo $lang->plan->sort;?></th>
+		      <th><?php echo $lang->plan->matter;?></th>
+		      <th><?php echo $lang->plan->plan;?></th>
+		      <th width="8%">完成时限</th>
+		      <th>确认人</th>
+		   </tr>   
 	    </thead>
 	    <tbody id="nextPlanBody">
 	    </tbody>

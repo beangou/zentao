@@ -22,15 +22,17 @@
   <table class='table-1 tablesorter fixed colored datatable newBoxs'> 
     <caption><div align="center">汇总周计划</div></caption>
     <thead>
-      <th width="15%">时间</th>
-      <th width="5%">负责人</th>
-      <th width="5%"><?php echo $lang->plan->sort;?></th>
-      <th><?php echo $lang->plan->matter;?></th>
-      <th><?php echo $lang->plan->plan;?></th>
-      <th>完成时限</th>
-      <th>完成情况</th>
-      <th>见证性材料</th>
-      <th>未完成原因说明及如何补救</th>
+    	<tr class='colhead'>
+	      <th width="15%">时间</th>
+	      <th width="5%">负责人</th>
+	      <th width="5%"><?php echo $lang->plan->sort;?></th>
+	      <th><?php echo $lang->plan->matter;?></th>
+	      <th><?php echo $lang->plan->plan;?></th>
+	      <th>完成时限</th>
+	      <th>完成情况</th>
+	      <th>见证性材料</th>
+	      <th>未完成原因说明及如何补救</th>
+	    </tr>  
     </thead>
     <?php 
     if (!empty($passedPlan)):

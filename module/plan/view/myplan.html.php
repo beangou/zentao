@@ -69,6 +69,10 @@
 			echo '未审核';
       }?></td>
     </tr>
+    <?php $link = $this->createLink('plan', 'myplan', "isSubmit=1")?>
+    <tr><td colspan='10' class='a-center'><?php echo  
+    		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=0") . "\")'") ;?>
+    </td></tr>
     <?php endforeach;?>
     <?php else :
     $stepID = 1;
@@ -76,10 +80,7 @@
     <tr class='a-center'>
       <td class='stepID' colspan="10">无数据</td>
     </tr>
-    <?php endif;?><?php $link = $this->createLink('plan', 'myplan', "isSubmit=1")?>
-    <tr><td colspan='10' class='a-center'><?php echo  
-    		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=0") . "\")'") ;?>
-    </td></tr>
+    <?php endif;?>
   </table>
   </form>
   
@@ -117,24 +118,16 @@
 	       echo html::input('deadtime[]', date('Y-m-d',strtotime($plan->deadtime)), "class='select-2 date'");
 									       
 	       echo '</td><td>'.html::select('submitTo[]', $users, $plan->submitTo, "class='select-1'"). '</td><td>';
-// 		<td>'. html::select('submitTo[]',$users,'',"class='select-2'").
-// 	      '</td><td><select name="submitTo[]" class="select-1">';
-// 	      		$string = '';
-// 		       foreach($submitTos as $obj)
-// 		       {
-// 		       	$selected = '';
-// 		       	if($obj->account == $plan->submitTo) {$selected = 'selected';}
-// 		       	$string  .= "<option value='$obj->account' $selected>$obj->realname</option>\n";
-// 		       }
-// 		       $string .= "</select>\n";
-// 	       echo $string. '</td><td>';
 	      if(empty($plan->result)){
 			echo '未审核</td>';		  	
 		  } else {
 			echo '不同意</td>';
 		  }
-			
-		  echo '<td>'.$plan->auditComment. '</td>';
+
+		  if($stepAddID == 1) {
+		  	echo '<td rowspan="'. count($nextWeekPlan). '">'. $plan->auditComment. '</td>';
+		  }
+		  
 	     echo '<td>'. html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID)'"). '</td>';
       ?>
       

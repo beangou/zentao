@@ -94,7 +94,7 @@ class plan extends control{
 		$this->view->thisWeekPlan = $this->plan->queryPlanByTime($myDateArr[2]);
 		//查出下周未评审或评审未通过的周计划（第一天为本周六）
 		$this->view->nextWeekPlan = $this->plan->queryNextUnpassPlan($myDateArr[0]);
-		$this->view->submitTos	  = $this->plan->getSubmitToName();
+// 		$this->view->submitTos	  = $this->plan->getSubmitToName();
 		
 		$this->view->date           = $myDateArr[1];
 		
@@ -917,7 +917,7 @@ class plan extends control{
 				die('<tr><td colspan="10">暂无数据</td><tr>');
 			} else {
 				foreach ($planArr as $plan) {
-					$planStr.= '<tr><td>'.$plan->type. 
+					$planStr.= '<tr class="a-center"><td>'.$plan->type. 
 							'</td>'.
 							'<td>'.$plan->matter. '</td>'.
 							'<td>'.$plan->plan. '</td>'.
@@ -935,14 +935,14 @@ class plan extends control{
 			//下周第一条为本周六
 			$planArr		= $this->plan->queryNextWeekPlan($account, $myDateArr[0]);
 			if (count($planArr)  == 0) {
-				$planStr.= '<tr><td colspan="10">暂无数据</td><tr><script>';
+				$planStr.= '<tr><td colspan="5">暂无数据</td><tr><script>';
 				$planStr.= '$("#resultYes").attr("checked", true);';
 					$planStr.= '$("#auditComment").val("");';
 				$planStr.= '</script>';
 				die($planStr);
 			} else {
 				foreach ($planArr as $plan) {
-					$planStr.= '<tr><td>'.$plan->type. 
+					$planStr.= '<tr class="a-center"><td>'.$plan->type. 
 							'<input type="hidden" name="weekPlanId[]" value="'. $plan->id. '">
 							<input type="hidden" name="weekAuditId" value="'. $plan->auditId. '"></td>'.
 							'<td>'.$plan->matter. '</td>'.

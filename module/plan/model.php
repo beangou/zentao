@@ -29,12 +29,24 @@ class planModel extends model{
 // 		LEFT JOIN ict_proteam T3 ON(T3.id = T1.proteam)
 // 		WHERE T3.leader = 'liutongbin'
 		
-		$members = $this->dao->select('T1.account, T2.realname')->from(TABLE_ICTMEMBSET)->alias('T1')
+		$members = array();
+// 		"我的审核"页面里面，如果是组长，取出小组普通成员的下拉列表
+		if (empty($this->checkCollectPlan())) {
+			$members = $this->dao->select('T1.account, T2.realname')->from(TABLE_ICTMEMBSET)->alias('T1')
 					->leftJoin(TABLE_USER)->alias('T2')->on('T2.account = T1.account')
 					->leftJoin(TABLE_ICTPROTEAM)->alias('T3')->on('T3.id = T1.proteam')
 					->where('T3.leader')->eq($this->app->user->account)
+					->andWhere('T1.account')->ne($this->app->user->account)
 					->orderBy('T1.account')
 					->fetchPairs();
+		} else {
+			$members = $this->dao->select('T1.account, T2.realname')->from(TABLE_ICTMEMBSET)->alias('T1')
+			->leftJoin(TABLE_USER)->alias('T2')->on('T2.account = T1.account')
+			->where('T1.leader')->eq('1')
+			->orderBy('T1.account')
+			->fetchPairs();
+		}
+// 		"我的审核"页面里面，如果是科长，取出小组组长的下拉列表
 		
 		if(!$members) return array();
 		foreach($members as $account => $realName)
@@ -408,7 +420,7 @@ class planModel extends model{
 	public function batchCreate($firstDayOfWeek)
 	{
 		$plans = fixer::input('post')->get();
-		$delIds = $plans->ids;
+		$delIds = $plans->ids;						
 		//没有的id都删掉
 // 		$this->dao->delete()->from(TABLE_ICTWEEKPLAN)
 // 		->where('id')->notin($delIds)
