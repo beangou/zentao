@@ -18,8 +18,15 @@
     </div>
   </div>
   
+  <div align="center">
+	<form  method='post' onsubmit='return checkEmail()'>
+		<br><br>
+		请输入邮箱地址：<input id="email" type="text" name="email"/>
+		<input type="submit" value="提交"><?php echo $info;?>
+	</form>
+  </div>
   
-  <table class='table-1 tablesorter colored datatable newBoxs'> 
+  <table class='table-1 tablesorter colored datatable newBoxs' style="margin-top: 2%"> 
     <caption><div align="center">汇总周计划</div></caption>
     <thead>
     	<tr class='colhead'>
@@ -58,14 +65,6 @@
     <?php endif;?>
   </table>
   
-<div align="center">
-	<form  method='post' onsubmit='return checkEmail()'>
-		<br><br>
-		请输入邮箱地址：<input id="email" type="text" name="email"/>
-		<input type="submit" value="提交"><?php echo $info;?>
-	</form>
-</div>
-
 <script type="text/javascript">
 function checkEmail()
 {
