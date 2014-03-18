@@ -21,19 +21,22 @@
 
   <form method='post' id='planform'>
   
-  <table class='table-1' id="commentPlan"> 
+  <table class='table-1 tablesorter colored datatable newBoxs' id="commentPlan"> 
     <caption><div align="center">自评本周计划完成情况(<?php echo $firstOfThisWeekDay. ' ~ '. $lastOfThisWeekDay;?>)</div></caption>
     <thead>
-      <th>编号</th>
-      <th><?php echo $lang->plan->sort;?></th>
-      <th><?php echo $lang->plan->matter;?></th>
-      <th><?php echo $lang->plan->plan;?></th>
-      <th>完成时限</th>
-      <th>完成情况</th>
-      <th>见证性材料</th>
-      <th>未完成原因说明及如何补救</th>
-      <th>确认人</th>
-      <th>确认结果</th>
+    	<tr class="colhead">
+	      <th width="3%">编号</th>
+	      <th width="5%"><?php echo $lang->plan->sort;?></th>
+	      <th width="15%"><?php echo $lang->plan->matter;?></th>
+	      <th width="20%"><?php echo $lang->plan->plan;?></th>
+	      <th width="6%">完成时限</th>
+	      <th width="6%">完成情况</th>
+	      <th width="10%">见证性材料</th>
+	      <th width="14%">未完成原因说明及如何补救</th>
+	      <th width="5%">确认人</th>
+	      <th width="6%">确认结果</th>
+	      <th>备注</th>
+	    </tr>  
     </thead>
     <?php 
     $stepID = 0;
@@ -46,7 +49,7 @@
       <td><?php echo $plan->type;?></td>
       <td><?php echo $plan->matter;?></td>
       <td><?php echo $plan->plan;?></td>
-      <td><?php echo $plan->deadtime;?>
+      <td><?php echo $plan->deadtime;?></td>
       <td><select name='status[]' <?php if($plan->confirmed == '通过'){echo 'disabled';}?>>
       		<option value='完成' <?php if('完成'==$plan->status){echo 'selected="selected"';}?>>完成</option>
       		<option value='延期完成' <?php if('延期完成'==$plan->status){echo 'selected="selected"';}?>>延期完成</option>
@@ -68,34 +71,39 @@
       	echo $plan->confirmed;} else {
 			echo '未审核';
       }?></td>
+      <td><?php echo $plan->remark;?></td>
     </tr>
+    
+    <?php endforeach;?>
     <?php $link = $this->createLink('plan', 'myplan', "isSubmit=1")?>
-    <tr><td colspan='10' class='a-center'><?php echo  
+    <tr><td colspan='11' class='a-center'><?php echo  
     		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=0") . "\")'") ;?>
     </td></tr>
-    <?php endforeach;?>
     <?php else :
     $stepID = 1;
     ?>
     <tr class='a-center'>
-      <td class='stepID' colspan="10">无数据</td>
+      <td class='stepID' colspan="11" style="text-align: right;"><?php echo $lang->pager->noRecord ;?></td>
     </tr>
     <?php endif;?>
   </table>
   </form>
   
   <form method='post'>
-  <table class='table-1' id="addPlan" style="margin-top: 5%"> 
+  <table class='table-1 tablesorter colored datatable newBoxs' id="addPlan" style="margin-top: 5%"> 
     <caption><div align="center">填写下周计划(<?php echo $firstOfNextWeekDay. ' ~ '. $lastOfNextWeekDay;?>)</div></caption>
     <thead>
-      <th>编号</th>
-      <th width="5%"><?php echo $lang->plan->sort;?></th>
-      <th><?php echo $lang->plan->matter;?></th>
-      <th><?php echo $lang->plan->plan;?></th>
-      <th width="15%">完成时限</th>
-      <th width="8%">确认人</th>
-      <th width="5%">审核结果</th>
-      <th width="15%">审核意见</th>
+    	<tr class="colhead">
+	      <th width="3%">编号</th>
+	      <th width="5%"><?php echo $lang->plan->sort;?></th>
+	      <th width="20%"><?php echo $lang->plan->matter;?></th>
+	      <th width="20"><?php echo $lang->plan->plan;?></th>
+	      <th width="15%">完成时限</th>
+	      <th width="8%">确认人</th>
+	      <th width="5%">审核结果</th>
+	      <th width="15%">审核意见</th>
+	      <th>操作</th>
+	    </tr>  
     </thead>
     
     
@@ -112,8 +120,8 @@
       <?php 
 //       if($plan->confirmed != '通过'){
 	      echo '<td>'. html::input("type[]", $plan->type, "class=text-1"). '</td>
-	      <td>'. html::input("matter[]", $plan->matter, "class=text-1").'</td>
-	      <td>'. html::input("plan[]", $plan->plan, "class=text-1"). '</td>
+	      <td>'. html::textarea("matter[]", $plan->matter, 'rows="4" cols="50"').'</td>
+	      <td>'. html::textarea("plan[]", $plan->plan, 'rows="4" cols="50"'). '</td>
 	      <td>';
 	       echo html::input('deadtime[]', date('Y-m-d',strtotime($plan->deadtime)), "class='select-2 date'");
 									       
@@ -140,8 +148,8 @@
     <tr class='a-center' id="row<?php echo $stepAddID?>">
       <td class='stepAddID'><?php echo $stepAddID ;?></td>
       <td><?php echo html::input("type[]", '', "class='select-1' onkeyup='this.value=this.value.toUpperCase()'");?></td>
-      <td><?php echo html::input("matter[]", '', 'class="text-1"');?></td>
-      <td><?php echo html::input("plan[]", '', "class=text-1");?></td>
+      <td id="copyMatter"><?php echo html::textarea("matter[]", '', 'rows="4" cols="50"');?></td>
+      <td id="copyPlan"><?php echo html::textarea("plan[]", '', 'rows="4" cols="50"');?></td>
       <td id='copyDateTd'><?php 
       		echo html::input('deadtime[]', '', "class='select-2 date'");
 //       		html::input("deadtime[]", '', "class=text-1");

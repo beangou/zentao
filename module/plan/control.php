@@ -53,7 +53,7 @@ class plan extends control{
 			return $mail->ErrorInfo;
 		} else {
 // 			echo "Message sent!";
-			return "发送成功!";
+			return '<script>alert("发送成功!")</script>';
 		}
     }
 	
@@ -717,19 +717,20 @@ class plan extends control{
 			$mymenu['collectplan']     = '汇总计划';
 		}
 		$this->view->mymenu = $mymenu;
+		$daysArr = $this->getLastAndEndDayOfWeek();
 		if (!empty($_POST) && $this->post->email != '') {
-		$this->generateExcl();
+		$this->generateExcl($daysArr[0], $daysArr[2]);
 		$this->view->info = $this->sendEmail($this->post->email);
 		}
 		$account = $this->app->user->account;
-		$this->view->passedPlan = $this->plan->queryPassedPlan($account);
+		$this->view->passedPlan = $this->plan->queryPassedPlan($account, $daysArr[2], $daysArr[0]);
 		$this->display();
 	}
 	
 	/**
 	 * 生成excl文件
 	 */
-	public function generateExcl() 
+	public function generateExcl($nextWeekFirstDay, $thisWeekFirstDay) 
 	{
 		/**
 		 * PHPExcel
@@ -799,7 +800,7 @@ class plan extends control{
 		
 		
 		$account = $this->app->user->account;
-		$myplanList = $this->plan->queryPassedPlan($account);
+		$myplanList = $this->plan->queryPassedPlan($account, $thisWeekFirstDay, $nextWeekFirstDay);
 // 		$this->dealArrForRowspan($myplan[0], 'firstDayOfWeek');
 // 		$this->view->checkPlan		= $myplan[0];
 // 		$this->view->uncheckedPlan  = $myplan[1];
@@ -914,7 +915,7 @@ class plan extends control{
 			//本周第一天为上周六
 			$planArr		= $this->plan->queryWeekPlan($account, $myDateArr[2], 'passed');
 			if (count($planArr)  == 0) {
-				die('<tr><td colspan="10">暂无数据</td><tr>');
+				die('<tr><td class="stepID" colspan="10" style="text-align: right;">'. '暂时没有记录'. '</td></tr>');
 			} else {
 				foreach ($planArr as $plan) {
 					$planStr.= '<tr class="a-center"><td>'.$plan->type. 
@@ -935,7 +936,7 @@ class plan extends control{
 			//下周第一条为本周六
 			$planArr		= $this->plan->queryNextWeekPlan($account, $myDateArr[0]);
 			if (count($planArr)  == 0) {
-				$planStr.= '<tr><td colspan="5">暂无数据</td><tr><script>';
+				$planStr.= '<tr><td class="stepID" colspan="5" style="text-align: right;">'. '暂时没有记录'. '</td></tr><script>';
 				$planStr.= '$("#resultYes").attr("checked", true);';
 					$planStr.= '$("#auditComment").val("");';
 				$planStr.= '</script>';

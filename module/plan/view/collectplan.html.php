@@ -19,19 +19,19 @@
   </div>
   
   
-  <table class='table-1 tablesorter fixed colored datatable newBoxs'> 
+  <table class='table-1 tablesorter colored datatable newBoxs'> 
     <caption><div align="center">汇总周计划</div></caption>
     <thead>
     	<tr class='colhead'>
-	      <th width="15%">时间</th>
-	      <th width="5%">负责人</th>
+		  <th width="5%">负责人</th>
+    	  <th width="8%">时间</th>
 	      <th width="5%"><?php echo $lang->plan->sort;?></th>
-	      <th><?php echo $lang->plan->matter;?></th>
-	      <th><?php echo $lang->plan->plan;?></th>
-	      <th>完成时限</th>
-	      <th>完成情况</th>
-	      <th>见证性材料</th>
-	      <th>未完成原因说明及如何补救</th>
+	      <th width="15%"><?php echo $lang->plan->matter;?></th>
+	      <th width="20%"><?php echo $lang->plan->plan;?></th>
+	      <th width="6%">完成时限</th>
+	      <th width="6%">完成情况</th>
+	      <th width="10%">见证性材料</th>
+	      <th width="14%">未完成原因说明及如何补救</th>
 	    </tr>  
     </thead>
     <?php 
@@ -39,8 +39,8 @@
     foreach ($passedPlan as $plan):
     ?>
     <tr class='a-center'>
-      <td><?php echo $plan->firstDayOfWeek. ' ~ '. $plan->lastDayOfWeek;?></td>
       <td><?php echo $plan->accountname;?></td>
+      <td><?php echo $plan->firstDayOfWeek. ' ~ '. $plan->lastDayOfWeek;?></td>
       <td><?php echo $plan->type;?></td>
       <td><?php echo $plan->matter;?></td>
       <td><?php echo $plan->plan;?></td>

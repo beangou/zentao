@@ -26,7 +26,7 @@
 			</div>
 		</td>
   		<td>
-  			<table  class='table-1 tablesorter fixed colored datatable newBoxs'> 
+  			<table  class='table-1 tablesorter colored datatable newBoxs'> 
 			    <caption><div align="center">上周周计划(<?php echo $firstOfLastWeekDay. ' ~ '. $lastOfLastWeekDay;?>)</div></caption>
 			    <thead>
 			      <tr class='colhead'>
@@ -88,7 +88,7 @@
 			  </table>
 			  
 			  
-			  <table  class='table-1 tablesorter fixed colored datatable newBoxs' style="margin-top: 5%"> 
+			  <table  class='table-1 tablesorter colored datatable newBoxs' style="margin-top: 5%"> 
 			    <caption><div align="center">本周周计划(<?php echo $firstOfThisWeekDay. ' ~ '. $lastOfThisWeekDay;?>)</div></caption>
 			    <thead>
 			      <tr class='colhead'>
@@ -150,7 +150,7 @@
 			  </table>
 			  
 			  
-			  <table  class='table-1 tablesorter fixed colored datatable newBoxs' style="margin-top: 5%"> 
+			  <table  class='table-1 tablesorter colored datatable newBoxs' style="margin-top: 5%"> 
 			    <caption><div align="center">下周周计划(<?php echo $firstOfNextWeekDay. ' ~ '. $lastOfNextWeekDay;?>)</div></caption>
 			    <thead>
 			      <tr class='colhead'>

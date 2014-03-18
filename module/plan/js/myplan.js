@@ -132,8 +132,10 @@ function mycreateRow(paramRowId)
     var newRow    = "<tr class='a-center' id='row" + newRowID + "'>";
     newRow += "<td class='stepAddID'></td>";
     newRow += "<td><input name='type[]' class='select-1' onkeyup='this.value=this.value.toUpperCase()')></td>";
-    newRow += "<td><input name='matter[]' class='text-1')></td>";
-    newRow += "<td><input name='plan[]' class='text-1'></td>";
+//    newRow += "<td><input name='matter[]' class='text-1')></td>";
+    newRow += "<td>"+$("#copyMatter").html()+"</td>";
+    newRow += "<td>"+$("#copyPlan").html()+"</td>";
+//    newRow += "<td><input name='plan[]' class='text-1'></td>";
 //    newRow += "<td id='addRowDate_"+paramRowId+"'></td>";
 //    newRow += "<td>"+$("#copyDateTd").html()+"</td>";
     newRow += "<td><input type='text' name='deadtime[]' class='select-2 date'></td>";//<input type='text' name='$name' id='$name' value='$value' $attrib />\n

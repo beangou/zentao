@@ -18,19 +18,19 @@
 
 <form method='post' id='planform'>
   
-  <table class='table-1 tablesorter fixed colored datatable newBoxs'>
+  <table class='table-1 tablesorter colored datatable newBoxs'>
     <caption><div align="center">未确认计划</div></caption>
     <thead>
     <tr class='colhead'>
-      <th>时间</th>
-	  <th><?php echo $lang->plan->account;?></th>
-      <th><?php echo $lang->plan->type;?></th>
-      <th><?php echo $lang->plan->matter;?></th>
-      <th><?php echo $lang->plan->plan;?></th>
-      <th><?php echo $lang->plan->deadtime;?></th>
-      <th><?php echo $lang->plan->status;?></th>
-      <th><?php echo $lang->plan->confirmed;?></th>
-      <th><?php echo $lang->plan->remark;?></th>
+      <th width="7%">时间</th>
+	  <th width="5%"><?php echo $lang->plan->account;?></th>
+      <th width="3%"><?php echo $lang->plan->type;?></th>
+      <th width="20%"><?php echo $lang->plan->matter;?></th>
+      <th width="20%"><?php echo $lang->plan->plan;?></th>
+      <th width="7%"><?php echo $lang->plan->deadtime;?></th>
+      <th width="7%"><?php echo $lang->plan->status;?></th>
+      <th width="7%"><?php echo $lang->plan->confirmed;?></th>
+      <th width="15%"><?php echo $lang->plan->remark;?></th>
     </tr>
     </thead>
     <tbody>
@@ -72,19 +72,19 @@
   
 </form>
 
-<table class='table-1 tablesorter fixed colored datatable newBoxs' style="margin-top: 5%">
+<table class='table-1 tablesorter colored datatable newBoxs' style="margin-top: 5%">
   	<caption><div align="center">已确认计划</div></caption>
     <thead>
     <tr class='colhead'>
-      <th>时间</th>
-	  <th><?php echo $lang->plan->account;?></th>
-      <th><?php echo $lang->plan->type;?></th>
-      <th><?php echo $lang->plan->matter;?></th>
-      <th><?php echo $lang->plan->plan;?></th>
-      <th><?php echo $lang->plan->deadtime;?></th>
-      <th><?php echo $lang->plan->status;?></th>
-      <th><?php echo $lang->plan->confirmed;?></th>
-      <th><?php echo $lang->plan->remark;?></th>
+      <th width="7%">时间</th>
+	  <th width="5%"><?php echo $lang->plan->account;?></th>
+      <th width="3%"><?php echo $lang->plan->type;?></th>
+      <th width="20%"><?php echo $lang->plan->matter;?></th>
+      <th width="20%"><?php echo $lang->plan->plan;?></th>
+      <th width="7%"><?php echo $lang->plan->deadtime;?></th>
+      <th width="7%"><?php echo $lang->plan->status;?></th>
+      <th width="7%"><?php echo $lang->plan->confirmed;?></th>
+      <th width="15%"><?php echo $lang->plan->remark;?></th>
     </tr>
     </thead>
     <tbody>

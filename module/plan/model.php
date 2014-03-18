@@ -31,7 +31,7 @@ class planModel extends model{
 		
 		$members = array();
 // 		"我的审核"页面里面，如果是组长，取出小组普通成员的下拉列表
-		if (empty($this->checkCollectPlan())) {
+		if (count($this->checkCollectPlan()) == 0) {
 			$members = $this->dao->select('T1.account, T2.realname')->from(TABLE_ICTMEMBSET)->alias('T1')
 					->leftJoin(TABLE_USER)->alias('T2')->on('T2.account = T1.account')
 					->leftJoin(TABLE_ICTPROTEAM)->alias('T3')->on('T3.id = T1.proteam')
@@ -40,10 +40,9 @@ class planModel extends model{
 					->orderBy('T1.account')
 					->fetchPairs();
 		} else {
-			$members = $this->dao->select('T1.account, T2.realname')->from(TABLE_ICTMEMBSET)->alias('T1')
-			->leftJoin(TABLE_USER)->alias('T2')->on('T2.account = T1.account')
-			->where('T1.leader')->eq('1')
-			->orderBy('T1.account')
+			$members = $this->dao->select('T1.leader, T2.realname')->from(TABLE_ICTPROTEAM)->alias('T1')
+			->leftJoin(TABLE_USER)->alias('T2')->on('T2.account = T1.leader')
+			->orderBy('T1.leader')
 			->fetchPairs();
 		}
 // 		"我的审核"页面里面，如果是科长，取出小组组长的下拉列表
@@ -216,20 +215,31 @@ class planModel extends model{
 	
 	
 	/**
-	 * 查出已经审核通过的计划，准备汇总
+	 * 查出各项目组组长已经审核通过的下周计划以及确认通过的本周计划，准备汇总
 	 * @param unknown_type $account
 	 * @param unknown_type $startDate
 	 * @param unknown_type $finishedDate
 	 */
-	public function queryPassedPlan($account)
+	public function queryPassedPlan($account, $thisWeekFirstOfDay, $nextWeekFirstOfDay)
 	{
 		//已通过周计划
+// 		$passedPlan = $this->dao->select('T1.*, T2.realname AS accountname')
+// 		->from(TABLE_ICTWEEKPLAN)->alias('T1')
+// 		->leftJoin(TABLE_USER)->alias('T2')->on('T1.account = T2.account')
+// 		->where('T1.submitTo')->eq($account)
+// 		->andWhere('T1.confirmed')->eq('通过')
+// 		->orderBy('T1.firstDayOfWeek desc, T1.account, T1.type')
+// 		->fetchAll();
+
 		$passedPlan = $this->dao->select('T1.*, T2.realname AS accountname')
 		->from(TABLE_ICTWEEKPLAN)->alias('T1')
 		->leftJoin(TABLE_USER)->alias('T2')->on('T1.account = T2.account')
-		->where('T1.submitTo')->eq($account)
-		->andWhere('T1.confirmed')->eq('通过')
-		->orderBy('T1.firstDayOfWeek desc, T1.account, T1.type')
+		->leftJoin(TABLE_ICTAUDIT)->alias('T3')->on('T3.id = T1.auditId')
+		->leftJoin(TABLE_ICTPROTEAM)->alias('T4')->on('T4.leader = T1.account')
+		->where('(T1.`firstDayOfWeek` ="'. $thisWeekFirstOfDay. '" AND T1.`confirmed` = "通过")'. 
+	 				' OR '. 
+      		 '(T1.`firstDayOfWeek` ="'. $nextWeekFirstOfDay. '" AND T3.`result` = "同意")')
+		->orderBy('T1.account, T1.firstDayOfWeek desc, T1.type')
 		->fetchAll();
 		return $passedPlan;
 	}
@@ -894,6 +904,7 @@ class planModel extends model{
 		return $this->dao->select('*')->from(TABLE_ICTUSER)
 				->where('account')->eq($account)
 				->andWhere('role')->eq('4')
+				->andWhere('account')->eq('chenxiaobo')
 				->fetchAll();
 	}
 	

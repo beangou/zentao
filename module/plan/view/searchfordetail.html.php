@@ -11,7 +11,7 @@
 </style>
 
 <body>
-  		   <table class="table-1 fixed colored datatable border-sep" id="product">
+  		   <table class="table-1 colored datatable border-sep" id="product">
   		    <caption><div align="center">查看周计划详细信息</div></caption>
   			  <thead>
 				  <tr>    
