@@ -101,7 +101,7 @@
 	      <th width="15%">完成时限</th>
 	      <th width="8%">确认人</th>
 	      <th width="5%">审核结果</th>
-	      <th width="15%">审核意见</th>
+	      <!-- <th width="15%">审核意见</th> -->
 	      <th>操作</th>
 	    </tr>  
     </thead>
@@ -132,9 +132,10 @@
 			echo '不同意</td>';
 		  }
 
-		  if($stepAddID == 1) {
-		  	echo '<td rowspan="'. count($nextWeekPlan). '">'. $plan->auditComment. '</td>';
-		  }
+// 		  echo '<td>'. $plan->auditComment. '</td>';
+// 		  if($stepAddID == 1) {
+// 		  	echo '<td rowspan="'. count($nextWeekPlan). '">'. $plan->auditComment. '</td>';
+// 		  }
 		  
 	     echo '<td>'. html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID)'"). '</td>';
       ?>
@@ -147,7 +148,7 @@
     ?>
     <tr class='a-center' id="row<?php echo $stepAddID?>">
       <td class='stepAddID'><?php echo $stepAddID ;?></td>
-      <td><?php echo html::input("type[]", '', "class='select-1' onkeyup='this.value=this.value.toUpperCase()'");?></td>
+      <td id="copyType"><?php echo html::input("type[]", '', "class='text-1' onkeyup='this.value=this.value.toUpperCase()'");?></td>
       <td id="copyMatter"><?php echo html::textarea("matter[]", '', 'rows="4" cols="50"');?></td>
       <td id="copyPlan"><?php echo html::textarea("plan[]", '', 'rows="4" cols="50"');?></td>
       <td id='copyDateTd'><?php 
@@ -163,7 +164,6 @@
 //       		echo html::input("submitTo[]", '', "class=text-1");?>
       </td>
       <td>未审核</td>
-      <td></td>
       <td><?php echo html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID)'")?></td>
       
     </tr>

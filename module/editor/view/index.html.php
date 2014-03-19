@@ -10,7 +10,7 @@
  * @link        http://www.zentao.net
  */
 ?>
-<?php include '../../extension/view/header.html.php';?>
+<?php include '../../feedback/view/header.html.php';?>
 <table class='table-1 bd-none'>
   <tr valign='top'>
     <td width='160'>

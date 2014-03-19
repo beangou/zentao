@@ -21,7 +21,7 @@
   <div align="center">
 	<form  method='post' onsubmit='return checkEmail()'>
 		<br><br>
-		请输入邮箱地址：<input id="email" type="text" name="email"/>
+		请输入邮箱地址：<input id="email" type="text" name="email" style="width:18%;height:3%"/>
 		<input type="submit" value="提交"><?php echo $info;?>
 	</form>
   </div>
@@ -72,6 +72,17 @@ function checkEmail()
 		alert('邮箱地址不能为空！');
 		return false;
 	}
+
+	var temp = $('#email').val();
+	//对电子邮件的验证
+	var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+	if(!myreg.test(temp.value))
+	{
+		alert('提示\n\n请输入有效的E_mail！');
+		//myreg.focus();
+		return false;
+	}
+	
 // 	alert('邮箱地址不能为空！');
 	return true;
 }

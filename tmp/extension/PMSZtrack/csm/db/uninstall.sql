@@ -1,0 +1,1 @@
+-- ALTER TABLE `zt_user` DROP `isSync`;

@@ -31,7 +31,7 @@ class planModel extends model{
 		
 		$members = array();
 // 		"我的审核"页面里面，如果是组长，取出小组普通成员的下拉列表
-		if (count($this->checkCollectPlan()) == 0) {
+		if ($this->app->user->account == 'zhoubenwen' || count($this->checkCollectPlan()) == 0) {
 			$members = $this->dao->select('T1.account, T2.realname')->from(TABLE_ICTMEMBSET)->alias('T1')
 					->leftJoin(TABLE_USER)->alias('T2')->on('T2.account = T1.account')
 					->leftJoin(TABLE_ICTPROTEAM)->alias('T3')->on('T3.id = T1.proteam')
@@ -904,7 +904,7 @@ class planModel extends model{
 		return $this->dao->select('*')->from(TABLE_ICTUSER)
 				->where('account')->eq($account)
 				->andWhere('role')->eq('4')
-				->andWhere('account')->eq('chenxiaobo')
+// 				->andWhere('account')->eq('chenxiaobo')
 				->fetchAll();
 	}
 	

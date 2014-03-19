@@ -1,27 +1,16 @@
-<?php include '../../common/view/header.html.php';?>
-<?php include '../../common/view/kindeditor.html.php';?>
+<?php include '../../../common/view/header.html.php';?>
+<?php include '../../../common/view/autocomplete.html.php';?>
 <script language='Javascript'>
 function loadProduct(productID)
 {
-    loadProductModules(productID);
-    loadProductPlans(productID);
-}
-
-function loadProductModules(productID)
-{
-    moduleLink = createLink('tree', 'ajaxGetOptionMenu', 'productID=' + productID + '&viewtype=story&rootModuleID=0&returnType=html&needManage=true');
+    moduleLink = createLink('tree', 'ajaxGetOptionMenu', 'productID=' + productID + '&viewtype=story');
+    planLink   = createLink('product', 'ajaxGetPlans', 'productID=' + productID + '&planID=' + $('#plan').val());
     $('#moduleIdBox').load(moduleLink);
-}
-
-function loadProductPlans(productID)
-{
-    planLink = createLink('product', 'ajaxGetPlans', 'productID=' + productID + '&planID=' + $('#plan').val() + '&needCreate=true');
     $('#planIdBox').load(planLink);
 }
-
-$(function() 
-{
-    $("#reviewedBy").chosen({no_results_text:noResultsMatch});                                                   
-    $("#mailto").chosen({no_results_text:noResultsMatch});                                                   
+var userList = "<?php echo join(',', array_keys($users));?>".split(',');
+$(function() {
+    $("#reviewedBy").autocomplete(userList,{multiple: true,mustMatch: true});
+    $("#mailto").autocomplete(userList, { multiple: true, mustMatch: true});
 })
 </script>
