@@ -3,6 +3,19 @@
 <?php include '../../common/view/colorize.html.php';?>
 <?php js::set('users', json_encode($users))?>
 
+<input id="evaluateId" type="hidden" value="<?php echo $evaluateResult;?>"/>
+<input id="createId" type="hidden" value="<?php echo $createResult;?>"/>
+
+<script type="text/javascript">
+	if ('true' == $('#evaluateId').val()) {
+		alert('自评本周计划成功！');
+	}
+	
+	if ('true' == $('#createId').val()) {
+		alert('填写下周计划成功！');
+	}
+</script>
+
   
   <div id='topmyplan'>
     <div class='f-left'>
@@ -77,7 +90,7 @@
     <?php endforeach;?>
     <?php $link = $this->createLink('plan', 'myplan', "isSubmit=1")?>
     <tr><td colspan='11' class='a-center'><?php echo  
-    		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=0") . "\")'") ;?>
+    		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=0") . "\", \"0\")'") ;?>
     </td></tr>
     <?php else :
     $stepID = 1;
@@ -89,7 +102,7 @@
   </table>
   </form>
   
-  <form method='post'>
+  <form method='post' id='addPlanform'>
   <table class='table-1 tablesorter colored datatable newBoxs' id="addPlan" style="margin-top: 5%"> 
     <caption><div align="center">填写下周计划(<?php echo $firstOfNextWeekDay. ' ~ '. $lastOfNextWeekDay;?>)</div></caption>
     <thead>
@@ -148,15 +161,15 @@
     ?>
     <tr class='a-center' id="row<?php echo $stepAddID?>">
       <td class='stepAddID'><?php echo $stepAddID ;?></td>
-      <td id="copyType"><?php echo html::input("type[]", '', "class='text-1' onkeyup='this.value=this.value.toUpperCase()'");?></td>
-      <td id="copyMatter"><?php echo html::textarea("matter[]", '', 'rows="4" cols="50"');?></td>
-      <td id="copyPlan"><?php echo html::textarea("plan[]", '', 'rows="4" cols="50"');?></td>
+      <td id="copyType1"><?php echo html::input("type[]", '', "class='text-1' onkeyup='this.value=this.value.toUpperCase()'");?></td>
+      <td id="copyMatter1"><?php echo html::textarea("matter[]", '', 'rows="4" cols="50"');?></td>
+      <td id="copyPlan1"><?php echo html::textarea("plan[]", '', 'rows="4" cols="50"');?></td>
       <td id='copyDateTd'><?php 
       		echo html::input('deadtime[]', '', "class='select-2 date'");
 //       		html::input("deadtime[]", '', "class=text-1");
       		?>
       </td>
-      <td id="selectName">
+      <td id="selectName1">
       	 <?php 
 			    echo html::select('submitTo[]', $users, '', "class='select-1'");
 		 ?>
@@ -172,9 +185,21 @@
     <?php $link = $this->createLink('plan', 'myplan', "isSubmit=1");?>
     <tr><td colspan='9' class='a-center'>
     <?php echo  
-    		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=1") . "\")'");?>
+    		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=1") . "\", \"1\")'") ;?>
     </td></tr>
   </table>
   
+  <div style="display: none">
+  	  <span id="copyType"><?php echo html::input("type[]", '', "class='text-1' onkeyup='this.value=this.value.toUpperCase()'");?></span>
+      <span id="copyMatter"><?php echo html::textarea("matter[]", '', 'rows="4" cols="50"');?></span>
+      <span id="copyPlan"><?php echo html::textarea("plan[]", '', 'rows="4" cols="50"');?></span>
+      <span id="selectName">
+      	 <?php 
+			    echo html::select('submitTo[]', $users, '', "class='select-1'");
+		 ?>
+      	 <?php 
+//       		echo html::input("submitTo[]", '', "class=text-1");?>
+      </span>
+  </div>
 </form>
 <?php include '../../common/view/footer.html.php';?>

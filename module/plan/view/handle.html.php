@@ -51,7 +51,7 @@
     	<td>
     		<select name='confirmed[]'>
     			<option value='不通过'>不通过</option>
-    			<option value='通过'>通过</option>
+    			<option value='通过' selected>通过</option>
     		</select>
     	</td>
     	<td><?php echo html::input("remark[]", $week->remark, "class=text-1");?></td>

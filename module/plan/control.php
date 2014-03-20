@@ -69,9 +69,13 @@ class plan extends control{
 			if ($getParam == '0') {
 				//自评本周周计划
 				$this->plan->evaluateMyPlan();
+				$this->view->evaluateResult = 'true';
+				$this->view->createResult = '';
 			} else {
 				//填写下周周计划
 				$this->plan->myBatchCreate($myDateArr[0]);
+				$this->view->createResult = 'true';
+				$this->view->evaluateResult = '';
 			}
 			
 			if (dao::isError())die(js::error(dao::getError()));

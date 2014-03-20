@@ -11,9 +11,14 @@ $(function()
 
 $(".colorbox").colorbox({width:960, height:550, iframe:true, transition:'none'});
 
-function changeSubmit(url)
+function changeSubmit(url, isSubmit)
 {
-  $('#planform').attr('action', url);
+	if (isSubmit == '0')
+	{
+		$('#planform').attr('action', url);
+	} else if (isSubmit == '1') {
+		$('#addPlanform').attr('action', url);
+	}
 }
 
 
