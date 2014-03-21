@@ -7,6 +7,7 @@ function changeDate(date)
 $(function()
 {
 	$('#' + 'myplan').addClass('active');
+//	window.location.href='index.php?m=plan&f=myplan';
 });
 
 $(".colorbox").colorbox({width:960, height:550, iframe:true, transition:'none'});

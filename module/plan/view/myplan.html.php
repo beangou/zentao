@@ -3,6 +3,12 @@
 <?php include '../../common/view/colorize.html.php';?>
 <?php js::set('users', json_encode($users))?>
 
+<head>     
+<meta   http-equiv="Expires"   CONTENT="0">     
+<meta   http-equiv="Cache-Control"   CONTENT="no-cache">     
+<meta   http-equiv="Pragma"   CONTENT="no-cache">     
+</head>  
+
 <input id="evaluateId" type="hidden" value="<?php echo $evaluateResult;?>"/>
 <input id="createId" type="hidden" value="<?php echo $createResult;?>"/>
 
