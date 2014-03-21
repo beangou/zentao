@@ -89,8 +89,12 @@
     
     <?php endforeach;?>
     <?php $link = $this->createLink('plan', 'myplan', "isSubmit=1")?>
-    <tr><td colspan='11' class='a-center'><?php echo  
-    		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=0") . "\", \"0\")'") ;?>
+    <tr><td colspan='11' class='a-center'>
+    <input type="hidden" name="isSubmit" value="0">
+    <?php 
+//     	echo html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "") . "\", \"0\")'") ;
+    	?>
+   	<input type="submit" value=" 提交  ">  
     </td></tr>
     <?php else :
     $stepID = 1;
@@ -128,7 +132,7 @@
     ?>
     <tr class='a-center' id="row<?php echo $stepAddID?>">
       <td class='stepAddID'>
-      	<?php echo $stepAddID ; echo html::hidden("ids[]", $plan->id, "class=text-1").
+      	<?php echo $stepAddID ; echo html::hidden("nextIds[]", $plan->id, "class=text-1").
       	html::hidden("auditIds[]", $plan->auditId, "class=text-1");?></td>
       <?php 
 //       if($plan->confirmed != '通过'){
@@ -184,8 +188,11 @@
  //   endif;?>
     <?php $link = $this->createLink('plan', 'myplan', "isSubmit=1");?>
     <tr><td colspan='9' class='a-center'>
-    <?php echo  
-    		html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=1") . "\", \"1\")'") ;?>
+    <input type="hidden" name="isSubmit" value="1">
+    <?php 
+//     	echo html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=1") . "\", \"1\")'") ;
+    ?>
+   <input type="submit" value=" 提交  ">
     </td></tr>
   </table>
   

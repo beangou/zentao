@@ -65,7 +65,7 @@ class plan extends control{
 		$finish = date('Y-m-d',time());
 		$myDateArr = $this->getLastAndEndDayOfWeek();
 		if (!empty($_POST) && !isset($_GET['submit'])){
-			$getParam = $_GET['isSubmit'];
+			$getParam = $this->post->isSubmit;
 			if ($getParam == '0') {
 				//自评本周周计划
 				$this->plan->evaluateMyPlan();

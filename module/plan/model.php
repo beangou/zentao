@@ -358,7 +358,7 @@ class planModel extends model{
 	public function myBatchCreate($firstDayOfWeek)
 	{
 		$plans = fixer::input('post')->get();
-		$delIds = $plans->ids;
+		$delIds = $plans->nextIds;
 		$auditIds = $plans->auditIds;
 		if(!empty($auditIds)) {
 			//将评审意见表评审结果和评审意见置空，
@@ -917,7 +917,7 @@ class planModel extends model{
 		$auditData->result = $_POST['result'];
 		$auditData->auditComment = $_POST['auditComment'];
 		//如果没有审核，此时就是新增
-		if (empty($_POST['weekAuditId'])) {
+		if (empty($_POST['weekAuditId'][0])) {
 			$this->dao->insert(TABLE_ICTAUDIT)->data($auditData)->autoCheck()->exec();
 			//查出ict_audit表中id的最大值
 			$maxIdInAudit = $this->dao->select('MAX(id) AS id')->from(TABLE_ICTAUDIT)->fetch()->id;
