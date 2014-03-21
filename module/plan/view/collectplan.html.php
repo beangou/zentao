@@ -76,7 +76,20 @@ function checkEmail()
 	var temp = $('#email').val();
 	//对电子邮件的验证
 	var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-	if(!myreg.test(temp.value))
+// 	var myreg = /^[^\.@]+@[^\.@]+\.[a-z]+$/;
+
+
+// 	var myreg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/; 
+// 	return reg.test(str); 
+
+// 	var emailPat=/^(.+)@(.+)$/;
+// 	var matchArray=emailPat.match(temp);
+// 	if (matchArray==null) {
+// 		alert("电子邮件地址必须包括 ( @ 和 . )")
+// 		return false;
+// 	}
+	
+	if(!myreg.test(temp))
 	{
 		alert('提示\n\n请输入有效的E_mail！');
 		//myreg.focus();

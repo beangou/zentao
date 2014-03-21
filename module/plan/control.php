@@ -949,7 +949,7 @@ class plan extends control{
 				foreach ($planArr as $plan) {
 					$planStr.= '<tr class="a-center"><td>'.$plan->type. 
 							'<input type="hidden" name="weekPlanId[]" value="'. $plan->id. '">
-							<input type="hidden" name="weekAuditId" value="'. $plan->auditId. '"></td>'.
+							<input type="hidden" name="weekAuditId[]" value="'. $plan->auditId. '"></td>'.
 							'<td>'.$plan->matter. '</td>'.
 							'<td>'.$plan->plan. '</td>'.
 							'<td>'.$plan->deadtime. '</td>'.
