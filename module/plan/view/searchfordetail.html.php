@@ -18,7 +18,7 @@
 				      <th width="20%">时间</th><td><?php echo $detailPlan->firstDayOfWeek. '~'. $detailPlan->lastDayOfWeek;?></td>
 				  </tr>
 				  <tr>    
-				      <th><?php echo $lang->plan->sort;?></th><td><?php $myplan->type;?></td>
+				      <th><?php echo $lang->plan->sort;?></th><td><?php echo $detailPlan->type;?></td>
 				  </tr>
 				  <tr>    
 				      <th width="35%"><?php echo $lang->plan->matter;?></th><td><?php echo $detailPlan->matter;?></td>

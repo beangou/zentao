@@ -106,7 +106,7 @@
     $stepID = 1;
     ?>
     <tr class='a-center'>
-      <td class='stepID' colspan="11" style="text-align: right;"><?php echo $lang->pager->noRecord ;?></td>
+      <td class='stepID' colspan="11" style="text-align: right;">您本周无计划或已确认通过！</td>
     </tr>
     <?php endif;?>
   </table>
@@ -120,7 +120,7 @@
 	      <th width="3%">编号</th>
 	      <th width="5%"><?php echo $lang->plan->sort;?></th>
 	      <th width="20%"><?php echo $lang->plan->matter;?></th>
-	      <th width="20"><?php echo $lang->plan->plan;?></th>
+	      <th width="20%"><?php echo $lang->plan->plan;?></th>
 	      <th width="15%">完成时限</th>
 	      <th width="8%">确认人</th>
 	      <th width="5%">审核结果</th>
@@ -129,12 +129,11 @@
 	    </tr>  
     </thead>
     
-    
     <?php 
     $stepAddID = 0;
-//    if (!empty($nextWeekPlan)):
-    foreach ($nextWeekPlan as $plan):
-    $stepAddID += 1;
+ 	if ($showFlag == '1'):
+	    foreach ($nextWeekPlan as $plan):
+	    $stepAddID += 1;
     ?>
     <tr class='a-center' id="row<?php echo $stepAddID?>">
       <td class='stepAddID'>
@@ -190,16 +189,20 @@
       <td><?php echo html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID)'")?></td>
       
     </tr>
-    <?php 
- //   endif;?>
-    <?php $link = $this->createLink('plan', 'myplan', "isSubmit=1");?>
+
     <tr><td colspan='9' class='a-center'>
     <input type="hidden" name="isSubmit" value="1">
-    <?php 
-//     	echo html::submitButton($lang->plan->submit, "onclick='changeSubmit(\"" . $this->createLink('plan', 'myplan', "isSubmit=1") . "\", \"1\")'") ;
-    ?>
+    
    <input type="submit" value=" 提交  ">
     </td></tr>
+    
+   <?php 
+	   else :
+    ?>
+ 	<tr><td colspan="8" style="text-align:right">您的下周计划已经审核通过！</td></tr>   
+   <?php 
+ 	  endif;
+ 	?>
   </table>
   
   <div style="display: none">

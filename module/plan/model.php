@@ -501,8 +501,10 @@ class planModel extends model{
 			$plan->courseAndSolution    = $plans->courseAndSolution[$i];
 			//将审核状态改为否
 			//将审核结果改为空
+			//将备注改为空
 			$plan->confirmedOrNo = '否';
 			$plan->confirmed	= '';
+			$plan->remark = '';
 			$this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->where('id')->eq((int)$plans->ids[$i])->exec();
 			if(dao::isError())
 			{

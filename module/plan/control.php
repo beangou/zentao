@@ -65,8 +65,8 @@ class plan extends control{
 		$finish = date('Y-m-d',time());
 		$myDateArr = $this->getLastAndEndDayOfWeek();
 		
-// 		if (!empty($_POST) && !isset($_GET['submit'])){
-		if ($_POST &&  $_POST['submit']) {
+		if (!empty($_POST) && !isset($_GET['submit'])) {
+// 		if ($_POST &&  $_POST['submit']) {
 			$getParam = $this->post->isSubmit;
 			if ($getParam == '0') {
 				//自评本周周计划
@@ -99,7 +99,15 @@ class plan extends control{
 		//查出本周自评未审核或者评审未通过的计划
 		$this->view->thisWeekPlan = $this->plan->queryPlanByTime($myDateArr[2]);
 		//查出下周未评审或评审未通过的周计划（第一天为本周六）
-		$this->view->nextWeekPlan = $this->plan->queryNextUnpassPlan($myDateArr[0]);
+		
+		$nextAllPlan = $this->plan->queryNextWeekPlan($account, $myDateArr[0]);
+		$nextUnpassPlan = $this->plan->queryNextUnpassPlan($myDateArr[0]);
+		// 如果下周计划的数量和下周未通过的数量一样（包括都为0），说明所有的计划都没通过，需要显示在“我的计划”里面
+		if (count($nextAllPlan) == count($nextUnpassPlan)) {
+			$this->view->showFlag = '1'; 
+		}
+
+		$this->view->nextWeekPlan = $nextUnpassPlan;
 // 		$this->view->submitTos	  = $this->plan->getSubmitToName();
 		
 		$this->view->date           = $myDateArr[1];
@@ -204,7 +212,7 @@ class plan extends control{
 		$this->view->lastPlan		= $this->plan->queryWeekPlan($account, $myDateArr[3]);
 		//本周第一天为上周六
 		$this->view->weekPlan		= $this->plan->queryWeekPlan($account, $myDateArr[2]);
-		//下周第一条为本周六
+		//下周第一天为本周六
 		$this->view->nextPlan 		= $this->plan->queryNextWeekPlan($account, $myDateArr[0]);
 		
 		$this->view->date           = (int)$date == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($date));
@@ -939,7 +947,7 @@ class plan extends control{
 				die($planStr);
 			}
 		} else if ($flag == 1) {
-			//下周第一条为本周六
+			//下周第一天为本周六
 			$planArr		= $this->plan->queryNextWeekPlan($account, $myDateArr[0]);
 			if (count($planArr)  == 0) {
 				$planStr.= '<tr><td class="stepID" colspan="5" style="text-align: right;">'. '暂时没有记录'. '</td></tr><script>';
