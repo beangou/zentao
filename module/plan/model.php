@@ -2,6 +2,21 @@
 class planModel extends model{
 	
 	/**
+	 * "我的审核" 增加本周未审核计划部分
+	 */
+	public function queryUnauditPlan($account, $firstDayOfThisWeek)
+	{
+		$weekPlan = $this->dao->select('T1.*, T2.realname AS submitToName')->from(TABLE_ICTWEEKPLAN)->alias('T1')
+		->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
+		->where('T1.auditId is NULL')
+		->andWhere('T1.account')->eq($account)
+		->andWhere('T1.firstDayOfWeek')->eq($firstDayOfThisWeek)
+		->orderBy('T1.firstDayOfWeek desc, T1.type')
+		->fetchAll();
+		return $weekPlan;
+	}
+	
+	/**
 	 * 项目组设定页面审核人员从ICT_USER表里取出所有同步人员
 	 */
 	public function queryUser()
@@ -915,9 +930,17 @@ class planModel extends model{
 	 */
 	public function saveAudit()
 	{
-		//插入ict_audit数据		
-		$auditData->result = $_POST['result'];
-		$auditData->auditComment = $_POST['auditComment'];
+		$myform = $_POST['myform'];
+		if ($myform == 'one') {
+			//插入ict_audit数据
+			$auditData->result = $_POST['result'];
+			$auditData->auditComment = $_POST['auditComment'];
+		} else if ($myform == 'two') {
+			//插入ict_audit数据
+			$auditData->result = $_POST['unresult'];
+			$auditData->auditComment = $_POST['unauditComment'];
+		}
+		
 		//如果没有审核，此时就是新增
 		if (empty($_POST['weekAuditId'][0])) {
 			$this->dao->insert(TABLE_ICTAUDIT)->data($auditData)->autoCheck()->exec();

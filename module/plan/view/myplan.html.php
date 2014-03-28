@@ -88,7 +88,7 @@
       <td><?php echo $plan->submitToName;?></td>
       <td><?php if(!empty($plan->confirmed)) {
       	echo $plan->confirmed;} else {
-			echo '未审核';
+			echo '未确认';
       }?></td>
       <td><?php echo $plan->remark;?></td>
     </tr>
@@ -159,7 +159,7 @@
 // 		  	echo '<td rowspan="'. count($nextWeekPlan). '">'. $plan->auditComment. '</td>';
 // 		  }
 		  
-	     echo '<td>'. html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID)'"). '</td>';
+	     echo '<td>'. html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID, 0)'"). '</td>';
       ?>
       
     </tr>
@@ -186,7 +186,7 @@
 //       		echo html::input("submitTo[]", '', "class=text-1");?>
       </td>
       <td>未审核</td>
-      <td><?php echo html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID)'")?></td>
+      <td><?php echo html::commonButton($lang->plan->delete, "onclick='deleteRow($stepAddID)'").html::commonButton($lang->plan->add, "onclick='postInsert($stepAddID, 0)'")?></td>
       
     </tr>
 
@@ -218,4 +218,103 @@
       </span>
   </div>
 </form>
+
+
+<form method='post' id='changeThisPlanform'>
+  <table class='table-1 tablesorter colored datatable newBoxs' id="changePlan" style="margin-top: 5%"> 
+    <caption><div align="center">修改本周计划(<?php echo $firstOfThisWeekDay. ' ~ '. $lastOfThisWeekDay;?>)</div></caption>
+    <thead>
+    	<tr class="colhead">
+	      <th width="3%">编号</th>
+	      <th width="5%"><?php echo $lang->plan->sort;?></th>
+	      <th width="20%"><?php echo $lang->plan->matter;?></th>
+	      <th width="20%"><?php echo $lang->plan->plan;?></th>
+	      <th width="15%">完成时限</th>
+	      <th width="8%">确认人</th>
+	      <th width="5%">审核结果</th>
+	      <!-- <th width="15%">审核意见</th> -->
+	      <th>操作</th>
+	    </tr>  
+    </thead>
+    
+    <?php 
+    $stepChangeID = 0;
+ 	if ($showFlag == '1'):
+ 		// 如果本周计划审核不通过
+	    foreach ($unauditWeekPlan as $plan):
+	    $stepChangeID += 1;
+    ?>
+    <tr class='a-center' id="this_row<?php echo $stepChangeID?>">
+      <td class='stepChangeID'>
+      	<?php echo $stepChangeID ; echo html::hidden("nextIds[]", $plan->id, "class=text-1").
+      	html::hidden("auditIds[]", $plan->auditId, "class=text-1");?></td>
+      <?php 
+//       if($plan->confirmed != '通过'){
+	      echo '<td>'. html::input("type[]", $plan->type, "class=text-1"). '</td>
+	      <td>'. html::textarea("matter[]", $plan->matter, 'rows="4" cols="50"').'</td>
+	      <td>'. html::textarea("plan[]", $plan->plan, 'rows="4" cols="50"'). '</td>
+	      <td>';
+	       echo html::input('deadtime[]', date('Y-m-d',strtotime($plan->deadtime)), "class='select-2 date'");
+									       
+	       echo '</td><td>'.html::select('submitTo[]', $users, $plan->submitTo, "class='select-1'"). '</td><td>';
+	      if(empty($plan->result)){
+			echo '未审核</td>';		  	
+		  } else {
+			echo '不同意</td>';
+		  }
+
+// 		  echo '<td>'. $plan->auditComment. '</td>';
+// 		  if($stepAddID == 1) {
+// 		  	echo '<td rowspan="'. count($nextWeekPlan). '">'. $plan->auditComment. '</td>';
+// 		  }
+		  
+	     echo '<td>'. html::commonButton($lang->plan->delete, "onclick='deleteRow($stepChangeID)'").html::commonButton($lang->plan->add, "onclick='postInsert('_this$stepChangeID', 1)'"). '</td>';
+      ?>
+      
+    </tr>
+    <?php endforeach;?>
+    <?php 
+   // else :
+    $stepChangeID++;
+    ?>
+    <tr class='a-center' id="row_this<?php echo $stepChangeID?>">
+      <td class='stepChangeID'><?php echo $stepChangeID ;?></td>
+      <td id="this_copyType1"><?php echo html::input("type[]", '', "class='text-1' onkeyup='this.value=this.value.toUpperCase()'");?></td>
+      <td id="this_copyMatter1"><?php echo html::textarea("matter[]", '', 'rows="4" cols="50"');?></td>
+      <td id="this_copyPlan1"><?php echo html::textarea("plan[]", '', 'rows="4" cols="50"');?></td>
+      <td id='this_copyDateTd'><?php 
+      		echo html::input('deadtime[]', '', "class='select-2 date'");
+//       		html::input("deadtime[]", '', "class=text-1");
+      		?>
+      </td>
+      <td id="this_selectName1">
+      	 <?php 
+			    echo html::select('submitTo[]', $users, '', "class='select-1'");
+		 ?>
+      	 <?php 
+//       		echo html::input("submitTo[]", '', "class=text-1");?>
+      </td>
+      <td>未审核</td>
+      <td><?php echo html::commonButton($lang->plan->delete, "onclick=deleteRow('_this$stepChangeID')").html::commonButton($lang->plan->add, "onclick=postInsert('_this$stepChangeID', '1')")?></td>
+      
+    </tr>
+
+    <tr><td colspan='9' class='a-center'>
+    <input type="hidden" name="isSubmit" value="1">
+    
+   <input type="submit" value=" 提交  ">
+    </td></tr>
+    
+   <?php 
+	   else :
+    ?>
+ 	<tr><td colspan="8" style="text-align:right">您的本周计划已经审核通过！</td></tr>   
+   <?php 
+ 	  endif;
+ 	?>
+  </table>
+  
+</form>
+
+
 <?php include '../../common/view/footer.html.php';?>

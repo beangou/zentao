@@ -15,7 +15,11 @@ function loadPlan()
 		$('#thisPlanBody').load(link1, function(){
 			//链接2获取下周周计划			
 			link2 = createLink('plan', 'ajaxGetPlan', 'account='+$('#member').val()+'&flag=1');
-			$('#nextPlanBody').load(link2);	
+			$('#nextPlanBody').load(link2, function(){
+				//链接3获取未审核周计划			
+				link3 = createLink('plan', 'ajaxGetPlan', 'account='+$('#member').val()+'&flag=2');
+				$('#unauditPlanBody').load(link3);
+			});	
 		});
 	
 }

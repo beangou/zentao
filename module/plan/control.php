@@ -902,7 +902,10 @@ class plan extends control{
 		//提交意见
 		if (!empty($_POST) && !empty($_POST['weekPlanId'])) {
 			$this->plan->saveAudit();			
-		}
+		} 
+// 		else if (!empty($_POST) && !empty($_POST['unweekPlanId'])) {
+			
+// 		}
 		
 		$mymembers = $this->plan->queryMyMember();
 		$this->view->mymembers = $mymembers;  
@@ -979,6 +982,28 @@ class plan extends control{
 				}
 				die($planStr);
 			} 
+		} else if ($flag == 2) {
+			//查出本周所有未审核的计划
+			$planArr		= $this->plan->queryUnauditPlan($account, $myDateArr[2]);
+			if (count($planArr)  == 0) {
+				$planStr.= '<tr><td class="stepID" colspan="5" style="text-align: right;">'. '暂时没有记录'. '</td></tr><script>';
+// 				$planStr.= '$("#resultYes").attr("checked", true);';
+// 				$planStr.= '$("#auditComment").val("");';
+				$planStr.= '</script>';
+				die($planStr);
+			} else {
+				
+				foreach ($planArr as $plan) {
+					$planStr.= '<tr class="a-center"><td>'.$plan->type.
+					'<input type="hidden" name="weekPlanId[]" value="'. $plan->id. '">
+							<input type="hidden" name="weekAuditId[]" value="'. $plan->auditId. '"></td>'.
+										'<td>'.$plan->matter. '</td>'.
+										'<td>'.$plan->plan. '</td>'.
+										'<td>'.$plan->deadtime. '</td>'.
+										'<td>'.$plan->submitToName. '</td></tr>';
+				}
+				die($planStr);
+			}
 		}
 		
 	}

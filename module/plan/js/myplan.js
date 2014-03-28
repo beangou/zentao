@@ -59,10 +59,10 @@ function GetDateT()
  * @access public
  * @return void
  */
-function postInsert(rowID)
+function postInsert(rowID, flag)
 {
 //    $('#row' + rowID).after(createRow());
-	$('#row' + rowID).after(mycreateRow(rowID));
+	$('#row' + rowID).after(mycreateRow(rowID, flag));
 //    updateStepID();
 	updateStepAddID();
 //	ajaxGetDate(rowID);
@@ -126,17 +126,29 @@ function createRow()
 /**
  * Create a step row.
  * 
+ * @flag = 0 即增加下周计划
+ *  flag = 1 即修改本周计划
  * @access public
  * @return void
  */
-function mycreateRow(paramRowId)
+function mycreateRow(paramRowId , flag)
 {
 	var obj = eval("("+users+")");
 //    if(newRowID == 0) newRowID = $('.stepAddID').size();
-	newRowID = $('.stepAddID').size();
+	if (flag == '0') {
+		newRowID = $('.stepAddID').size();
+	} else {
+		newRowID = $('.stepChangeID').size();
+	}
+	
     newRowID ++;
     var newRow    = "<tr class='a-center' id='row" + newRowID + "'>";
-    newRow += "<td class='stepAddID' valign='middlle'></td>";
+    if (flag == '0') {
+    	newRow += "<td class='stepAddID' valign='middlle'></td>";
+	} else {
+		newRow += "<td class='stepChangeID' valign='middlle'></td>";
+	}
+//    newRow += "<td class='stepAddID' valign='middlle'></td>";
 //    newRow += "<td><input name='type[]' class='text-1' onkeyup='this.value=this.value.toUpperCase()') valign='middlle'></td>";
 //    newRow += "<td><input name='matter[]' class='text-1')></td>";
     newRow += "<td valign='middlle'>"+$("#copyType").html()+"</td>";
@@ -156,7 +168,7 @@ function mycreateRow(paramRowId)
 //    newRow += "</td></select>";
     //newRow += "<td class='a-left w-100px'><nobr>";
     newRow += "<td valign='middlle'>未审核</td><td valign='middlle'><input type='button' tabindex='-1' class='button-s' value='删除 ' onclick='deleteRow("  + newRowID + ")' />";
-    newRow += "<input type='button' tabindex='-1' class='button-s' value='新增' onclick='postInsert(" + newRowID + ")' /></td>";
+    newRow += "<input type='button' tabindex='-1' class='button-s' value='新增' onclick=postInsert(" + newRowID + ', ' + flag + ")></td>";
     //newRow += "</nobr></td>";
     newRow += "</tr>";
     return newRow;
@@ -176,6 +188,9 @@ function updateStepID()
 {
     var i = 1;
     $('.stepID').each(function(){$(this).html(i ++)});
+    
+    var k = 1;
+    $('.stepChangeID').each(function(){$(this).html(k ++)});
 }
 
 
@@ -183,4 +198,7 @@ function updateStepAddID()
 {
     var i = 1;
     $('.stepAddID').each(function(){$(this).html(i ++)});
+    
+    var k = 1;
+    $('.stepChangeID').each(function(){$(this).html(k ++)});
 }
