@@ -140,3 +140,4 @@ $lang->plan->searchplan				= '按日期查询';
 $lang->plan->searchfordetail		= '查询计划详情';
 $lang->plan->collectplan			= '汇总计划';
 $lang->plan->audit					= '我的审核';
+$lang->plan->querymemberplan        = '查看成员计划';

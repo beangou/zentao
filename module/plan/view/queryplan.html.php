@@ -33,10 +33,8 @@
 				      <th>编号</th>
 				      <th><?php echo $lang->plan->sort;?></th>
 				       
-				      <th width="35%"><?php echo $lang->plan->matter;?></th>
-				      <!--
-				      <th><?php echo $lang->plan->plan;?></th>
-				       -->
+				      <th width="20%"><?php echo $lang->plan->matter;?></th>
+				      <th width="35%"><?php echo $lang->plan->plan;?></th>
 				      <th>完成时限</th>
 				      <th>完成情况</th>
 				      <!-- 
@@ -47,7 +45,6 @@
 				      <th>是否确认</th>
 				      <th>确认结果</th>
 				      <!-- <th>备注</th> -->
-				      <th>详情</th>
 				  </tr>    
 			    </thead>
 			    <?php 
@@ -60,10 +57,8 @@
 			      <td class='stepID'><?php echo $stepID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
 			      <td><?php echo $plan->type;?></td>
 			      
-			      <td><?php echo $plan->matter;?></td>
-			      <!-- 
-			      <td><?php echo $plan->plan;?></td>
-			       -->
+			      <td style="text-align: left"><?php echo $plan->matter;?></td>
+			      <td style="text-align: left"><?php echo $plan->plan;?></td>
 			      <td><?php echo $plan->deadtime;?>
 			      <td><?php echo $plan->status;?></td>
 			      <!--
@@ -73,9 +68,10 @@
 			      <td><?php echo $plan->submitToName;?></td>
 			      <td><?php echo $plan->confirmedOrNo;?></td>
 			      <td><?php echo $plan->confirmed;?></td>
-			      <!-- <td><?php echo $plan->remark;?></td> -->
+			      <!-- <td><?php echo $plan->remark;?></td> 
 			       <td><a href='/zentao/www/index.php?m=plan&amp;f=searchfordetail&amp;planId=<?php echo $plan->id;?>&amp;onlybody=yes'
 			       	 target="" class="link-icon iframe cboxElement" title="详情">详情</a></td>
+					-->		       	 
 			    </tr>
 			    <?php endforeach;?>
 			    <?php else :
@@ -95,10 +91,8 @@
 				      <th>编号</th>
 				      <th><?php echo $lang->plan->sort;?></th>
 				       
-				      <th width="35%"><?php echo $lang->plan->matter;?></th>
-				      <!--
-				      <th><?php echo $lang->plan->plan;?></th>
-				       -->
+				      <th width="20%"><?php echo $lang->plan->matter;?></th>
+				      <th width="35%"><?php echo $lang->plan->plan;?></th>
 				      <th>完成时限</th>
 				      <th>完成情况</th>
 				      <!-- 
@@ -109,7 +103,6 @@
 				      <th>是否确认</th>
 				      <th>确认结果</th>
 				      <!-- <th>备注</th> -->
-				      <th>详情</th>
 				  </tr>    
 			    </thead>
 			    <?php 
@@ -122,10 +115,8 @@
 			      <td class='stepID'><?php echo $stepID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
 			      <td><?php echo $plan->type;?></td>
 			      
-			      <td><?php echo $plan->matter;?></td>
-			      <!-- 
-			      <td><?php echo $plan->plan;?></td>
-			       -->
+			      <td style="text-align: left"><?php echo $plan->matter;?></td>
+			      <td style="text-align: left"><?php echo $plan->plan;?></td>
 			      <td><?php echo $plan->deadtime;?>
 			      <td><?php echo $plan->status;?></td>
 			      <!--
@@ -135,9 +126,10 @@
 			      <td><?php echo $plan->submitToName;?></td>
 			      <td><?php echo $plan->confirmedOrNo;?></td>
 			      <td><?php echo $plan->confirmed;?></td>
-			      <!-- <td><?php echo $plan->remark;?></td> -->
+			      <!-- <td><?php echo $plan->remark;?></td>
 			       <td><a href='/zentao/www/index.php?m=plan&amp;f=searchfordetail&amp;planId=<?php echo $plan->id;?>&amp;onlybody=yes'
 			       	 target="" class="link-icon iframe cboxElement" title="详情">详情</a></td>
+			       	  -->
 			    </tr>
 			    <?php endforeach;?>
 			    <?php else :
@@ -175,12 +167,17 @@
 			      <td class='stepID'><?php echo $stepID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
 			      <td><?php echo $plan->type;?></td>
 			      
-			      <td><?php echo $plan->matter;?></td>
-			      <td><?php echo $plan->plan;?></td>
+			      <td style="text-align: left"><?php echo $plan->matter;?></td>
+			      <td style="text-align: left"><?php echo $plan->plan;?></td>
 			      <td><?php echo $plan->deadtime;?>
 			      <td><?php echo $plan->submitToName;?></td>
 			      <td><?php echo $plan->result;?></td>
-			      <td><?php echo $plan->auditComment;?></td>
+			      <?php 
+			      	if ($stepID == 1) {
+			      		echo '<td rowspan="'. count($nextPlan). '">'. $plan->auditComment. '</td>';		
+			      	}
+			      ?>
+			      
 			    </tr>
 			    <?php endforeach;?>
 			    <?php else :

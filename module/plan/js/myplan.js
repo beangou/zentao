@@ -28,14 +28,16 @@ var newRowID = 0;
 
 /**
  * Delete a step row.
- * 
+ * flag = 0表示新增下周计划
+ * flag = 1表示修改下周计划
  * @param  int    $rowID 
  * @access public
  * @return void
  */
-function deleteRow(rowID)
+function deleteRow(rowID, flag)
 {
-    if($('.stepAddID').size() == 1) return;
+    if(flag == 0 && $('.stepAddID').size() == 1) return;
+    if(flag == 1 && $('.stepChangeID').size() == 1) return;
     $('#row' + rowID).remove();
 //    updateStepID();
     updateStepAddID();
@@ -137,11 +139,14 @@ function mycreateRow(paramRowId , flag)
 //    if(newRowID == 0) newRowID = $('.stepAddID').size();
 	if (flag == '0') {
 		newRowID = $('.stepAddID').size();
+		newRowID ++;
 	} else {
 		newRowID = $('.stepChangeID').size();
+		newRowID ++;
+		newRowID = '_this'+newRowID;
 	}
 	
-    newRowID ++;
+    
     var newRow    = "<tr class='a-center' id='row" + newRowID + "'>";
     if (flag == '0') {
     	newRow += "<td class='stepAddID' valign='middlle'></td>";
@@ -152,8 +157,8 @@ function mycreateRow(paramRowId , flag)
 //    newRow += "<td><input name='type[]' class='text-1' onkeyup='this.value=this.value.toUpperCase()') valign='middlle'></td>";
 //    newRow += "<td><input name='matter[]' class='text-1')></td>";
     newRow += "<td valign='middlle'>"+$("#copyType").html()+"</td>";
-    newRow += "<td valign='middlle'>"+$("#copyMatter").html()+"</td>";
-    newRow += "<td valign='middlle'>"+$("#copyPlan").html()+"</td>";
+    newRow += "<td style='text-align: left'>"+$("#copyMatter").html()+"</td>";
+    newRow += "<td style='text-align: left'>"+$("#copyPlan").html()+"</td>";
 //    newRow += "<td><input name='plan[]' class='text-1'></td>";
 //    newRow += "<td id='addRowDate_"+paramRowId+"'></td>";
 //    newRow += "<td>"+$("#copyDateTd").html()+"</td>";
@@ -167,8 +172,8 @@ function mycreateRow(paramRowId , flag)
 //	}
 //    newRow += "</td></select>";
     //newRow += "<td class='a-left w-100px'><nobr>";
-    newRow += "<td valign='middlle'>未审核</td><td valign='middlle'><input type='button' tabindex='-1' class='button-s' value='删除 ' onclick='deleteRow("  + newRowID + ")' />";
-    newRow += "<input type='button' tabindex='-1' class='button-s' value='新增' onclick=postInsert(" + newRowID + ', ' + flag + ")></td>";
+    newRow += "<td valign='middlle'><input type='button' tabindex='-1' class='button-s' value='删除 ' onclick=\"deleteRow('"  + newRowID + "', " + flag + ")\" />";
+    newRow += "<input type='button' tabindex='-1' class='button-s' value='新增' onclick=\"postInsert('" + newRowID + "', " + flag + ")\"></td>";
     //newRow += "</nobr></td>";
     newRow += "</tr>";
     return newRow;

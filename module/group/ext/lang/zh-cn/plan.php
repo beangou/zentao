@@ -23,4 +23,6 @@ $lang->resource->plan->searchplan		= 'searchplan';
 $lang->resource->plan->searchfordetail	= 'searchfordetail';
 $lang->resource->plan->collectplan		= 'collectplan';
 $lang->resource->plan->audit			= 'audit';
+
+$lang->resource->plan->querymemberplan  = 'querymemberplan';
 // $lang->resource->plan->deleteMembset	= 'deleteMemb';

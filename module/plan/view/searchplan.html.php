@@ -6,11 +6,18 @@
   <div id='topmyplan'>
     <div class='f-left'>
       <?php 
-      foreach($lang->plan->periods as $period => $label)
+//       foreach($lang->plan->periods as $period => $label)
+//       {
+//           $vars = $period;
+// //           if($period == 'before') $vars .= "&account={$app->user->account}&status=undone";
+//           echo "<span id='$period'>" . html::a(inlink($vars), $label) . '</span>';
+//       }
+		
+      foreach($mymenu as $period => $label)
       {
-          $vars = $period;
-//           if($period == 'before') $vars .= "&account={$app->user->account}&status=undone";
-          echo "<span id='$period'>" . html::a(inlink($vars), $label) . '</span>';
+      	$vars = $period;
+      	//           if($period == 'before') $vars .= "&account={$app->user->account}&status=undone";
+      	echo "<span id='$period'>" . html::a(inlink($vars), $label) . '</span>';
       }
 	?>      	
      
@@ -29,7 +36,7 @@
 			</div>
 		</td>
   		<td>
-  			<table  class='table-1 tablesorter fixed colored datatable newBoxs'> 
+  			<table  class='table-1 tablesorter colored datatable newBoxs'> 
 			    <caption>
 			    	<div align="center">输入起始时间:
 			    	<?php 
@@ -43,26 +50,20 @@
   				</caption>
 			    <thead>
 			      <tr class='colhead'>
-				      <!-- <th>编号</th> -->
-				      <th width="20%">时间</th>
+			      	  <th width="11%">时间</th>
 				      <th><?php echo $lang->plan->sort;?></th>
-				      <th width="35%"><?php echo $lang->plan->matter;?></th>
-				      <!-- 
-				      	<th><?php echo $lang->plan->plan;?></th>
-				       -->
-				      <th>完成时限</th>
+				       
+				      <th width="20%"><?php echo $lang->plan->matter;?></th>
+				      <th width="30%"><?php echo $lang->plan->plan;?></th>
+				      <th width="10%">完成时限</th>
 				      <th>完成情况</th>
 				      <!-- 
 				      <th>见证性材料</th>
 				      <th>未完成原因说明及如何补救</th>
 				       -->
-				      <th>确认人</th>
+				      <th width="5%">确认人</th>
 				      <th>是否确认</th>
 				      <th>确认结果</th>
-				      <!-- 
-				      <th>备注</th>
-				       -->
-				       <th>详情</th>
 				  </tr>    
 			    </thead>
 			    <?php 
@@ -74,29 +75,17 @@
 			    <tr class='a-center'>
 			      <!-- <td class='stepID'><?php echo $stepID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td> -->
 			      <?php if(!empty($plan->rowspanVal)) {
-			      		echo '<td rowspan="'. $plan->rowspanVal. '">('. $plan->firstDayOfWeek. '~'. $plan->lastDayOfWeek. ')</td>';
+			      		echo '<td rowspan="'. $plan->rowspanVal. '">('. $plan->firstDayOfWeek. '<br/>~<br/>'. $plan->lastDayOfWeek. ')</td>';
 			      }?>
 			      <td><?php echo $plan->type;?></td>
-			      <td><?php echo $plan->matter;?></td>
-			      <!-- 
-			      	<td><?php echo $plan->plan;?></td>
-			       -->	
+			      <td style="text-align: left"><?php echo $plan->matter;?></td>
+			      <td style="text-align: left"><?php echo $plan->plan;?></td>
 			      <td><?php echo $plan->deadtime;?>
 			      <td><?php echo $plan->status;?></td>
-			      <!-- 
-			      <td><?php echo $plan->evidence;?></td>
-			      <td><?php echo $plan->courseAndSolution;?></td>
-			       -->
+			      
 			      <td><?php echo $plan->submitToName;?></td>
 			      <td><?php echo $plan->confirmedOrNo;?></td>
 			      <td><?php echo $plan->confirmed;?></td>
-			      <!-- 
-			      	<td><?php echo $plan->remark;?></td>
-			       -->
-			       <td>
-			       	<a href='/zentao/www/index.php?m=plan&amp;f=searchfordetail&amp;planId=<?php echo $plan->id;?>&amp;onlybody=yes'
-			       	 target="" class="link-icon iframe cboxElement" title="详情">详情</a>
-			       </td>
 			    </tr>
 			    <?php endforeach;?>
 			    <?php else :
