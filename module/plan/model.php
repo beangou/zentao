@@ -15,7 +15,7 @@ class planModel extends model{
 			->leftJoin(TABLE_USER)->alias('T2')->on('T2.account = T1.account')
 			->leftJoin(TABLE_ICTPROTEAM)->alias('T4')->on('T4.leader = T3.account or T4.techmanager = T3.account')
 			->where('T1.leader')->eq('1')
-			->andWhere('T3.auditId IS NULL')
+			->andWhere('T3.auditPass')->eq('2')
 			->groupBy('T1.account, T3.firstDayOfWeek')
 			->orderBy('T4.team, T3.account, T3.firstDayOfWeek')
 			->fetchAll();
@@ -27,7 +27,7 @@ class planModel extends model{
 			->leftJoin(TABLE_ICTPROTEAM)->alias('T3')->on('T3.id = T1.proteam')
 			->where('T3.leader')->eq($account)
 			->andWhere('T1.account')->ne($account)
-			->andWhere('T4.auditId IS NULL')
+			->andWhere('T4.auditPass')->eq('2')
 			->groupBy('T4.account, T4.firstDayOfWeek')
 			->orderBy('T3.team, T4.account, T4.firstDayOfWeek')
 			->fetchAll();
@@ -441,17 +441,41 @@ class planModel extends model{
 	 */
 	public function queryNextUnpassPlan($firstDayOfWeek)
 	{
+		$dataArr = array();
 		$account = $this->app->user->account;
-	
-		$myplan = $this->dao->select('T1.*, T2.*')->from(TABLE_ICTWEEKPLAN)->alias('T1')
-		->leftJoin(TABLE_ICTAUDIT)->alias('T2')->on('T2.`id` = T1.`auditId`')
+		
+		// 查出计划
+		$myplan = $this->dao->select('T1.*')->from(TABLE_ICTWEEKPLAN)->alias('T1')
 		->where('T1.account')->eq($account)
-		->andWhere('T1.firstDayOfWeek="'. $firstDayOfWeek. '" AND (T2.`result` IS NULL OR T2.`result` = "不同意")')
+		->andWhere('T1.firstDayOfWeek="'. $firstDayOfWeek. '" AND (T1.`auditPass` = "2" OR T1.`auditPass` = "0")')
 		->orderBy('T1.type')
-// 		->andWhere('confirmed')->eq('不通过')
-// 		->andWhere('confirmedOrNo')->eq('是')
 		->fetchAll();
-		return $myplan;
+		
+		// 查出审核结果
+// 		if (!empty($myplan)) {
+		$myAuditList = $this->dao->select('T1.*')->from(TABLE_ICTAUDIT)->alias('T1')
+							->where('T1.account')->eq($account)
+							->andWhere('T1.firstDayOfWeek')->eq($firstDayOfWeek)
+							->fetchAll();
+		array_push($dataArr, $myplan);
+		array_push($dataArr, $myAuditList);
+// 		}
+		
+// 		$myplan = $this->dao->select('T1.*, T2.*')->from(TABLE_ICTWEEKPLAN)->alias('T1')
+// 		->where('T1.account')->eq($account)
+// 		->andWhere('T1.firstDayOfWeek="'. $firstDayOfWeek. '" AND (T1.`auditPass` IS NULL OR T1.`auditPass` = "0")')
+// 		->orderBy('T1.type')
+// 		->fetchAll();
+		
+// 		$myplan = $this->dao->select('T1.*, T2.*')->from(TABLE_ICTWEEKPLAN)->alias('T1')
+// 		->leftJoin(TABLE_ICTAUDIT)->alias('T2')->on('T2.`account` = T1.`account` AND T2.`firstDayOfWeek` = T1.`firstDayOfWeek`')
+// 		->where('T1.account')->eq($account)
+// 		->andWhere('T1.firstDayOfWeek="'. $firstDayOfWeek. '" AND (T1.`auditPass` IS NULL OR T1.`auditPass` = "0")')
+// 		->orderBy('T1.type')
+// // 		->andWhere('confirmed')->eq('不通过')
+// // 		->andWhere('confirmedOrNo')->eq('是')
+// 		->fetchAll();
+		return $dataArr;
 	}
 	
 	/**
@@ -470,14 +494,16 @@ class planModel extends model{
 	{
 		$plans = fixer::input('post')->get();
 		$delIds = $plans->nextIds;
-		$auditIds = $plans->auditIds;
-		if(!empty($auditIds)) {
-			//将评审意见表评审结果和评审意见置空，
-			$auditData->result = NULL;
-			$auditData->auditComment = NULL;
-			$this->dao->update(TABLE_ICTAUDIT)
-			->data($auditData)->autoCheck()->where('id')->eq($auditIds[0])->exec();
-		}
+
+		//将ict_my_weekplan表中的auditPass设为NULL
+// 		$data->auditPass = NULL;
+// 		$this->dao->update(TABLE_ICTWEEKPLAN)
+// 			->set('`auditPass`')->eq(NULL)
+// // 			->data($data)
+// 			->where('account')->eq($this->app->user->account)
+// 			->andWhere('firstDayOfWeek')->eq($firstDayOfWeek)
+// 			->exec();
+		
 		//没有的id都删掉，并且通过的不要删除
 		$this->dao->delete()->from(TABLE_ICTWEEKPLAN)
 		->where('id')->notin($delIds)
@@ -499,14 +525,16 @@ class planModel extends model{
 				$plan->lastDayOfWeek	   = $lastDayOfWeek;
 	
 				$plan->submitTo		= $plans->submitTo[$i];
+				
 				// 				$plan->submitOrNo   = '1';
-				if (empty($plans->ids[$i])) {
+				if (empty($plans->nextIds[$i])) {
 					$this->dao->insert(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->exec();
 				} else {
 					//审核不通过，重新改，更新，此时，将计划状态设为“未审核”
+					$plan->auditPass = '2';
 					$plan->confirmedOrNo = '否';
 					$plan->confirmed = '';
-					$this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->where('id')->eq($plans->ids[$i])->exec();
+					$this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->where('id')->eq($plans->nextIds[$i])->exec();
 				}
 				// 				else $this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()->where('id')->eq((int)$null->id)->exec();
 				if(dao::isError())
@@ -1033,25 +1061,32 @@ class planModel extends model{
 		//插入ict_audit数据
 		$auditData->result = $_POST['result'];
 		$auditData->auditComment = $_POST['auditComment'];
+		$auditData->account = $_POST['account'];
+		$auditData->firstDayOfWeek = $_POST['firstDayOfWeek'];
+		$auditData->auditTime = helper::now();	
+		$auditData->auditor	= $this->app->user->account;
 		
-		//无论有没有审核，都是新增
-		if (empty($_POST['weekAuditId'][0])) {
-			$this->dao->insert(TABLE_ICTAUDIT)->data($auditData)->autoCheck()->exec();
-			//查出ict_audit表中id的最大值
-			$maxIdInAudit = $this->dao->select('MAX(id) AS id')->from(TABLE_ICTAUDIT)->fetch()->id;
-			//更新ict_my_weekplan表中的auditId字段,只更新下个星期的auditId
-			$weekPlanIds = $_POST['weekPlanId'];
-			$plan->auditId = $maxIdInAudit;
-			$this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()
-			->where('id')->in($weekPlanIds)->exec();
+		//如果没有审核，此时就是新增
+		$this->dao->insert(TABLE_ICTAUDIT)->data($auditData)->autoCheck()->exec();
+		
+		//设置ict_my_weekplan的auditPass字段， 同意设为1， 不同意设为0
+		$plan->auditPass = '';
+		if ('同意' == $auditData->result) {
+			$plan->auditPass = '1';
 		} else {
-			//如果已经审核，就是重新更新下
-			$this->dao->update(TABLE_ICTAUDIT)->data($auditData)->autoCheck()
-			->where('id')->eq($_POST['weekAuditId'][0])->exec();
+			$plan->auditPass = '0';
 		}
-		// 		$planLen = count($weekPlanIds);
-// 		for($i=0; $i<$planLen; $i++) {
-// 		}
+		
+		$this->dao->update(TABLE_ICTWEEKPLAN)->data($plan)->autoCheck()
+		->where('account')->eq($_POST['account'])
+		->andWhere('firstDayOfWeek')->eq($_POST['firstDayOfWeek'])
+		->exec();
+		
+		if(dao::isError())
+		{
+			echo js::error(dao::getError());
+			die(js::reload('parent'));
+		}
 	}
 	
 }

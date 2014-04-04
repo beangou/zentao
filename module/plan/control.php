@@ -203,11 +203,13 @@ class plan extends control{
 		$nextAllPlan = $this->plan->queryNextWeekPlan($account, $myDateArr[0]);
 		$nextUnpassPlan = $this->plan->queryNextUnpassPlan($myDateArr[0]);
 		// 如果下周计划的数量和下周未通过的数量一样（包括都为0），说明所有的计划都没通过，需要显示在“我的计划”里面
-		if (count($nextAllPlan) == count($nextUnpassPlan)) {
+		if (count($nextAllPlan) == count($nextUnpassPlan[0])) {
 			$this->view->showFlag = '1'; 
 		}
-		$this->view->nextWeekPlan = $nextUnpassPlan;
-// 		$this->view->submitTos	  = $this->plan->getSubmitToName();
+		$this->view->nextWeekPlan = $nextUnpassPlan[0];
+		
+		// 审核记录
+		$this->view->auditList	  = $nextUnpassPlan[1];
 		
 		$this->view->date           = $myDateArr[1];
 		
@@ -224,13 +226,7 @@ class plan extends control{
 		$this->view->mymenu = $mymenu;
 		
 		$this->view->users			= $this->plan->queryUser();
-// 		$this->view->weekPlan		= $this->plan->queryWeekPlan($account, $week, 0, $pager);
-// 		$this->view->date           = (int)$finish == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($finish));
-// 		$this->view->team			= $this->plan->getTeaminfo();
-// 		$this->view->currentPlan	= $this->plan->queryCurrentPlans($account);
-// 		$this->view->lastPlan 		= $this->plan->queryLastPlan(date('Y-m-d', time()+7*24*3600));
-// 		$this->view->users			= $this->plan->queryUser();
-// 		$this->view->pager        	= $pager;
+
 		$this->display();
 	}
 	

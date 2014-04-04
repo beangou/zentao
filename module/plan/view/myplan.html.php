@@ -145,10 +145,13 @@
     <tr class='a-center' id="row<?php echo $stepAddID?>">
       <td class='stepAddID'>
       	<?php echo $stepAddID ; echo html::hidden("nextIds[]", $plan->id, "class=text-1").
-      	html::hidden("auditIds[]", $plan->auditId, "class=text-1");?></td>
+      	html::hidden("ids[]", $plan->auditId, "class=text-1");?></td>
       <?php 
-          $disabledAttr = ''; 
-      	  if (empty($plan->result)) { $disabledAttr = 'disabled';}
+          $disabledAttr = '';
+         
+         if ($plan->auditPass == '2') {
+			 $disabledAttr = 'disabled';
+		 }
       	  
 	      echo '<td>'. html::input("type[]", $plan->type, "class=text-1 ". $disabledAttr). '</td>
 	      <td style="text-align: left">'. html::textarea("matter[]", $plan->matter, 'rows="4" cols="50" '. $disabledAttr).'</td>
@@ -196,15 +199,20 @@
     </td></tr>
     
     <tr><td colspan="7" style="text-align:left">
-    		<strong>审核结果:</strong>
+    		<strong>审核记录:</strong>
     		<?php 
-    		if(empty($plan->result)){
-				echo '未审核<br/>';		  	
-			  } else {
-				echo '不同意<br/>';
-			  }?>
-    		<strong>审核意见:</strong><?php echo $nextWeekPlan[0]->auditComment;?></td></tr>
-    	
+	    		if (empty($auditList)) {
+					echo '无记录';
+				} else {
+					foreach ($auditList as $myaudit) {
+						echo '<strong>审核结果:</strong>';
+						echo $myaudit->result;
+						echo '<strong>审核意见:</strong>'. $myaudit->auditComment;
+					}					
+				}
+    		?>
+    	</td>
+    </tr>
    <?php 
 	   else :
     ?>
@@ -257,7 +265,7 @@
     <tr class='a-center' id="row_this<?php echo $stepChangeID?>">
       <td class='stepChangeID'>
       	<?php echo $stepChangeID ; echo html::hidden("nextIds[]", $plan->id, "class=text-1").
-      	html::hidden("auditIds[]", $plan->auditId, "class=text-1");?></td>
+      	html::hidden("ids[]", $plan->id, "class=text-1");?></td>
       <?php 
 //       if($plan->confirmed != '通过'){
 	      echo '<td>'. html::input("type[]", $plan->type, "class=text-1". $changeDisabledAttr). '</td>
