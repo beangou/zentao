@@ -45,7 +45,7 @@
     	<td><?php echo $week->accountname;?></td>
     	<td><?php echo $week->type;?><?php echo html::hidden("ids[]", $week->id, "");?></td>
     	<td style="text-align: left"><?php echo $week->matter;?></td>
-    	<td style="text-align:left"><?php echo $week->plan;?></td>
+    	<td style="text-align:left"><pre><?php echo $week->plan;?></pre></td>
     	<td><?php echo $week->deadtime;?></td>
     	<td><?php echo $week->status;?></td>
     	<td>
@@ -99,7 +99,7 @@
     	<td><?php echo $week->accountname;?></td>
     	<td><?php echo $week->type;?></td>
     	<td style="text-align: left"><?php echo $week->matter;?></td>
-    	<td style="text-align:left"><?php echo $week->plan;?></td>
+    	<td style="text-align:left"><pre><?php echo $week->plan;?></pre></td>
     	<td><?php echo $week->deadtime;?></td>
     	<td><?php echo $week->status;?></td>
     	<td><?php echo $week->confirmed;?></td>

@@ -58,7 +58,7 @@
 			      <td><?php echo $plan->type;?></td>
 			      
 			      <td style="text-align: left"><?php echo $plan->matter;?></td>
-			      <td style="text-align: left"><?php echo $plan->plan;?></td>
+			      <td style="text-align: left"><pre><?php echo $plan->plan;?></pre></td>
 			      <td><?php echo $plan->deadtime;?>
 			      <td><?php echo $plan->status;?></td>
 			      <!--
@@ -116,7 +116,7 @@
 			      <td><?php echo $plan->type;?></td>
 			      
 			      <td style="text-align: left"><?php echo $plan->matter;?></td>
-			      <td style="text-align: left"><?php echo $plan->plan;?></td>
+			      <td style="text-align: left"><pre><?php echo $plan->plan;?></pre></td>
 			      <td><?php echo $plan->deadtime;?>
 			      <td><?php echo $plan->status;?></td>
 			      <!--
@@ -126,10 +126,6 @@
 			      <td><?php echo $plan->submitToName;?></td>
 			      <td><?php echo $plan->confirmedOrNo;?></td>
 			      <td><?php echo $plan->confirmed;?></td>
-			      <!-- <td><?php echo $plan->remark;?></td>
-			       <td><a href='/zentao/www/index.php?m=plan&amp;f=searchfordetail&amp;planId=<?php echo $plan->id;?>&amp;onlybody=yes'
-			       	 target="" class="link-icon iframe cboxElement" title="详情">详情</a></td>
-			       	  -->
 			    </tr>
 			    <?php endforeach;?>
 			    <?php else :
@@ -153,8 +149,6 @@
 				      <th width="25%"><?php echo $lang->plan->plan;?></th>
 				      <th>完成时限</th>
 				      <th>确认人</th>
-				      <th>审核结果</th>
-				      <th width="15%">审核意见</th>
 				  </tr>    
 			    </thead>
 			    <?php 
@@ -168,18 +162,28 @@
 			      <td><?php echo $plan->type;?></td>
 			      
 			      <td style="text-align: left"><?php echo $plan->matter;?></td>
-			      <td style="text-align: left"><?php echo $plan->plan;?></td>
+			      <td style="text-align: left"><pre><?php echo $plan->plan;?></pre></td>
 			      <td><?php echo $plan->deadtime;?>
 			      <td><?php echo $plan->submitToName;?></td>
-			      <td><?php echo $plan->result;?></td>
-			      <?php 
-			      	if ($stepID == 1) {
-			      		echo '<td rowspan="'. count($nextPlan). '">'. $plan->auditComment. '</td>';		
-			      	}
-			      ?>
 			      
 			    </tr>
 			    <?php endforeach;?>
+			    <tr><td colspan="6" style="text-align:left">
+			    		<strong>审核记录:</strong><br>
+			    		<?php 
+				    		if (empty($auditList)) {
+								echo '无记录';
+							} else {
+								$i = 1;
+								foreach ($auditList as $myaudit) {
+									echo $i. '.&nbsp;'. $myaudit->auditTime. '&nbsp;&nbsp;审核人:&nbsp;'. $myaudit->realname. ' &nbsp;  审核结果:&nbsp;'. $myaudit->result;
+									echo ',  &nbsp;&nbsp; 审核意见:&nbsp;'. $myaudit->auditComment. '<br/>';
+									$i++;
+								}					
+							}
+			    		?>
+			    	</td>
+			    </tr> 
 			    <?php else :
 			    $stepID = 1;
 			    ?>

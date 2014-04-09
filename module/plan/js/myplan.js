@@ -156,7 +156,7 @@ function mycreateRow(paramRowId , flag)
 //    newRow += "<td class='stepAddID' valign='middlle'></td>";
 //    newRow += "<td><input name='type[]' class='text-1' onkeyup='this.value=this.value.toUpperCase()') valign='middlle'></td>";
 //    newRow += "<td><input name='matter[]' class='text-1')></td>";
-    newRow += "<td valign='middlle'>"+$("#copyType").html()+"</td>";
+    newRow += "<td valign='middlle'>"+$("#copyId").html()+$("#copyType").html()+"</td>";
     newRow += "<td style='text-align: left'>"+$("#copyMatter").html()+"</td>";
     newRow += "<td style='text-align: left'>"+$("#copyPlan").html()+"</td>";
 //    newRow += "<td><input name='plan[]' class='text-1'></td>";

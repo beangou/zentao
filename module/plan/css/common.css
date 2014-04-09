@@ -54,3 +54,9 @@ a:focus {outline:0;}
 
 
 .deal-alert {background: url("image/circle.png");width: 15px;height: 10px;}
+
+pre {
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	text-align: left;
+	}

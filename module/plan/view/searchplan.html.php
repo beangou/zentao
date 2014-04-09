@@ -79,7 +79,7 @@
 			      }?>
 			      <td><?php echo $plan->type;?></td>
 			      <td style="text-align: left"><?php echo $plan->matter;?></td>
-			      <td style="text-align: left"><?php echo $plan->plan;?></td>
+			      <td style="text-align: left"><pre><?php echo $plan->plan;?></pre></td>
 			      <td><?php echo $plan->deadtime;?>
 			      <td><?php echo $plan->status;?></td>
 			      

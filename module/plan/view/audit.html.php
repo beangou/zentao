@@ -47,15 +47,6 @@
 	    </tbody>
   </table>
    
- 
-<?php 
-//  	echo '<select name="member" id="member" onchange="loadPlan()"><option selected></option>';
-// 	foreach ($mymembers as $member) {
-// 		echo '<option value="'. $member->account. '">'. $member->realname. '</option>';  	
-// 	}
-// 	echo '</select>';
- ?>  
-  
   <form id="form1" name="form1" method='post'>
   
 	  <table class='table-1 tablesorter colored datatable newBoxs' style="margin-top:3%"> 
@@ -77,11 +68,32 @@
 						echo '<tr><td style="text-align:center"><input type="hidden" name="weekPlanId[]" value="'. $unAuditPlan->id.
 						'"><input type="hidden" name="weekAuditId[]" value="'. $unAuditPlan->auditId.
 						'">'. $unAuditPlan->type. '</td><td>'.
-						$unAuditPlan->matter. '</td><td>'.
-						$unAuditPlan->plan.  '</td><td>'.
+						$unAuditPlan->matter. '</td><td><pre>'.
+						$unAuditPlan->plan.  '</pre></td><td>'.
 						$unAuditPlan->deadtime. '</td><td>'.
 						$unAuditPlan->submitToName. '</td></tr>';
 					}
+					
+					
+					$auditStr = '';
+					
+					$auditStr .= '<tr><td colspan="5" style="text-align:left">
+					<strong>审核记录:</strong><br>';
+					
+					if (empty($auditList)) {
+						 $auditStr .= '无记录';
+					} else {
+						$i = 1;
+						foreach ($auditList as $myaudit) {
+							$auditStr .= $i. '.&nbsp;'. $myaudit->auditTime. '&nbsp;&nbsp;审核人:&nbsp;'. $myaudit->realname. ' &nbsp;  审核结果:&nbsp;'. $myaudit->result;
+							$auditStr .=  ',  &nbsp;&nbsp; 审核意见:&nbsp;'. $myaudit->auditComment. '<br/>';
+							$i++;
+						}
+					}
+
+					$auditStr .= '</td></tr>'; 
+					echo $auditStr; 
+					
 					echo '<input type="hidden" id="resultId" value="'. $unAuditPlans[0]->result.'">';
 					echo '<input type="hidden" id="commentId" value="'. $unAuditPlans[0]->auditComment.'">';
 					

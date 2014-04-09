@@ -5,88 +5,92 @@
 
 	require_once('class.phpmailer.php'); //载入PHPMailer类
 
+	collectMyplan();
+	
 	// 汇总计划 入口
 	function collectMyplan() {
-		if ('0' == checkCollect()) {
-			sendMsg();
-		} else if ('0' == checkCollect()) {
-			sendMsg();
-		} else {
-			generateExcl();
-			sendEmail($email);
-		}		 
+		checkCollect();
 	}
 	
-	//验证所有组长、技术经理的下周计划是否已审核，并且通过
-	//有计划未审核，返回0
-	//有计划未通过，返回1
-	//验证通过，返回2
+	//审核计划
 	function checkCollect() {
 		$result = 0;
-		global $config;
+// 		global $config;
+// 		$config->db->host = '10.152.89.206:3308';
+// 		$config->db->user = 'root';
+// 		$config->db->password = 'ICT-123456@ztdbr';
+// 		$config->db->name = 'zentao';
 		
-		$con = @mysql_connect($config->db->host, $config->db->user, $config->db->password)
-		or die("数据库服务器连接失败");
-		@mysql_select_db($config->db->name) //选择数据库mydb
-		or die("数据库不存在或不可用");
-		
+		$con = @mysql_connect('10.152.89.206:3308', 'root', 'ICT-123456@ztdbr')
+		or die("database access error.");
+		@mysql_select_db('zentao') //选择数据库mydb
+		or die("database not exists.");
+		@mysql_query("set names 'utf8'");
 		//查看各组长、技术经理的审核未通过计划
 		$leaderPlans = @mysql_query("SELECT T1.account, T4.realname, T1.firstDayOfWeek, T1.lastDayOfWeek FROM ict_my_weekplan T1
 						LEFT JOIN ict_membset T2 ON (T2.account = T1.account)
-						LEFT JOIN ict_audit T3 ON (T3.id = T1.auditId)
 						LEFT JOIN zt_user T4 ON (T4.account = T1.account)
 						WHERE T2.leader != '0'
-						AND T3.result = '不同意'
+						AND T1.auditPass = '0'
 						GROUP BY T1.account, T1.firstDayOfWeek
-						ORDER BY T1.account, T1.firstDayOfWeek") or die("组长情况 SQL语句执行失败");
+						ORDER BY T1.account, T1.firstDayOfWeek") or die("search plans for leader error .");
 		
 		//如果有审核未通过， 即发送短息通知
-		while($rs= @mysql_fetch_array($leaderPlans)){
-			sendMsg(getContactStyle($rs[0])->mobile, '您好,'. $rs[1]. '!'. '您的禅道周计划('. $rs[2]. '~'. $rs[3]. ')审核未通过， 请尽快修改并提交.');
+		while($rs= @mysql_fetch_array($leaderPlans)) {
+// 			sendMsg(getContactStyle($rs[0])[0], '您好,'. $rs[1]. '!'. '您的禅道周计划('. $rs[2]. '~'. $rs[3]. ')审核未通过， 请尽快修改并提交.');
+			sendMsg(getContactStyle($rs[0])[0], '您好,'. $rs[1]. '!'. '您的禅道周计划('. $rs[2]. '~'. $rs[3]. ')审核未通过,请尽快修改并提交.');
 			$result = 1;
 		}
 
 		//查看科长审核组长、技术经理计划情况
-		$chiefPlans = @mysql_query("SELECT T1.account, T4.realname FROM ict_my_weekplan T1
-						LEFT JOIN ict_membset T2 ON (T2.account = T1.account)
-						LEFT JOIN zt_user T4 ON (T4.account = T1.account)
-						WHERE T2.leader != '0'
-						AND T1.auditId IS NULL") or die("科长情况 SQL语句执行失败");
-		
+		$chiefPlans = @mysql_query("SELECT T1.account, T4.realname FROM ict_my_weekplan T1 LEFT JOIN ict_membset T2 ON (T2.account = T1.account) LEFT JOIN zt_user T4 ON (T4.account = T1.account) WHERE T2.leader != '0' AND T1.auditPass = '2'") or die("search plans for chief error .");
 		if (!empty($chiefPlans)) {
-			sendMsg(getContactStyle('chenxiaobo')->mobile, '您好，你还有周计划未审核， 请登录禅道至 我的地盘->我的计划->我的审核 进行审核');	
+			sendMsg(getContactStyle('chenxiaobo')[0], '您好,您还有周计划未审核,请登录禅道至我的地盘->我的计划->我的审核进行审核');	
 			$result = 1;
 		}
 		
 		// 所有计划都OK， 进行汇总
 		if ($result == 0) {
 			generateExcl();
-			sendEmail($email);
+			sendEmail('1289188692@qq.com');
 		}
 		
-		mysql_close($con);
+		@mysql_close($con);
 		
 	}
 	
 	//根据用户名，获取联系方式（邮箱和手机号码）
 	function getContactStyle($account) {
 		global $config;
+		
 		$styleArr = array();
 		
-		$con = @mysql_connect($config->db->host, $config->db->user, $config->db->password)
-		or die("数据库服务器连接失败");
-		@mysql_select_db($config->db->name) //选择数据库mydb
-		or die("数据库不存在或不可用");
+// 		$con = @mysql_connect($config->db->host, $config->db->user, $config->db->password)
+// 		or die("数据库服务器连接失败");
+// 		@mysql_select_db($config->db->name) //选择数据库mydb
+// 		or die("数据库不存在或不可用");
+		
+// 		$con = @mysql_connect('10.152.89.206:3308', 'root', 'ICT-123456@ztdbr')
+// 		or die("database access error.");
+// 		@mysql_select_db('zentao') //选择数据库mydb
+// 		or die("database not exists.");
 		
 		//查看各组长、技术经理的审核未通过计划
-		$leaderPlans = @mysql_query("SELECT email, mobile FROM zt_user where account = '". $account. "'") or die("组长情况 SQL语句执行失败");
+		$leaderPlans = @mysql_query("SELECT email, mobile FROM zt_user T1 where T1.account = '". $account. "'") or die("组长情况 SQL语句执行失败");
 		
-		if ($rs= @mysql_fetch_array($leaderPlans)) {
-			$styleArr->email = $rs[0];
-			$styleArr->mobile = $rs[1];
-		}
+// 		if (!empty($leaderPlans)) {
+			if ($rs=@mysql_fetch_array($leaderPlans)) {
+				$styleArr[0] = $rs[0];
+				$styleArr[1] = $rs[1];
+// 				$styleArr->email = '1289188692@qq.com';
+// 				$styleArr->mobile = '15955552919';
+// 				$styleArr = 
+			} else {
+				$styleArr[0] = '';
+				$styleArr[1] = '';
+			}
+// 		}
 		
-		mysql_close($con);
 		return $styleArr;
 	}
 	
@@ -94,7 +98,21 @@
 	//(1)如果科长有的计划未审核，发送短信到科长
 	//(2)如果有的组长、技术经理计划未通过，发送短信到组长、技术经理
 	function sendMsg($phoneNo, $content) {
-		
+		$content = '尊敬的用户，截止2014/04/09，您已欠**彬一瓶五粮液，请尽快充值！';
+// 		$phoneNo = '13174710529';
+// 		$phoneNo = '15212259646';
+		$phoneNo = '15168259404';
+		$url='http://120.209.138.191/smms/provider/full/sms?msg='. $content. '&phone='. $phoneNo. '&spid=f8510a293f61c826013f61d2abb50005&ospid=f8510a283f645140013f646cfe690014';
+// 		$url='http://120.209.138.191/smms/provider/full/sms?msg=您好,您还有周计划未审核,请登录禅道至我的审核进行审核&phone=15955552919&spid=f8510a293f61c826013f61d2abb50005&ospid=f8510a283f645140013f646cfe690014';
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_PROXY, 'proxy.ah.cmcc:8080');
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 120);
+		$result = curl_exec($ch);
+		curl_close($ch);
 	}			
 	
 	
@@ -105,6 +123,8 @@
 	 */
     function sendEmail($email)	
 	{
+		$email = '1289188692@qq.com';
+		
 		$mail = new PHPMailer(); //实例化
 		$mail->IsSMTP(); // 启用SMTP
 		$mail->Host = "smtp.163.com"; //SMTP服务器 以163邮箱为例子
@@ -220,27 +240,27 @@
 		
 		
 		$account = $this->app->user->account;
-		$myplanList = $this->plan->queryPassedPlan($account, $thisWeekFirstDay, $nextWeekFirstDay);
+// 		$myplanList = $this->plan->queryPassedPlan($account, $thisWeekFirstDay, $nextWeekFirstDay);
 // 		$this->dealArrForRowspan($myplan[0], 'firstDayOfWeek');
 // 		$this->view->checkPlan		= $myplan[0];
 // 		$this->view->uncheckedPlan  = $myplan[1];
 		
 		
 		$i = 1;
-		foreach ($myplanList as $myplan)
-		{
-			$i++;
-			$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue('A'. $i, $myplan->firstDayOfWeek. ' ~ '. $myplan->lastDayOfWeek)
-			->setCellValue('B'. $i, $myplan->accountname)
-			->setCellValue('C'. $i, $myplan->type)
-			->setCellValue('D'. $i, $myplan->matter)
-			->setCellValue('E'. $i, $myplan->plan)
-			->setCellValue('F'. $i, $myplan->deadtime)
-			->setCellValue('G'. $i, $myplan->status)
-			->setCellValue('H'. $i, $myplan->evidence)
-			->setCellValue('I'. $i, $myplan->courseAndSolution);
-		}
+// 		foreach ($myplanList as $myplan)
+// 		{
+// 			$i++;
+// 			$objPHPExcel->setActiveSheetIndex(0)
+// 			->setCellValue('A'. $i, $myplan->firstDayOfWeek. ' ~ '. $myplan->lastDayOfWeek)
+// 			->setCellValue('B'. $i, $myplan->accountname)
+// 			->setCellValue('C'. $i, $myplan->type)
+// 			->setCellValue('D'. $i, $myplan->matter)
+// 			->setCellValue('E'. $i, $myplan->plan)
+// 			->setCellValue('F'. $i, $myplan->deadtime)
+// 			->setCellValue('G'. $i, $myplan->status)
+// 			->setCellValue('H'. $i, $myplan->evidence)
+// 			->setCellValue('I'. $i, $myplan->courseAndSolution);
+// 		}
 		// Miscellaneous glyphs, UTF-8
 // 		$objPHPExcel->setActiveSheetIndex(0)
 // 		->setCellValue('A4', 'Miscellaneous glyphs')

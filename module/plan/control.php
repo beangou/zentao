@@ -91,9 +91,6 @@ class plan extends control{
 		$mymenu['proteam'] 	= '项目组设定';
 		$mymenu['membset']     = '成员设定';
 		
-// 		if (!$this->checkCollectPlan()) {
-// 			$mymenu['collectplan']     = '汇总计划';
-// 		}
 		$this->view->mymenu = $mymenu;
 		
 		$this->view->mymember = $this->plan->queryMemberForQuery();
@@ -211,6 +208,10 @@ class plan extends control{
 		// 审核记录
 		$this->view->auditList	  = $nextUnpassPlan[1];
 		
+		// 修改本周周计划中的审核记录
+		$changeUnpassPlan = $this->plan->queryNextUnpassPlan($myDateArr[2]);
+		$this->view->changeAuditList = $changeUnpassPlan[1];
+		
 		$this->view->date           = $myDateArr[1];
 		
 		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
@@ -323,6 +324,9 @@ class plan extends control{
 		$this->view->weekPlan		= $this->plan->queryWeekPlan($account, $myDateArr[2]);
 		//下周第一天为本周六
 		$this->view->nextPlan 		= $this->plan->queryNextWeekPlan($account, $myDateArr[0]);
+		//查看下周的审核记录
+		$nextUnpassPlan = $this->plan->queryNextUnpassPlan($myDateArr[0]);
+		$this->view->auditList = $nextUnpassPlan[1]; 
 		
 		$this->view->date           = (int)$date == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($date));
 		
@@ -1045,9 +1049,11 @@ class plan extends control{
 		} else if (!empty($_GET['account']) && !empty($_GET['firstDayOfWeek'])) {
 			//根据传过来的参数查询计划
 			$this->view->unAuditPlans   = $this->plan->queryNextWeekPlan($_GET['account'], $_GET['firstDayOfWeek']);
-			$this->view->realname       = '('. $_GET['realname']. ' ';
+			$this->view->realname       = '(&nbsp;'. $_GET['realname']. ' ';
 			$this->view->firstDayOfWeek = $_GET['firstDayOfWeek']. ' ~ ';
 			$this->view->lastDayOfWeek  = $_GET['lastDayOfWeek']. ')';
+			
+			$this->view->auditList = $this->plan->queryNextUnpassPlan($_GET['firstDayOfWeek'], $_GET['account'])[1];
 		}
 		
 		$this->view->unAuditPlansAlink = $this->plan->queryUnauditForAlink($this->app->user->account); 
@@ -1061,9 +1067,7 @@ class plan extends control{
 		$mymenu['querymemberplan']     = '查看成员计划';
 		$mymenu['proteam'] 	= '项目组设定';
 		$mymenu['membset']     = '成员设定';
-// 		if (!$this->checkCollectPlan()) {
-// 			$mymenu['collectplan']     = '汇总计划';
-// 		}
+
 		$this->view->mymenu = $mymenu;
 		$this->display();
 	}

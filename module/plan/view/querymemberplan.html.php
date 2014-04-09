@@ -27,18 +27,10 @@
   <script type="text/javascript">
 	$('#member').val($('#memberVal').val());
   </script>
-<?php 
-//  	echo '<select name="member" id="member" onchange="loadPlan()"><option selected></option>';
-// 	foreach ($mymembers as $member) {
-// 		echo '<option value="'. $member->account. '">'. $member->realname. '</option>';  	
-// 	}
-// 	echo '</select>';
- 	?>  
  	
-  
   <br/><br/>
 	  <table class='table-1 tablesorter colored datatable newBoxs'> 
-	    <caption><div align="center">上周周计划(<?php echo $firstOfLastWeekDay. ' ~ '. $lastOfLastWeekDay;?>)</div></caption>
+	    <caption><div align="center">上周周计划(&nbsp;<span class="accountName"></span>&nbsp;<?php echo $firstOfLastWeekDay. ' ~ '. $lastOfLastWeekDay;?>)</div></caption>
 	    <thead>
 	    	<tr class='colhead'>
 	    	  <th width="3%">编号</th>	
@@ -64,7 +56,7 @@
 			      <td class='stepID'><?php echo $stepID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
 			      <td><?php echo $plan->type;?></td>
 			      <td style="text-align: left"><?php echo $plan->matter;?></td>
-			      <td style="text-align: left"><?php echo $plan->plan;?></td>
+			      <td style="text-align: left"><pre><?php echo $plan->plan;?></pre></td>
 			      <td><?php echo $plan->deadtime;?>
 			      <td><?php echo $plan->status;?></td>
 			      <td><?php echo $plan->evidence;?></td>
@@ -84,7 +76,7 @@
 	  </table>
 	  
 	  <table class='table-1 tablesorter colored datatable newBoxs' style="margin-top:3%"> 
-	    <caption><div align="center">本周周计划(<?php echo $firstOfThisWeekDay. ' ~ '. $lastOfThisWeekDay;?>)</div></caption>
+	    <caption><div align="center">本周周计划(&nbsp;<span class="accountName"></span>&nbsp;<?php echo $firstOfThisWeekDay. ' ~ '. $lastOfThisWeekDay;?>)</div></caption>
 	    <thead>
 	    	<tr class='colhead'>
 	    	  <th width="3%">编号</th>	
@@ -110,7 +102,7 @@
 			      <td class='stepID'><?php echo $stepID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
 			      <td><?php echo $plan->type;?></td>
 			      <td style="text-align: left"><?php echo $plan->matter;?></td>
-			      <td style="text-align: left"><?php echo $plan->plan;?></td>
+			      <td style="text-align: left"><pre><?php echo $plan->plan;?></pre></td>
 			      <td><?php echo $plan->deadtime;?>
 			      <td><?php echo $plan->status;?></td>
 			      <td><?php echo $plan->evidence;?></td>
@@ -135,7 +127,7 @@
 	</form>  
 	
 	<table  class='table-1 tablesorter colored datatable newBoxs' style="margin-top: 5%"> 
-			    <caption><div align="center">下周周计划(<?php echo $firstOfNextWeekDay. ' ~ '. $lastOfNextWeekDay;?>)</div></caption>
+			    <caption><div align="center">下周周计划(&nbsp;<span class="accountName"></span>&nbsp;<?php echo $firstOfNextWeekDay. ' ~ '. $lastOfNextWeekDay;?>)</div></caption>
 			    <thead>
 			      <tr class='colhead'>
 				      <th>编号</th>
@@ -160,7 +152,7 @@
 			      <td><?php echo $plan->type;?></td>
 			      
 			      <td style="text-align: left"><?php echo $plan->matter;?></td>
-			      <td style="text-align: left"><?php echo $plan->plan;?></td>
+			      <td style="text-align: left"><pre><?php echo $plan->plan;?></pre></td>
 			      <td><?php echo $plan->deadtime;?>
 			      <td><?php echo $plan->submitToName;?></td>
 			      <?php 
@@ -180,5 +172,7 @@
 			    </tr>
 			    <?php endif;?>
 		</table>
-  
+  <script type="text/javascript">
+	$('.accountName').text($('#member').find("option:selected").text());
+  </script>
 <?php include '../../common/view/footer.html.php';?>
