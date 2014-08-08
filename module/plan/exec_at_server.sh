@@ -1,0 +1,1 @@
+/opt/lampp/bin/php /opt/lampp/zentao/module/plan/collectPlan.php

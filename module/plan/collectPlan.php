@@ -59,7 +59,7 @@
 		//如果有审核未通过， 即发送短息通知
 		while($rs= @mysql_fetch_array($leaderUnpassPlans)) {
 			// 判断今天 是否 为 在员工请假时间段内， 如果是，跳过
-			if (checkTodayIsLeave($rs[0])) {
+			if (checkNotSendMessage($rs[0])) {
 				continue;
 			}
 			$contactStyle = getContactStyle($rs[0]); 
@@ -86,7 +86,7 @@
 		//如果下周周计划审核未提交， 即发送短息通知
 		while($rs= @mysql_fetch_array($leaderUnsubmitPlans)) {
 			// 判断是否需要 发短信 提醒, 如果请假， 不需 发短信 提醒
-			if (checkSendMessage($rs[1])) {
+			if (checkNotSendMessage($rs[1])) {
 				continue;
 			}
 			$contactStyle = getContactStyle($rs[1]);
@@ -118,10 +118,16 @@
 		
 		$teamArr = array();
 		while($rs= @mysql_fetch_array($chiefPlansLeader)) {
+			if (checkNotSendMessage($rs[1])) {
+				continue;
+			}
 			array_push($teamArr, $rs[2]. '('. $rs[0]. ')');
 		}
 		
 		while($rs= @mysql_fetch_array($chiefPlansTechmanager)) {
+			if (checkNotSendMessage($rs[1])) {
+				continue;
+			}
 			array_push($teamArr, $rs[2]. '('. $rs[0]. ')');
 		}
 		
@@ -172,8 +178,7 @@
 		}
 		return $styleArr;
 	}
-	
-	// 判断今天 是否 为 在员工请假时间段内
+	// 判断今天 是否 为 在员工请假时间段内， 在，则不发短信， 不在，则发短信
 	function checkTodayIsLeave($account = '') {
 		$anyValue = false;
 		$today = date('Y-m-d', time());
@@ -183,14 +188,34 @@
 		}
 		return $anyValue;
 	}
+	// 	如果今天为周六、或周日，如果请假的第一天 为下周一 或者 请假最后一天为本周五 则不发，其他情况都发
+	// 返回true 不发； 返回false 就发
+	function checkWeekend($account) {
+		$result = false;
+		// 获取 今天是星期几
+		$today = date("w");
+		// 获取下周一以及上周五 的日期
+		$thisFriday = date('Y-m-d', time()+(5-$today)*24*3600);
+		//下周一
+		$nextMonday = date('Y-m-d', time()+(8-$today)*24*3600);
+		// 6表示周六 0表示周日
+		if ($today == 6 || $today == 0) {
+			$queryResult = @mysql_query("SELECT * FROM ict_leave WHERE account='" + $account + "' AND (startTime = '" + $nextMonday + "' OR endTime = '" + $thisFriday + "')") or die("判断周末是否需要发短信");
+			if ($rs=@mysql_fetch_array($queryResult)) {
+				$result = true;
+			}	
+		} 
+		return $result;
+	} 
 	
-	// 判断是否需要发短信 有待思考
-	function checkSendMessage($account = '') {
-		
+	// 判断是否需要发短信 有待思考(返回true， 则发短信)
+	function checkNotSendMessage($account = '') {
+		$result = false;
 		// 判断今天 是否 为 在员工请假时间段内， 如果是，跳过
-		if (checkTodayIsLeave($rs[0])) {
-			continue;
+		if (checkTodayIsLeave($account) || checkWeekend($account)) {
+			$result = true;
 		}
+		return $result;
 	}
 	
 	//如果不通过：
@@ -345,7 +370,7 @@
 		$objFontA5->setSize(10);
 		$objFontA5->setBold(true);
 		
-		$collectPlans = @mysql_query("SELECT T3.team, T2.realname, T1.type, T1.plan, T1.matter FROM ict_my_weekplan T1
+		$collectPlans = @mysql_query("SELECT T3.team, T2.realname, T1.type, T1.plan, T1.matter, T2.account FROM ict_my_weekplan T1
 									LEFT JOIN zt_user T2 ON (T2.account = T1.account)
 									LEFT JOIN ict_proteam T3 ON (T3.leader = T1.account)
 									WHERE T3.team IS NOT NULL
@@ -357,13 +382,12 @@
 		//  同一个人的周计划放到一个单元格中
 		$i = 2;
 		while($rs = @mysql_fetch_array($collectPlans)) {
-			
+			// 如果请假， 就不用生成周计划了
+			if (checkNotSendMessage($rs[5])) {continue;}
 			$collectPlan->team = $rs[0];
 			$collectPlan->realname = $rs[1];
 			$collectPlan->plan = "\n". $rs[2]. ':'. $rs[4]. "\n(". $rs[3]. ")\n";
-			
 			array_push($collectArr, $collectPlan);
-			
 			$collectPlan = null;
 		}
 		
