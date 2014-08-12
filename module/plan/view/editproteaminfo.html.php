@@ -26,13 +26,13 @@
 				      </td>
 				  </tr>
 				  <tr>    
-				      <th>组长</th><td><?php echo html::select('leader', $users, $proteamInfo->leaderName, "class='select-1'");?></td>
+				      <th>组长</th><td><?php echo html::select('leader', $nowLeaders, 'hujun', "class='select-1'");?></td>
 				  </tr>
 				  <tr>    
 				      <th width="35%">技术经理</th>
 				      <td>
 				      	<?php 
-				      	echo html::select('techmanager[]', $users, str_replace(' ', '', ''), 'class="text-1" multiple style="vertical-align:middle"');
+				      	echo html::select('techmanager[]', $nowManagers, str_replace(' ', '', ''), 'class="text-1" multiple style="vertical-align:middle"');
 // 				      	if($contactLists) echo html::select('', $contactLists, '', "class='f-right' style='vertical-align:middle' onchange=\"setMailto('mailto', this.value)\"");
 // 				      	echo html::select('', $users, '', "class='f-right' style='vertical-align:middle' onchange=\"setMailto('mailto', this.value)\"");?>
 				      </td>

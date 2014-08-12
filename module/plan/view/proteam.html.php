@@ -60,9 +60,8 @@ error_reporting(E_ALL);
 	  				<td><?php echo $info->managerName;?></td>
 	  				<td>
 	  				<?php common::printIcon('plan', 'delete', "id=$info->id&module=proteam&date=0", '', 'list', '', "hiddenwin");?>
-	  				<!-- <a href='/zentaoZtrack/www/index.php?m=plan&amp;f=editproteaminfo&amp;infoId=<?php echo $info->id;?>&amp;onlybody=yes'
+	  				 <a href='/zentaoZtrack/www/index.php?m=plan&amp;f=editproteaminfo&amp;infoId=<?php echo $info->id;?>&amp;onlybody=yes'
 			       	 target="" class="link-icon iframe cboxElement icon-green-common-edit" title="编辑"/>
-			       	  -->
 	  				</td>
 	  			</tr>
 	  			<?php endforeach;?>

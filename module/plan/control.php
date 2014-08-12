@@ -38,6 +38,9 @@ class plan extends control{
 // 		echo '<button class="icon-green-common-edit" '. $event. '>编辑</button>'; 
 	}
 	
+	/**
+	 * 编辑项目组信息
+	 */
 	public function editproteaminfo() {
 		if(!empty($_POST))
 		{
@@ -48,12 +51,25 @@ class plan extends control{
 		$infoId = $_GET['infoId'];
 		$proteamInfo = plan::dealArrForOneRow($this->plan->searchProteamInfo($infoId), 'id', 'managerName');
 		$this->view->proteamInfo = $proteamInfo[0];
+		
 		$useNotSet = $this->plan->userNotSet();
 		// 把原先的组长 加到 选择组长的select中
-		
+		$nowLeaders = array(); 
+		$preLeader = $this->plan->queryNameByProteamId($infoId, '1');
+		$nowLeaders = array_merge($useNotSet, $preLeader);
+// 		array_push($nowLeaders, $useNotSet);
+// 		array_push($nowLeaders, $preLeader);
 		// 把原先的技术经理 加到 选择技术经理的select中
+		$nowManagers = array();
+		$preManagers = $this->plan->queryNameByProteamId($infoId, '2');
+		$nowManagers = array_merge($useNotSet, $preManagers);
+// 		array_push($nowManagers, $useNotSet);
+// 		array_push($nowManagers, $preManagers);
 		
-		$this->view->users			= $useNotSet; 
+		$this->view->preLeader = $preLeader;
+		$this->view->preManagers = $preManagers;
+		$this->view->nowLeaders	= $nowLeaders;
+		$this->view->nowManagers = $nowManagers;
 		$this->display();
 	}
 	

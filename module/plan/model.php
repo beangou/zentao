@@ -1300,4 +1300,18 @@ class planModel extends model{
 		return "success";
 	}
 	
+	/**
+	 * 根据项目组id查询组长、项目组姓名
+	 * leader为1， 即查组长
+	 * leader为2，即查技术经理
+	 */
+	public function queryNameByProteamId($proteamId = '', $leader)
+	{
+		return $this->dao->select('t1.account,t2.realname')->from(TABLE_ICTMEMBSET)->alias('t1')
+				->leftJoin(TABLE_USER)->alias('t2')->on('t2.account=t1.account')
+				->where('t1.proteam')->eq($proteamId)
+				->andWhere('t1.leader')->eq($leader)
+				->fetchPairs();
+	}
+	
 }
