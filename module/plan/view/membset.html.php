@@ -6,6 +6,7 @@
  	  include '../../common/view/colorize.html.php';
  	  include '../../common/view/datepicker.html.php';
 ?>
+
 <body>
 
 	   <div id='topmyplan'>
@@ -50,7 +51,7 @@
 			  				<th><?php echo $lang->actions;?></th>
 			  			</tr>
 			  			<?php foreach ($members as $memb):?>
-			  			<tr>
+			  			<tr onmouseOver="this.style.backgroundColor='#D0DEE3';" onmouseout="this.style.backgroundColor='white';">
 			  				<td><?php echo $memb->realname;?></td>
 			  				<td><?php echo $memb->name;?></td>
 			  				<td><?php 

@@ -50,8 +50,10 @@
     	<td><?php echo $week->status;?></td>
     	<td>
     		<select name='confirmed[]'>
-    			<option value='不通过'>不通过</option>
-    			<option value='通过' selected>通过</option>
+    			<option value='完成' selected>完成</option>
+    			<option value='延期完成'>延期完成</option>
+    			<option value='经领导允许延期完成'>经领导允许延期完成</option>
+    			<option value='未完成'>未完成</option>
     		</select>
     	</td>
     	<td><?php echo html::input("remark[]", $week->remark, "class=text-1");?></td>

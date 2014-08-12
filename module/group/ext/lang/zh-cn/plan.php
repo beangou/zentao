@@ -25,4 +25,5 @@ $lang->resource->plan->collectplan		= 'collectplan';
 $lang->resource->plan->audit			= 'audit';
 
 $lang->resource->plan->querymemberplan  = 'querymemberplan';
-// $lang->resource->plan->deleteMembset	= 'deleteMemb';
+$lang->resource->plan->editproteaminfo  = 'editproteaminfo';
+$lang->resource->plan->leave			= 'leave';

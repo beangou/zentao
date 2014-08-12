@@ -14,6 +14,7 @@ noResultsMatch    = '<?php echo $lang->noResultsMatch;?>';
 chooseUsersToMail = '<?php echo $lang->chooseUsersToMail;?>';
 $(document).ready(function()
 {
+	$("#techmanager").attr('data-placeholder', "选择技术经理...");
     $("#mailto").attr('data-placeholder', chooseUsersToMail);
     $("#productID").chosen({no_results_text: noResultsMatch});
     $("#projectID").chosen({no_results_text: noResultsMatch});

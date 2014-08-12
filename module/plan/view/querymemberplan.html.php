@@ -3,6 +3,16 @@
 <?php include '../../common/view/colorize.html.php';?>
 <?php js::set('users', json_encode($users))?>
 
+<style>
+	pre {
+		font-size: 18px;
+	}		
+	
+	.matterStyle {
+		font-size: 18px;
+	}
+</style>
+
   <div id='topmyplan'>
     <div class='f-left'>
       <?php 
@@ -55,14 +65,14 @@
 			    <tr class='a-center'>
 			      <td class='stepID'><?php echo $stepID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
 			      <td><?php echo $plan->type;?></td>
-			      <td style="text-align: left"><?php echo $plan->matter;?></td>
-			      <td style="text-align: left"><pre><?php echo $plan->plan;?></pre></td>
+			      <td style="text-align: left" class="matterStyle"><?php echo $plan->matter;?></td>
+			      <td style="text-align: left"><pre class='forShow'><?php echo $plan->plan;?></pre></td>
 			      <td><?php echo $plan->deadtime;?>
 			      <td><?php echo $plan->status;?></td>
 			      <td><?php echo $plan->evidence;?></td>
 			      <td><?php echo $plan->courseAndSolution;?></td>
 			      <td><?php echo $plan->submitToName;?></td>
-			      <td><?php echo $plan->confirmedOrNo;?></td>
+			      <td><?php echo $plan->confirmed;?></td>
 			    </tr>
 			    <?php endforeach;?>
 			    <?php else :
@@ -101,16 +111,33 @@
 			    <tr class='a-center'>
 			      <td class='stepID'><?php echo $stepID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
 			      <td><?php echo $plan->type;?></td>
-			      <td style="text-align: left"><?php echo $plan->matter;?></td>
-			      <td style="text-align: left"><pre><?php echo $plan->plan;?></pre></td>
+			      <td style="text-align: left" class="matterStyle"><?php echo $plan->matter;?></td>
+			      <td style="text-align: left"><pre class='forShow'><?php echo $plan->plan;?></pre></td>
 			      <td><?php echo $plan->deadtime;?>
 			      <td><?php echo $plan->status;?></td>
 			      <td><?php echo $plan->evidence;?></td>
 			      <td><?php echo $plan->courseAndSolution;?></td>
 			      <td><?php echo $plan->submitToName;?></td>
-			      <td><?php echo $plan->confirmedOrNo;?></td>
+			      <td><?php echo $plan->confirmed;?></td>
 			    </tr>
 			    <?php endforeach;?>
+			       <tr>
+				   		<td colspan="10" style="text-align:left">
+				   			<strong>审核记录:</strong><br>
+				    		<?php 
+					    		if (empty($thisWeekAudits)) {
+									echo '无记录';
+								} else {
+									$i = 1;
+									foreach ($thisWeekAudits as $myaudit) {
+										echo $i. '.&nbsp;'. $myaudit->auditTime. '&nbsp;&nbsp;审核人:&nbsp;'. $myaudit->realname. ' &nbsp;  审核结果:&nbsp;'. $myaudit->result;
+										echo ',  &nbsp;&nbsp; 审核意见:&nbsp;'. $myaudit->auditComment. '<br/>';
+										$i++;
+									}					
+								}
+				    		?>
+				    	</td>
+				    </tr> 
 			    <?php else :
 			    $stepID = 1;
 			    ?>
@@ -137,8 +164,6 @@
 				      <th width="25%"><?php echo $lang->plan->plan;?></th>
 				      <th>完成时限</th>
 				      <th>确认人</th>
-				      <th>审核结果</th>
-				      <th width="15%">审核意见</th>
 				  </tr>    
 			    </thead>
 			    <?php 
@@ -151,19 +176,29 @@
 			      <td class='stepID'><?php echo $stepID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
 			      <td><?php echo $plan->type;?></td>
 			      
-			      <td style="text-align: left"><?php echo $plan->matter;?></td>
-			      <td style="text-align: left"><pre><?php echo $plan->plan;?></pre></td>
+			      <td style="text-align: left" class="matterStyle"><?php echo $plan->matter;?></td>
+			      <td style="text-align: left"><pre class='forShow'><?php echo $plan->plan;?></pre></td>
 			      <td><?php echo $plan->deadtime;?>
 			      <td><?php echo $plan->submitToName;?></td>
-			      <?php 
-			      	if ($stepID == 1) {
-						echo '<td rowspan="'. count($nextWeekPlan). '">'. $plan->result. '</td>';
-			      		echo '<td rowspan="'. count($nextWeekPlan). '">'. $plan->auditComment. '</td>';		
-			      	}
-			      ?>
-			      
 			    </tr>
 			    <?php endforeach;?>
+			    <tr>
+				   		<td colspan="6" style="text-align:left">
+				   			<strong>审核记录:</strong><br>
+				    		<?php 
+					    		if (empty($nextWeekAudits)) {
+									echo '无记录';
+								} else {
+									$i = 1;
+									foreach ($nextWeekAudits as $myaudit) {
+										echo $i. '.&nbsp;'. $myaudit->auditTime. '&nbsp;&nbsp;审核人:&nbsp;'. $myaudit->realname. ' &nbsp;  审核结果:&nbsp;'. $myaudit->result;
+										echo ',  &nbsp;&nbsp; 审核意见:&nbsp;'. $myaudit->auditComment. '<br/>';
+										$i++;
+									}					
+								}
+				    		?>
+				    	</td>
+				    </tr> 
 			    <?php else :
 			    $stepID = 1;
 			    ?>

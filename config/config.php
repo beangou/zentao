@@ -96,11 +96,11 @@ define('TABLE_ICTPRODUCT',	  '`' . $config->db->ict	. 'product`');
 define('TABLE_ICTREWARDS',	  '`' . $config->db->ict	. 'rewards`');
 define('TABLE_ICTINCREASE',	  '`' . $config->db->ict	. 'increase`');
 
-/*计划管理模块1.3*/
+/*周计划模块0.4*/
 define('TABLE_ICTPROTEAM',	  '`' . $config->db->ict	. 'proteam`');
 define('TABLE_ICTMEMBSET',	  '`' . $config->db->ict	. 'membset`');
 define('TABLE_ICTWEEKPLAN',	  '`' . $config->db->ict	. 'my_weekplan`');
-define('TABLE_ICTAUDIT', '`' . $config->db->ict	. 'audit`');
+define('TABLE_ICTAUDIT', 	  '`' . $config->db->ict	. 'audit`');
 
 /*项目缺陷包0.5*/
 define('TABLE_ICTDEFECT',	  '`' . $config->db->ict	. 'defect`');
@@ -111,7 +111,8 @@ define('TABLE_ICTSTABILITY',	  '`' . $config->db->ict	. 'stability`');
 /*任务完成率*/
 define('TABLE_ICTCOMPLETED',	  '`' . $config->db->ict	. 'completed`');
 //if(!isset($config->db->ict)) $config->db->prefix = 'ict_';
-
+/*请假登记*/
+define('TABLE_ICTLEAVE',	  '`' . $config->db->ict	. 'leave`');
 /*
 define('TABLE_ICTUSER',		  '`' . $config->db->ict	. 'user`');
 define('TABLE_ICTPRODUCT',	  '`' . $config->db->ict	. 'product`');

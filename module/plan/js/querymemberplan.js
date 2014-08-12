@@ -21,5 +21,5 @@ function queryPlan()
 //				$('#unauditPlanBody').load(link3);
 //			});	
 //		});
-	window.location.href="/zentao/www/index.php?m=plan&f=querymemberplan&account=" + $('#member').val(); 
+	window.location.href="/zentaoZtrack/www/index.php?m=plan&f=querymemberplan&account=" + $('#member').val(); 
 }

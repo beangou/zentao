@@ -32,6 +32,7 @@
   <div id='topmyplan'>
     <div class='f-left'>
       <?php 
+      error_reporting(E_ALL);
 //       foreach($lang->plan->periods as $period => $label)
       foreach($mymenu as $period => $label)
       {
@@ -44,7 +45,7 @@
     </div>
   </div>
 
-  <form method='post' id='planform'>
+  <form method='post' id='planform' onsubmit="return makesure()">
   
   <table class='table-1 tablesorter colored datatable newBoxs' id="commentPlan"> 
     <caption><div align="center">自评本周计划完成情况(<?php echo $firstOfThisWeekDay. ' ~ '. $lastOfThisWeekDay;?>)</div></caption>
@@ -74,7 +75,7 @@
       <td class='stepID'><?php echo $stepID ;?><?php echo html::hidden("ids[]", $plan->id, "class=text-1");?></td>
       <td><?php echo $plan->type;?></td>
       <td style="text-align: left"><?php echo $plan->matter;?></td>
-      <td style="text-align: left"><?php echo $plan->plan;?></td>
+      <td style="text-align: left"><pre><?php echo $plan->plan;?></pre></td>
       <td><?php echo $plan->deadtime;?></td>
       <td><select name='status[]' <?php echo $evaluateDisaAttr;?>>
       		<option value='完成' <?php if('完成'==$plan->status){echo 'selected="selected"';}?>>完成</option>
@@ -117,7 +118,7 @@
   </table>
   </form>
   
-  <form method='post' id='addPlanform'>
+  <form method='post' id='addPlanform' onsubmit="return makesure()">
   <table class='table-1 tablesorter colored datatable newBoxs' id="addPlan" style="margin-top: 5%"> 
     <caption>
     	<div align="center">
@@ -139,21 +140,23 @@
     <?php 
     $stepAddID = 0;
  	if ($showFlag == '1'):
+		if (!empty($nextWeekPlan)) {
+			$disabledAttr = '';
+			if ($nextplanEditable == 'true') { $disabledAttr = 'disabled';}	
+		}
 	    foreach ($nextWeekPlan as $plan):
+	    
+// 	    $disabledAttr = '';
+	    if ($plan->auditPass == '2') { $disabledAttr = 'disabled';}
+	     
 	    $stepAddID += 1;
     ?>
     <tr class='a-center' id="row<?php echo $stepAddID?>">
       <td class='stepAddID'>
-      	<?php echo $stepAddID ; echo html::hidden("nextIds[]", $plan->id, "class=text-1").
-      	html::hidden("ids[]", $plan->auditId, "class=text-1");?></td>
+      	<?php echo $stepAddID ;?></td>
       <?php 
-          $disabledAttr = '';
-         
-         if ($plan->auditPass == '2') {
-			 $disabledAttr = 'disabled';
-		 }
       	  
-	      echo '<td>'. html::input("type[]", $plan->type, "class=text-1 ". $disabledAttr). '</td>
+	      echo '<td>'. html::hidden("nextIds[]", $plan->id, "class=text-1"). html::input("type[]", $plan->type, "class=text-1 ". $disabledAttr). '</td>
 	      <td style="text-align: left">'. html::textarea("matter[]", $plan->matter, 'rows="4" cols="50" '. $disabledAttr).'</td>
 	      <td style="text-align: left">'. html::textarea("plan[]", $plan->plan, 'rows="4" cols="60" '. $disabledAttr). '</td>
 	      <td>';
@@ -170,7 +173,7 @@
    // else :
     $stepAddID++;
     ?>
-    <tr class='a-center' id="row<?php echo $stepAddID?>">
+    <tr class='a-center' id="row<?php echo $stepAddID?>" style="display: <?php echo $showBlankLine;?>">
       <td class='stepAddID'><?php echo $stepAddID ;?></td>
       <td id="copyType1"><?php echo html::input("type[]", '', "class='text-1' onkeyup='this.value=this.value.toUpperCase()' ". $disabledAttr);?></td>
       <td id="copyMatter1" style="text-align: left"><?php echo html::textarea("matter[]", '', 'rows="4" cols="50" '. $disabledAttr);?></td>
@@ -199,20 +202,22 @@
     </td></tr>
     
     <tr><td colspan="7" style="text-align:left">
-    		<strong>审核记录:</strong>
+    		<strong>审核记录:</strong><br>
     		<?php 
 	    		if (empty($auditList)) {
 					echo '无记录';
 				} else {
+					$i = 1;
 					foreach ($auditList as $myaudit) {
-						echo '<strong>审核结果:</strong>';
-						echo $myaudit->result;
-						echo '<strong>审核意见:</strong>'. $myaudit->auditComment;
+						echo $i. '.&nbsp;'. $myaudit->auditTime. '&nbsp;&nbsp;审核人:&nbsp;'. $myaudit->realname. ' &nbsp;  审核结果:&nbsp;'. $myaudit->result;
+						echo ',  &nbsp;&nbsp; 审核意见:&nbsp;'. $myaudit->auditComment. '<br/>';
+						$i++;
 					}					
 				}
     		?>
     	</td>
     </tr>
+    	
    <?php 
 	   else :
     ?>
@@ -223,6 +228,7 @@
   </table>
   
   <div style="display: none">
+  	  <span id="copyId"><?php echo html::hidden("nextIds[]", '', "class=text-1");?></span>
   	  <span id="copyType"><?php echo html::input("type[]", '', "class='text-1' onkeyup='this.value=this.value.toUpperCase()'");?></span>
       <span id="copyMatter" style="text-align: left"><?php echo html::textarea("matter[]", '', 'rows="4" cols="50"');?></span>
       <span id="copyPlan" style="text-align: left"><?php echo html::textarea("plan[]", '', 'rows="4" cols="60"');?></span>
@@ -237,7 +243,7 @@
 </form>
 
 
-<form method='post' id='changeThisPlanform'>
+<form method='post' id='changeThisPlanform' onsubmit="return makesure()">
   <table class='table-1 tablesorter colored datatable newBoxs' id="changePlan" style="margin-top: 5%"> 
     <caption><div align="center">修改本周计划(<?php echo $firstOfThisWeekDay. ' ~ '. $lastOfThisWeekDay;?>)</div></caption>
     <thead>
@@ -255,33 +261,26 @@
     <?php 
     $stepChangeID = 0;
  	if (!empty($thisWeekUnAuditPlan)):
+	 	$changeDisabledAttr = '';
+	 	if ($thisplanEditable == 'true') { $changeDisabledAttr = ' disabled';}
  		// 如果本周计划审核不通过
 	    foreach ($thisWeekUnAuditPlan as $plan):
 	    $stepChangeID += 1;
- 	
-	 	$changeDisabledAttr = '';
-	 	if (empty($plan->result)) { $changeDisabledAttr = ' disabled';}
+	 	
+	    if ($plan->auditPass == '2') { $changeDisabledAttr = ' disabled';}
     ?>
     <tr class='a-center' id="row_this<?php echo $stepChangeID?>">
-      <td class='stepChangeID'>
-      	<?php echo $stepChangeID ; echo html::hidden("nextIds[]", $plan->id, "class=text-1").
-      	html::hidden("ids[]", $plan->id, "class=text-1");?></td>
+      <td class='stepChangeID'><?php echo $stepChangeID ;?></td>
       <?php 
 //       if($plan->confirmed != '通过'){
-	      echo '<td>'. html::input("type[]", $plan->type, "class=text-1". $changeDisabledAttr). '</td>
+	      echo '<td>'. html::hidden("nextIds[]", $plan->id, "class=text-1").
+	       html::input("type[]", $plan->type, "class=text-1". $changeDisabledAttr). '</td>
 	      <td style="text-align: left">'. html::textarea("matter[]", $plan->matter, 'rows="4" cols="50"'. $changeDisabledAttr).'</td>
 	      <td style="text-align: left">'. html::textarea("plan[]", $plan->plan, 'rows="4" cols="60"'. $changeDisabledAttr). '</td>
 	      <td>';
-	       echo html::input('deadtime[]', date('Y-m-d',strtotime($plan->deadtime)), "class='select-2 date'". $changeDisabledAttr);
-									       
-	       echo '</td><td>'.html::select('submitTo[]', $users, $plan->submitTo, "class='select-1'". $changeDisabledAttr). '</td>';
-	     
-
-// 		  if($stepAddID == 1) {
-// 		  	echo '<td rowspan="'. count($nextWeekPlan). '">'. $plan->auditComment. '</td>';
-// 		  }
-		  
-	     echo '<td>'. html::commonButton($lang->plan->delete, "onclick=\"deleteRow('_this$stepChangeID', 1)\". $changeDisabledAttr").html::commonButton($lang->plan->add, "onclick=\"postInsert('_this$stepChangeID', 1)\". $changeDisabledAttr"). '</td>';
+	       	echo html::input('deadtime[]', date('Y-m-d',strtotime($plan->deadtime)), "class='select-2 date'". $changeDisabledAttr);
+	       	echo '</td><td>'.html::select('submitTo[]', $users, $plan->submitTo, "class='select-1'". $changeDisabledAttr). '</td>';
+	     	echo '<td>'. html::commonButton($lang->plan->delete, "onclick=\"deleteRow('_this$stepChangeID', 1)\". $changeDisabledAttr").html::commonButton($lang->plan->add, "onclick=\"postInsert('_this$stepChangeID', 1)\". $changeDisabledAttr"). '</td>';
       ?>
       
     </tr>
@@ -317,15 +316,23 @@
    <input type="submit" value=" 提交  " <?php echo $changeDisabledAttr;?>>
     </td></tr>
     
-   <tr><td colspan="7" style="text-align:left">
-   			<strong>审核结果:</strong>
+   <tr>
+   		<td colspan="7" style="text-align:left">
+   			<strong>审核记录:</strong><br>
     		<?php 
-    		if(empty($plan->result)){
-				echo '未审核<br/>';		  	
-			  } else {
-				echo '不同意<br/>';
-			  }?>
-    		<strong>审核意见：</strong><?php echo $thisWeekUnAuditPlan[0]->auditComment;?></td></tr> 
+	    		if (empty($changeAuditList)) {
+					echo '无记录';
+				} else {
+					$i = 1;
+					foreach ($changeAuditList as $myaudit) {
+						echo $i. '.&nbsp;'. $myaudit->auditTime. '&nbsp;&nbsp;审核人:&nbsp;'. $myaudit->realname. ' &nbsp;  审核结果:&nbsp;'. $myaudit->result;
+						echo ',  &nbsp;&nbsp; 审核意见:&nbsp;'. $myaudit->auditComment. '<br/>';
+						$i++;
+					}					
+				}
+    		?>
+    	</td>
+    </tr> 
    <?php 
 	   else :
     ?>
@@ -336,6 +343,5 @@
   </table>
   
 </form>
-
 
 <?php include '../../common/view/footer.html.php';?>

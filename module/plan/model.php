@@ -1,5 +1,61 @@
 <?php
+error_reporting(E_ALL);
 class planModel extends model{
+	
+	/**
+	 * 根据id查询项目组信息
+	 */
+	public function searchProteamInfo($infoId = '') {
+		$proteam = $this->dao->select('T1.id, T1.team, T1.leader, T3.realname AS leaderName, T4.realname AS managerName')
+					->from(TABLE_ICTPROTEAM)->alias('T1')
+					->leftJoin(TABLE_ICTMEMBSET)->alias('T2')->on('T2.proteam = T1.id AND T2.leader = "2"')
+					->leftJoin(TABLE_USER)->alias('T3')->on('T3.account = T1.leader')
+					->leftJoin(TABLE_USER)->alias('T4')->on('T4.account = T2.account')
+					->where('T1.id')->eq($infoId)
+					->orderBy('T1.team')
+					->fetchAll();
+		return $proteam;
+	}
+	
+	/**
+	 * 根据id查询项目组信息
+	 */
+	public function editProteamInfo() {
+		// 更新项目组信息：改名或 改组长 或 改技术经理 需要
+		$proteamInfo->id     		= $_POST['infoId'];
+		$proteamInfo->team   		= $_POST['team'];
+		$proteamInfo->leader 		= $_POST['leader'];
+		
+		$this->dao->update(TABLE_ICTPROTEAM)->data($proteamInfo)
+					->autoCheck()
+					->check('team','notempty')->check('leader','notempty')
+					->check('team','unique')->check('leader','unique')
+					->where('id')->eq((int)$_POST['infoId'])->exec();
+		
+		// 更新组长的leader值
+		if (!empty($_POST['leader'])) {
+			$leaderData->leader = '1';
+			$this->dao->update(TABLE_ICTMEMBSET)->data($leaderData)
+			->where('account')->eq($_POST['leader'])->exec();
+		}
+		
+		// 更新技术经理的leader值
+		if (!empty($_POST['techmanager'])) {
+			$managers = $_POST['techmanager'];
+			$techCount = count($managers);
+			// 将技术经理 插入到 memberset表中
+			for ($i = 0; $i < $techCount; $i++){
+				$managerData->proteam = $proteamId->id;
+				$managerData->leader  = '2';
+				
+				$this->dao->update(TABLE_ICTPROTEAM)->data($managerData)
+				->where('account')->eq($_POST['techmanager'])->exec();
+				$this->dao->insert(TABLE_ICTMEMBSET)->data($data)->autoCheck()
+				->check('account','unique')->exec();
+			}
+		}
+		
+	}
 	
 	/**
 	 * 我的审核
@@ -20,33 +76,17 @@ class planModel extends model{
 							->groupBy('T1.account, T3.firstDayOfWeek')
 							->orderBy('T4.team, T3.account, T3.firstDayOfWeek')
 							->fetchAll();
-			
-// 			$weekPlan = $this->dao->select("*,''as chargeName,'' as auditorName from ict_weekplan WHERE charge IN
-// 					(SELECT account FROM ict_membset WHERE proteam = (SELECT proteam FROM ict_proteam WHERE leader = '$account') and leader ='0')")
-// 					->andWhere('week')->eq((int)$week)->andWhere('isSubmit')->eq('1')
-// 					->andWhere('date_format(finishedDate,"%Y-%m")')->eq(date('Y-m',strtotime($finishedDate)))->fetchAll();
-			
-			// 找出科长未审核的技术经理的周计划（如果是组长已经审核，满足该条件）
-// 			$techManagerLinks =	$this->dao->select('T4.`team`, T1.`account`, T5.`realname`, T1.`firstDayOfWeek`, T1.`lastDayOfWeek`')->from(TABLE_ICTWEEKPLAN)->alias('T1')
-// 			 					->leftJoin(TABLE_ICTAUDIT)->alias('T2')->on('T2.account = T1.account AND T2.`firstDayOfWeek` = T1.`firstDayOfWeek`')
-// 			 					->leftJoin(TABLE_ICTMEMBSET)->alias('T3')->on('T3.`account` = T1.`account`')
-// 			 					->leftJoin(TABLE_ICTPROTEAM)->alias('T4')->on('T4.`techmanager` = T1.`account`')
-// 			 					->leftJoin(TABLE_USER)->alias('T5')->on('T5.`account` = T1.`account`')
-// 			 					->where('T3.`leader` = "2" AND (T2.`result` IS NULL OR (T2.`result` = "同意" AND T2.auditor != "chenxiaobo"))')
-// 			 					->groupBy('T1.`account`, T1.`firstDayOfWeek`')	
-// 			 					->orderBy('T4.`team`, T1.`account`, T1.`firstDayOfWeek`')
-// 								->fetchAll();
-			
-			$techManagerLinks =	$this->dao->select('T4.`team`, T1.`account`, T5.`realname`, T1.`firstDayOfWeek`, T1.`lastDayOfWeek` from ict_my_weekplan T1 
+			// 找出未审核的技术经理的周计划
+			$techManagerLinks =	$this->dao->select('T4.team, T1.account, T5.realname, T1.firstDayOfWeek, T1.lastDayOfWeek from ict_my_weekplan T1 
 								LEFT JOIN ( SELECT * FROM ict_audit WHERE auditTime IN (SELECT MAX(auditTime) FROM ict_audit
 		    		 			GROUP BY account, firstDayOfWeek) ORDER BY account, firstDayOfWeek) T2 
-								on (T2.account = T1.account AND T2.`firstDayOfWeek` = T1.`firstDayOfWeek`)')
-								->leftJoin(TABLE_ICTMEMBSET)->alias('T3')->on('T3.`account` = T1.`account`')
-								->leftJoin(TABLE_ICTPROTEAM)->alias('T4')->on('T4.`techmanager` = T1.`account`')
-								->leftJoin(TABLE_USER)->alias('T5')->on('T5.`account` = T1.`account`')
-								->where('T3.`leader` = "2" AND (T2.`result` IS NULL OR (T2.`result` = "同意" AND T2.auditor != "chenxiaobo"))')
-								->groupBy('T1.`account`, T1.`firstDayOfWeek`')
-								->orderBy('T4.`team`, T1.`account`, T1.`firstDayOfWeek`')
+								on (T2.account = T1.account AND T2.firstDayOfWeek = T1.firstDayOfWeek)')
+								->leftJoin(TABLE_ICTMEMBSET)->alias('T3')->on('T3.account = T1.account')
+								->leftJoin(TABLE_ICTPROTEAM)->alias('T4')->on('T4.id = T3.proteam')
+								->leftJoin(TABLE_USER)->alias('T5')->on('T5.account = T1.account')
+								->where('T3.leader = "2" AND (T1.auditPass = "2" OR (T2.result = "同意" AND T2.auditor != "chenxiaobo"))')
+								->groupBy('T1.account, T1.firstDayOfWeek')
+								->orderBy('T4.team, T1.account, T1.firstDayOfWeek')
 								->fetchAll();
 			
 			
@@ -64,17 +104,20 @@ class planModel extends model{
 			array_multisort($teamArr, $nameArr, $unauditLinks); 
 			
 		} else {
-			//如果是组长：即查询其组内成员的相关信息
-			$unauditLinks = $this->dao->select('T1.account, T2.realname, T4.firstDayOfWeek, T4.lastDayOfWeek')->from(TABLE_ICTWEEKPLAN)->alias('T4')
-			->leftJoin(TABLE_ICTMEMBSET)->alias('T1')->on('T1.account = T4.account')
-			->leftJoin(TABLE_USER)->alias('T2')->on('T2.account = T4.account')
-			->leftJoin(TABLE_ICTPROTEAM)->alias('T3')->on('T3.id = T1.proteam')
-			->where('T3.leader')->eq($account)
-			->andWhere('T1.account')->ne($account)
-			->andWhere('T4.auditPass')->eq('2')
-			->groupBy('T4.account, T4.firstDayOfWeek')
-			->orderBy('T3.team, T4.account, T4.firstDayOfWeek')
-			->fetchAll();
+			//如果是组长：即查询其组内成员的相关信息(如果自己审核通过了，肯定查不出结果，不能再审核。条件：该计划的最后审核人是该组长 )
+			$unauditLinks = $this->dao->select('T1.account, T2.realname, T4.firstDayOfWeek, T4.lastDayOfWeek from ict_my_weekplan T4 
+								LEFT JOIN ( SELECT * FROM ict_audit WHERE auditTime IN (SELECT MAX(auditTime) FROM ict_audit
+		    		 			GROUP BY account, firstDayOfWeek) ORDER BY account, firstDayOfWeek) T5
+								on (T5.account = T4.account AND T5.`firstDayOfWeek` = T4.`firstDayOfWeek`)')
+								->leftJoin(TABLE_ICTMEMBSET)->alias('T1')->on('T1.account = T4.account')
+								->leftJoin(TABLE_USER)->alias('T2')->on('T2.account = T4.account')
+								->leftJoin(TABLE_ICTPROTEAM)->alias('T3')->on('T3.id = T1.proteam')
+								->where('T3.leader="'. $account. '" AND (T5.auditor IS NULL OR T5.auditor = "'. $account. '") 
+										 AND T4.auditPass = "2"')
+								->andWhere('T1.account')->ne($account)
+								->groupBy('T4.account, T4.firstDayOfWeek')
+								->orderBy('T3.team, T4.account, T4.firstDayOfWeek')
+								->fetchAll();
 		}
 		return $unauditLinks;
 	}
@@ -163,14 +206,8 @@ class planModel extends model{
 	public function queryMyMember()
 	{
 		
-
-// 		SELECT T1.account, T2.realname FROM ict_membset T1
-// 		LEFT JOIN zt_user T2 ON(T2.account = T1.account)
-// 		LEFT JOIN ict_proteam T3 ON(T3.id = T1.proteam)
-// 		WHERE T3.leader = 'liutongbin'
-		
 		$members = array();
-// 		"我的审核"页面里面，如果是组长，取出小组普通成员的下拉列表
+		// "我的审核"页面里面，如果是组长，取出小组普通成员的下拉列表
 		if ($this->app->user->account == 'zhoubenwen' || count($this->checkCollectPlan()) == 0) {
 			$members = $this->dao->select('T1.account, T2.realname')->from(TABLE_ICTMEMBSET)->alias('T1')
 					->leftJoin(TABLE_USER)->alias('T2')->on('T2.account = T1.account')
@@ -178,25 +215,16 @@ class planModel extends model{
 					->where('T3.leader')->eq($this->app->user->account)
 					->andWhere('T1.account')->ne($this->app->user->account)
 					->orderBy('T1.account')
-// 					->fetchAll();
 					->fetchPairs();
 		} else {
-// 			$members = $this->dao->select('T1.leader AS account, T2.realname')->from(TABLE_ICTPROTEAM)->alias('T1')
-// 			->leftJoin(TABLE_USER)->alias('T2')->on('T2.account = T1.leader')
-// 			->orderBy('T1.leader')
-// // 			->fetchAll();
-// 			->fetchPairs();
-
 			// 只要leader不是0，即1或2，对应的就是组长和技术经理了
 			$members = $this->dao->select('T1.account, T2.realname')->from(TABLE_ICTMEMBSET)->alias('T1')
 			->leftJoin(TABLE_USER)->alias('T2')->on('T2.account = T1.account')
 			->where('T1.leader')->eq('0')
 			->orderBy('T1.account')
-			// 			->fetchAll();
 			->fetchPairs();
 		}
-// 		"我的审核"页面里面，如果是科长，取出小组组长的下拉列表
-		
+		// "我的审核"页面里面，如果是科长，取出小组组长的下拉列表
 		if(!$members) return array();
 		foreach($members as $account => $realName)
 		{
@@ -204,7 +232,6 @@ class planModel extends model{
 			$users[$account] =  $firstLetter . ($realName ? $realName : $account);
 		}
 		return array('' => '') + $members;
-// 		return $members;
 	}
 	
 	/**
@@ -228,15 +255,6 @@ class planModel extends model{
 	 */
 	public function queryWeekPlan($account, $firstDayOfWeek, $passed='')
 	{
-// 		$weekPlan = $this->dao->select('*,"" as auditorName,"" as chargeName')->from(TABLE_ICTWEEKPLAN)
-// 		->where('week')->eq((int)$week)
-// 		->andWhere('charge')->eq($account)->andWhere('isSubmit')->eq('1')
-// 		->beginIF($this->post->exportType == 'selected')->andWhere('id')->in($this->cookie->checkedItem)->fi()
-// 		->fetchAll();
-// 			foreach ($weekPlan as $week){
-// 				if (!empty($week->auditor))$week->auditorName =  $this->queryRealName($week->auditor);
-// 				if (!empty($week->charge))$week->chargeName =  $this->queryRealName($week->charge);
-// 			}
 		
 		$weekPlan = $this->dao->select('T1.*, T2.realname AS submitToName')->from(TABLE_ICTWEEKPLAN)->alias('T1')
 		->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
@@ -406,38 +424,57 @@ class planModel extends model{
 	{
 		$thisWeekPlan = array();
 		$account = $this->app->user->account;
-		$date_now=date("j"); //得到几号
-		$cal_result=ceil($date_now/7);
-		
 		//未确认或者确认未通过(前提是审核通过)
-		$roleVal = $this->dao->select('T1.*')->from(TABLE_ICTPROTEAM)->alias('T1')
-					->where('techmanager')->eq($account)
+		$roleVal = $this->dao->select('T1.*')->from(TABLE_ICTMEMBSET)->alias('T1')
+					->where('T1.account')->eq($account)->andWhere('T1.leader')->eq('2')
 					->fetchAll();
-		
 		if (empty($roleVal)) {
 			//如果不是技术经理
 			$unHandleplan = $this->dao->select('T1.*, T2.realname AS submitToName')->from(TABLE_ICTWEEKPLAN)->alias('T1')
-			->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
-			->leftJoin(TABLE_ICTAUDIT)->alias('T3')->on('T1.auditId = T3.id')
-			->where('T1.account')->eq($account)
-			->andWhere('T1.firstDayOfWeek="'. $firstDayOfWeek. '" AND (T1.confirmedOrNo="否" OR T1.confirmed="不通过")')
-			->andWhere('T3.result')->eq('同意')
-			->orderBy('T1.firstDayOfWeek, T1.type')
-			->fetchAll();
+							->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
+							->where('T1.account')->eq($account)
+							->andWhere('T1.firstDayOfWeek="'. $firstDayOfWeek. '" AND (T1.confirmedOrNo="否" OR T1.confirmed="不通过")')
+							->andWhere('T1.auditPass')->eq('1')
+							->orderBy('T1.firstDayOfWeek, T1.type')
+							->fetchAll();
 		} else {
-			//如果是技术经理
-			
+			//如果是技术经理（必须科长审核通过才行）
+			$unHandleplan = $this->dao->select('T1.*, T2.realname AS submitToName from ict_my_weekplan T1
+									LEFT JOIN ( SELECT * FROM ict_audit WHERE auditTime IN (SELECT MAX(auditTime) FROM ict_audit
+									GROUP BY account, firstDayOfWeek) ORDER BY account, firstDayOfWeek) T3
+								    on (T3.account = T1.account AND T3.`firstDayOfWeek` = T1.`firstDayOfWeek`)')
+									->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
+									->where('T1.account')->eq($account)
+									->andWhere('T1.firstDayOfWeek="'. $firstDayOfWeek. '" AND (T1.confirmedOrNo="否" OR T1.confirmed="不通过")')
+									->andWhere('T1.auditPass')->eq('1')
+									->andWhere('T3.auditor')->eq('chenxiaobo')
+									->orderBy('T1.firstDayOfWeek, T1.type')
+									->fetchAll();
 		}
 		
 		//未审核或审核未通过
-		$unAuditplan = $this->dao->select('T1.*, T2.realname AS submitToName, T3.*')->from(TABLE_ICTWEEKPLAN)->alias('T1')
-		->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
-		->leftJoin(TABLE_ICTAUDIT)->alias('T3')->on('T1.auditId = T3.id')
-		->where('T1.account')->eq($account)
-		->andWhere('T1.firstDayOfWeek="'. $firstDayOfWeek. '" AND (T1.auditId IS NULL OR T3.result = "不同意")')
-		->orderBy('T1.firstDayOfWeek, T1.type')
-		->fetchAll();
-
+		if (empty($roleVal)) {
+			//如果不是技术经理
+			$unAuditplan = $this->dao->select('T1.*, T2.realname AS submitToName')->from(TABLE_ICTWEEKPLAN)->alias('T1')
+									->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
+									->where('T1.account')->eq($account)
+									->andWhere('T1.firstDayOfWeek')->eq($firstDayOfWeek)
+									->andWhere('T1.auditPass')->ne('1')
+									->orderBy('T1.firstDayOfWeek, T1.type')
+									->fetchAll();
+		} else {
+			//如果是技术经理（组长审核通过还不够，还需要科长审核）检索条件：审核人不是科长或者审核不通过
+			$unAuditplan = $this->dao->select('T1.*, T2.realname AS submitToName, T3.result from ict_my_weekplan T1
+									LEFT JOIN ( SELECT * FROM ict_audit WHERE auditTime IN (SELECT MAX(auditTime) FROM ict_audit
+									GROUP BY account, firstDayOfWeek) ORDER BY account, firstDayOfWeek) T3
+									on (T3.account = T1.account AND T3.`firstDayOfWeek` = T1.`firstDayOfWeek`)')
+									->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
+									->where('T1.account')->eq($account)
+									->andWhere('T1.firstDayOfWeek="'. $firstDayOfWeek. '" AND (T1.auditPass != "1" OR T3.auditor != "chenxiaobo")')
+									->orderBy('T1.firstDayOfWeek, T1.type')
+									->fetchAll();
+		}
+		
 		array_push($thisWeekPlan, $unHandleplan);
 		array_push($thisWeekPlan, $unAuditplan);
 		return $thisWeekPlan;
@@ -500,12 +537,31 @@ class planModel extends model{
 			$account = $this->app->user->account;
 		}
 		
-		// 查出计划
-		$myplan = $this->dao->select('T1.*')->from(TABLE_ICTWEEKPLAN)->alias('T1')
-		->where('T1.account')->eq($account)
-		->andWhere('T1.firstDayOfWeek="'. $firstDayOfWeek. '" AND (T1.`auditPass` = "2" OR T1.`auditPass` = "0")')
-		->orderBy('T1.type')
-		->fetchAll();
+		$roleVal = $this->dao->select('T1.*')->from(TABLE_ICTMEMBSET)->alias('T1')
+					->where('T1.account')->eq($account)->andWhere('T1.leader')->eq('2')
+					->fetchAll();
+		
+		if (empty($roleVal)) {
+			//如果不是技术经理（找出审核未通过或者未审核的即可）
+			$myplan = $this->dao->select('T1.*, T2.realname AS submitToName')->from(TABLE_ICTWEEKPLAN)->alias('T1')
+								->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
+								->where('T1.account')->eq($account)
+								->andWhere('T1.firstDayOfWeek')->eq($firstDayOfWeek)
+								->andWhere('T1.auditPass')->ne('1')
+								->orderBy('T1.firstDayOfWeek, T1.type')
+								->fetchAll();
+		} else {
+			//如果是技术经理（组长审核通过还不够，还需要科长审核）检索条件：审核人不是科长或者审核不通过
+			$myplan = $this->dao->select('T1.*, T2.realname AS submitToName, T3.result from ict_my_weekplan T1
+								LEFT JOIN ( SELECT * FROM ict_audit WHERE auditTime IN (SELECT MAX(auditTime) FROM ict_audit
+								GROUP BY account, firstDayOfWeek) ORDER BY account, firstDayOfWeek) T3
+								on (T3.account = T1.account AND T3.`firstDayOfWeek` = T1.`firstDayOfWeek`)')
+								->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
+								->where('T1.account')->eq($account)
+								->andWhere('T1.firstDayOfWeek="'. $firstDayOfWeek. '" AND (T1.auditPass != "1" OR T3.auditor != "chenxiaobo")')
+								->orderBy('T1.firstDayOfWeek, T1.type')
+								->fetchAll();
+		}
 		
 		// 查出审核结果
 		$myAuditList = $this->dao->select('T1.*, T2.realname')->from(TABLE_ICTAUDIT)->alias('T1')
@@ -516,8 +572,43 @@ class planModel extends model{
 							->fetchAll();
 		array_push($dataArr, $myplan);
 		array_push($dataArr, $myAuditList);
-
 		return $dataArr;
+	}
+	
+	/**
+	 * "我的审核" “填写下周计划”
+	 * @param unknown_type $finishedDate
+	 */
+	public function queryNextWeekPlans($firstDayOfWeek)
+	{
+		$account = $this->app->user->account;
+		$roleVal = $this->dao->select('T1.*')->from(TABLE_ICTMEMBSET)->alias('T1')
+					->where('T1.account')->eq($account)->andWhere('T1.leader')->eq('2')
+					->fetchAll();
+	//未审核或审核未通过
+		if (empty($roleVal)) {
+			//如果不是技术经理
+			$nextplans = $this->dao->select('T1.*, T2.realname AS submitToName')->from(TABLE_ICTWEEKPLAN)->alias('T1')
+									->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
+									->where('T1.account')->eq($account)
+									->andWhere('T1.firstDayOfWeek')->eq($firstDayOfWeek)
+									->andWhere('T1.auditPass')->ne('1')
+									->orderBy('T1.firstDayOfWeek, T1.type')
+									->fetchAll();
+		} else {
+			//如果是技术经理（组长审核通过还不够，还需要科长审核）检索条件：审核人不是科长或者审核不通过
+			$nextplans = $this->dao->select('T1.*, T2.realname AS submitToName, T3.result from ict_my_weekplan T1
+									LEFT JOIN ( SELECT * FROM ict_audit WHERE auditTime IN (SELECT MAX(auditTime) FROM ict_audit
+									GROUP BY account, firstDayOfWeek) ORDER BY account, firstDayOfWeek) T3
+									on (T3.account = T1.account AND T3.`firstDayOfWeek` = T1.`firstDayOfWeek`)')
+									->leftJoin(TABLE_USER)->alias('T2')->on('T1.submitTo = T2.account')
+									->where('T1.account')->eq($account)
+									->andWhere('T1.firstDayOfWeek="'. $firstDayOfWeek. '" AND (T1.auditPass != "1" OR T3.auditor != "chenxiaobo")')
+									->orderBy('T1.firstDayOfWeek, T1.type')
+									->fetchAll();
+		}
+	
+		return $nextplans;
 	}
 	
 	/**
@@ -771,11 +862,13 @@ class planModel extends model{
 	 */
 	public function queryProteam()
 	{
-		$proteam = $this->dao->select('t1.*,t2.realname, t3.realname as managername')
-		->from(TABLE_ICTPROTEAM)->alias('t1')
-		->leftJoin(TABLE_USER)->alias('t2')->on('t1.leader = t2.account')
-		->leftJoin(TABLE_USER)->alias('t3')->on('t1.techmanager = t3.account')
-		->fetchAll();
+		$proteam = $this->dao->select('T1.id, T1.team, T1.leader, T3.realname AS leaderName, T4.realname AS managerName')
+					->from(TABLE_ICTPROTEAM)->alias('T1')
+					->leftJoin(TABLE_ICTMEMBSET)->alias('T2')->on('T2.proteam = T1.id AND T2.leader = "2"')
+					->leftJoin(TABLE_USER)->alias('T3')->on('T3.account = T1.leader')
+					->leftJoin(TABLE_USER)->alias('T4')->on('T4.account = T2.account')
+					->orderBy('T1.team')
+					->fetchAll();
 		return $proteam;
 	}
 	/**
@@ -783,14 +876,62 @@ class planModel extends model{
 	 */
 	public function saveProteam()
 	{
-		if (isset($_POST['team']) && isset($_POST['leader']))
-			$this->dao->insert(TABLE_ICTPROTEAM)->data($_POST)->autoCheck()
-			->batchCheck($this->config->plan->create->requiredFields,'notempty')
+		if (isset($_POST['team']) && isset($_POST['leader'])) {
+			$teamData->team   = $_POST['team'];
+			$teamData->leader = $_POST['leader'];
+			$this->dao->insert(TABLE_ICTPROTEAM)->data($teamData)->autoCheck()
 			->check('team','unique')->check('leader','unique')->exec();
+			
+			// 将组长插到 memberset表中
+			// 查出新建 项目组的 id
+			$proteamId = $this->getNewTeamId($_POST['leader']);
+			$data->account = $_POST['leader'];
+			$data->proteam = $proteamId->id;
+			$data->leader  = '1';
+			$this->dao->insert(TABLE_ICTMEMBSET)->data($data)->autoCheck()
+			->check('account','unique')->exec();
+			
+			if (isset($_POST['leader'])) {
+				$managers = $_POST['techmanager'];
+				$techCount = count($managers);
+				// 将技术经理 插入到 memberset表中 
+				for ($i = 0; $i < $techCount; $i++){
+					$data->account = $managers[$i];
+					$data->proteam = $proteamId->id;
+					$data->leader  = '2';
+					$this->dao->insert(TABLE_ICTMEMBSET)->data($data)->autoCheck()
+					->check('account','unique')->exec();
+				}				
+			}
+		}
+		
 		if (dao::isError()){
 			echo js::error(dao::getError());
 			die(js::reload('parent'));
 		}
+	}
+	/**
+	 * 看memberset表中 是否存在 用户account
+	 */
+	public function checkAccountInMemberset($account = '') {
+		$result = true;
+		$departmentName = $this->dao->select('T2.name AS name')->from(TABLE_ICTUSER)->alias('T1')
+		->leftJoin(TABLE_DEPT)->alias('T2')->on('T2.id = T1.dept')
+		->where('account')->eq($account)
+		->fetch();
+		if (empty($departmentName)) {
+			$result = false;
+		}
+		return $result;
+	}
+	/**
+	 * 查出新建 项目组的 id, 根据$account获取
+	 */
+	public function getNewTeamId($account = '') {
+		$teamId = $this->dao->select('id')->from(TABLE_ICTPROTEAM)
+		->where('leader')->eq($account)
+		->fetch();
+		return $teamId;
 	}
 	/**
 	 * 查询未设定的成员小组名单
@@ -810,24 +951,6 @@ class planModel extends model{
 		foreach ($this->post->members as $account)
 		{
 			$data->account = $account;
-			
-			//如果是组长
-			$proteam = $this->dao->select('*')->from(TABLE_ICTPROTEAM)->where('leader')->eq($account)->fetch();
-			//如果该成员是组长的话，才可以确定成员所在的组以及审核人
-			if (!empty($proteam->leader)){
-				$data->proteam = $proteam->id;
-				$data->leader = '1';
-// 				$data->auditor1 = $proteam->auditor1;
-// 				$data->auditor2 = $proteam->auditor2;
-			} else {
-				//如果是技术经理, 也可以确定属于哪个项目组， 前提一个人只属于一个组
-				$proteam = $this->dao->select('*')->from(TABLE_ICTPROTEAM)->where('techmanager')->eq($account)->fetch();
-				if (!empty($proteam->leader)){
-					$data->proteam = $proteam->id;
-					$data->leader = '2';
-				}
-			}
-			
 			$this->dao->insert(TABLE_ICTMEMBSET)->data($data)->check('account','unique')->exec();
 		}
 	}
@@ -1079,11 +1202,14 @@ class planModel extends model{
 	public function checkCollectPlan()
 	{
 		$account = $this->app->user->account;
-		return $this->dao->select('*')->from(TABLE_ICTUSER)
-				->where('account')->eq($account)
-				->andWhere('role')->eq('4')
-// 				->andWhere('account')->eq('chenxiaobo')
-				->fetchAll();
+		if($account == 'zhoubenwen' || $account == 'chenxiaobo') {
+			return $this->dao->select('*')->from(TABLE_ICTUSER)
+			->where('account')->eq($account)
+			->andWhere('role')->eq('4')
+			->fetchAll();
+		} else {
+			return array();
+		}
 	}
 	
 	/**
@@ -1120,6 +1246,58 @@ class planModel extends model{
 			echo js::error(dao::getError());
 			die(js::reload('parent'));
 		}
+	}
+	
+	/**
+	 * 判断某条计划的责任人是否是技术经理以及最后的审核人是否是其组长
+	 */
+	public function checkTechManager($lastAuditPlan) {
+		if ($lastAuditPlan->result == '同意') {
+// 			return $this->dao->select('*')->from(TABLE_ICTPROTEAM)
+// 					->where('leader')->eq($lastAuditPlan->auditor)
+// 					->andWhere('techmanager')->eq($lastAuditPlan->account)
+// 					->fetchAll();
+			return $this->dao->select('T1.*')->from(TABLE_ICTPROTEAM)->alias('T1')
+					->leftJoin(TABLE_ICTMEMBSET)->alias('T2')->on('T2.proteam = T1.id')
+					->where('T1.leader')->eq($lastAuditPlan->auditor)
+					->andWhere('T2.account')->eq($lastAuditPlan->account)
+					->andWhere('T2.leader')->eq('2')
+					->fetchAll();
+		} else {
+			return array();
+		}
+	}
+	
+	/**
+	 * 根据用户名 获取 所在科室
+	 */
+	public function getDepartment($account = '') {
+		$departmentName = $this->dao->select('T2.name AS name')->from(TABLE_ICTUSER)->alias('T1')
+		->leftJoin(TABLE_DEPT)->alias('T2')->on('T2.id = T1.dept')
+		->where('account')->eq($account)
+		->fetch();
+		if (empty($departmentName))return array();
+		return $departmentName;
+	}
+	
+	/**
+	 * 保存请假信息
+	 */
+	public function saveLeave() {
+		$leaveData->account 	= $_POST['leaverName'];
+		$leaveData->reason 		= $_POST['reason'];
+		$leaveData->startTime 	= $_POST['startTime'];
+		$leaveData->endTime 	= $_POST['endTime'];
+		$leaveData->askTime 	= $_POST['askTime'];
+		
+		//如果没有审核，此时就是新增
+		$this->dao->insert(TABLE_ICTLEAVE)->data($leaveData)->autoCheck()->exec();
+		if(dao::isError())
+		{
+			echo js::error(dao::getError());
+			die(js::reload('parent'));
+		}
+		return "success";
 	}
 	
 }

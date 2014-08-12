@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /* 包含http客户端类，snoopy。在禅道lib/snoopy里面可以找到。*/
 include dirname(dirname(__FILE__)) . '../../../../lib/snoopy/snoopy.class.php';
@@ -43,38 +42,40 @@ $submitVars["password"] = $authHash;
 $snoopy->cookies[$session->sessionName] = $session->sessionID;
 $snoopy->submit($loginAPI, $submitVars);
 
+
+
 /* 直接调用my模块的bugs页面。*/
-$snoopy->fetch($myBugAPI . "&$session->sessionName=$session->sessionID");
-$result = json_decode($snoopy->results);
+// $snoopy->fetch($myBugAPI . "&$session->sessionName=$session->sessionID");
+// $result = json_decode($snoopy->results);
 
-if($result->status == 'success' && md5($result->data) == $result->md5)
-{
-    $bugs = json_decode($result->data)->bugs;
-}
-else
-{
-    echo "called failed or transfered not complete.";
-    exit;
-}
+// if($result->status == 'success' && md5($result->data) == $result->md5)
+// {
+//     $bugs = json_decode($result->data)->bugs;
+// }
+// else
+// {
+//     echo "called failed or transfered not complete.";
+//     exit;
+// }
 
-if($bugs)
-{
-    foreach($bugs as $bug) echo $bug->id . "\t" . $bug->title . "\n";
-}
-else
-{
-    echo 'no bugs' . "\n";
-}
+// if($bugs)
+// {
+//     foreach($bugs as $bug) echo $bug->id . "\t" . $bug->title . "\n";
+// }
+// else
+// {
+//     echo 'no bugs' . "\n";
+// }
 
-/* 通过超级model调用。*/
-$snoopy->fetch($superMyBugAPI . "&$session->sessionName=$session->sessionID");
-$result = json_decode($snoopy->results);
-if(is_object($result))
-{
-    foreach($result as $id=>$bug) echo $id  . "\t" . $bug . "\n";
-}
-else
-{
-    echo 'no bugs' . "\n";
-}
+// /* 通过超级model调用。*/
+// $snoopy->fetch($superMyBugAPI . "&$session->sessionName=$session->sessionID");
+// $result = json_decode($snoopy->results);
+// if(is_object($result))
+// {
+//     foreach($result as $id=>$bug) echo $id  . "\t" . $bug . "\n";
+// }
+// else
+// {
+//     echo 'no bugs' . "\n";
+// }
 ?>

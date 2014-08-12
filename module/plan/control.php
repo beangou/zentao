@@ -2,6 +2,8 @@
 
 require_once('class.phpmailer.php'); //载入PHPMailer类
 
+error_reporting(E_ALL);
+
 class plan extends control{
 	
 	public function __construct()
@@ -13,48 +15,46 @@ class plan extends control{
 	}
 	
 	/**
-	 * 发送邮件
+	 * 重写方法
 	 */
-	function sendEmailNew($email)
+	/**
+	 * Print link icon.
+	 *
+	 * @param  string $module
+	 * @param  string $method
+	 * @param  string $vars
+	 * @param  object $object
+	 * @param  string $type button|list
+	 * @param  string $icon
+	 * @param  string $target
+	 * @static
+	 * @access public
+	 * @return void
+	 */
+	public static function printIcon($event = '')
 	{
-		$mail = new PHPMailer(); //实例化
-		$mail->IsSMTP(); // 启用SMTP
-		$mail->Host = "smtp.163.com"; //SMTP服务器 以163邮箱为例子
-		$mail->Port = 25;  //邮件发送端口
-		$mail->SMTPAuth   = true;  //启用SMTP认证
+		echo html::a('', '&nbsp;', 'empty', "class='icon-green-common-edit' title='编辑' target='_self' ". $event, false);
+// 		html::linkButton();
+// 		echo '<button class="icon-green-common-edit" '. $event. '>编辑</button>'; 
+	}
 	
-		$mail->CharSet  = "UTF-8"; //字符集
-		$mail->Encoding = "base64"; //编码方式
-	
-		$mail->Username = "15955552919@163.com";  //你的邮箱
-		$mail->Password = "abcde12345";  //你的密码
-		$mail->Subject = "ict周计划汇总"; //邮件标题
-	
-		$mail->From = "15955552919@163.com";  //发件人地址（也就是你的邮箱）
-		$mail->FromName = "ict禅道系统";  //发件人姓名
-	
-		// 		$address = "15955552919@163.com";//收件人email
-		$address = $email;
-		$mail->AddAddress($address, "ict周计划审核人");//添加收件人（地址，昵称）
-	
-		$mail->AddAttachment('/opt/lampp/testCrontab/sendmail/control.xls','ict周计划汇总.xls'); // 添加附件,并指定名称
-		$mail->IsHTML(true); //支持html格式内容
-	
-		$mail->Body = '您好! <br/>这是一封来自安徽移动ict禅道系统的邮件！<br/>'; //邮件主体内容
-	
-		// $mail->AddEmbeddedImage("logo.jpg", "my-attach", "logo.jpg"); //设置邮件中的图片
-		// 		$mail->Body = '你好, <b>朋友</b>! <br/>这是一封来自<a href="http://www.helloweba.com"
-		// 		target="_blank">helloweba.com</a>的邮件！<br/>
-		// 		<img alt="helloweba" src="cid:my-attach">'; //邮件主体内容
-	
-		//发送
-		if(!$mail->Send()) {
-			// 			echo "Mailer Error: " . $mail->ErrorInfo;
-			return $mail->ErrorInfo;
-		} else {
-			// 			echo "Message sent!";
-			return '<script>alert("发送成功!")</script>';
+	public function editproteaminfo() {
+		if(!empty($_POST))
+		{
+			$this->plan->editProteamInfo();
+			if(dao::isError()) die(js::error(dao::getError()));
+			die('<script>parent.parent.location.reload();</script>');
 		}
+		$infoId = $_GET['infoId'];
+		$proteamInfo = plan::dealArrForOneRow($this->plan->searchProteamInfo($infoId), 'id', 'managerName');
+		$this->view->proteamInfo = $proteamInfo[0];
+		$useNotSet = $this->plan->userNotSet();
+		// 把原先的组长 加到 选择组长的select中
+		
+		// 把原先的技术经理 加到 选择技术经理的select中
+		
+		$this->view->users			= $useNotSet; 
+		$this->display();
 	}
 	
 	/**
@@ -69,6 +69,12 @@ class plan extends control{
 			$lastWeekPlan = $this->plan->queryWeekPlan($paraAccount, $myDateArr[3]);
 			$thisWeekPlan = $this->plan->queryWeekPlan($paraAccount, $myDateArr[2]);
 			$nextWeekPlan = $this->plan->queryNextWeekPlan($paraAccount, $myDateArr[0]);
+			
+			$thisWeekAudits = $this->plan->queryNextUnpassPlan($myDateArr[2], $paraAccount);
+			$nextWeekAudits = $this->plan->queryNextUnpassPlan($myDateArr[0], $paraAccount);
+			$this->view->thisWeekAudits = $thisWeekAudits[1];
+			$this->view->nextWeekAudits = $nextWeekAudits[1];
+			
 			$this->view->lastWeekPlan = $lastWeekPlan;
 			$this->view->thisWeekPlan = $thisWeekPlan;
 			$this->view->nextWeekPlan = $nextWeekPlan; 
@@ -83,16 +89,8 @@ class plan extends control{
 		$this->view->firstOfLastWeekDay = $myDateArr[3];
 		$this->view->lastOfLastWeekDay = $myDateArr[5];
 		
-		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
-		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
-		$mymenu['handle']      = '我的确认';
-		$mymenu['audit']	   = '我的审核';
-		$mymenu['querymemberplan']     = '查看成员计划';
-		$mymenu['proteam'] 	= '项目组设定';
-		$mymenu['membset']     = '成员设定';
-		
+		$mymenu = plan::dealMenu($this->app->user->account);
 		$this->view->mymenu = $mymenu;
-		
 		$this->view->mymember = $this->plan->queryMemberForQuery();
 		$this->display();
 	}
@@ -127,11 +125,6 @@ class plan extends control{
 		
 		$mail->Body = '您好! <br/>这是一封来自安徽移动ict禅道系统的邮件！<br/>'; //邮件主体内容
 		
-		// $mail->AddEmbeddedImage("logo.jpg", "my-attach", "logo.jpg"); //设置邮件中的图片
-// 		$mail->Body = '你好, <b>朋友</b>! <br/>这是一封来自<a href="http://www.helloweba.com"
-// 		target="_blank">helloweba.com</a>的邮件！<br/>
-// 		<img alt="helloweba" src="cid:my-attach">'; //邮件主体内容
-		
 		//发送
 		if(!$mail->Send()) {
 // 			echo "Mailer Error: " . $mail->ErrorInfo;
@@ -141,7 +134,7 @@ class plan extends control{
 			return '<script>alert("发送成功!")</script>';
 		}
     }
-	
+    
 	/**
 	 * 我的计划
 	 * @param unknown_type $finish
@@ -149,7 +142,6 @@ class plan extends control{
 	public function myplan($finish = '', $recTotal = 0, $recPerPage = 20, $pageID = 1){
 		$finish = date('Y-m-d',time());
 		$myDateArr = $this->getLastAndEndDayOfWeek();
-		
 		if (!empty($_POST) && !isset($_GET['submit'])) {
 // 		if ($_POST &&  $_POST['submit']) {
 			$getParam = $this->post->isSubmit;
@@ -191,7 +183,7 @@ class plan extends control{
 		$this->view->lastOfNextWeekDay = $myDateArr[1];
 		
 		$thisWeekPlan = $this->plan->queryPlanByTime($myDateArr[2]);
-		//查出本周自评未确认或者缺人未通过的计划
+		//查出本周自评未确认或者确认未通过的计划
 		$this->view->thisWeekPlan = $thisWeekPlan[0];
 		//本周未审核或者审核未通过
 		$this->view->thisWeekUnAuditPlan = $thisWeekPlan[1];
@@ -201,7 +193,11 @@ class plan extends control{
 		$nextUnpassPlan = $this->plan->queryNextUnpassPlan($myDateArr[0]);
 		// 如果下周计划的数量和下周未通过的数量一样（包括都为0），说明所有的计划都没通过，需要显示在“我的计划”里面
 		if (count($nextAllPlan) == count($nextUnpassPlan[0])) {
-			$this->view->showFlag = '1'; 
+			$this->view->showFlag = '1';
+			// 如果没有下周周计划， 则显示空行
+			if (count($nextAllPlan) > 0) {
+				$this->view->showBlankLine = 'none';
+			}
 		}
 		$this->view->nextWeekPlan = $nextUnpassPlan[0];
 		
@@ -214,19 +210,29 @@ class plan extends control{
 		
 		$this->view->date           = $myDateArr[1];
 		
-		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
-		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
-		$mymenu['handle']      = '我的确认';
-		$mymenu['audit']	   = '我的审核';
-		$mymenu['querymemberplan']     = '查看成员计划';
-		$mymenu['proteam'] 	= '项目组设定';
-		$mymenu['membset']     = '成员设定';
-// 		if (!$this->checkCollectPlan()) {
-// 			$mymenu['collectplan']     = '汇总计划';
-// 		}
-		$this->view->mymenu = $mymenu;
+		// “填写下周计划”、“修改本周计划”是否可写(组长审核通过后，由于还要交给科长审核，此时该计划不可编辑)
+		if (count($nextUnpassPlan[1]) > 0) {
+			//填写下周计划
+			if (count($this->plan->checkTechManager($nextUnpassPlan[1][0])) > 0) {
+				$this->view->nextplanEditable = 'true';
+			}
+		} else {
+			$this->view->nextplanEditable = 'true';
+		}
 		
-		$this->view->users			= $this->plan->queryUser();
+		if (count($changeUnpassPlan[1]) > 0) {
+			//修改本周计划
+			//填写下周计划
+			if (count($this->plan->checkTechManager($changeUnpassPlan[1][0])) > 0) {
+				$this->view->thisplanEditable = 'true';
+			}
+		} else {
+			$this->view->thisplanEditable = 'true';
+		}
+		
+		$mymenu = plan::dealMenu($this->app->user->account);
+		$this->view->mymenu = $mymenu;
+		$this->view->users	= $this->plan->queryUser();
 
 		$this->display();
 	}
@@ -235,7 +241,6 @@ class plan extends control{
 		$myDateArr = $this->getLastAndEndDayOfWeek();
 		die(html::input('deadtime[]', date('Y-m-d',strtotime($myDateArr[1])), "class='select-2 date'"));
 	}
-	
 	/**
 	 * 查询计划详情
 	 * */
@@ -245,7 +250,6 @@ class plan extends control{
 		$this->view->detailPlan = $myDetailPlan; 
 		$this->display();
 	}
-	
 	/**
 	 * 按日期查询
 	 * */
@@ -261,18 +265,8 @@ class plan extends control{
 			if (dao::isError())die(js::error(dao::getError()));
 		}
 		
-		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
-		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
-		$mymenu['handle']      = '我的确认';
-		$mymenu['audit']	   = '我的审核';
-		$mymenu['querymemberplan']     = '查看成员计划';
-		$mymenu['proteam'] 	= '项目组设定';
-		$mymenu['membset']     = '成员设定';
-// 		if (!$this->checkCollectPlan()) {
-// 			$mymenu['collectplan']     = '汇总计划';
-// 		}
+		$mymenu = plan::dealMenu($this->app->user->account);
 		$this->view->mymenu = $mymenu;
-		
 		$this->view->searchPlans = $planArr;
 		$this->display();
 	}
@@ -327,22 +321,10 @@ class plan extends control{
 		//查看下周的审核记录
 		$nextUnpassPlan = $this->plan->queryNextUnpassPlan($myDateArr[0]);
 		$this->view->auditList = $nextUnpassPlan[1]; 
+		$this->view->date      = (int)$date == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($date));
 		
-		$this->view->date           = (int)$date == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($date));
-		
-		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
-		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
-		$mymenu['handle']      = '我的确认';
-		$mymenu['audit']	   = '我的审核';
-		$mymenu['querymemberplan']     = '查看成员计划';
-		$mymenu['proteam'] 	   = '项目组设定';
-		$mymenu['membset']     = '成员设定';
-// 		if (!$this->checkCollectPlan()) {
-// 			$mymenu['collectplan']     = '汇总计划';
-// 		}
+		$mymenu = plan::dealMenu($this->app->user->account);
 		$this->view->mymenu = $mymenu;
-		
-// 		$this->view->team			= $this->plan->getTeaminfo();
 		$this->display();
 	}
 	/**
@@ -390,41 +372,22 @@ class plan extends control{
 		$this->view->checkPlan		= $myplan[0];
 		$this->view->uncheckedPlan  = $myplan[1];
 		
-		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
-		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
-		$mymenu['handle']      = '我的确认';
-		$mymenu['audit']	   = '我的审核';
-		$mymenu['querymemberplan']     = '查看成员计划';
-		$mymenu['proteam'] 	= '项目组设定';
-		$mymenu['membset']     = '成员设定';
-// 		if (!$this->checkCollectPlan()) {
-// 			$mymenu['collectplan']     = '汇总计划';
-// 		}
+		$mymenu = plan::dealMenu($this->app->user->account);
 		$this->view->mymenu = $mymenu;
-		
-// 		$this->view->lead			= $this->plan->judgeAuditor($account);
 		$this->display();
 	}
 	/**
 	 * 项目组设定
 	 */
 	public function proteam(){
-		$this->view->title = $this->lang->my->common . $this->lang->colon . $this->lang->plan->proteam;
+		$this->view->title 			= $this->lang->my->common . $this->lang->colon . $this->lang->plan->proteam;
 		$this->view->position[] 	= $this->lang->plan->proteam;
-		$this->view->users			= $this->plan->queryUser();
 		if (!empty($_POST))$this->plan->saveProteam();
-		$this->view->proteam		= $this->plan->queryProteam();
-		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
-		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
-		$mymenu['handle']      = '我的确认';
-		$mymenu['audit']	   = '我的审核';
-		$mymenu['querymemberplan']     = '查看成员计划';
-		$mymenu['proteam'] 	= '项目组设定';
-		$mymenu['membset']     = '成员设定';
-// 		if (!$this->checkCollectPlan()) {
-// 			$mymenu['collectplan']     = '汇总计划';
-// 		}
-		$this->view->mymenu = $mymenu;
+// 		$this->view->contactLists   = $this->user->getContactLists($this->app->user->account, 'withnote');
+		// 组长和技术经理都是从 未设定的成员里面 选择，设定成功后， 会自动执行 成员设定
+		$this->view->users			= $this->plan->userNotSet();
+		$this->view->proteam		= plan::dealArrForOneRow($this->plan->queryProteam(), 'id', 'managerName');
+		$this->view->mymenu 		= plan::dealMenu($this->app->user->account);
 		$this->display();
 	}
 	/**
@@ -443,25 +406,13 @@ class plan extends control{
 		}
 		if (!empty($_POST['members']))$this->plan->saveMembUser();
 		$member	= $this->plan->queryMembUser();
-		// 		$teams		= array('' => '');
-		// 		foreach ($member as $team)
-			// 		{
-			// 			$teams[$team->proteam] = $team->team;
-			// 		}
+		
 		$this->view->users	= $this->plan->userNotSet();
 		$this->view->members		= $member;
 		// 		$this->view->teams			= $teams;
 		$this->view->teams			= $this->plan->queryTeam();
-		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
-		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
-		$mymenu['handle']      = '我的确认';
-		$mymenu['audit']	   = '我的审核';
-		$mymenu['querymemberplan']     = '查看成员计划';
-		$mymenu['proteam'] 	= '项目组设定';
-		$mymenu['membset']     = '成员设定';
-// 		if (!$this->checkCollectPlan()) {
-// 			$mymenu['collectplan']     = '汇总计划';
-// 		}
+		
+		$mymenu = plan::dealMenu($this->app->user->account);
 		$this->view->mymenu = $mymenu;
 		$this->display();
 	}
@@ -475,7 +426,7 @@ class plan extends control{
 		$this->view->position[] 	= $this->lang->plan->planrate;
 		$start = !empty($_POST['start']) ? $_POST['start'] : date('Y-m-01',time());
 		$finish = !empty($_POST['finish']) ? $_POST['finish'] : date('Y-m-d',time());
-// 		$this->view->date           = (int)$finish == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($finish));
+
 		$this->view->planRate		= $this->plan->getPlanRate($start, $finish);
 		$this->view->start			= (int)$start == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($start));;
 		$this->view->finish			= (int)$finish == 0 ? date(DT_DATE1) : date(DT_DATE1, strtotime($finish));;
@@ -606,6 +557,14 @@ class plan extends control{
 		$this->view->lead			= $this->plan->judgeAuditor($this->app->user->account);
 		$this->display();
 	}
+	
+	/**
+	 * 编辑项目组
+	 */
+	public function editproteam() {
+		die(js::locate($this->createLink('plan','proteam'), 'parent'));
+	}
+	
 	/**
 	 * 删除
 	 * @param unknown_type $id
@@ -640,8 +599,9 @@ class plan extends control{
 				echo js::confirm($this->lang->plan->proteamDelete, $this->createLink('plan', 'delete', "id=$id&module=$module&date=$date&confirm=yes"));
 				exit;
 			}else {
+				// 删除项目组，不仅要 删除proteam， 还要删除memberset
 				$this->dao->delete()->from(TABLE_ICTPROTEAM)->where('id')->eq((int)$id)->limit(1)->exec();
-// 				$this->dao->delete()->from(TABLE_ICTMEMBSET)->where('proteam')->eq((int)$id)->limit(1)->exec();
+				$this->dao->delete()->from(TABLE_ICTMEMBSET)->where('proteam')->eq((int)$id)->exec();
 				die(js::locate($this->createLink('plan','proteam'), 'parent'));
 			}
 		}
@@ -755,32 +715,6 @@ class plan extends control{
 	 * @param  string $append        adjust if add options[$selectedItems].
 	 * @return string
 	 */
-	static public function select1($name = '', $options = array(), $attrib = '')
-	{
-		$options = (array)($options);
-		if(!is_array($options) or empty($options)) return "<select id='$id' $attrib><option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option></select>";
-	
-		$id = $name;
-		$string = "<select name='$name' id='$id' $attrib>\n";
-	
-		foreach($options as $key => $value)
-		{
-			$string  .= "<option value='$key'>$value</option>\n";
-		}
-	
-		return $string .= "</select>\n";
-	}
-	
-	/**
-	 * Create tags like "<select><option></option></select>
-	 *
-	 * @param  string $name          the name of the select tag.
-	 * @param  array  $options       the array to create select tag from.
-	 * @param  string $selectedItems the item(s) to be selected, can like item1,item2.
-	 * @param  string $attrib        other params such as multiple, size and style.
-	 * @param  string $append        adjust if add options[$selectedItems].
-	 * @return string
-	 */
 	static public function select($name = '', $options = array(), $attrib = '')
 	{
 		$options = (array)($options);
@@ -814,234 +748,54 @@ class plan extends control{
 				$rowspanIndex = $i;
 			}
 		}
-	
 		//这有当数组有数据时，才给rowspanVal赋值，否则，没意义，多一条没用的数据
 		if ($rowspanValue > 0) {
 			$temp[$rowspanIndex]->rowspanVal = $rowspanValue;
 		}
-	
 		/* End. */
 		return $temp;
 	}
 	
 	/**
-	 * 验证用户是否有权限进行“汇总计划”
+	 * 处理有一定顺序的数组,将多行 相同的字段 合并为一行， 不同的字段 的内容 合起来放在一行
+	 * @param  array $temp          the name of the select tag.
 	 */
-	public function checkCollectPlan()
+	static public function dealArrForOneRow($temp = array(), $sameKey = '', $diffKey = '')
 	{
-		$result = $this->plan->checkCollectPlan();
+		// 返回数组
+		$resultArr = array();
+		// 需要添加到数组 的元素 索引
+		$colIndex = 0;
+		// 值不同的字段 值拼接后的值  
+		$colValue = '';
+		$arrLen = count($temp);
 		
-		if(count($result)==0) {
-			return true;
+		for ($i=0; $i<$arrLen; $i++) {
+			if ($temp[$i]->$sameKey == $temp[$colIndex]->$sameKey) {
+				// 如果多行字段的 值相同， 将 不同字段 的值 拼接起来
+				$colValue .= $temp[$i]->$diffKey. '  ';
+			} else {
+				// 如果多行字段的 值 不相同， ， 先将 原先的不同的值 存入数组，   需要 将 该不同字段的值 记录下来赋值给 colValue
+// 				$temp[$colIndex]->$diffKey = substr($colValue, 0, strlen($colValue)-1);
+				$temp[$colIndex]->$diffKey = $colValue;
+				array_push($resultArr, $temp[$colIndex]);
+				$colIndex = $i;
+				$colValue = $temp[$i]->$diffKey. '  ';
+			}
 		}
-		return false;
-	}
-	
-	/**
-	 * 汇总计划(汇总并发送计划到指定邮箱)
-	 */
-	public function collectPlan()
-	{
-		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
-		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
-		$mymenu['handle']      = '我的确认';
-		$mymenu['audit']	   = '我的审核';
-		$mymenu['querymemberplan']     = '查看成员计划';
-		$mymenu['proteam'] 	= '项目组设定';
-		$mymenu['membset']     = '成员设定';
-// 		if (!$this->checkCollectPlan()) {
-// 			$mymenu['collectplan']     = '汇总计划';
-// 		}
-		$this->view->mymenu = $mymenu;
-		$daysArr = $this->getLastAndEndDayOfWeek();
-		if (!empty($_POST) && $this->post->email != '') {
-		$this->generateExcl($daysArr[0], $daysArr[2]);
-		$this->view->info = $this->sendEmail($this->post->email);
+		//这有当数组有数据时，需要将最后一条数据 记录进去
+		if ($arrLen > 0) {
+// 			$temp[$colIndex]->$diffKey = substr($colValue, 0, strlen($colValue)-1);
+			$temp[$colIndex]->$diffKey = $colValue;
+			array_push($resultArr, $temp[$colIndex]);
 		}
-		$account = $this->app->user->account;
-		$this->view->passedPlan = $this->plan->queryPassedPlan($account, $daysArr[2], $daysArr[0]);
-		$this->display();
-	}
-	
-	/**
-	 * 生成excl文件
-	 */
-	public function generateExcl($nextWeekFirstDay, $thisWeekFirstDay) 
-	{
-		/**
-		 * PHPExcel
-		 *
-		 * Copyright (C) 2006 - 2014 PHPExcel
-		 *
-		 * This library is free software; you can redistribute it and/or
-		 * modify it under the terms of the GNU Lesser General Public
-		 * License as published by the Free Software Foundation; either
-		 * version 2.1 of the License, or (at your option) any later version.
-		 *
-		 * This library is distributed in the hope that it will be useful,
-		 * but WITHOUT ANY WARRANTY; without even the implied warranty of
-		 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-		 * Lesser General Public License for more details.
-		 *
-		 * You should have received a copy of the GNU Lesser General Public
-		 * License along with this library; if not, write to the Free Software
-		 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
-		 *
-		 * @category   PHPExcel
-		 * @package    PHPExcel
-		 * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
-		 * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
-		 * @version    1.8.0, 2014-03-02
-		 */
-		
-		/** Error reporting */
-		error_reporting(E_ALL);
-		ini_set('display_errors', TRUE);
-		ini_set('display_startup_errors', TRUE);
-		date_default_timezone_set('Europe/London');
-		
-		define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
-		
-		/** Include PHPExcel */
-		require_once '../Classes/PHPExcel.php';
-		
-		
-		// Create new PHPExcel object
-// 		echo date('H:i:s') , " Create new PHPExcel object" , EOL;
-		$objPHPExcel = new PHPExcel();
-		
-		// Set document properties
-// 		echo date('H:i:s') , " Set document properties" , EOL;
-		$objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
-		->setLastModifiedBy("Maarten Balliauw")
-		->setTitle("PHPExcel Test Document")
-		->setSubject("PHPExcel Test Document")
-		->setDescription("Test document for PHPExcel, generated using PHP classes.")
-		->setKeywords("office PHPExcel php")
-		->setCategory("Test result file");
-		
-		
-		// Add some data
-// 		echo date('H:i:s') , " Add some data" , EOL;
-		$objPHPExcel->setActiveSheetIndex(0)
-		->setCellValue('A1', '时间')
-		->setCellValue('B1', '负责人')
-		->setCellValue('C1', '按ABC分类')
-		->setCellValue('D1', '本周事项')
-		->setCellValue('E1', '行动计划')
-		->setCellValue('F1', '完成时限')
-		->setCellValue('G1', '完成情况')
-		->setCellValue('H1', '见证性材料')
-		->setCellValue('I1', '未完成原因说明及如何补救');
-		
-		
-		$account = $this->app->user->account;
-		$myplanList = $this->plan->queryPassedPlan($account, $thisWeekFirstDay, $nextWeekFirstDay);
-// 		$this->dealArrForRowspan($myplan[0], 'firstDayOfWeek');
-// 		$this->view->checkPlan		= $myplan[0];
-// 		$this->view->uncheckedPlan  = $myplan[1];
-		
-		
-		$i = 1;
-		foreach ($myplanList as $myplan)
-		{
-			$i++;
-			$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue('A'. $i, $myplan->firstDayOfWeek. ' ~ '. $myplan->lastDayOfWeek)
-			->setCellValue('B'. $i, $myplan->accountname)
-			->setCellValue('C'. $i, $myplan->type)
-			->setCellValue('D'. $i, $myplan->matter)
-			->setCellValue('E'. $i, $myplan->plan)
-			->setCellValue('F'. $i, $myplan->deadtime)
-			->setCellValue('G'. $i, $myplan->status)
-			->setCellValue('H'. $i, $myplan->evidence)
-			->setCellValue('I'. $i, $myplan->courseAndSolution);
-		}
-		// Miscellaneous glyphs, UTF-8
-// 		$objPHPExcel->setActiveSheetIndex(0)
-// 		->setCellValue('A4', 'Miscellaneous glyphs')
-// 		->setCellValue('A5', '江山代有才人出，各领风骚数百年');
-		
-		
-// 		$objPHPExcel->getActiveSheet()->setCellValue('A8',"Hello\nWorld");
-// 		$objPHPExcel->getActiveSheet()->getRowDimension(8)->setRowHeight(-1);
-// 		$objPHPExcel->getActiveSheet()->getStyle('A8')->getAlignment()->setWrapText(true);
-		
-		
-		// Rename worksheet
-// 		echo date('H:i:s') , " Rename worksheet" , EOL;
-		$objPHPExcel->getActiveSheet()->setTitle('Simple');
-		
-		
-		// Set active sheet index to the first sheet, so Excel opens this as the first sheet
-		$objPHPExcel->setActiveSheetIndex(0);
-		
-		
-		// Save Excel 2007 file
-// 		echo date('H:i:s') , " Write to Excel2007 format" , EOL;
-// 		$callStartTime = microtime(true);
-		
-// 		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-// 		$objWriter->save(str_replace('.php', '.xlsx', __FILE__));
-// 		$callEndTime = microtime(true);
-// 		$callTime = $callEndTime - $callStartTime;
-		
-// 		echo date('H:i:s') , " File written to " , str_replace('.php', '.xlsx', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
-// 		echo 'Call time to write Workbook was ' , sprintf('%.4f',$callTime) , " seconds" , EOL;
-// 		// Echo memory usage
-// 		echo date('H:i:s') , ' Current memory usage: ' , (memory_get_usage(true) / 1024 / 1024) , " MB" , EOL;
-		
-		
-// 		// Save Excel 95 file
-// 		echo date('H:i:s') , " Write to Excel5 format" , EOL;
-		$callStartTime = microtime(true);
-		
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-		$objWriter->save(str_replace('.php', '.xls', __FILE__));
-		$callEndTime = microtime(true);
-		$callTime = $callEndTime - $callStartTime;
-		
-		return $myplanList;
-		
-// 		echo date('H:i:s') , " File written to " , str_replace('.php', '.xls', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
-// 		echo 'Call time to write Workbook was ' , sprintf('%.4f',$callTime) , " seconds" , EOL;
-// 		// Echo memory usage
-// 		echo date('H:i:s') , ' Current memory usage: ' , (memory_get_usage(true) / 1024 / 1024) , " MB" , EOL;
-		
-		
-// 		// Echo memory peak usage
-// 		echo date('H:i:s') , " Peak memory usage: " , (memory_get_peak_usage(true) / 1024 / 1024) , " MB" , EOL;
-		
-// 		// Echo done
-// 		echo date('H:i:s') , " Done writing files" , EOL;
-// 		echo 'Files have been created in ' , getcwd() , EOL;
+		/* End. */
+		return $resultArr;
 	}
 	
 	/**
 	 * 我的审核
 	 */
-// 	public function audit() {
-// 		//提交意见
-// 		if (!empty($_POST) && !empty($_POST['weekPlanId'])) {
-// 			$this->plan->saveAudit();			
-// 		} 
-		
-// 		$mymembers = $this->plan->queryMyMember();
-// 		$this->view->mymembers = $mymembers;  
-// 		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
-// 		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
-// 		$mymenu['handle']      = '我的确认';
-// 		$mymenu['audit']	   = '我的审核';
-// 		$mymenu['querymemberplan']     = '查看成员计划';
-// 		$mymenu['proteam'] 	= '项目组设定';
-// 		$mymenu['membset']     = '成员设定';
-// 		if (!$this->checkCollectPlan()) {
-// 			$mymenu['collectplan']     = '汇总计划';
-// 		}
-// 		$this->view->mymenu = $mymenu;
-// 		$this->display();
-// 	}
-
 	public function audit() {
 		//提交意见
 		if (!empty($_POST) && !empty($_POST['weekPlanId'])) {
@@ -1053,21 +807,13 @@ class plan extends control{
 			$this->view->firstDayOfWeek = $_GET['firstDayOfWeek']. ' ~ ';
 			$this->view->lastDayOfWeek  = $_GET['lastDayOfWeek']. ')';
 			
-			$this->view->auditList = $this->plan->queryNextUnpassPlan($_GET['firstDayOfWeek'], $_GET['account'])[1];
+			$auditList = $this->plan->queryNextUnpassPlan($_GET['firstDayOfWeek'], $_GET['account']);
+			$this->view->auditList = $auditList[1];
 		}
-		
 		$this->view->unAuditPlansAlink = $this->plan->queryUnauditForAlink($this->app->user->account); 
-	
 		$mymembers = $this->plan->queryMyMember();
+		$mymenu = plan::dealMenu($this->app->user->account);
 		$this->view->mymembers = $mymembers;
-		$mymenu['myplan']      = '我的计划';//主要是新增计划可以查看
-		$mymenu['queryplan']   = '查询计划';//只可查询，不可操作
-		$mymenu['handle']      = '我的确认';
-		$mymenu['audit']	   = '我的审核';
-		$mymenu['querymemberplan']     = '查看成员计划';
-		$mymenu['proteam'] 	= '项目组设定';
-		$mymenu['membset']     = '成员设定';
-
 		$this->view->mymenu = $mymenu;
 		$this->display();
 	}
@@ -1156,6 +902,46 @@ class plan extends control{
 			}
 		}
 		
+	}
+	
+	// 请假登记
+	public function leave() {
+		$saveResult = '';
+		if (!empty($_POST)) {
+			$saveResult = $this->plan->saveLeave();
+		}
+		$mymenu = plan::dealMenu($this->app->user->account);
+		$this->view->users	= $this->plan->queryUser();
+		$this->view->mymenu = $mymenu;
+		$this->view->saveResult = $saveResult;
+		$this->display();
+	}
+	
+	// 处理 “计划管理” 菜单
+	static public function dealMenu($account) {
+		$mymenu['myplan']      		= '我的计划';//主要是新增计划可以查看
+		$mymenu['queryplan']   		= '查询计划';//只可查询，不可操作
+		$mymenu['handle']      		= '我的确认';
+		$mymenu['audit']	   		= '我的审核';
+		$mymenu['querymemberplan']  = '查看成员计划';
+		$mymenu['proteam'] 			= '项目组设定';
+		$mymenu['membset']     		= '成员设定';
+		// 验证是否有 “登记请假”的权限， 由于只有“周本文”有权限，故只用判断用户名即可
+		if ($account == 'zhoubenwen') {
+			$mymenu['leave']     = '请假登记';
+		}
+		return $mymenu;
+	}
+	
+	/**
+	 * 请假登记  根据请假人姓名 获取其 所在部门
+	 */
+	public function ajaxGetDepatment($account='') {
+		$department = $this->plan->getDepartment($account);
+		if (empty($department))return;
+		if (! isset($department->name))$leader->name = '';
+		if (! isset($department->name))$leader->name = '';
+		die("$department->name");
 	}
 	
 }

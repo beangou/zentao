@@ -36,6 +36,9 @@ var newRowID = 0;
  */
 function deleteRow(rowID, flag)
 {
+	if (!confirm('您确认删除该行计划吗？')) {
+		return;
+	}
     if(flag == 0 && $('.stepAddID').size() == 1) return;
     if(flag == 1 && $('.stepChangeID').size() == 1) return;
     $('#row' + rowID).remove();
@@ -206,4 +209,13 @@ function updateStepAddID()
     
     var k = 1;
     $('.stepChangeID').each(function(){$(this).html(k ++)});
+}
+
+function makesure()
+{
+	if (confirm('您确定提交吗?')) {
+		return true;
+	} else {
+		return false;
+	}
 }

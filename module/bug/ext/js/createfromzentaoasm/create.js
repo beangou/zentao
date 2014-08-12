@@ -169,6 +169,22 @@ KE.plugin.savetemplate = {
         });
     }
 }
+//
+//KindEditor.plugin.savetemplate = {
+//    click: function(id) {
+//        content = KindEditor.html('steps');
+//        jPrompt(setTemplateTitle, '','', function(r)
+//        {
+//            if(!r || !content) return;
+//            saveTemplateLink = createLink('bug', 'saveTemplate');
+//            $.post(saveTemplateLink, {title:r, content:content}, function(data)
+//            {
+//                $('#tplBox').html(data);
+//            });
+//        });
+//    }
+//}
+
 /* Set template. */
 function setTemplate(templateID)
 {

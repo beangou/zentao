@@ -11,7 +11,17 @@
  */
 ?>
 <?php include './header.html.php';?>
+<?php 
+	js::import($jsRoot . 'jquery/lib.js');
+	?>
+<?php 
+	js::import($jsRoot . 'jquery/colorbox/min.js');
+	?>	
+<?php js::import($jsRoot . 'jquery/chosen/chosen.min.js');?>
 <?php include '../../common/view/form.html.php';?>
+
+
+
 <?php js::set('holders', $lang->story->placeholder); ?>
 <form method='post' enctype='multipart/form-data' id='dataform' class='ajaxForm'>
   <table align='center' class='table-1'> 
@@ -79,9 +89,16 @@
       <th class='rowhead'><nobr><?php echo $lang->story->mailto;?></nobr></th>
       <td>
         <?php 
-        echo html::select('mailto[]', $users, str_replace(' ' , '', $mailto), "class='text-1' multiple"); 
-        if($contactLists) echo html::select('', $contactLists, '', "class='f-right' onchange=\"setMailto('mailto', this.value)\"");
+        //echo html::select('mailto[]', $users, str_replace(' ' , '', $mailto), "class='text-1' multiple"); 
+        //if($contactLists) echo html::select('', $contactLists, '', "class='f-right' onchange=\"setMailto('mailto', this.value)\"");
         ?>
+        
+        <div class='input-group'>
+            <?php 
+            echo html::select('mailto[]', $users, str_replace(' ' , '', $mailto), "multiple"); 
+            if($contactLists) echo html::select('', $contactLists, '', "class='form-control' style='width: 150px' onchange=\"setMailto('mailto', this.value)\"");
+            ?>
+        </div>
       </td>
     </tr>
 

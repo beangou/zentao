@@ -13,12 +13,9 @@
   <div id='topmyplan'>
     <div class='f-left'>
       <?php 
-//       foreach($lang->plan->periods as $period => $label)
       foreach($mymenu as $period => $label)
       {
-//           if ($period == 'collectplan') {continue;}
       	  $vars = $period;
-//           if($period == 'before') $vars .= "&account={$app->user->account}&status=undone";
           echo "<span id='$period'>" . html::a(inlink($vars), $label) . '</span>';
       }
       ?>
@@ -34,11 +31,8 @@
 	    	    $i = 0;
 	    	    echo '<tr class="colhead"><th style="width:12%">编号</th><th>周计划列表</th></tr>';
 	    		foreach ($unAuditPlansAlink as $unAuditPlan) {
-// 					echo '<tr><td><a href="/zentao/www/index.php?m=plan&f=audit&account='. $unAuditPlan->account。 
-// 					 'firstDayOfWeek='. $unAuditPlan->firstDayOfWeek. '">'. 
-// 					$unAuditPlan->title. '</a></td></tr>'; $unAuditPlan->account。 'firstDayOfWeek='. $unAuditPlan->firstDayOfWeek. '">'. $unAuditPlan->title.
 	    			$i++;
-					echo '<tr><td style="text-align:center">'. $i. '</td><td style="text-align:left"><a href="/zentao/www/index.php?m=plan&f=audit&account='. $unAuditPlan->account. 
+					echo '<tr><td style="text-align:center">'. $i. '</td><td style="text-align:left"><a href="/zentaoZtrack/www/index.php?m=plan&f=audit&account='. $unAuditPlan->account. 
 						'&firstDayOfWeek='. $unAuditPlan->firstDayOfWeek. '&lastDayOfWeek='. $unAuditPlan->lastDayOfWeek. '&realname='. $unAuditPlan->realname. '#form1">   &nbsp;&nbsp;' . $unAuditPlan->team. ' &nbsp;&nbsp;  '.
 					$unAuditPlan->realname. '周计划     ('. $unAuditPlan->firstDayOfWeek. '~'. $unAuditPlan->lastDayOfWeek. 
 					')</a></td></tr>';

@@ -129,7 +129,8 @@ $lang->plan->periods['queryplan']   = '查询计划';//只可查询，不可操�
 $lang->plan->periods['handle']      = '我的确认';
 $lang->plan->periods['proteam'] 	= '项目组设定';
 $lang->plan->periods['membset']     = '成员设定';
-$lang->plan->periods['collectplan']     = '汇总计划';
+$lang->plan->periods['collectplan'] = '汇总计划';
+$lang->plan->periods['leave'] 		= '请假登记';
 
 // $lang->plan->myplan      = '我的计划';//主要是新增计划可以查看
 // $lang->plan->queryplan   = '查询计划';//只可查询，不可操作
@@ -141,3 +142,6 @@ $lang->plan->searchfordetail		= '查询计划详情';
 $lang->plan->collectplan			= '汇总计划';
 $lang->plan->audit					= '我的审核';
 $lang->plan->querymemberplan        = '查看成员计划';
+$lang->plan->editproteaminfo        = '编辑项目组信息';
+
+$lang->plan->leave			        = '请假登记';

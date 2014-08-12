@@ -14,11 +14,22 @@
 <?php include '../../../common/view/autocomplete.html.php';?>
 <?php include '../../../common/view/alert.html.php';?>
 <?php include '../../../common/view/kindeditor.html.php';?>
+
+<?php
+include '../../../common/view/form.html.php';
+include '../../../common/view/chosen.html.php';
+js::set('holders', $lang->bug->placeholder);
+js::set('page', 'create');
+js::set('createRelease', $lang->release->create);
+js::set('createBuild', $lang->build->create);
+js::set('refresh', $lang->refresh);
+?>
+
 <script>var holders = <?php echo json_encode($lang->bug->placeholder);?></script>
 <script language='Javascript'>
 userList = "<?php echo join(',', array_keys($users));?>".split(',');
 </script>
-<form method='post' enctype='multipart/form-data' target='hiddenwin' id='dataform'>
+<form method='post' class="ajaxForm" enctype='multipart/form-data' target='hiddenwin' id='dataform'>
   <table class='table-1'> 
     <caption><?php echo $lang->bug->create;?></caption>
     <tr>

@@ -68,10 +68,6 @@
 			      <td><?php echo $plan->submitToName;?></td>
 			      <td><?php echo $plan->confirmedOrNo;?></td>
 			      <td><?php echo $plan->confirmed;?></td>
-			      <!-- <td><?php echo $plan->remark;?></td> 
-			       <td><a href='/zentao/www/index.php?m=plan&amp;f=searchfordetail&amp;planId=<?php echo $plan->id;?>&amp;onlybody=yes'
-			       	 target="" class="link-icon iframe cboxElement" title="详情">详情</a></td>
-					-->		       	 
 			    </tr>
 			    <?php endforeach;?>
 			    <?php else :
