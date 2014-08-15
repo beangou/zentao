@@ -56,18 +56,21 @@ class plan extends control{
 		// 把原先的组长 加到 选择组长的select中
 		$nowLeaders = array(); 
 		$preLeader = $this->plan->queryNameByProteamId($infoId, '1');
-		$nowLeaders = array_merge($useNotSet, $preLeader);
+		$nowLeaders = array_merge($preLeader, $useNotSet);
 // 		array_push($nowLeaders, $useNotSet);
 // 		array_push($nowLeaders, $preLeader);
 		// 把原先的技术经理 加到 选择技术经理的select中
 		$nowManagers = array();
 		$preManagers = $this->plan->queryNameByProteamId($infoId, '2');
-		$nowManagers = array_merge($useNotSet, $preManagers);
+		$preManagersStr = '';
+		foreach ($preManagers as $k=>$v) {
+			$preManagersStr .= $k. ',';
+		}
+		$nowManagers = array_merge($preManagers, $useNotSet);
 // 		array_push($nowManagers, $useNotSet);
 // 		array_push($nowManagers, $preManagers);
-		
+		$this->view->preManagersStr = $preManagersStr;
 		$this->view->preLeader = $preLeader;
-		$this->view->preManagers = $preManagers;
 		$this->view->nowLeaders	= $nowLeaders;
 		$this->view->nowManagers = $nowManagers;
 		$this->display();

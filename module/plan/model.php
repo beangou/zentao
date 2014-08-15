@@ -29,32 +29,36 @@ class planModel extends model{
 		$this->dao->update(TABLE_ICTPROTEAM)->data($proteamInfo)
 					->autoCheck()
 					->check('team','notempty')->check('leader','notempty')
-					->check('team','unique')->check('leader','unique')
 					->where('id')->eq((int)$_POST['infoId'])->exec();
 		
-		// 更新组长的leader值
-		if (!empty($_POST['leader'])) {
-			$leaderData->leader = '1';
-			$this->dao->update(TABLE_ICTMEMBSET)->data($leaderData)
-			->where('account')->eq($_POST['leader'])->exec();
-		}
+		// 更改策略： 每次编辑项目组， 先将该项目组 的membset成员 全部删除， 然后再根据 填写 的account，插到membset
+		// (1)删除membset成员  包括组长、技术经理
+		$this->dao->delete()->from(TABLE_ICTMEMBSET)
+		->where('proteam')->eq((int)$_POST['infoId'])
+		->exec();
+		// (2)插入相关成员
+		// 插入组长
+		$leaderData->proteam = (int)$_POST['infoId'];
+		$leaderData->leader = '1';
+		$leaderData->account = $_POST['leader'];
+		// 如果不存在， 直接插入
+		$this->dao->insert(TABLE_ICTMEMBSET)->data($leaderData)->autoCheck()
+		->check('account','unique')->exec();
 		
-		// 更新技术经理的leader值
-		if (!empty($_POST['techmanager'])) {
-			$managers = $_POST['techmanager'];
+		// 插入技术经理
+		if (!empty($_POST['son_techmanager'])) {
+			$managers = $_POST['son_techmanager'];
 			$techCount = count($managers);
 			// 将技术经理 插入到 memberset表中
 			for ($i = 0; $i < $techCount; $i++){
-				$managerData->proteam = $proteamId->id;
+				$managerData->proteam = (int)$_POST['infoId'];
 				$managerData->leader  = '2';
-				
-				$this->dao->update(TABLE_ICTPROTEAM)->data($managerData)
-				->where('account')->eq($_POST['techmanager'])->exec();
-				$this->dao->insert(TABLE_ICTMEMBSET)->data($data)->autoCheck()
+				$managerData->account = $managers[$i];
+				// 如果不存在 membset表中， 直接插入
+				$this->dao->insert(TABLE_ICTMEMBSET)->data($managerData)->autoCheck()
 				->check('account','unique')->exec();
 			}
 		}
-		
 	}
 	
 	/**
@@ -1312,6 +1316,23 @@ class planModel extends model{
 				->where('t1.proteam')->eq($proteamId)
 				->andWhere('t1.leader')->eq($leader)
 				->fetchPairs();
+	}
+	
+	/**
+	 * 查询membset表是否存在 account用户
+	 * 存在， 即返回 true
+	 * 不存在， 返回 false
+	 */
+	public function isInMembsetByAccount($account = '')
+	{
+		$result = true;
+		$searchArr = $this->dao->select('t1.account')->from(TABLE_ICTMEMBSET)->alias('t1')
+		->where('t1.account')->eq($account)
+		->fetchPairs();
+		if (empty($searchArr)) {
+			$result = false;
+		}
+		return $result;
 	}
 	
 }
